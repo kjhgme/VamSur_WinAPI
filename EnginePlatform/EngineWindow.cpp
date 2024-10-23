@@ -1,9 +1,10 @@
-﻿#include "EngineWindow.h"
+#include "EngineWindow.h"
 
 #include <EngineBase/EngineDebug.h>
 
 HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEXA> UEngineWindow::WindowClasss;
+int WindowCount = 0;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -20,7 +21,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     break;
     case WM_DESTROY:
-        PostQuitMessage(0);
+        --WindowCount;
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -30,10 +31,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
 {
+    hInstance = _Instance;
+   
     WNDCLASSEXA wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
-
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = WndProc;
     wcex.cbClsExtra = 0;
@@ -46,8 +48,6 @@ void UEngineWindow::EngineWindowInit(HINSTANCE _Instance)
     wcex.lpszClassName = "Default";
     wcex.hIconSm = nullptr;
     CreateWindowClass(wcex);
-
-    hInstance = _Instance;
 }
 
 
@@ -68,16 +68,21 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 
 }
 
-int UEngineWindow::WindowMessageLoop()
+int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
 {
     MSG msg;
 
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (WindowCount)     // window가 전부 꺼질 때까지 실행
     {
-        if (!TranslateAccelerator(msg.hwnd, nullptr, &msg))
+        if (0 != PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+        }
+
+        if (true == _FrameFunction.IsBind())
+        {
+            _FrameFunction();
         }
     }
 
@@ -96,12 +101,6 @@ UEngineWindow::UEngineWindow()
 UEngineWindow::~UEngineWindow()
 {
 }
-
-void UEngineWindow::Create(std::string_view _ClassName)
-{
-    Create("Window", _ClassName);
-}
-
 void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassName)
 {
     if (false == WindowClasss.contains(_ClassName.data()))
@@ -125,9 +124,10 @@ void UEngineWindow::Open(std::string_view _TitleName)
 {
     if (nullptr == WindowHandle)
     {
-        Create();
+        Create("VampireSurvivors");
     }
 
     ShowWindow(WindowHandle, SW_SHOW);
     UpdateWindow(WindowHandle);
+    ++WindowCount;
 }

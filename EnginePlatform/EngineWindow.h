@@ -1,8 +1,11 @@
-﻿#pragma once
+#pragma once
 #include <Windows.h>
 
-#include <string>
 #include <map>
+#include <string>
+#include <functional>
+
+#include <EngineBase/EngineDelegate.h>
 
 class UEngineWindow
 {
@@ -10,7 +13,7 @@ public:
 	static void EngineWindowInit(HINSTANCE _Instance);
 	static void CreateWindowClass(const WNDCLASSEXA& _Class);
 	static bool IsWindowClass(const std::string_view _Text);
-	static int WindowMessageLoop();
+	static int WindowMessageLoop(EngineDelegate _FrameFunction);
 
 	UEngineWindow();
 	~UEngineWindow();
@@ -21,7 +24,6 @@ public:
 	UEngineWindow& operator=(UEngineWindow&& _Other) noexcept = delete;
 
 	void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
-	void Create(std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
 
 protected:

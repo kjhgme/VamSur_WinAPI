@@ -1,7 +1,8 @@
-﻿#include <Windows.h>
-#include <EnginePlatform/EngineWindow.h>
+#include <Windows.h>
 
-#pragma comment (lib, "EnginePlatform.lib")
+#include<EngineCore/EngineAPICore.h>
+
+#pragma comment (lib, "EngineCore.lib")
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -9,10 +10,5 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_ LPWSTR    lpCmdLine,
 	_In_ int       nCmdShow)
 {
-	UEngineWindow::EngineWindowInit(hInstance);
-
-	UEngineWindow NewWindow;
-	NewWindow.Open();
-
-	return UEngineWindow::WindowMessageLoop();
+	return UEngineAPICore::EngineStart(hInstance);
 }
