@@ -3,4 +3,4 @@
 #include <assert.h>
 
 
-#define MSGASSERT(VALUE) MessageBoxA(nullptr, VALUE, "ERROR", MB_OK); assert(false);
+#define MSGASSERT(VALUE) std::string ErrorText = VALUE; MessageBoxA(nullptr, ErrorText.c_str(), "ERROR", MB_OK); assert(false);
