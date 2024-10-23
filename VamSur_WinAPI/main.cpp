@@ -1,5 +1,6 @@
 #include <Windows.h>
 
+#include "PreCompile.h"
 #include<EngineCore/EngineAPICore.h>
 
 #pragma comment (lib, "EngineCore.lib")

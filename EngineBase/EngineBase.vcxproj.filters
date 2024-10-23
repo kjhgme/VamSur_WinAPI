@@ -13,6 +13,9 @@
     <ClInclude Include="EngineDelegate.h">
       <Filter>Function</Filter>
     </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="EngineDelegate.cpp">
       <Filter>Function</Filter>
     </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -40,6 +46,9 @@
     </Filter>
     <Filter Include="Function">
       <UniqueIdentifier>{d3bfeaf2-679b-4286-8548-fc5d9511d643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{0f5b36ac-bea9-46eb-93a2-f6eaf13ec747}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,11 +5,17 @@
     <ClInclude Include="EngineAPICore.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="PreCompile.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AActor.cpp" />
     <ClCompile Include="EngineAPICore.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>PreCompile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -18,6 +24,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{983c0706-5429-4d4d-af45-27901441278d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{455e66d9-3a4b-4a9a-b446-8617e9a65249}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

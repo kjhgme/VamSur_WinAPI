@@ -1,3 +1,4 @@
+#include "PreCompile.h"
 #include "EngineAPICore.h"
 
 #include <EnginePlatform/EngineWindow.h>
