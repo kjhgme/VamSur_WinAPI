@@ -1,4 +1,4 @@
-#include "EngineFile.h"
+癤�#include "EngineFile.h"
 #include "EngineDebug.h"
 
 UEngineFile::UEngineFile()
@@ -35,7 +35,6 @@ void UEngineFile::Write(const void* _Ptr, size_t _Size)
 		MSGASSERT("File is not exist.(Write)");
 	}
 
-	// w일 경우에 대한 예외처리
 	if (nullptr == File)
 	{
 		MSGASSERT("File is not opened.(Write)");

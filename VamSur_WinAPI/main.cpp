@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <EnginePlatform/EngineWindow.h>
 
 #pragma comment (lib, "EnginePlatform.lib")
