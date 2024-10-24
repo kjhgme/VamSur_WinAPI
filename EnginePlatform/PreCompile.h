@@ -1,10 +1,4 @@
 #pragma once
+#include <EngineBase/PreCompile.h>
 
-#include <Windows.h>
-
-#include <list>
-#include <vector>
-#include <map>
-#include <string>
-#include <iostream>
-#include <functional>
+#include "EngineWindow.h"
