@@ -123,6 +123,8 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
         MSGASSERT("!WindowHandle(Create)" + std::string(_TitleName));
         return;
     }
+
+    BackBuffer = GetDC(WindowHandle);
 }
 
 
