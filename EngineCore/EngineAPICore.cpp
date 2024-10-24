@@ -42,32 +42,14 @@ int UEngineAPICore::EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore)
 
 	UEngineAPICore Core = UEngineAPICore();
 	Core.EngineMainWindow.Open();
+	MainCore = &Core;
 
-
-	EngineDelegate Start = EngineDelegate(std::bind(EnginBeginPlay));
+	EngineDelegate Start = EngineDelegate(std::bind(EngineBeginPlay));
 	EngineDelegate FrameLoop = EngineDelegate(std::bind(EngineTick));;
 	return UEngineWindow::WindowMessageLoop(Start, FrameLoop);
 }
 
-
-void UEngineAPICore::OpenLevel(std::string_view _LevelName)
-{
-	std::string ChangeName = _LevelName.data();
-
-	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(ChangeName);
-	std::map<std::string, class ULevel*>::iterator EndIter = Levels.end();
-
-	if (EndIter == FindIter)
-	{
-		MSGASSERT(ChangeName + "is not exist.");
-		return;
-	}
-
-	// 최신 방식
-	CurLevel = FindIter->second;
-}
-
-void UEngineAPICore::EnginBeginPlay()
+void UEngineAPICore::EngineBeginPlay()
 {
 	UserCore->BeginPlay();
 }
@@ -81,4 +63,28 @@ void UEngineAPICore::EngineTick()
 
 void UEngineAPICore::Tick()
 {
+	if (nullptr == CurLevel)
+	{
+		MSGASSERT("The engine core is not assigned a current level.");
+		return;
+	}
+
+	CurLevel->Tick();
+	CurLevel->Render();
+}
+
+void UEngineAPICore::OpenLevel(std::string_view _LevelName)
+{
+	std::string ChangeName = _LevelName.data();
+
+	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(ChangeName);
+	std::map<std::string, class ULevel*>::iterator EndIter = Levels.end();
+
+	if (EndIter == FindIter)
+	{
+		MSGASSERT(ChangeName + "is not exist.(OpenLevel)");
+		return;
+	}
+
+	CurLevel = FindIter->second;
 }

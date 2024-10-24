@@ -72,6 +72,11 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 int UEngineWindow::WindowMessageLoop(EngineDelegate _StartFunction, EngineDelegate _FrameFunction)
 {
     MSG msg = MSG();
+    
+    if (true == _StartFunction.IsBind())
+    {
+        _StartFunction();
+    }
 
     while (WindowCount)     // window가 전부 꺼질 때까지 실행
     {

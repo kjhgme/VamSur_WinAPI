@@ -15,9 +15,10 @@ VamSurContentsCore::~VamSurContentsCore()
 
 void VamSurContentsCore::BeginPlay()
 {
-	// UEngineAPICore::GetCore()->CreateLevel<APlayGameMode, APlayer>("Title");
+	int a = 0;
+	// UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Title");
 	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("InGame");
-	// UEngineAPICore::GetCore()->CreateLevel<APlayGameMode, APlayer>("Result");
+	// UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Result");
 
 	UEngineAPICore::GetCore()->OpenLevel("InGame");
 }

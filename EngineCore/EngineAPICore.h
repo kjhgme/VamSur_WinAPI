@@ -55,7 +55,7 @@ public:
 protected:
 
 private:
-	static void EnginBeginPlay();
+	static void EngineBeginPlay();
 	static void EngineTick();
 	static UEngineAPICore* MainCore;
 	static UContentsCore* UserCore;
