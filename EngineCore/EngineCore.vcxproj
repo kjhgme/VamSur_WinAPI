@@ -152,6 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="GameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineAPICore.h">
       <SubType>
       </SubType>
@@ -164,6 +168,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="GameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineAPICore.cpp">
       <SubType>
       </SubType>

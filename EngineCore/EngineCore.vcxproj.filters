@@ -13,6 +13,9 @@
     <ClInclude Include="Level.h">
       <Filter>Object\Level</Filter>
     </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineAPICore.cpp">
@@ -26,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Object\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
