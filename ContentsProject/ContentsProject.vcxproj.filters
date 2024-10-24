@@ -1,20 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ContentsObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="VamSurContentsCore.h">
+      <Filter>ContentsCore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ContentsObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="VamSurContentsCore.cpp">
+      <Filter>ContentsCore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{02fb7197-9b10-4a8d-86f6-9702f1b724e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects">
+      <UniqueIdentifier>{eed5a0ad-0abd-4a7c-b03b-c276d3ed4aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Player">
+      <UniqueIdentifier>{65f8c41c-3db2-4fb6-b0a2-c75b11856fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsCore">
+      <UniqueIdentifier>{cd8c6bd2-387d-4630-86a7-79827ae723dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

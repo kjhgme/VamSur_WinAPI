@@ -13,7 +13,7 @@ public:
 	static void EngineWindowInit(HINSTANCE _Instance);
 	static void CreateWindowClass(const WNDCLASSEXA& _Class);
 	static bool IsWindowClass(const std::string_view _Text);
-	static int WindowMessageLoop(EngineDelegate _FrameFunction);
+	static int WindowMessageLoop(EngineDelegate _StartFunction, EngineDelegate _FrameFunction);
 
 	UEngineWindow();
 	~UEngineWindow();

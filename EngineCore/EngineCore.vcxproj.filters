@@ -1,21 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="AActor.h" />
     <ClInclude Include="EngineAPICore.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Object\Level</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AActor.cpp" />
     <ClCompile Include="EngineAPICore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Object\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +37,12 @@
     </Filter>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{455e66d9-3a4b-4a9a-b446-8617e9a65249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{8edda5af-bb44-4c9a-8e7d-3592d4ad2d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Level">
+      <UniqueIdentifier>{dd397adb-0f99-4c2c-98d5-df1ba8969052}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

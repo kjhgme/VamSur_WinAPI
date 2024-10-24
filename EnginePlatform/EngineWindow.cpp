@@ -69,9 +69,9 @@ void UEngineWindow::CreateWindowClass(const WNDCLASSEXA& _Class)
 
 }
 
-int UEngineWindow::WindowMessageLoop(EngineDelegate _FrameFunction)
+int UEngineWindow::WindowMessageLoop(EngineDelegate _StartFunction, EngineDelegate _FrameFunction)
 {
-    MSG msg;
+    MSG msg = MSG();
 
     while (WindowCount)     // window가 전부 꺼질 때까지 실행
     {
@@ -123,9 +123,11 @@ void UEngineWindow::Create(std::string_view _TitleName, std::string_view _ClassN
 
 void UEngineWindow::Open(std::string_view _TitleName)
 {
-    if (nullptr == WindowHandle)
+    if (0 == WindowHandle)
     {
         Create("VampireSurvivors");
+
+        return;
     }
 
     ShowWindow(WindowHandle, SW_SHOW);
