@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="InGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="VamSurContentsCore.h">
@@ -159,6 +163,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InGameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

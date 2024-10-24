@@ -1,20 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="EngineWindow.h" />
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="EngineWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EngineWindow.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineWindow.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{304da149-fba2-4b48-a1bf-54a6c86fd3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{170ceabd-8811-4c0e-be32-4f8bb931ea94}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

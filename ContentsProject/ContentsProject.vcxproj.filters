@@ -10,6 +10,9 @@
     <ClInclude Include="VamSurContentsCore.h">
       <Filter>ContentsCore</Filter>
     </ClInclude>
+    <ClInclude Include="InGameMode.h">
+      <Filter>ContentsObjects\InGameMode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -20,6 +23,9 @@
     </ClCompile>
     <ClCompile Include="VamSurContentsCore.cpp">
       <Filter>ContentsCore</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameMode.cpp">
+      <Filter>ContentsObjects\InGameMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +40,9 @@
     </Filter>
     <Filter Include="ContentsCore">
       <UniqueIdentifier>{cd8c6bd2-387d-4630-86a7-79827ae723dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\InGameMode">
+      <UniqueIdentifier>{1c225632-a69c-4795-9839-c4250d9d5c60}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

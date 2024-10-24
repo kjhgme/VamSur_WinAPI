@@ -25,6 +25,11 @@ public:
 
 	void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
+	
+	inline HDC GetBackBuffer()
+	{
+		return BackBuffer;
+	}
 
 protected:
 
@@ -33,5 +38,6 @@ private:
 	static std::map<std::string, WNDCLASSEXA> WindowClasss;
 
 	HWND WindowHandle = nullptr;
+	HDC BackBuffer = nullptr;
 };
 

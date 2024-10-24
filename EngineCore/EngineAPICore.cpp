@@ -3,6 +3,7 @@
 
 #include <EnginePlatform/EngineWindow.h>
 #include <EngineBase/EngineDelegate.h>
+#include <EngineBase/EngineDebug.h>
 
 UEngineAPICore* UEngineAPICore::MainCore = nullptr;
 UContentsCore* UEngineAPICore::UserCore = nullptr;
@@ -48,6 +49,23 @@ int UEngineAPICore::EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore)
 	return UEngineWindow::WindowMessageLoop(Start, FrameLoop);
 }
 
+
+void UEngineAPICore::OpenLevel(std::string_view _LevelName)
+{
+	std::string ChangeName = _LevelName.data();
+
+	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(ChangeName);
+	std::map<std::string, class ULevel*>::iterator EndIter = Levels.end();
+
+	if (EndIter == FindIter)
+	{
+		MSGASSERT(ChangeName + "is not exist.");
+		return;
+	}
+
+	// 최신 방식
+	CurLevel = FindIter->second;
+}
 
 void UEngineAPICore::EnginBeginPlay()
 {
