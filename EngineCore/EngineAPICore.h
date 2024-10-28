@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <Windows.h>
+#include <EngineBase/EngineTimer.h>
 #include <EnginePlatform/EngineWindow.h>
 
 #pragma comment (lib, "EngineBase.lib")
@@ -61,6 +62,7 @@ private:
 	static UContentsCore* UserCore;
 
 	UEngineWindow EngineMainWindow;
+	UEngineTimer DeltaTimer = UEngineTimer();
 
 	std::map<std::string, class ULevel*> Levels;
 	class ULevel* CurLevel = nullptr;

@@ -13,6 +13,9 @@
     <ClInclude Include="InGameMode.h">
       <Filter>ContentsObjects\InGameMode</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ContentsObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -26,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="InGameMode.cpp">
       <Filter>ContentsObjects\InGameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>ContentsObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

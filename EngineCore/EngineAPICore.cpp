@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineAPICore.h"
 
+#include <EnginePlatform/EngineInput.h>
 #include <EnginePlatform/EngineWindow.h>
 #include <EngineBase/EngineDelegate.h>
 #include <EngineBase/EngineDebug.h>
@@ -35,7 +36,7 @@ UEngineAPICore::~UEngineAPICore()
 int UEngineAPICore::EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	
+
 	UserCore = _UserCore;
 
 	UEngineWindow::EngineWindowInit(_Inst);
@@ -63,13 +64,19 @@ void UEngineAPICore::EngineTick()
 
 void UEngineAPICore::Tick()
 {
+	DeltaTimer.TimeCheck();
+	float DeltaTime = DeltaTimer.GetDeltaTime();
+
+	UEngineInput::GetInst().KeyCheck(DeltaTime);
+
 	if (nullptr == CurLevel)
 	{
 		MSGASSERT("The engine core is not assigned a current level.");
 		return;
 	}
 
-	CurLevel->Tick();
+	UEngineInput::GetInst().EventCheck(DeltaTime);
+	CurLevel->Tick(DeltaTime);
 	CurLevel->Render();
 }
 
