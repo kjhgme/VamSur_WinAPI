@@ -15,11 +15,12 @@ VamSurContentsCore::~VamSurContentsCore()
 
 void VamSurContentsCore::BeginPlay()
 {
-	int a = 0;
-	// UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Title");
+	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("VampireSurvivors");
+	
+	//UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Title");
 	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("InGame");
 	// UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Result");
-
+	
 	UEngineAPICore::GetCore()->OpenLevel("InGame");
 }
 
