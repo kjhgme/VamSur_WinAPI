@@ -16,6 +16,7 @@
     <ClInclude Include="Bullet.h">
       <Filter>ContentsObjects</Filter>
     </ClInclude>
+    <ClInclude Include="PlayMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -33,6 +34,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>ContentsObjects</Filter>
     </ClCompile>
+    <ClCompile Include="PlayMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
