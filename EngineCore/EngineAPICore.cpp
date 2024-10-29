@@ -6,9 +6,10 @@
 #include <EngineBase/EngineDelegate.h>
 #include <EngineBase/EngineDebug.h>
 
+#include <Windows.h>
+
 UEngineAPICore* UEngineAPICore::MainCore = nullptr;
 UContentsCore* UEngineAPICore::UserCore = nullptr;
-
 
 UEngineAPICore::UEngineAPICore()
 {
