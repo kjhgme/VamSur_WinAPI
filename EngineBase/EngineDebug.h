@@ -4,3 +4,8 @@
 
 
 #define MSGASSERT(VALUE) std::string ErrorText = VALUE; MessageBoxA(nullptr, ErrorText.c_str(), "ERROR", MB_OK); assert(false);
+
+namespace UEngineDebug
+{
+	void OutPutString(const std::string& Text);
+}
