@@ -1,11 +1,10 @@
 #pragma once
+#include "PreCompile.h"
 #include <Windows.h>
 
-#include <map>
-#include <string>
-#include <functional>
-
 #include <EngineBase/EngineDelegate.h>
+
+#include "EngineWinImage.h"
 
 class UEngineWindow
 {
@@ -26,9 +25,19 @@ public:
 	void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
 	
-	inline HDC GetBackBuffer()
+	inline FVector2D GetWindowSize() const
 	{
-		return BackBuffer;
+		return WindowSize;
+	}
+
+	inline UEngineWinImage* GetBackBuffer() const
+	{
+		return BackBufferImage;
+	}
+
+	inline UEngineWinImage* GetWindowImage() const
+	{
+		return WindowImage;
 	}
 
 	inline void SetWindowTitle(std::string_view Text)
@@ -36,13 +45,18 @@ public:
 		SetWindowTextA(WindowHandle, Text.data());
 	}
 
+	void SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale);
+
 protected:
 
 private:
 	static HINSTANCE hInstance;
 	static std::map<std::string, WNDCLASSEXA> WindowClasss;
 
+	FVector2D WindowSize;
+
 	HWND WindowHandle = nullptr;
-	HDC BackBuffer = nullptr;
+	UEngineWinImage* BackBufferImage = nullptr;
+	UEngineWinImage* WindowImage = nullptr;
 };
 

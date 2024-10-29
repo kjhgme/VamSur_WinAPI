@@ -71,7 +71,7 @@ void UEngineAPICore::Tick()
 
 	if (nullptr == CurLevel)
 	{
-		MSGASSERT("The engine core is not assigned a current level.");
+		MSGASSERT("The engine core is not assigned a current level.(UEngineAPICore::EngineTick)");
 		return;
 	}
 
@@ -89,7 +89,7 @@ void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 
 	if (EndIter == FindIter)
 	{
-		MSGASSERT(ChangeName + "is not exist.(OpenLevel)");
+		MSGASSERT(ChangeName + "is not exist.(UEngineAPICore::OpenLevel)");
 		return;
 	}
 

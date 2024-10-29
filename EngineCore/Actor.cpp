@@ -14,12 +14,13 @@ AActor::~AActor()
 
 void AActor::Render()
 {
-	FVector2D LeftTop = Location - Scale.Half();
-	FVector2D RightBot = Location + Scale.Half();
+	FVector2D LeftTop = Transform.Location - Transform.Scale.Half();
+	FVector2D RightBot = Transform.Location + Transform.Scale.Half();
 
 
 	UEngineWindow& MainWindow = UEngineAPICore::GetCore()->GetMainWindow();
-	HDC BackHDC = MainWindow.GetBackBuffer();
+	UEngineWinImage* BackBufferImage = MainWindow.GetBackBuffer();
 
-	Rectangle(BackHDC, LeftTop.iX(), LeftTop.iY(), RightBot.iX(), RightBot.iY());
+	HDC BackBufferDC = BackBufferImage->GetDC();
+	Rectangle(BackBufferDC, LeftTop.iX(), LeftTop.iY(), RightBot.iX(), RightBot.iY());
 }

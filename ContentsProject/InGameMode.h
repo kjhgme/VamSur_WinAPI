@@ -1,4 +1,6 @@
 #pragma once
+#include <EngineCore/GameMode.h>
+
 class AInGameMode : public AGameMode
 {
 public:
