@@ -27,6 +27,16 @@ std::string UEnginePath::GetPathToString()
 	return Path.string();
 }
 
+std::string UEnginePath::GetFileName()
+{
+	return Path.filename().string();
+}
+
+std::string UEnginePath::GetExtension()
+{
+	return Path.extension().string();
+}
+
 
 bool UEnginePath::IsExists()
 {
@@ -61,18 +71,24 @@ bool UEnginePath::MoveParentToDirectory(std::string_view _Path)
 	bool Result = false;
 
 	std::filesystem::path CurPath = DummyPath.Path;
-	while (CurPath != CurPath.root_path())
+	std::filesystem::path Root = CurPath.root_path();
+
+	while (true)
 	{
 		CurPath = DummyPath.Path;
-		CurPath.append(_Path);
 
+		if (CurPath == Root)
+		{
+			break;
+		}
+
+		CurPath.append(_Path);
 		if (true == std::filesystem::exists(CurPath))
 		{
 			Result = true;
 			Path = CurPath;
 			break;
 		}
-
 		DummyPath.MoveParent();
 	}
 

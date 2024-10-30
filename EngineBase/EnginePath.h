@@ -14,16 +14,20 @@ public:
 	//UEnginePath& operator=(const UEnginePath& _Other) = delete;
 	//UEnginePath& operator=(UEnginePath&& _Other) noexcept = delete;
 
-	bool IsExists();
-	void MoveParent();
 
+	// GetFunction
 	std::string GetPathToString();
+	std::string GetFileName();
+	std::string GetExtension();
 
-	bool MoveParentToDirectory(std::string_view _Path);
-
+	// IsFunction
+	bool IsExists();
 	bool IsDirectory();
-
 	bool IsFile();
+
+	// Function
+	void MoveParent();
+	bool MoveParentToDirectory(std::string_view _Path);
 
 protected:
 	std::filesystem::path Path;
