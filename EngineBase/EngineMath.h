@@ -28,6 +28,11 @@ public:
 
 	}
 
+	FVector2D(long _X, long _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y))
+	{
+
+	}
+
 	int iX() const
 	{
 		return static_cast<int>(X);
@@ -37,12 +42,23 @@ public:
 	{
 		return static_cast<int>(Y);
 	}
+	
+	bool IsZeroed() const
+	{
+		return X == 0.0f || Y == 0.0f;
+	}
 
 	FVector2D Half() const
 	{
 		return { X * 0.5f, Y * 0.5f };
 	}
 
+	bool EqualToInt(FVector2D _Other) const
+	{
+		return iX() == _Other.iX() && iY() == _Other.iY();
+	}
+
+	// operator
 	FVector2D operator*(float _Value) const
 	{
 		FVector2D Result;
@@ -50,8 +66,6 @@ public:
 		Result.Y = Y * _Value;
 		return Result;
 	}
-
-
 
 	FVector2D operator+(FVector2D _Other) const
 	{
@@ -80,11 +94,6 @@ public:
 	bool operator==(FVector2D _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
-	}
-
-	bool EqualToInt(FVector2D _Other) const
-	{
-		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
 	FVector2D& operator+=(FVector2D _Other)

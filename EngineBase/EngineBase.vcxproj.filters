@@ -28,6 +28,9 @@
     <ClInclude Include="Object.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="EngineString.h">
+      <Filter>String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="EngineString.cpp">
+      <Filter>String</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Debug">
@@ -79,6 +85,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{5abd1d05-c176-411f-b702-393780fe0f1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="String">
+      <UniqueIdentifier>{5130d02a-b6a9-4760-8057-a9004a9f0579}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
