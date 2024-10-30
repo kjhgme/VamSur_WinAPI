@@ -1,6 +1,15 @@
 #include "PreCompile.h"
 #include "EngineWinImage.h"
-#include <EngineBase/EngineDebug.h>
+
+#include <EngineBase/EnginePath.h>
+#include <EngineBase/EngineString.h>
+
+// GDI Plus
+#include <objidl.h>
+#include <gdiplus.h>
+
+#pragma comment(lib, "Msimg32.lib")
+#pragma comment(lib, "Gdiplus.lib")
 
 UEngineWinImage::UEngineWinImage()
 {
@@ -54,4 +63,88 @@ void UEngineWinImage::CopyToBit(UEngineWinImage* _TargetImage, const FTransform&
 		0,
 		0,
 		SRCCOPY);
+}
+
+void UEngineWinImage::CopyToTrans(UEngineWinImage* _TargetImage, const FTransform& _RenderTrans, const FTransform& _LTImageTrans, UColor _Color)
+{
+	HDC CopyDC = ImageDC;
+	HDC TargetDC = _TargetImage->ImageDC;
+
+	FVector2D LeftTop = _RenderTrans.CenterLeftTop();
+
+	//_In_ HDC hdcDest,					TargetHDC
+	//_In_ int xoriginDest,				PosX
+	//_In_ int yoriginDest,				PosY
+	//_In_ int wDest,					ScaleX
+	//_In_ int hDest,					ScaleY
+	//_In_ HDC hdcSrc,					Image
+	//_In_ int xoriginSrc,				ImagePosX
+	//_In_ int yoriginSrc,				ImagePosY
+	//_In_ int wSrc,					ImageScaleX
+	//_In_ int hSrc,					ImageScaleY
+	//_In_ UINT crTransparent			Color
+
+	TransparentBlt(
+		TargetDC,
+		LeftTop.iX(),
+		LeftTop.iY(),
+		_RenderTrans.Scale.iX(),
+		_RenderTrans.Scale.iY(),
+		CopyDC,
+		_LTImageTrans.Location.iX(),
+		_LTImageTrans.Location.iY(),
+		_LTImageTrans.Scale.iX(),
+		_LTImageTrans.Scale.iY(),
+		_Color.Color
+	);
+}
+
+void UEngineWinImage::Load(UEngineWinImage* _TargetImage, std::string_view _Path)
+{
+	UEnginePath Path = _Path;
+
+	std::string UpperExt = UEngineString::ToUpper(Path.GetExtension());
+
+	HBITMAP NewBitmap = nullptr;
+
+	if (".PNG" == UpperExt)
+	{
+		ULONG_PTR gdiplustoken = 0;
+
+		Gdiplus::GdiplusStartupInput StartupInput;
+		Gdiplus::GdiplusStartup(&gdiplustoken, &StartupInput, nullptr);
+
+		std::wstring WidePath = UEngineString::AnsiToUnicode(_Path);
+
+		Gdiplus::Image* pImage = Gdiplus::Image::FromFile(WidePath.c_str());
+
+		Gdiplus::Bitmap* pBitMap = reinterpret_cast<Gdiplus::Bitmap*>(pImage->Clone());
+
+		Gdiplus::Status stat = pBitMap->GetHBITMAP(Gdiplus::Color(255, 255, 0, 255), &NewBitmap);
+
+		if (Gdiplus::Status::Ok != stat)
+		{
+			MSGASSERT("PNG load fail.(UEngineWinImage::Load)" + std::string(_Path));
+			return;
+		}
+
+		delete pBitMap;
+		delete pImage;
+	}
+
+	if (nullptr == NewBitmap)
+	{
+		MSGASSERT("image load fail.(UEngineWinImage::Load)");
+		return;
+	}
+
+	HDC NewImageDC = CreateCompatibleDC(_TargetImage->GetDC());
+
+	HBITMAP OldBitMap = static_cast<HBITMAP>(SelectObject(NewImageDC, NewBitmap));
+	DeleteObject(OldBitMap);
+
+	hBitMap = NewBitmap;
+	ImageDC = NewImageDC;
+
+	GetObject(hBitMap, sizeof(BITMAP), &Info);
 }

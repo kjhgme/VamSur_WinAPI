@@ -4,6 +4,8 @@
 
 #include <EnginePlatform/EngineWinImage.h>
 
+#include "EngineSprite.h"
+
 class UImageManager
 {
 public:
@@ -21,6 +23,11 @@ public:
 	}
 
 	void Load(std::string_view Path);
+	void Load(std::string_view _KeyName, std::string_view Path);
+
+	bool IsLoadSprite(std::string_view _KeyName);
+
+	UEngineSprite* FindSprite(std::string_view _KeyName);
 
 protected:
 
@@ -28,5 +35,6 @@ private:
 	UImageManager();
 
 	std::map<std::string, UEngineWinImage*> Images;
+	std::map<std::string, UEngineSprite*> Sprites;
 };
 

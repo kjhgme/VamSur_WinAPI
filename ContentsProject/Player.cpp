@@ -9,6 +9,8 @@ APlayer::APlayer()
 {
 	SetActorLocation({ 100, 100 });
 	SetActorScale({ 100, 100 });
+
+	SetSprite("antonio.png");
 }
 
 APlayer::~APlayer()
