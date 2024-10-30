@@ -16,12 +16,17 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="EngineTimer.h" />
     <ClInclude Include="EngineDirectory.h">
       <Filter>IO</Filter>
     </ClInclude>
     <ClInclude Include="EnginePath.h">
       <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTimer.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -40,12 +45,17 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="EngineTimer.cpp" />
     <ClCompile Include="EngineDirectory.cpp">
       <Filter>IO</Filter>
     </ClCompile>
     <ClCompile Include="EnginePath.cpp">
       <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTimer.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +73,12 @@
     </Filter>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{0f5b36ac-bea9-46eb-93a2-f6eaf13ec747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{3f0ab6b4-70fd-4549-b6c8-511274c680b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{5abd1d05-c176-411f-b702-393780fe0f1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
