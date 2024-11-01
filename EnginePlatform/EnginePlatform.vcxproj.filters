@@ -11,6 +11,9 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="EngineWinImage.h" />
+    <ClInclude Include="EngineWinDebug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -23,6 +26,9 @@
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="EngineWinImage.cpp" />
+    <ClCompile Include="EngineWinDebug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -33,6 +39,9 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{5c994231-0096-4e41-91d2-504e50c84295}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{01fcd22a-d846-4b69-9981-3a6aa3cd0a59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
