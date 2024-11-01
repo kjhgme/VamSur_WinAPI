@@ -1,4 +1,6 @@
 #pragma once
+#include <EngineBase/EngineMath.h>
+#include <EngineBase/Object.h>
 
 #include "EngineSprite.h"
 
@@ -19,16 +21,11 @@ public:
 
 	virtual void BeginPlay() {}
 	virtual void Tick(float _DeltaTime) {}
-	virtual void Render();
 
+	// GetFunction
 	class ULevel* GetWorld()
 	{
 		return World;
-	}
-
-	void SetActorLocation(FVector2D _Location)
-	{
-		Transform.Location = _Location;
 	}
 
 	FVector2D GetActorLocation()
@@ -36,26 +33,58 @@ public:
 		return Transform.Location;
 	}
 
-	void AddActorLocation(FVector2D _Direction)
+	FTransform GetTransform()
 	{
-		Transform.Location += _Direction;
+		return Transform;
+	}
+
+	// SetFunction
+	void SetActorLocation(FVector2D _Location)
+	{
+		Transform.Location = _Location;
 	}
 
 	void SetActorScale(FVector2D _Scale)
 	{
 		Transform.Scale = _Scale;
 	}
+	
+	// Function
+	void AddActorLocation(FVector2D _Direction)
+	{
+		Transform.Location += _Direction;
+	}
+
+	template<typename ComponentType>
+	ComponentType* CreateDefaultSubObject()
+	{
+		ComponentType* NewComponent = new ComponentType();
+
+		UActorComponent* ComponentPtr = dynamic_cast<UActorComponent*>(NewComponent);
+		
+		ComponentPtr->ParentActor = this;
+
+		Components.push_back(NewComponent);
+
+		ComponentList.push_back(NewComponent);
+		return NewComponent;
+	}
+
+	virtual void LevelChangeStart() {}
+	virtual void LevelChangeEnd() {}
 
 protected:
 
 private:
-	class ULevel* World = nullptr;
-
 	FTransform Transform;
 
-public:
-	class UEngineSprite* Sprite = nullptr;
+	class ULevel* World = nullptr;
+
+	std::list<class UActorComponent*> Components;
+	static std::list<class UActorComponent*> ComponentList;
+
+	static void ComponentBeginPlay();
+
 	int CurIndex = 0;
-	void SetSprite(std::string_view _Name, int _CurIndex = 0);
 };
 

@@ -22,6 +22,7 @@ UEnginePath::~UEnginePath()
 {
 }
 
+// GetFunction
 std::string UEnginePath::GetPathToString()
 {
 	return Path.string();
@@ -32,12 +33,23 @@ std::string UEnginePath::GetFileName()
 	return Path.filename().string();
 }
 
+std::string UEnginePath::GetDirectoryName()
+{
+	if (false == IsDirectory())
+	{
+		MSGASSERT("Path is not Directory." + Path.string());
+		return "";
+	}
+
+	return Path.filename().string();
+}
+
 std::string UEnginePath::GetExtension()
 {
 	return Path.extension().string();
 }
 
-
+// IsFunction
 bool UEnginePath::IsExists()
 {
 	return std::filesystem::exists(Path);
@@ -53,9 +65,15 @@ bool UEnginePath::IsDirectory()
 	return std::filesystem::is_directory(Path);
 }
 
+// Function
 void UEnginePath::MoveParent()
 {
 	Path = Path.parent_path();
+}
+
+void UEnginePath::Append(std::string_view _AppendName)
+{
+	Path.append(_AppendName);
 }
 
 bool UEnginePath::MoveParentToDirectory(std::string_view _Path)

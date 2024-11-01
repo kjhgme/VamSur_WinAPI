@@ -18,6 +18,7 @@ public:
 	// GetFunction
 	std::string GetPathToString();
 	std::string GetFileName();
+	std::string GetDirectoryName();
 	std::string GetExtension();
 
 	// IsFunction
@@ -27,6 +28,7 @@ public:
 
 	// Function
 	void MoveParent();
+	void Append(std::string_view _AppendName);
 	bool MoveParentToDirectory(std::string_view _Path);
 
 protected:

@@ -11,14 +11,22 @@
       <Filter>ContentsCore</Filter>
     </ClInclude>
     <ClInclude Include="InGameMode.h">
-      <Filter>ContentsObjects\InGameMode</Filter>
+      <Filter>ContentsObjects\GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>ContentsObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayMap.h" />
     <ClInclude Include="ContentsEnum.h">
       <Filter>ContentsObjects\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayMap.h">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>ContentsObjects\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>ContentsObjects\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -32,14 +40,22 @@
       <Filter>ContentsCore</Filter>
     </ClCompile>
     <ClCompile Include="InGameMode.cpp">
-      <Filter>ContentsObjects\InGameMode</Filter>
+      <Filter>ContentsObjects\GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>ContentsObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayMap.cpp" />
     <ClCompile Include="ContentsEnum.cpp">
       <Filter>ContentsObjects\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayMap.cpp">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>ContentsObjects\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>ContentsObjects\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,11 +71,20 @@
     <Filter Include="ContentsCore">
       <UniqueIdentifier>{cd8c6bd2-387d-4630-86a7-79827ae723dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContentsObjects\InGameMode">
-      <UniqueIdentifier>{1c225632-a69c-4795-9839-c4250d9d5c60}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ContentsObjects\Global">
       <UniqueIdentifier>{0b285956-0d88-4f38-97f4-21b3c7b1aff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\GameMode">
+      <UniqueIdentifier>{1c225632-a69c-4795-9839-c4250d9d5c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\InGame">
+      <UniqueIdentifier>{238898a9-2dff-4472-85a0-09051f503afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Title">
+      <UniqueIdentifier>{3a4f3a48-ce41-4e62-9d31-f3a7e55a4827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Result">
+      <UniqueIdentifier>{d54e30a8-cedb-4838-be33-c142e2755543}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

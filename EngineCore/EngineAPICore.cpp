@@ -1,17 +1,17 @@
 #include "PreCompile.h"
 #include "EngineAPICore.h"
 
-#include <EnginePlatform/EngineInput.h>
-#include <EngineBase/EngineDelegate.h>
-
 #include <Windows.h>
+
+#include <EngineBase/EngineDelegate.h>
+#include <EnginePlatform/EngineInput.h>
 
 UEngineAPICore* UEngineAPICore::MainCore = nullptr;
 UContentsCore* UEngineAPICore::UserCore = nullptr;
 
 UEngineAPICore::UEngineAPICore()
 {
-	MainCore = this;
+	// MainCore = this;
 }
 
 UEngineAPICore::~UEngineAPICore()
@@ -63,6 +63,22 @@ void UEngineAPICore::EngineTick()
 
 void UEngineAPICore::Tick()
 {
+	if (nullptr != NextLevel)
+	{
+		if (nullptr != CurLevel)
+		{
+			CurLevel->LevelChangeEnd();
+		}
+
+		CurLevel = NextLevel;
+
+		NextLevel->LevelChangeStart();
+
+		NextLevel = nullptr;
+
+		DeltaTimer.TimeStart();
+	}
+
 	DeltaTimer.TimeCheck();
 	float DeltaTime = DeltaTimer.GetDeltaTime();
 
@@ -76,7 +92,7 @@ void UEngineAPICore::Tick()
 
 	UEngineInput::GetInst().EventCheck(DeltaTime);
 	CurLevel->Tick(DeltaTime);
-	CurLevel->Render();
+	CurLevel->Render(DeltaTime);
 }
 
 void UEngineAPICore::OpenLevel(std::string_view _LevelName)

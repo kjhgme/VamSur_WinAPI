@@ -1,7 +1,9 @@
 #pragma once
 #include <Windows.h>
 
-class UEngineWinImage
+#include <EngineBase/Object.h>
+
+class UEngineWinImage : public UObject
 {
 public:
 	UEngineWinImage();

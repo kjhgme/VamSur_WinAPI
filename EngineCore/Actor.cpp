@@ -4,8 +4,11 @@
 #include <EnginePlatform/EngineWinImage.h>
 #include <EngineCore/EngineAPICore.h>
 
+#include "ActorComponent.h"
 #include "EngineSprite.h"
 #include "ImageManager.h"
+
+std::list<UActorComponent*> AActor::ComponentList;
 
 AActor::AActor()
 {
@@ -13,35 +16,34 @@ AActor::AActor()
 
 AActor::~AActor()
 {
-}
-
-void AActor::Render()
-{
-	if (nullptr == Sprite)
+	std::list<UActorComponent*>::iterator StartIter = Components.begin();
+	std::list<UActorComponent*>::iterator EndIter = Components.end();
+	for (; StartIter != EndIter; ++StartIter)
 	{
-		MSGASSERT("Actor's sprite don't setted.(AActor::Render)");
-		return;
+		UActorComponent* Component = *StartIter;
+
+		if (nullptr != Component)
+		{
+			delete Component;
+		}
 	}
 
-	UEngineWindow& MainWindow = UEngineAPICore::GetCore()->GetMainWindow();
-	UEngineWinImage* BackBufferImage = MainWindow.GetBackBuffer();
-
-
-	UEngineSprite::USpriteData CurData = Sprite->GetSpriteData(CurIndex);
-	CurData.Image;
-	CurData.Transform;
-	CurData.Image->CopyToTrans(BackBufferImage, Transform, CurData.Transform);
+	Components.clear();
 }
 
-void AActor::SetSprite(std::string_view _Name, int _CurIndex)
+// private
+void AActor::ComponentBeginPlay()
 {
-	Sprite = UImageManager::GetInst().FindSprite(_Name);
-
-	if (nullptr == Sprite)
 	{
-		MSGASSERT("sprite is NULL.(AActor::SetSprite)" + std::string(_Name));
-		return;
-	}
+		std::list<UActorComponent*>::iterator StartIter = ComponentList.begin();
+		std::list<UActorComponent*>::iterator EndIter = ComponentList.end();
 
-	CurIndex = _CurIndex;
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			UActorComponent* CurActor = *StartIter;
+			CurActor->BeginPlay();
+		}
+
+		ComponentList.clear();
+	}
 }
