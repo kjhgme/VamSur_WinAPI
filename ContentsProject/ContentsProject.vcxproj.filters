@@ -17,6 +17,9 @@
       <Filter>ContentsObjects</Filter>
     </ClInclude>
     <ClInclude Include="PlayMap.h" />
+    <ClInclude Include="ContentsEnum.h">
+      <Filter>ContentsObjects\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -35,6 +38,9 @@
       <Filter>ContentsObjects</Filter>
     </ClCompile>
     <ClCompile Include="PlayMap.cpp" />
+    <ClCompile Include="ContentsEnum.cpp">
+      <Filter>ContentsObjects\Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -51,6 +57,9 @@
     </Filter>
     <Filter Include="ContentsObjects\InGameMode">
       <UniqueIdentifier>{1c225632-a69c-4795-9839-c4250d9d5c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Global">
+      <UniqueIdentifier>{0b285956-0d88-4f38-97f4-21b3c7b1aff5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
