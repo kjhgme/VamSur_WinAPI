@@ -13,6 +13,35 @@ UImageManager::UImageManager()
 
 UImageManager::~UImageManager()
 {
+	{
+		std::map<std::string, UEngineWinImage*>::iterator StartIter = Images.begin();
+		std::map<std::string, UEngineWinImage*>::iterator EndIter = Images.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			UEngineWinImage* CurRes = StartIter->second;
+			if (nullptr != CurRes)
+			{
+				delete CurRes;
+				CurRes = nullptr;
+			}
+		}
+	}
+
+	{
+		std::map<std::string, UEngineSprite*>::iterator StartIter = Sprites.begin();
+		std::map<std::string, UEngineSprite*>::iterator EndIter = Sprites.end();
+
+		for (; StartIter != EndIter; ++StartIter)
+		{
+			UEngineSprite* CurRes = StartIter->second;
+			if (nullptr != CurRes)
+			{
+				delete CurRes;
+				CurRes = nullptr;
+			}
+		}
+	}
 }
 
 void UImageManager::Load(std::string_view _Path)
