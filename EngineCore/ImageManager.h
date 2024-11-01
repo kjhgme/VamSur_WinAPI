@@ -22,12 +22,16 @@ public:
 		return Inst;
 	}
 
-	void Load(std::string_view Path);
-	void Load(std::string_view _KeyName, std::string_view Path);
+	void Load(std::string_view _Path);
+	void Load(std::string_view _KeyName, std::string_view _Path);
+
+	void LoadFolder(std::string_view _Path);
+	void LoadFolder(std::string_view _KeyName, std::string_view _Path);
 
 	bool IsLoadSprite(std::string_view _KeyName);
 
 	UEngineSprite* FindSprite(std::string_view _KeyName);
+	UEngineWinImage* FindImage(std::string_view _KeyName);
 
 protected:
 

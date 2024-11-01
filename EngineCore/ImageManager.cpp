@@ -1,8 +1,10 @@
 #include "PreCompile.h"
 #include "ImageManager.h"
 
-#include <EngineBase/EnginePath.h>
+#include <EngineBase/EngineDirectory.h>
 #include <EngineBase/EngineString.h>
+#include <EngineBase/EnginePath.h>
+#include <EngineBase/EngineFile.h>
 #include <EngineCore/EngineAPICore.h>
 
 UImageManager::UImageManager()
@@ -13,28 +15,28 @@ UImageManager::~UImageManager()
 {
 }
 
-void UImageManager::Load(std::string_view Path)
+void UImageManager::Load(std::string_view _Path)
 {
-	UEnginePath EnginePath = UEnginePath(Path);
+	UEnginePath EnginePath = UEnginePath(_Path);
 
 	std::string FileName = EnginePath.GetFileName();
 
-	Load(FileName, Path);
+	Load(FileName, _Path);
 }
 
-void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
+void UImageManager::Load(std::string_view _KeyName, std::string_view _Path)
 {
-	UEnginePath EnginePath = UEnginePath(Path);
+	UEnginePath EnginePath = UEnginePath(_Path);
 
 	if (true == EnginePath.IsDirectory())
 	{
-		MSGASSERT("Path's directory load fail.(UImageManager::Load)" + std::string(Path));
+		MSGASSERT("Path's directory load fail.(UImageManager::Load)" + std::string(_Path));
 		return;
 	}
 
 	if (false == EnginePath.IsExists())
 	{
-		MSGASSERT("Path is not exist.(UImageManager::Load)" + std::string(Path));
+		MSGASSERT("Path is not exist.(UImageManager::Load)" + std::string(_Path));
 		return;
 	}
 
@@ -43,7 +45,7 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 	std::string UpperName = UEngineString::ToUpper(_KeyName);
 
 	UEngineWinImage* NewImage = new UEngineWinImage();
-	NewImage->Load(WindowImage, Path);
+	NewImage->Load(WindowImage, _Path);
 
 	Images.insert({ UpperName , NewImage });
 
@@ -56,6 +58,64 @@ void UImageManager::Load(std::string_view _KeyName, std::string_view Path)
 	NewSprite->PushData(NewImage, Transform);
 
 	Sprites.insert({ UpperName , NewSprite });
+}
+
+void UImageManager::LoadFolder(std::string_view _Path)
+{
+	UEnginePath EnginePath = UEnginePath(_Path);
+
+	std::string DirName = EnginePath.GetDirectoryName();
+
+	LoadFolder(DirName, _Path);
+}
+
+void UImageManager::LoadFolder(std::string_view _KeyName, std::string_view _Path)
+{
+	UEnginePath EnginePath = UEnginePath(_Path);
+
+	if (false == EnginePath.IsExists())
+	{
+		MSGASSERT("EnginePath is not exist." + std::string(_Path));
+		return;
+	}
+
+	std::string UpperName = UEngineString::ToUpper(_KeyName);
+
+	if (true == Sprites.contains(UpperName))
+	{
+		MSGASSERT("Image is not contained." + UpperName);
+		return;
+	}
+
+
+	UEngineSprite* NewSprite = new UEngineSprite();
+	NewSprite->SetName(UpperName);
+	Sprites.insert({ UpperName , NewSprite });
+
+	UEngineWinImage* WindowImage = UEngineAPICore::GetCore()->GetMainWindow().GetWindowImage();
+
+	UEngineDirectory Dir = _Path;
+	std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+	for (size_t i = 0; i < ImageFiles.size(); i++)
+	{
+		std::string FilePath = ImageFiles[i].GetPathToString();
+		std::string UpperFileName = UEngineString::ToUpper(ImageFiles[i].GetFileName());
+
+		UEngineWinImage* NewImage = FindImage(UpperFileName);
+		if (nullptr == NewImage)
+		{
+			NewImage = new UEngineWinImage();
+			NewImage->SetName(UpperFileName);
+			NewImage->Load(WindowImage, FilePath);
+		}
+		Images.insert({ UpperFileName,  NewImage });
+
+		FTransform Transform;
+		Transform.Location = { 0, 0 };
+		Transform.Scale = NewImage->GetImageScale();
+
+		NewSprite->PushData(NewImage, Transform);
+	}
 }
 
 bool UImageManager::IsLoadSprite(std::string_view _KeyName)
@@ -76,4 +136,9 @@ UEngineSprite* UImageManager::FindSprite(std::string_view _KeyName)
 	}
 
 	return Sprites[UpperName];
+}
+
+UEngineWinImage* UImageManager::FindImage(std::string_view _KeyName)
+{
+	return nullptr;
 }
