@@ -36,12 +36,20 @@ void VamSurContentsCore::BeginPlay()
 		UImageManager::GetInst().Load(FilePath);
 	}
 
-	{
+	{	// Charcters
 		UEngineDirectory CharacterDir;
 		CharacterDir.MoveParentToDirectory("Resources/Characters");
 		CharacterDir.Append("Antonio");
 
 		UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
+	}
+
+	{	// Stage
+		UEngineDirectory StageDir;
+		StageDir.MoveParentToDirectory("Resources");
+		StageDir.Append("Stage");
+
+		UImageManager::GetInst().LoadFolder(StageDir.GetPathToString());
 	}
 
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("VampireSurvivors");

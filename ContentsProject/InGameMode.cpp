@@ -4,6 +4,7 @@
 #include <EngineCore/Level.h>
 
 #include "PlayMap.h"
+#include "InfiniteMap.h"
 
 AInGameMode::AInGameMode()
 {
@@ -15,5 +16,5 @@ AInGameMode::~AInGameMode()
 
 void AInGameMode::BeginPlay()
 {
-	APlayMap* PMAP0 = GetWorld()->SpawnActor<APlayMap>();
+	AInfiniteMap* PMAP0 = GetWorld()->SpawnActor<AInfiniteMap>();
 }

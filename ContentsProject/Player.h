@@ -15,16 +15,21 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	APlayer* GetPlayer()
+	{
+		return this;
+	}
+
 	void LevelChangeStart();
 	void LevelChangeEnd();
 
 protected:
 
 private:
-	float Speed = 100.0f;
+	float Speed = 1500.0f;
 	int MySpriteIndex = 0;
 	bool HeadDirRight = true;
 
-	class USpriteRenderer* SpriteRenderer;
+	class USpriteRenderer* SpriteRenderer = nullptr;
 };
 

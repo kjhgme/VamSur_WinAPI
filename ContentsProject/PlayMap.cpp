@@ -8,15 +8,14 @@
 
 APlayMap::APlayMap()
 {
-	USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
-	SpriteRenderer->SetSprite("Stage01.png");
+	SetStage(0);
 
-	FVector2D MapScale = SpriteRenderer->SetSpriteScale(1.5f);
+	FVector2D MapScale = SpriteRenderer->SetSpriteScale(1.0f);
 	SpriteRenderer->SetComponentLocation(MapScale.Half());
 }
 
 APlayMap::~APlayMap()
 {
 }
-

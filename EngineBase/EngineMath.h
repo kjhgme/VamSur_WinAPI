@@ -58,6 +58,27 @@ public:
 		return iX() == _Other.iX() && iY() == _Other.iY();
 	}
 
+	float Length() const
+	{
+		return sqrtf(X * X + Y * Y);
+	}
+
+	float Dot(const FVector2D& other) const
+	{
+		return X * other.X + Y * other.Y;
+	}
+
+	void Normalize()
+	{
+		float Len = Length();
+		if (0.0f < Len && false == isnan(Len))
+		{
+			X = X / Len;
+			X = Y / Len;
+		}
+		return;
+	}
+
 	// operator
 	FVector2D operator*(float _Value) const
 	{

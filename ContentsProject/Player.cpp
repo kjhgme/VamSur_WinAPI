@@ -10,16 +10,16 @@
 
 APlayer::APlayer()
 {
-	SetActorLocation({ 100, 100 });
+	SetActorLocation({ 0, 0 });
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Antonio_R_01.png");
-	SpriteRenderer->SetComponentScale({ 128, 128 });
+	SpriteRenderer->SetSprite("Antonio", 4);
+	SpriteRenderer->SetComponentScale({ 64, 64 });
 
-	SpriteRenderer->CreateAnimation("Idle_L", "Antonio", 0, 0, 0.1f);
-	SpriteRenderer->CreateAnimation("Idle_R", "Antonio", 4, 4, 0.1f);
-	SpriteRenderer->CreateAnimation("Move_L", "Antonio", 0, 3, 0.1f);
-	SpriteRenderer->CreateAnimation("Move_R", "Antonio", 4, 7, 0.1f);
+	SpriteRenderer->CreateAnimation("Idle_L", "Antonio", 0, 0, 0.15f);
+	SpriteRenderer->CreateAnimation("Idle_R", "Antonio", 4, 4, 0.15f);
+	SpriteRenderer->CreateAnimation("Move_L", "Antonio", 0, 3, 0.15f);
+	SpriteRenderer->CreateAnimation("Move_R", "Antonio", 4, 7, 0.15f);
 	SpriteRenderer->ChangeAnimation("Idle_R");
 
 	std::string Name = SpriteRenderer->GetCurSpriteName();

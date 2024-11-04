@@ -28,6 +28,9 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>ContentsObjects\Title</Filter>
     </ClInclude>
+    <ClInclude Include="InfiniteMap.h">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -56,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>ContentsObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="InfiniteMap.cpp">
+      <Filter>ContentsObjects\InGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

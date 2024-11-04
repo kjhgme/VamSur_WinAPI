@@ -39,6 +39,11 @@ public:
 		return EngineMainWindow;
 	}
 
+	ULevel* GetCurLevel()
+	{
+		return CurLevel;
+	}
+
 	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)
 	{

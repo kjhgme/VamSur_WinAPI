@@ -29,6 +29,11 @@ public:
 		return CameraPos;
 	}
 
+	AActor* GetMainPawn() const
+	{
+		return MainPawn;
+	}
+
 	// SetFunction
 	void SetCameraToMainPawn(bool _IsCameraToMainPawn)
 	{
