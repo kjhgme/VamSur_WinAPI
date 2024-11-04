@@ -23,6 +23,7 @@ protected:
 private:
 	float Speed = 100.0f;
 	int MySpriteIndex = 0;
+	bool HeadDirRight = true;
 
 	class USpriteRenderer* SpriteRenderer;
 };

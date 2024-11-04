@@ -2,7 +2,6 @@
 
 #include <functional>
 
-// 설명 :
 class EngineDelegate
 {
 public:

@@ -13,15 +13,16 @@ APlayer::APlayer()
 	SetActorLocation({ 100, 100 });
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Antonio_01.png");
-	SpriteRenderer->SetComponentScale({ 48, 48 });
+	SpriteRenderer->SetSprite("Antonio_R_01.png");
+	SpriteRenderer->SetComponentScale({ 128, 128 });
 
-	//SpriteRenderer->CreateAnimation("Antonio", 0, 2, 0.1f);
+	SpriteRenderer->CreateAnimation("Idle_L", "Antonio", 0, 0, 0.1f);
+	SpriteRenderer->CreateAnimation("Idle_R", "Antonio", 4, 4, 0.1f);
+	SpriteRenderer->CreateAnimation("Move_L", "Antonio", 0, 3, 0.1f);
+	SpriteRenderer->CreateAnimation("Move_R", "Antonio", 4, 7, 0.1f);
+	SpriteRenderer->ChangeAnimation("Idle_R");
 
-	//SpriteRenderer->CreateAnimation("Run_Right", "Player_Right.png", 2, 4, 0.1f);
-	//SpriteRenderer->CreateAnimation("Idle_Right", "Player_Right.png", 0, 0, 0.1f);
-
-	//SpriteRenderer->ChangeAnimation("Idle_Right");
+	std::string Name = SpriteRenderer->GetCurSpriteName();
 }
 
 APlayer::~APlayer()
@@ -46,19 +47,45 @@ void APlayer::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
+		HeadDirRight = true;
+		SpriteRenderer->ChangeAnimation("Move_R");
+
 		AddActorLocation(FVector2D::RIGHT * _DeltaTime * Speed);
 	}
 	if (true == UEngineInput::GetInst().IsPress('A'))
 	{
+		HeadDirRight = false;
+		SpriteRenderer->ChangeAnimation("Move_L");
+
 		AddActorLocation(FVector2D::LEFT * _DeltaTime * Speed);
 	}
 	if (true == UEngineInput::GetInst().IsPress('S'))
 	{
+		if(true == HeadDirRight)
+			SpriteRenderer->ChangeAnimation("Move_R");
+		else
+			SpriteRenderer->ChangeAnimation("Move_L");
+
 		AddActorLocation(FVector2D::DOWN * _DeltaTime * Speed);
 	}
 	if (true == UEngineInput::GetInst().IsPress('W'))
 	{
+		if (true == HeadDirRight)
+			SpriteRenderer->ChangeAnimation("Move_R");
+		else
+			SpriteRenderer->ChangeAnimation("Move_L");
+
 		AddActorLocation(FVector2D::UP * _DeltaTime * Speed);
+	}
+	if (true == UEngineInput::GetInst().IsFree('A') &&
+		true == UEngineInput::GetInst().IsFree('D') &&
+		true == UEngineInput::GetInst().IsFree('W') &&
+		true == UEngineInput::GetInst().IsFree('S'))
+	{
+		if (true == HeadDirRight)
+			SpriteRenderer->ChangeAnimation("Idle_R");
+		else
+			SpriteRenderer->ChangeAnimation("Idle_L");
 	}
 }
 

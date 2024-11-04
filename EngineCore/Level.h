@@ -18,6 +18,17 @@ public:
 	void Tick(float _DeltaTime);
 	void Render(float _DeltaTime);
 
+	// GetFunction
+	FVector2D GetCameraPivot()
+	{
+		return CameraPivot;
+	}
+
+	FVector2D GetCameraPos()
+	{
+		return CameraPos;
+	}
+
 	// SetFunction
 	void SetCameraToMainPawn(bool _IsCameraToMainPawn)
 	{

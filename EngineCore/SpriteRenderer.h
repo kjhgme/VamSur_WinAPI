@@ -48,6 +48,11 @@ public:
 		return Order;
 	}
 
+	std::string GetCurSpriteName()
+	{
+		return Sprite->GetName();
+	}
+
 	// SetFunction
 	template<typename EnumType>
 	void SetOrder(EnumType _Order)
@@ -64,6 +69,7 @@ public:
 		
 	// Function
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
+	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop = true);
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop = true);
 	void ChangeAnimation(std::string_view _AnimationName, bool _Force = false);
 
