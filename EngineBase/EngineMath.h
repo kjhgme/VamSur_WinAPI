@@ -112,6 +112,14 @@ public:
 		return Result;
 	}
 
+	FVector2D operator/(FVector2D _Value) const
+	{
+		FVector2D Result;
+		Result.X = X / _Value.X;
+		Result.Y = Y / _Value.Y;
+		return Result;
+	}
+
 	bool operator==(FVector2D _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;

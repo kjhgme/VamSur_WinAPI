@@ -20,14 +20,16 @@ public:
 
 	void SetStage(USpriteRenderer* _SpriteRenderer, int _level);
 
+	void InitMaps();
+	void MapMoveCheck(FVector2D _PlayerPos);
 
 protected:
 
 private:
-	// USpriteRenderer* SpriteRenderer = nullptr;
 	FVector2D playerPos {};
 	FVector2D MapScale{};
+	FVector2D InfiMapPos{ 1, 1 };
 	APlayMap* Map = nullptr;
 	UEngineAPICore* core = nullptr;
-	std::vector<USpriteRenderer*> InfiMap;
+	std::vector<std::vector<USpriteRenderer*>> InfiMap;
 };
