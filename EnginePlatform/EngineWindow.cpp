@@ -158,6 +158,16 @@ void UEngineWindow::Open(std::string_view _TitleName)
     ++WindowCount;
 }
 
+FVector2D UEngineWindow::GetMousePos()
+{
+    POINT MousePoint;
+
+    GetCursorPos(&MousePoint);
+    ScreenToClient(WindowHandle, &MousePoint);
+
+    return FVector2D(MousePoint.x, MousePoint.y);
+}
+
 void UEngineWindow::SetWindowPosAndScale(FVector2D _Pos, FVector2D _Scale)
 {
     if (false == WindowSize.EqualToInt(_Scale))

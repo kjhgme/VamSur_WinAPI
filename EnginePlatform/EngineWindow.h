@@ -25,6 +25,7 @@ public:
 	void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
 	void Open(std::string_view _TitleName = "Window");
 	
+	// GetFunction
 	inline FVector2D GetWindowSize() const
 	{
 		return WindowSize;
@@ -40,6 +41,9 @@ public:
 		return WindowImage;
 	}
 
+	FVector2D GetMousePos();
+
+	// SetFunction
 	inline void SetWindowTitle(std::string_view Text)
 	{
 		SetWindowTextA(WindowHandle, Text.data());
