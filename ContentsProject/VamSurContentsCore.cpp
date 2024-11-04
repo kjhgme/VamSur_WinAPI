@@ -52,6 +52,21 @@ void VamSurContentsCore::BeginPlay()
 		UImageManager::GetInst().LoadFolder(StageDir.GetPathToString());
 	}
 
+	{	// Monster
+		UEngineDirectory MonsterLDir;
+		MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
+		MonsterLDir.Append("Bat1_L");
+
+		UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
+
+		UEngineDirectory MonsterRDir;
+		MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
+		MonsterRDir.Append("Bat1_R");
+
+		UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
+
+	}
+
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("VampireSurvivors");
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 1280, 800 });
 

@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MonsterSpawner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bullet.h">
       <SubType>
       </SubType>
@@ -164,6 +168,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="InGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -187,6 +195,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MonsterSpawner.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <SubType>
       </SubType>
@@ -200,6 +212,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="InGameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
       <SubType>
       </SubType>
     </ClCompile>

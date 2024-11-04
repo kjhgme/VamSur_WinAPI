@@ -31,6 +31,12 @@
     <ClInclude Include="InfiniteMap.h">
       <Filter>ContentsObjects\InGame</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterSpawner.h">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -63,6 +69,12 @@
     <ClCompile Include="InfiniteMap.cpp">
       <Filter>ContentsObjects\InGame</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterSpawner.cpp">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -91,6 +103,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Result">
       <UniqueIdentifier>{d54e30a8-cedb-4838-be33-c142e2755543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Monster">
+      <UniqueIdentifier>{6cfc64e9-b242-4ae8-afa0-c1551a6edeab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

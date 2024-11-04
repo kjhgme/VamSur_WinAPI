@@ -48,7 +48,6 @@ void APlayer::Tick(float _DeltaTime)
 	PlayerMove(_DeltaTime);
 }
 
-
 void APlayer::PlayerMove(float _DeltaTime)
 {
 	if (true == UEngineInput::GetInst().IsPress('D'))
