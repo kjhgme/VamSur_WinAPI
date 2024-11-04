@@ -20,6 +20,8 @@ public:
 		return this;
 	}
 
+	void PlayerMove(float _DeltaTime);
+
 	void LevelChangeStart();
 	void LevelChangeEnd();
 

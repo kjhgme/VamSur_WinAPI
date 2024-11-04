@@ -45,6 +45,12 @@ void APlayer::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 	UEngineDebug::CoreOutPutString("PlayerPos : " + GetActorLocation().ToString());
 
+	PlayerMove(_DeltaTime);
+}
+
+
+void APlayer::PlayerMove(float _DeltaTime)
+{
 	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
 		HeadDirRight = true;
@@ -52,7 +58,7 @@ void APlayer::Tick(float _DeltaTime)
 
 		AddActorLocation(FVector2D::RIGHT * _DeltaTime * Speed);
 	}
-	if (true == UEngineInput::GetInst().IsPress('A'))
+	else if (true == UEngineInput::GetInst().IsPress('A'))
 	{
 		HeadDirRight = false;
 		SpriteRenderer->ChangeAnimation("Move_L");
@@ -61,14 +67,14 @@ void APlayer::Tick(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsPress('S'))
 	{
-		if(true == HeadDirRight)
+		if (true == HeadDirRight)
 			SpriteRenderer->ChangeAnimation("Move_R");
 		else
 			SpriteRenderer->ChangeAnimation("Move_L");
 
 		AddActorLocation(FVector2D::DOWN * _DeltaTime * Speed);
 	}
-	if (true == UEngineInput::GetInst().IsPress('W'))
+	else if (true == UEngineInput::GetInst().IsPress('W'))
 	{
 		if (true == HeadDirRight)
 			SpriteRenderer->ChangeAnimation("Move_R");
@@ -88,7 +94,6 @@ void APlayer::Tick(float _DeltaTime)
 			SpriteRenderer->ChangeAnimation("Idle_L");
 	}
 }
-
 
 void APlayer::LevelChangeStart()
 {
