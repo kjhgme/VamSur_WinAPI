@@ -17,8 +17,8 @@ protected:
 	void Tick() override;
 
 private:
-	ULevel* TitleLevel;
-	ULevel* InGameLevel;
-	ULevel* ResultLevel;
+	ULevel* TitleLevel = nullptr;
+	ULevel* InGameLevel = nullptr;
+	ULevel* ResultLevel = nullptr;
 };
 
