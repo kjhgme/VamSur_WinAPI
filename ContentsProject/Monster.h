@@ -15,6 +15,7 @@ public:
 
 	void MonsterInit(FVector2D _pos);
 	void SpriteSetting();
+	virtual void ChasePlayer(float _DeltaTime);
 
 protected:
 
@@ -22,5 +23,12 @@ private:
 	class USpriteRenderer* SpriteRenderer = nullptr;
 
 	int MonsterKey{};
+
+	int Health{};
+	int Power{};
+	int Speed{ 1 };
+	int KnockBack{};
+	int KBMax{};
+	int XP{};
 };
 

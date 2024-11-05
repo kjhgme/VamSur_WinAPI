@@ -28,7 +28,7 @@ public:
 protected:
 
 private:
-	float Speed = 1500.0f;
+	float Speed = 150.0f;
 	int MySpriteIndex = 0;
 	bool HeadDirRight = true;
 

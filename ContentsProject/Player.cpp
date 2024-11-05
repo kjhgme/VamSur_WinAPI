@@ -14,7 +14,7 @@ APlayer::APlayer()
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("Antonio", 4);
-	SpriteRenderer->SetComponentScale({ 64, 64 });
+	SpriteRenderer->SetComponentScale({ 68, 68 });
 
 	SpriteRenderer->CreateAnimation("Idle_L", "Antonio", 0, 0, 0.15f);
 	SpriteRenderer->CreateAnimation("Idle_R", "Antonio", 4, 4, 0.15f);
