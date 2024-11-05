@@ -37,6 +37,27 @@
     <ClInclude Include="MonsterSpawner.h">
       <Filter>ContentsObjects\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Bat1.h">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultGameMode.h">
+      <Filter>ContentsObjects\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBG.h">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleUI.h">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleImelda.h">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleAntonio.h">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleVillain.h">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -74,6 +95,27 @@
     </ClCompile>
     <ClCompile Include="MonsterSpawner.cpp">
       <Filter>ContentsObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Bat1.cpp">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultGameMode.cpp">
+      <Filter>ContentsObjects\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBG.cpp">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleUI.cpp">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleImelda.cpp">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleAntonio.cpp">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleVillain.cpp">
+      <Filter>ContentsObjects\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

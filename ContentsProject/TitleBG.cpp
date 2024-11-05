@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "TitleLogo.h"
+#include "TitleBG.h"
 
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -7,17 +7,17 @@
 
 #include "ContentsEnum.h"
 
-ATitleLogo::ATitleLogo()
+ATitleBG::ATitleBG()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	SetActorLocation({ WindowSize.X / 1.95f, WindowSize.Y / 3.4f });
+	SetActorLocation({ WindowSize.X / 2, WindowSize.Y / 2 });
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("TitleLogo.png");
-	SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) + 5);
+	SpriteRenderer->SetSprite("TitleBG.png");
+	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 	SpriteRenderer->SetSpriteScale(1.0f);
 }
 
-ATitleLogo::~ATitleLogo()
+ATitleBG::~ATitleBG()
 {
 }

@@ -7,6 +7,7 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/ImageManager.h>
 
+#include "TitleGameMode.h"
 #include "InGameMode.h"
 #include "Player.h"
 
@@ -59,22 +60,22 @@ void VamSurContentsCore::BeginPlay()
 
 		UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
 
-		UEngineDirectory MonsterRDir;
+		/*UEngineDirectory MonsterRDir;
 		MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
 		MonsterRDir.Append("Bat1_R");
 
-		UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
-
+		UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());*/
 	}
 
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("VampireSurvivors");
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowPosAndScale({ 0, 0 }, { 1280, 800 });
 
-	//UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Title");
+	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, AActor>("Title");
 	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("InGame");
-	// UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("Result");
+	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, AActor>("Result");
 	
-	UEngineAPICore::GetCore()->OpenLevel("InGame");
+	UEngineAPICore::GetCore()->OpenLevel("Title");
+	// UEngineAPICore::GetCore()->OpenLevel("InGame");
 }
 
 void VamSurContentsCore::Tick()
