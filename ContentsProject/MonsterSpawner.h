@@ -17,11 +17,20 @@ public:
 
 	void SpawnMonster();
 
+	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
+
 protected:
 
 private:
 	float Time = 0.0f;
 	FVector2D Pos{};
+	float CurAngle{};
+	float MoveSpeed{};
+	float SpawnSpeed{};
 	std::list<AMonster*> Monsters;
+
+	// testImage
+	class USpriteRenderer* SpriteRenderer = nullptr;
+
 };
 

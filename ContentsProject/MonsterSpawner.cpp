@@ -1,7 +1,11 @@
 #include "PreCompile.h"
 #include "MonsterSpawner.h"
 
+#include <cmath>
+
 #include <EngineCore/Level.h>
+#include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/EngineAPICore.h>
 
 
 AMonsterSpawner::AMonsterSpawner()
@@ -14,36 +18,35 @@ AMonsterSpawner::~AMonsterSpawner()
 
 void AMonsterSpawner::BeginPlay()
 {
-	Pos = GetWorld()->GetMainPawn()->GetActorLocation();
-	Pos.X += 100;
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetSprite("Stage", 1);
+	SpriteRenderer->SetComponentScale({ 38, 42 });
 
-	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
-	if (nullptr != SpawnedMonster)
-	{
-		SpawnedMonster->MonsterInit(Pos);
-	}
-
-	Monsters.push_back(SpawnedMonster);
+	SpawnSpeed = 1.0f;
+	MoveSpeed = 50.f;
 }
 
 void AMonsterSpawner::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	Time += _DeltaTime;
+	FVector2D playerPos = GetWorld()->GetMainPawn()->GetActorLocation();
 
-	if (1.0f <= Time)
+	CurAngle += MoveSpeed * _DeltaTime;
+	Pos =  CalculateCircularPosition(playerPos, 300.0f, CurAngle );
+	
+	SetActorLocation({ Pos });
+
+	Time += _DeltaTime;
+	if (SpawnSpeed <= Time)
 	{
 		SpawnMonster();
-		Time = 0.0;
+		Time -= SpawnSpeed;
 	}
 }
 
 void AMonsterSpawner::SpawnMonster()
 {
-	Pos = GetWorld()->GetMainPawn()->GetActorLocation();
-	Pos.X += 100;
-
 	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
 	if (nullptr != SpawnedMonster)
 	{
@@ -51,4 +54,14 @@ void AMonsterSpawner::SpawnMonster()
 	}
 
 	Monsters.push_back(SpawnedMonster);
+}
+
+FVector2D AMonsterSpawner::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)
+{
+	float AngleInRadians = _CurAngle * (3.1415f / 180.0f);
+
+	float X = Center.X + Radius * cos(AngleInRadians);
+	float Y = Center.Y + Radius * sin(AngleInRadians);
+
+	return FVector2D(X, Y);
 }
