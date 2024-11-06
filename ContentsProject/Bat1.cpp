@@ -3,29 +3,28 @@
 
 Bat1::Bat1()
 {
-	SetSprite();
 }
 
 Bat1::~Bat1()
 {
 }
 
-void Bat1::SetSprite()
+void Bat1::InitSprite()
 {
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("Bat1_L", 0);
-	SpriteRenderer->SetComponentScale({ 38, 42 });
 
-	SpriteRenderer->CreateAnimation("Bat1_L_Idle", "Bat1_L", 0, 4, 0.1f);
-	SpriteRenderer->ChangeAnimation("Bat1_L_Idle");
+	FVector2D scale = SpriteRenderer->SetSpriteScale(2.0f);
 }
 
-void Bat1::SetMonsterStatus()
+
+void Bat1::InitMonsterStatus()
 {
-	MonsterStatus.Health = BatStatus.Health;
-	MonsterStatus.Power = BatStatus.Power;
-	MonsterStatus.Speed = BatStatus.Speed;
-	MonsterStatus.KnockBack = BatStatus.KnockBack;
-	MonsterStatus.KBMax = BatStatus.KBMax;
-	MonsterStatus.XP = BatStatus.XP;
+	MonsterStatus.Name = Bat1Status.Name;
+	MonsterStatus.Health = Bat1Status.Health;
+	MonsterStatus.Power = Bat1Status.Power;
+	MonsterStatus.Speed = Bat1Status.Speed;
+	MonsterStatus.KnockBack = Bat1Status.KnockBack;
+	MonsterStatus.KBMax = Bat1Status.KBMax;
+	MonsterStatus.XP = Bat1Status.XP;
 }

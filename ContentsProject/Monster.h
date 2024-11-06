@@ -1,4 +1,7 @@
 #pragma once
+
+#include <string.h>
+
 class AMonster : public AActor
 {
 public:
@@ -14,17 +17,20 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	virtual void MonsterInit();
+	virtual void InitMonsterStatus() {};
+	virtual void InitSprite() {};
+	void InitCreateAnimation();
 
 	// SetFunction
-	virtual void SetSprite();
-	virtual void SetMonsterStatus();
 	void SetMonsterPos(FVector2D _pos);
 
 	// Function
 	virtual void ChasePlayer(float _DeltaTime);
+	void ChangeAnimation();
 
 protected:
 	struct MonS {
+		std::string Name;
 		int Health{};
 		int Power{};
 		int Speed{};
@@ -32,10 +38,12 @@ protected:
 		int KBMax{};
 		int XP{};
 	} MonsterStatus;
-
+	
 	class USpriteRenderer* SpriteRenderer = nullptr;
 
 private:
 	int MonsterKey{};
+	bool HeadDirRight = false;
+	bool Alive = true;
 };
 

@@ -1,6 +1,8 @@
 #pragma once
 #include "Monster.h"
 
+#include <string>
+
 class Bat1 : public AMonster
 {
 public:
@@ -12,21 +14,21 @@ public:
 	Bat1& operator=(const Bat1& _Other) = delete;
 	Bat1& operator=(Bat1&& _Other) noexcept = delete;
 
-	// SetFunction
-	void SetSprite() override;
-	void SetMonsterStatus() override;
+	void InitSprite() override;
+	void InitMonsterStatus() override;
 
 protected:
 
 private:
 	struct BatS
 	{
-		int Health = 1;
-		int Power = 5;
-		int Speed = 140;
-		int KnockBack = 1;
-		int KBMax = 3;
-		int XP = 1;
-	} BatStatus;
+		std::string Name = "Bat1";
+		const int Health = 1;
+		const int Power = 5;
+		const int Speed = 140;
+		const int KnockBack = 1;
+		const int KBMax = 3;
+		const int XP = 1;
+	} Bat1Status;
 };
 

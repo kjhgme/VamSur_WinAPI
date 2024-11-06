@@ -21,20 +21,21 @@ VamSurContentsCore::~VamSurContentsCore()
 
 void VamSurContentsCore::BeginPlay()
 {
-	UEngineDirectory Dir;
+	{	// Title
+		UEngineDirectory TitleDir;
+		if (false == TitleDir.MoveParentToDirectory("Resources/Title"))
+		{
+			MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
+			return;
+		}
 
-	if (false == Dir.MoveParentToDirectory("Resources"))
-	{
-		MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
-		return;
-	}
+		std::vector<UEngineFile> ImageFiles = TitleDir.GetAllFile();
 
-	std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
-
-	for (size_t i = 0; i < ImageFiles.size(); i++)
-	{
-		std::string FilePath = ImageFiles[i].GetPathToString();
-		UImageManager::GetInst().Load(FilePath);
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UImageManager::GetInst().Load(FilePath);
+		}
 	}
 
 	{	// Charcters
@@ -60,11 +61,11 @@ void VamSurContentsCore::BeginPlay()
 
 		UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
 
-		/*UEngineDirectory MonsterRDir;
+		UEngineDirectory MonsterRDir;
 		MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
 		MonsterRDir.Append("Bat1_R");
 
-		UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());*/
+		UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
 	}
 
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("VampireSurvivors");
