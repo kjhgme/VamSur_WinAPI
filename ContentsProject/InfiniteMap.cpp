@@ -39,8 +39,7 @@ void AInfiniteMap::InitMaps()
         InfiMap[i].resize(3);
         for (int j = 0; j < 3; ++j)
         {
-            USpriteRenderer* SpriteRenderer = new USpriteRenderer();
-            SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+            USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
             SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 
             SetStage(SpriteRenderer, 0);
