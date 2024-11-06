@@ -3,7 +3,6 @@
 
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
-#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineAPICore.h>
 
 #include "Bullet.h"

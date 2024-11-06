@@ -4,3 +4,4 @@
 
 #include "Actor.h"
 #include "Level.h"
+#include "SpriteRenderer.h"

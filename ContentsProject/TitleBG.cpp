@@ -2,7 +2,6 @@
 #include "TitleBG.h"
 
 #include <EngineCore/EngineAPICore.h>
-#include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineWindow.h>
 
 #include "ContentsEnum.h"
