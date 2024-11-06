@@ -12,9 +12,11 @@ public:
 	ATitleUI& operator=(const ATitleUI& _Other) = delete;
 	ATitleUI& operator=(ATitleUI&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
 protected:
 
 private:
-	class USpriteRenderer* SpriteRenderer = nullptr;
 };
 

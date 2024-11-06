@@ -4,9 +4,6 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ContentsObjects\Player</Filter>
-    </ClInclude>
     <ClInclude Include="VamSurContentsCore.h">
       <Filter>ContentsCore</Filter>
     </ClInclude>
@@ -25,17 +22,8 @@
     <ClInclude Include="TitleGameMode.h">
       <Filter>ContentsObjects\GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>ContentsObjects\Title</Filter>
-    </ClInclude>
     <ClInclude Include="InfiniteMap.h">
       <Filter>ContentsObjects\InGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>ContentsObjects\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterSpawner.h">
-      <Filter>ContentsObjects\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Bat1.h">
       <Filter>ContentsObjects\Monster</Filter>
@@ -43,28 +31,40 @@
     <ClInclude Include="ResultGameMode.h">
       <Filter>ContentsObjects\GameMode</Filter>
     </ClInclude>
-    <ClInclude Include="TitleBG.h">
-      <Filter>ContentsObjects\Title</Filter>
-    </ClInclude>
     <ClInclude Include="TitleUI.h">
       <Filter>ContentsObjects\Title</Filter>
     </ClInclude>
-    <ClInclude Include="TitleImelda.h">
-      <Filter>ContentsObjects\Title</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>ContentsObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterSpawner.h">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Antonio.h">
+      <Filter>ContentsObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="TitleAntonio.h">
-      <Filter>ContentsObjects\Title</Filter>
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBG.h">
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleImelda.h">
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
     </ClInclude>
     <ClInclude Include="TitleVillain.h">
-      <Filter>ContentsObjects\Title</Filter>
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ContentsObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="VamSurContentsCore.cpp">
       <Filter>ContentsCore</Filter>
@@ -84,17 +84,8 @@
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>ContentsObjects\GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>ContentsObjects\Title</Filter>
-    </ClCompile>
     <ClCompile Include="InfiniteMap.cpp">
       <Filter>ContentsObjects\InGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>ContentsObjects\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterSpawner.cpp">
-      <Filter>ContentsObjects\Monster</Filter>
     </ClCompile>
     <ClCompile Include="Bat1.cpp">
       <Filter>ContentsObjects\Monster</Filter>
@@ -102,20 +93,35 @@
     <ClCompile Include="ResultGameMode.cpp">
       <Filter>ContentsObjects\GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="TitleBG.cpp">
-      <Filter>ContentsObjects\Title</Filter>
-    </ClCompile>
     <ClCompile Include="TitleUI.cpp">
       <Filter>ContentsObjects\Title</Filter>
     </ClCompile>
-    <ClCompile Include="TitleImelda.cpp">
-      <Filter>ContentsObjects\Title</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>ContentsObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterSpawner.cpp">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Antonio.cpp">
+      <Filter>ContentsObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="TitleAntonio.cpp">
-      <Filter>ContentsObjects\Title</Filter>
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBG.cpp">
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleImelda.cpp">
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
     </ClCompile>
     <ClCompile Include="TitleVillain.cpp">
-      <Filter>ContentsObjects\Title</Filter>
+      <Filter>ContentsObjects\Title\TitleImage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Monster">
       <UniqueIdentifier>{6cfc64e9-b242-4ae8-afa0-c1551a6edeab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Title\TitleImage">
+      <UniqueIdentifier>{de0731a3-e7bc-4400-abc6-20cc24380b67}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

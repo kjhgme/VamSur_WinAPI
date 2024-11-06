@@ -26,9 +26,15 @@ public:
 	void LevelChangeEnd();
 
 protected:
+	struct PSta {
+		std::string Name;
+		int Health{};
+		int Armor{};
+		int Might{};
+		int Speed{ 160 };
+	} PlayerStatus;
 
 private:
-	float Speed = 150.0f;
 	int MySpriteIndex = 0;
 	bool HeadDirRight = true;
 

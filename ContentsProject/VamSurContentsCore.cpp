@@ -44,6 +44,12 @@ void VamSurContentsCore::BeginPlay()
 		CharacterDir.Append("Antonio");
 
 		UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
+
+		CharacterDir.MoveParentToDirectory("Resources/Characters");
+		CharacterDir.Append("Imelda");
+
+		UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
+
 	}
 
 	{	// Stage
@@ -75,8 +81,8 @@ void VamSurContentsCore::BeginPlay()
 	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("InGame");
 	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, AActor>("Result");
 	
-	//UEngineAPICore::GetCore()->OpenLevel("Title");
-	UEngineAPICore::GetCore()->OpenLevel("InGame");
+	UEngineAPICore::GetCore()->OpenLevel("Title");
+	// UEngineAPICore::GetCore()->OpenLevel("InGame");
 }
 
 void VamSurContentsCore::Tick()
