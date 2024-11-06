@@ -18,69 +18,91 @@ void ATitleUI::BeginPlay()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation({ WindowSize.Half() });
-
-	{	// TopPanel
+	
+	// TopPanel
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_TopPanel.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// BackButton
+	// BackButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_BackButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// MoneyPanel
+	// MoneyPanel
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_MoneyPanel.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// OptionButton
+	// OptionButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_OptionButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// StartButton
+	// StartButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_StartButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// CollectionButton
+	// CollectionButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_CollectionButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// UpgradeButton
+	// UpgradeButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_UpgradeButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	} 
-	
-	{	// UnlockButton
+	// UnlockButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_UnlockButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-
-	{	// MakerButton
+	// MakerButton
+	{	
 		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("TitleUI_MakerButton.png");
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
+	// CursorArrow
+	{
+		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetSprite("Cursor", 0);
+		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
+		SpriteRenderer->SetSpriteScale(1.0f);
+
+		SpriteRenderer->CreateAnimation("Cursor_L", "Cursor", 0, 7, 0.15f);
+		SpriteRenderer->ChangeAnimation("Cursor_L");
+	}
+	{
+		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetSprite("Cursor", 8);
+		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
+		SpriteRenderer->SetSpriteScale(1.0f);
+		SpriteRenderer->SetComponentLocation({0, 20});
+
+		SpriteRenderer->CreateAnimation("Cursor_R", "Cursor", 8, 14, 0.15f);
+		SpriteRenderer->ChangeAnimation("Cursor_R");
+	}
+
 }
 
 void ATitleUI::Tick(float _DeltaTime)

@@ -44,7 +44,7 @@ void AInfiniteMap::InitMaps()
 
             SetStage(SpriteRenderer, 0);
 
-            MapScale = SpriteRenderer->SetSpriteScale(0.1f);
+            MapScale = SpriteRenderer->SetSpriteScale(1.0f);
 
             SpriteRenderer->SetComponentLocation({ MapScale.X * (i - 1) , MapScale.Y * (j - 1) });
 

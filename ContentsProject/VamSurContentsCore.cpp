@@ -21,7 +21,8 @@ VamSurContentsCore::~VamSurContentsCore()
 
 void VamSurContentsCore::BeginPlay()
 {
-	{	// Title
+	// Title
+	{	
 		UEngineDirectory TitleDir;
 		if (false == TitleDir.MoveParentToDirectory("Resources/Title"))
 		{
@@ -37,8 +38,16 @@ void VamSurContentsCore::BeginPlay()
 			UImageManager::GetInst().Load(FilePath);
 		}
 	}
+	// UI
+	{
+		UEngineDirectory UIDir;
+		UIDir.MoveParentToDirectory("Resources/UI");
+		UIDir.Append("Cursor");
 
-	{	// Charcters
+		UImageManager::GetInst().LoadFolder(UIDir.GetPathToString());
+	}
+	// Charcters
+	{	
 		UEngineDirectory CharacterDir;
 		CharacterDir.MoveParentToDirectory("Resources/Characters");
 		CharacterDir.Append("Antonio");
@@ -51,16 +60,16 @@ void VamSurContentsCore::BeginPlay()
 		UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
 
 	}
-
-	{	// Stage
+	// Stage
+	{	
 		UEngineDirectory StageDir;
 		StageDir.MoveParentToDirectory("Resources");
 		StageDir.Append("Stage");
 
 		UImageManager::GetInst().LoadFolder(StageDir.GetPathToString());
 	}
-
-	{	// Monster
+	// Monster
+	{	
 		UEngineDirectory MonsterLDir;
 		MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
 		MonsterLDir.Append("Bat1_L");
