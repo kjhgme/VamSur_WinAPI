@@ -1,12 +1,11 @@
 #include "PreCompile.h"
 #include "Monster.h"
 
-#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineAPICore.h>
 
 AMonster::AMonster()
 {
-	MonsterInit({ 100, 0 });
+	MonsterInit();
 }
 
 AMonster::~AMonster()
@@ -15,7 +14,7 @@ AMonster::~AMonster()
 
 void AMonster::BeginPlay()
 {
-	SpriteSetting();
+	SetSprite();
 }
 
 void AMonster::Tick(float _DeltaTime)
@@ -25,19 +24,30 @@ void AMonster::Tick(float _DeltaTime)
 	ChasePlayer(_DeltaTime);
 }
 
-void AMonster::MonsterInit(FVector2D _pos)
+void AMonster::MonsterInit()
 {
-	SetActorLocation(_pos);
+	SetMonsterPos({ 100, 0 });
+
+	SetMonsterStatus();
 }
 
-void AMonster::SpriteSetting()
+void AMonster::SetSprite()
 {
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Bat1_L", 0);
-	SpriteRenderer->SetComponentScale({ 38, 42 });
+}
 
-	SpriteRenderer->CreateAnimation("Bat1_L_Idle", "Bat1_L", 0, 4, 0.1f);
-	SpriteRenderer->ChangeAnimation("Bat1_L_Idle");
+void AMonster::SetMonsterStatus()
+{
+	//MonsterStatus.Health	= 0;
+	//MonsterStatus.Power		= 0;
+	//MonsterStatus.Speed		= 0;
+	//MonsterStatus.KnockBack	= 0;
+	//MonsterStatus.KBMax		= 0;
+	//MonsterStatus.XP		= 0;
+}
+
+void AMonster::SetMonsterPos(FVector2D _pos)
+{
+	SetActorLocation(_pos);
 }
 
 void AMonster::ChasePlayer(float _DeltaTime)
@@ -46,14 +56,14 @@ void AMonster::ChasePlayer(float _DeltaTime)
 	FVector2D PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
 
 	if (PlayerPos.X > MonsterPos.X)
-		AddActorLocation({ Speed * 100.0f * _DeltaTime, 0.0f });
+		AddActorLocation({ MonsterStatus.Speed * _DeltaTime, 0.0f });
 	else
-		AddActorLocation({ -(Speed * 100.0f * _DeltaTime), 0.0f });
+		AddActorLocation({ -(MonsterStatus.Speed * _DeltaTime), 0.0f });
 
 
 	if (PlayerPos.Y > MonsterPos.Y)
-		AddActorLocation({ 0.0f, Speed * 100.0f * _DeltaTime });
+		AddActorLocation({ 0.0f, MonsterStatus.Speed * _DeltaTime });
 	else
-		AddActorLocation({ 0.0f, -(Speed * 100.0f * _DeltaTime) });
+		AddActorLocation({ 0.0f, -(MonsterStatus.Speed * _DeltaTime) });
 
 }

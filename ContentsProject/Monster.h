@@ -13,22 +13,29 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void MonsterInit(FVector2D _pos);
-	void SpriteSetting();
+	virtual void MonsterInit();
+
+	// SetFunction
+	virtual void SetSprite();
+	virtual void SetMonsterStatus();
+	void SetMonsterPos(FVector2D _pos);
+
+	// Function
 	virtual void ChasePlayer(float _DeltaTime);
 
 protected:
+	struct MonS {
+		int Health{};
+		int Power{};
+		int Speed{};
+		int KnockBack{};
+		int KBMax{};
+		int XP{};
+	} MonsterStatus;
 
-private:
 	class USpriteRenderer* SpriteRenderer = nullptr;
 
+private:
 	int MonsterKey{};
-
-	int Health{};
-	int Power{};
-	int Speed{ 1 };
-	int KnockBack{};
-	int KBMax{};
-	int XP{};
 };
 

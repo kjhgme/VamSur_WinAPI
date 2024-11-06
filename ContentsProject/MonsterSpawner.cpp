@@ -4,9 +4,9 @@
 #include <cmath>
 
 #include <EngineCore/Level.h>
-#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineAPICore.h>
 
+#include "Bat1.h"
 
 AMonsterSpawner::AMonsterSpawner()
 {
@@ -47,13 +47,13 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 
 void AMonsterSpawner::SpawnMonster()
 {
-	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
+	AMonster* SpawnedMonster = GetWorld()->SpawnActor<Bat1>();
 	if (nullptr != SpawnedMonster)
 	{
-		SpawnedMonster->MonsterInit(Pos);
+		SpawnedMonster->MonsterInit();
+		SpawnedMonster->SetMonsterPos(Pos);
+		Monsters.push_back(SpawnedMonster);
 	}
-
-	Monsters.push_back(SpawnedMonster);
 }
 
 FVector2D AMonsterSpawner::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)
