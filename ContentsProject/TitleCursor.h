@@ -18,7 +18,6 @@ enum LocationID {
 
 class Position {
 public:
-    LocationID current;
 
     Position() : current(START) {}
 
@@ -28,37 +27,30 @@ public:
         }
     }
 
-    CPos GetPos() {
+    CPos GetPos() const {
         switch (current) {
         case BACK: 
-            CursorPos = BackPos;
-            break;
+            return BackPos;
         case OPTION:
-            CursorPos = OptionPos;
-            break;
+            return OptionPos;
         case START:
-            CursorPos = StartPos;
-            break;
+            return StartPos;
         case COLLECTION:
-            CursorPos = CollectionPos;
-            break;
+            return CollectionPos;
         case UPGRADE:
-            CursorPos = UpgradePos;
-            break;
+            return UpgradePos;
         case UNLOCK:
-            CursorPos = UnlockPos;
-            break;
+            return UnlockPos;
         case MAKER:
-            CursorPos = MakerPos;
-            break;
+            return MakerPos;
         default:
-            break;
+            return StartPos;
         }
-
-        return CursorPos;
     }
 
 private:
+    LocationID current;
+
     // 각 위치와 이동 가능한 방향을 정의한 해시맵
     std::unordered_map<LocationID, std::unordered_map<std::string, LocationID>> transitions = {
         {START, {{"up", BACK}, {"down", UPGRADE}}},
@@ -70,15 +62,15 @@ private:
         {MAKER, {{"up", UPGRADE}}}
     };
 
-    CPos CursorPos = { { -130,120 }, { 130, 120 } };
-    CPos StartPos = { { -130,120 }, { 130, 120 } };
-    CPos UpgradePos = { { -110,260 }, { 110, 260 } };
-    CPos CollectionPos = { { -300,260 }, { -120, 260 } };
-    CPos UnlockPos = { { 120,260 }, { 305, 260 } };
-    CPos MakerPos = { { -90,360 }, { 90, 360 } };
-    CPos BackPos = { { -258,-365 }, { -115, -365 } };
-    CPos OptionPos = { { 165,-365 }, { 310, -365 } };
-};
+    inline static const CPos CursorPos = { { -130,120 }, { 130, 120 } };
+    inline static const CPos StartPos = { { -130,120 }, { 130, 120 } };
+    inline static const CPos UpgradePos = { { -110,260 }, { 110, 260 } };
+    inline static const CPos CollectionPos = { { -300,260 }, { -120, 260 } };
+    inline static const CPos UnlockPos = { { 120,260 }, { 305, 260 } };
+    inline static const CPos MakerPos = { { -90,360 }, { 90, 360 } };
+    inline static const CPos BackPos = { { -258,-365 }, { -115, -365 } };
+    inline static const CPos OptionPos = { { 165,-365 }, { 310, -365 } };
+};  
 
 class ATitleCursor : public AActor
 {
@@ -97,6 +89,8 @@ public:
 protected:
 
 private:
+    void UpdateCursorPosition();
+
 	USpriteRenderer* LeftCursor = nullptr;
 	USpriteRenderer* RightCursor = nullptr;
     
