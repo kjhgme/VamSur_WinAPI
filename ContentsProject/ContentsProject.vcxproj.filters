@@ -61,6 +61,9 @@
     <ClInclude Include="TitleVillain.h">
       <Filter>ContentsObjects\Title\TitleImage</Filter>
     </ClInclude>
+    <ClInclude Include="TitleCursor.h">
+      <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -122,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="TitleVillain.cpp">
       <Filter>ContentsObjects\Title\TitleImage</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleCursor.cpp">
+      <Filter>ContentsObjects\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

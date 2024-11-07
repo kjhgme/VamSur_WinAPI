@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TitleCursor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleVillain.h">
       <SubType>
       </SubType>
@@ -223,6 +227,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TitleCursor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleVillain.cpp">
       <SubType>
       </SubType>

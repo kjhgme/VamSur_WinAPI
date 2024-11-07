@@ -1,10 +1,11 @@
 #include "PreCompile.h"
 #include "TitleUI.h"
+#include "ContentsEnum.h"
 
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineWindow.h>
 
-#include "ContentsEnum.h"
+#include "TitleCursor.h"
 
 ATitleUI::ATitleUI()
 {
@@ -83,25 +84,7 @@ void ATitleUI::BeginPlay()
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
 	// CursorArrow
-	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("Cursor", 0);
-		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
-		SpriteRenderer->SetSpriteScale(1.0f);
-
-		SpriteRenderer->CreateAnimation("Cursor_L", "Cursor", 0, 7, 0.15f);
-		SpriteRenderer->ChangeAnimation("Cursor_L");
-	}
-	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("Cursor", 8);
-		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
-		SpriteRenderer->SetSpriteScale(1.0f);
-		SpriteRenderer->SetComponentLocation({0, 20});
-
-		SpriteRenderer->CreateAnimation("Cursor_R", "Cursor", 8, 14, 0.15f);
-		SpriteRenderer->ChangeAnimation("Cursor_R");
-	}
+	ATitleCursor* Cursor = GetWorld()->SpawnActor<ATitleCursor>();
 
 }
 
