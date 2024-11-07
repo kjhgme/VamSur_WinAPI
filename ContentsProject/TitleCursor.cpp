@@ -59,6 +59,11 @@ void ATitleCursor::Tick(float _DeltaTime)
 	{
 		pos.move("up");
 	}
+	else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
+	{
+		if(START == pos.GetPosID())
+		UEngineAPICore::GetCore()->OpenLevel("InGame");
+	}
 
 	UpdateCursorPosition();
 }

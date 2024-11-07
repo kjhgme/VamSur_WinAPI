@@ -47,6 +47,10 @@ public:
             return StartPos;
         }
     }
+    
+    LocationID GetPosID() {
+        return current;
+    }
 
 private:
     LocationID current;
