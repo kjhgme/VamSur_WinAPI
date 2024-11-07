@@ -47,22 +47,25 @@
       <Filter>ContentsObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="TitleAntonio.h">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
     <ClInclude Include="TitleBG.h">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
     <ClInclude Include="TitleImelda.h">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
     <ClInclude Include="TitleVillain.h">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
     <ClInclude Include="TitleCursor.h">
       <Filter>ContentsObjects\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleSellectCharacter.h">
+      <Filter>ContentsObjects\Title\SellectCharacterTitle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,22 +115,25 @@
       <Filter>ContentsObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="TitleAntonio.cpp">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
     <ClCompile Include="TitleBG.cpp">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
     <ClCompile Include="TitleImelda.cpp">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
     <ClCompile Include="TitleVillain.cpp">
-      <Filter>ContentsObjects\Title\TitleImage</Filter>
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
     <ClCompile Include="TitleCursor.cpp">
       <Filter>ContentsObjects\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleSellectCharacter.cpp">
+      <Filter>ContentsObjects\Title\SellectCharacterTitle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +167,11 @@
     <Filter Include="ContentsObjects\Monster">
       <UniqueIdentifier>{6cfc64e9-b242-4ae8-afa0-c1551a6edeab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContentsObjects\Title\TitleImage">
+    <Filter Include="ContentsObjects\Title\MainTitle">
       <UniqueIdentifier>{de0731a3-e7bc-4400-abc6-20cc24380b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Title\SellectCharacterTitle">
+      <UniqueIdentifier>{44ef5715-a702-41a9-9826-1dee80d23857}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

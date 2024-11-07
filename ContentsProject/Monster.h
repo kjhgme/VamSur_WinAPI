@@ -19,7 +19,7 @@ public:
 	virtual void MonsterInit();
 	virtual void InitMonsterStatus() {};
 	virtual void InitSprite() {};
-	void InitCreateAnimation();
+	void InitCreateMonAnim();
 
 	// SetFunction
 	void SetMonsterPos(FVector2D _pos);

@@ -9,6 +9,7 @@
 
 #include "TitleGameMode.h"
 #include "InGameMode.h"
+#include "ResultGameMode.h"
 #include "Player.h"
 
 VamSurContentsCore::VamSurContentsCore()
@@ -88,10 +89,10 @@ void VamSurContentsCore::BeginPlay()
 
 	UEngineAPICore::GetCore()->CreateLevel<ATitleGameMode, AActor>("Title");
 	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, APlayer>("InGame");
-	UEngineAPICore::GetCore()->CreateLevel<AInGameMode, AActor>("Result");
+	UEngineAPICore::GetCore()->CreateLevel<AResultGameMode, AActor>("Result");
 	
 	UEngineAPICore::GetCore()->OpenLevel("Title");
-	// UEngineAPICore::GetCore()->OpenLevel("InGame");
+	//UEngineAPICore::GetCore()->OpenLevel("InGame");
 }
 
 void VamSurContentsCore::Tick()

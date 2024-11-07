@@ -50,6 +50,11 @@ public:
 		CameraPos = _Pos;
 	}
 
+	void SetMainPawn(AActor* _Pawn)
+	{
+		MainPawn = _Pawn;
+	}
+
 	// Function
 	template<typename ActorType>
 	ActorType* SpawnActor()

@@ -29,6 +29,7 @@ public:
 
 	static int EngineStart(HINSTANCE _Inst, UContentsCore* _UserCore);
 
+	// GetFunction
 	static class UEngineAPICore* GetCore()
 	{
 		return MainCore;
@@ -44,6 +45,9 @@ public:
 		return CurLevel;
 	}
 
+	ULevel* GetLevel(std::string_view _LevelName);
+
+	// Function
 	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)
 	{

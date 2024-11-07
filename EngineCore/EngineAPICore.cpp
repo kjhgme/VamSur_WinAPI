@@ -97,6 +97,21 @@ void UEngineAPICore::Tick()
 	CurLevel->Render(DeltaTime);
 }
 
+ULevel* UEngineAPICore::GetLevel(std::string_view _LevelName)
+{
+	std::string ChangeName = _LevelName.data();
+
+	std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(ChangeName);
+	std::map<std::string, class ULevel*>::iterator EndIter = Levels.end();
+
+	if (EndIter == FindIter)
+	{
+		MSGASSERT(ChangeName + "is not exist.(UEngineAPICore::OpenLevel)");
+	}
+
+	return FindIter->second;
+}
+
 void UEngineAPICore::OpenLevel(std::string_view _LevelName)
 {
 	std::string ChangeName = _LevelName.data();

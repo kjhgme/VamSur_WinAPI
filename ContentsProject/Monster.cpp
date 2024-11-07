@@ -13,7 +13,7 @@ AMonster::~AMonster()
 
 void AMonster::BeginPlay()
 {
-	InitCreateAnimation();
+	InitCreateMonAnim();
 }
 
 void AMonster::Tick(float _DeltaTime)
@@ -31,7 +31,7 @@ void AMonster::MonsterInit()
 	InitMonsterStatus();
 }
 
-void AMonster::InitCreateAnimation()
+void AMonster::InitCreateMonAnim()
 {
 	std::string name = MonsterStatus.Name;
 	SpriteRenderer->CreateAnimation(std::string_view(name + "_L_Idle"), std::string_view(name + "_L"), 16, 19, 0.15f);

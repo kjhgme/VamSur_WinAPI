@@ -5,6 +5,9 @@
 #include <EnginePlatform/EngineInput.h>
 
 #include "ContentsEnum.h"
+#include "TitleSellectCharacter.h"
+#include "Player.h"
+#include "Antonio.h"
 
 ATitleCursor::ATitleCursor()
 {
@@ -22,7 +25,7 @@ void ATitleCursor::BeginPlay()
 	{
 		LeftCursor = CreateDefaultSubObject<USpriteRenderer>();
 		LeftCursor->SetSprite("Cursor", 0);
-		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::UI));
+		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
 		LeftCursor->SetSpriteScale(1.0f);
 
 		LeftCursor->CreateAnimation("Cursor_L", "Cursor", 0, 7, 0.15f);
@@ -31,7 +34,7 @@ void ATitleCursor::BeginPlay()
 	{
 		RightCursor = CreateDefaultSubObject<USpriteRenderer>();
 		RightCursor->SetSprite("Cursor", 8);
-		RightCursor->SetOrder(static_cast<int>(ERenderOrder::UI));
+		RightCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
 		RightCursor->SetSpriteScale(1.0f);
 
 		RightCursor->CreateAnimation("Cursor_R", "Cursor", 8, 15, 0.15f);
@@ -43,6 +46,8 @@ void ATitleCursor::BeginPlay()
 
 void ATitleCursor::Tick(float _DeltaTime)
 {
+	UpdateCursorPosition();
+
 	if (true == UEngineInput::GetInst().IsDown('D'))
 	{
 		pos.move("right");
@@ -62,7 +67,18 @@ void ATitleCursor::Tick(float _DeltaTime)
 	else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 	{
 		if (START == pos.GetPosID())
+		{
+			// ATitleSellectCharacter* SellectCharacter = GetWorld()->SpawnActor<ATitleSellectCharacter>();
+			/*ULevel* InGameLevel = UEngineAPICore::GetCore()->GetLevel("InGame");
+			APlayer* newPlayer = new Antonio();
+			newPlayer->PlayerInit();
+
+			InGameLevel->GetMainPawn()
+
+			InGameLevel->SetMainPawn(newPlayer);*/
+
 			UEngineAPICore::GetCore()->OpenLevel("InGame");
+		}
 		else if (BACK == pos.GetPosID())
 		{
 			HWND hWnd = UEngineAPICore::GetCore()->GetMainWindow().GetHandle();
@@ -73,8 +89,6 @@ void ATitleCursor::Tick(float _DeltaTime)
 			}
 		}
 	}
-
-	UpdateCursorPosition();
 }
 
 void ATitleCursor::UpdateCursorPosition()
