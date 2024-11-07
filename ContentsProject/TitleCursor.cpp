@@ -36,9 +36,9 @@ void ATitleCursor::BeginPlay()
 
 		RightCursor->CreateAnimation("Cursor_R", "Cursor", 8, 15, 0.15f);
 		RightCursor->ChangeAnimation("Cursor_R");
-
-		UpdateCursorPosition();
 	}
+
+	UpdateCursorPosition();
 }
 
 void ATitleCursor::Tick(float _DeltaTime)
@@ -61,8 +61,17 @@ void ATitleCursor::Tick(float _DeltaTime)
 	}
 	else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 	{
-		if(START == pos.GetPosID())
-		UEngineAPICore::GetCore()->OpenLevel("InGame");
+		if (START == pos.GetPosID())
+			UEngineAPICore::GetCore()->OpenLevel("InGame");
+		else if (BACK == pos.GetPosID())
+		{
+			HWND hWnd = UEngineAPICore::GetCore()->GetMainWindow().GetHandle();
+
+			if (hWnd)
+			{
+				SendMessageA(hWnd, WM_CLOSE, 0, 0);
+			}
+		}
 	}
 
 	UpdateCursorPosition();

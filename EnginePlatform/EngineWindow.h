@@ -41,6 +41,11 @@ public:
 		return WindowImage;
 	}
 
+	inline HWND GetHandle() const
+	{
+		return WindowHandle;
+	}
+
 	FVector2D GetMousePos();
 
 	// SetFunction
