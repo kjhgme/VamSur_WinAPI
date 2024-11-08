@@ -4,7 +4,7 @@
 #include <EngineCore/Level.h>
 
 #include "Player.h"
-#include "PlayMap.h"
+#include "InGameUI.h"
 #include "InfiniteMap.h"
 #include "TitleGameMode.h"
 #include "MonsterSpawner.h"
@@ -21,6 +21,7 @@ void AInGameMode::BeginPlay()
 {
 	AInfiniteMap* PMAP0 = GetWorld()->SpawnActor<AInfiniteMap>();
 	AMonsterSpawner* MonsterSpawner = GetWorld()->SpawnActor<AMonsterSpawner>();
+	AInGameUI* InGameUI = GetWorld()->SpawnActor<AInGameUI>();
 	/*switch (ATitleGameMode::SelectedCharacter)
 	{
 	case 1:

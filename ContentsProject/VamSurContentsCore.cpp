@@ -43,11 +43,28 @@ void VamSurContentsCore::BeginPlay()
 		}
 		// UI
 		{
-			UEngineDirectory UIDir;
-			UIDir.MoveParentToDirectory("Resources/UI");
-			UIDir.Append("Cursor");
+			{
+				UEngineDirectory UIDir;
+				if (false == UIDir.MoveParentToDirectory("Resources/InGame/InGameUI"))
+				{
+					MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
+					return;
+				}
 
-			UImageManager::GetInst().LoadFolder(UIDir.GetPathToString());
+				std::vector<UEngineFile> ImageFiles = UIDir.GetAllFile();
+
+				for (size_t i = 0; i < ImageFiles.size(); i++)
+				{
+					std::string FilePath = ImageFiles[i].GetPathToString();
+					UImageManager::GetInst().Load(FilePath);
+				}
+			}
+
+			UEngineDirectory CursorDir;
+			CursorDir.MoveParentToDirectory("Resources/UI");
+			CursorDir.Append("Cursor");
+
+			UImageManager::GetInst().LoadFolder(CursorDir.GetPathToString());
 		}
 		// Charcters
 		{

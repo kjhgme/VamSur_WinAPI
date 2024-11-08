@@ -67,6 +67,9 @@
     <ClInclude Include="TitleCursor.h">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
+    <ClInclude Include="InGameUI.h">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -132,6 +135,9 @@
     <ClCompile Include="TitleCursor.cpp">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
+    <ClCompile Include="InGameUI.cpp">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -169,6 +175,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Title\SelectCharacterTitle">
       <UniqueIdentifier>{44ef5715-a702-41a9-9826-1dee80d23857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\InGame\InGameUI">
+      <UniqueIdentifier>{65cdf922-9da2-46f2-831a-d4ab30d0ca64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

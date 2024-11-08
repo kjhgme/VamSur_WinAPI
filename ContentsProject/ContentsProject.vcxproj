@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="InGameUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleSelectCursor.h">
       <SubType>
       </SubType>
@@ -232,6 +236,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InGameUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleSelectCursor.cpp">
       <SubType>
       </SubType>
