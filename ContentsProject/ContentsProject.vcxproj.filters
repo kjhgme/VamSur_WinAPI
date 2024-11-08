@@ -13,9 +13,6 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>ContentsObjects\Global</Filter>
     </ClInclude>
-    <ClInclude Include="PlayMap.h">
-      <Filter>ContentsObjects\InGame</Filter>
-    </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>ContentsObjects\InGame</Filter>
     </ClInclude>
@@ -58,9 +55,6 @@
     <ClInclude Include="TitleVillain.h">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
-    <ClInclude Include="TitleCursor.h">
-      <Filter>ContentsObjects\Title</Filter>
-    </ClInclude>
     <ClInclude Include="TitleSelectCharacter.h">
       <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
     </ClInclude>
@@ -69,6 +63,9 @@
     </ClInclude>
     <ClInclude Include="TitleSelectCursor.h">
       <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleCursor.h">
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="ContentsEnum.cpp">
       <Filter>ContentsObjects\Global</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayMap.cpp">
-      <Filter>ContentsObjects\InGame</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>ContentsObjects\InGame</Filter>
@@ -129,14 +123,14 @@
     <ClCompile Include="TitleVillain.cpp">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
-    <ClCompile Include="TitleCursor.cpp">
-      <Filter>ContentsObjects\Title</Filter>
-    </ClCompile>
     <ClCompile Include="TitleSelectCharacter.cpp">
       <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
     </ClCompile>
     <ClCompile Include="TitleSelectCursor.cpp">
       <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleCursor.cpp">
+      <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

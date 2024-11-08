@@ -2,7 +2,6 @@
 #include <vector>
 
 #include <EngineCore/Actor.h>
-#include "PlayMap.h"
 #include "Player.h"
 
 class AInfiniteMap : public AActor
@@ -29,7 +28,6 @@ private:
 	FVector2D playerPos {};
 	FVector2D MapScale{};
 	FVector2D InfiMapPos{ 1, 1 };
-	APlayMap* Map = nullptr;
 	UEngineAPICore* core = nullptr;
 	std::vector<std::vector<USpriteRenderer*>> InfiMap;
 };
