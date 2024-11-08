@@ -14,6 +14,8 @@ public:
 
 	void BeginPlay();
 
+	void SelectCharacter(std::string_view _name);
+
 protected:
 
 private:

@@ -151,15 +151,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Antonio.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="CharactersStatus.h" />
     <ClInclude Include="TitleCursor.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TitleSellectCharacter.h">
+    <ClInclude Include="TitleSelectCharacter.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -235,15 +232,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Antonio.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="TitleCursor.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TitleSellectCharacter.cpp">
+    <ClCompile Include="TitleSelectCharacter.cpp">
       <SubType>
       </SubType>
     </ClCompile>

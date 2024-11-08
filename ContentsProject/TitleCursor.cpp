@@ -5,9 +5,8 @@
 #include <EnginePlatform/EngineInput.h>
 
 #include "ContentsEnum.h"
-#include "TitleSellectCharacter.h"
+#include "TitleSelectCharacter.h"
 #include "Player.h"
-#include "Antonio.h"
 
 ATitleCursor::ATitleCursor()
 {
@@ -69,13 +68,9 @@ void ATitleCursor::Tick(float _DeltaTime)
 		if (START == pos.GetPosID())
 		{
 			// ATitleSellectCharacter* SellectCharacter = GetWorld()->SpawnActor<ATitleSellectCharacter>();
-			/*ULevel* InGameLevel = UEngineAPICore::GetCore()->GetLevel("InGame");
-			APlayer* newPlayer = new Antonio();
-			newPlayer->PlayerInit();
-
-			InGameLevel->GetMainPawn()
-
-			InGameLevel->SetMainPawn(newPlayer);*/
+			ULevel* InGameLevel = UEngineAPICore::GetCore()->GetLevel("InGame");
+			
+			// InGameLevel->SpawnActor<APlayer>();
 
 			UEngineAPICore::GetCore()->OpenLevel("InGame");
 		}

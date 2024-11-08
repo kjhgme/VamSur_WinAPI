@@ -1,20 +1,22 @@
 #include "PreCompile.h"
-#include "TitleSellectCharacter.h"
+#include "TitleSelectCharacter.h"
 
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/SpriteRenderer.h>
 
 #include "ContentsEnum.h"
+#include "Player.h"
 
-ATitleSellectCharacter::ATitleSellectCharacter()
+ATitleSelectCharacter::ATitleSelectCharacter()
+{
+	Characters.resize(2);
+}
+
+ATitleSelectCharacter::~ATitleSelectCharacter()
 {
 }
 
-ATitleSellectCharacter::~ATitleSellectCharacter()
-{
-}
-
-void ATitleSellectCharacter::BeginPlay()
+void ATitleSelectCharacter::BeginPlay()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation({ WindowSize.Half() });
@@ -45,6 +47,6 @@ void ATitleSellectCharacter::BeginPlay()
 	}
 }
 
-void ATitleSellectCharacter::Tick(float _DeltaTime)
+void ATitleSelectCharacter::Tick(float _DeltaTime)
 {
 }

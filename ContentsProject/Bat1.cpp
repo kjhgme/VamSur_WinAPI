@@ -14,7 +14,7 @@ void Bat1::InitSprite()
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("Bat1_L", 0);
 
-	FVector2D scale = SpriteRenderer->SetSpriteScale(2.0f);
+	SpriteRenderer->SetSpriteScale(2.0f);
 }
 
 

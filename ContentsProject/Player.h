@@ -15,10 +15,10 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	virtual void PlayerInit();
-	virtual void InitPlayerStatus() {};
-	virtual void InitSprite() {};
-	virtual void InitCreatePlayerAnim();
+	void PlayerInit(std::string_view _Name);
+	void InitPlayerStatus(std::string_view _name);
+	void InitSprite(std::string_view _name);
+	void InitCreatePlayerAnim();
 
 	APlayer* GetPlayer()
 	{
@@ -32,11 +32,11 @@ public:
 
 protected:
 	struct PSta {
-		std::string Name = "Antonio";
-		int Health;
-		int Armor;
-		int Might;
-		int Speed;
+		std::string Name;
+		int Health = 0;
+		int Armor = 0;
+		int Might = 0;
+		int Speed = 10;
 	} PlayerStatus;
 	
 	class USpriteRenderer* SpriteRenderer = nullptr;

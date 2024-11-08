@@ -43,9 +43,6 @@
     <ClInclude Include="MonsterSpawner.h">
       <Filter>ContentsObjects\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Antonio.h">
-      <Filter>ContentsObjects\Player</Filter>
-    </ClInclude>
     <ClInclude Include="TitleAntonio.h">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
@@ -64,8 +61,11 @@
     <ClInclude Include="TitleCursor.h">
       <Filter>ContentsObjects\Title</Filter>
     </ClInclude>
-    <ClInclude Include="TitleSellectCharacter.h">
-      <Filter>ContentsObjects\Title\SellectCharacterTitle</Filter>
+    <ClInclude Include="TitleSelectCharacter.h">
+      <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="CharactersStatus.h">
+      <Filter>ContentsObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +111,6 @@
     <ClCompile Include="MonsterSpawner.cpp">
       <Filter>ContentsObjects\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="Antonio.cpp">
-      <Filter>ContentsObjects\Player</Filter>
-    </ClCompile>
     <ClCompile Include="TitleAntonio.cpp">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
@@ -132,8 +129,8 @@
     <ClCompile Include="TitleCursor.cpp">
       <Filter>ContentsObjects\Title</Filter>
     </ClCompile>
-    <ClCompile Include="TitleSellectCharacter.cpp">
-      <Filter>ContentsObjects\Title\SellectCharacterTitle</Filter>
+    <ClCompile Include="TitleSelectCharacter.cpp">
+      <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +167,7 @@
     <Filter Include="ContentsObjects\Title\MainTitle">
       <UniqueIdentifier>{de0731a3-e7bc-4400-abc6-20cc24380b67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContentsObjects\Title\SellectCharacterTitle">
+    <Filter Include="ContentsObjects\Title\SelectCharacterTitle">
       <UniqueIdentifier>{44ef5715-a702-41a9-9826-1dee80d23857}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -5,13 +5,11 @@
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
 
+#include "CharactersStatus.h"
+
 APlayer::APlayer()
 {
-	SetActorLocation({ 0, 0 });
-
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Antonio", 4);
-	SpriteRenderer->SetComponentScale({ 68, 68 });
+	SetActorLocation({ 10, 10 });
 }
 
 APlayer::~APlayer()
@@ -38,10 +36,35 @@ void APlayer::Tick(float _DeltaTime)
 	PlayerMove(_DeltaTime);
 }
 
-void APlayer::PlayerInit()
+void APlayer::PlayerInit(std::string_view _name)
 {
-	InitSprite();
-	InitPlayerStatus();
+	InitSprite(_name);
+	InitPlayerStatus(_name);
+}
+
+void APlayer::InitPlayerStatus(std::string_view _name)
+{
+	if (_name == "Antonio") {
+		PlayerStatus.Name = AntonioStatus.Name;
+		PlayerStatus.Health = AntonioStatus.Health;
+		PlayerStatus.Armor = AntonioStatus.Armor;
+		PlayerStatus.Might = AntonioStatus.Might;
+		PlayerStatus.Speed = AntonioStatus.Speed;
+	}
+	else if (_name == "Imelda") {
+		PlayerStatus.Name = ImeldaStatus.Name;
+		PlayerStatus.Health = ImeldaStatus.Health;
+		PlayerStatus.Armor = ImeldaStatus.Armor;
+		PlayerStatus.Might = ImeldaStatus.Might;
+		PlayerStatus.Speed = ImeldaStatus.Speed;
+	}
+}
+
+void APlayer::InitSprite(std::string_view _name)
+{
+	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetSprite(_name, 4);
+	SpriteRenderer->SetSpriteScale(2.0f);
 }
 
 void APlayer::InitCreatePlayerAnim()
@@ -58,6 +81,7 @@ void APlayer::InitCreatePlayerAnim()
 
 void APlayer::PlayerMove(float _DeltaTime)
 {
+	UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->SetActorLocation(this->GetActorLocation());
 	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
 		HeadDirRight = true;
