@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TitleSelectCursor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CharactersStatus.h" />
     <ClInclude Include="TitleCursor.h">
       <SubType>
@@ -232,6 +236,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TitleSelectCursor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleCursor.cpp">
       <SubType>
       </SubType>

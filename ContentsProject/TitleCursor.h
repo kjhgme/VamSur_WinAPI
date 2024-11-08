@@ -16,10 +16,10 @@ enum LocationID {
     MAKER
 };
 
-class Position {
+class TitleCursorPosition {
 public:
 
-    Position() : current(START) {}
+    TitleCursorPosition() : current(START) {}
 
     void move(const std::string& direction) {
         if (transitions[current].find(direction) != transitions[current].end()) {
@@ -90,6 +90,8 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+    bool Alive = true;
+
 protected:
 
 private:
@@ -98,5 +100,5 @@ private:
 	USpriteRenderer* LeftCursor = nullptr;
 	USpriteRenderer* RightCursor = nullptr;
     
-    Position pos;
+    TitleCursorPosition pos;
 };

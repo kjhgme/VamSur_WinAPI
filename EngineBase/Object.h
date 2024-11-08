@@ -29,10 +29,31 @@ public:
 	{
 		Name = _Name.data();
 	}
+	
+	void SetActive(bool _IsActive)
+	{
+		IsActiveValue = _IsActive;
+	}
+
+
+	// Function
+	virtual bool IsActive()
+	{
+		return IsActiveValue && false == IsDestroyValue;
+	}
+
+	virtual bool IsDestroy()
+	{
+		return IsDestroyValue;
+	}
+
 
 protected:
 
 private:
 	std::string Name;
+
+	bool IsDestroyValue = false;
+	bool IsActiveValue = true;
 };
 

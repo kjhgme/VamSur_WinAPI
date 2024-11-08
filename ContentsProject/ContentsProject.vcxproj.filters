@@ -67,6 +67,9 @@
     <ClInclude Include="CharactersStatus.h">
       <Filter>ContentsObjects\Player</Filter>
     </ClInclude>
+    <ClInclude Include="TitleSelectCursor.h">
+      <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -130,6 +133,9 @@
       <Filter>ContentsObjects\Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleSelectCharacter.cpp">
+      <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleSelectCursor.cpp">
       <Filter>ContentsObjects\Title\SelectCharacterTitle</Filter>
     </ClCompile>
   </ItemGroup>

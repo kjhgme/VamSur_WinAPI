@@ -12,6 +12,11 @@ public:
 	AGameMode& operator=(const AGameMode& _Other) = delete;
 	AGameMode& operator=(AGameMode&& _Other) noexcept = delete;
 
+	AGameMode* GetGameMode()
+	{
+		return this;
+	}
+
 protected:
 
 private:

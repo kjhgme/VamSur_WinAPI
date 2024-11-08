@@ -1,21 +1,21 @@
 #include "PreCompile.h"
-#include "TitleCursor.h"
+#include "TitleSelectCursor.h"
 
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
+#include "Player.h"
 
 #include "ContentsEnum.h"
-#include "TitleSelectCharacter.h"
 
-ATitleCursor::ATitleCursor()
+ATitleSelectCursor::ATitleSelectCursor()
 {
 }
 
-ATitleCursor::~ATitleCursor()
+ATitleSelectCursor::~ATitleSelectCursor()
 {
 }
 
-void ATitleCursor::BeginPlay()
+void ATitleSelectCursor::BeginPlay()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
 	SetActorLocation({ WindowSize.Half() });
@@ -42,7 +42,7 @@ void ATitleCursor::BeginPlay()
 	UpdateCursorPosition();
 }
 
-void ATitleCursor::Tick(float _DeltaTime)
+void ATitleSelectCursor::Tick(float _DeltaTime)
 {
 	if (true == Alive)
 	{
@@ -66,18 +66,27 @@ void ATitleCursor::Tick(float _DeltaTime)
 		}
 		else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 		{
-			if (START == pos.GetPosID())
+			if (CHARACTER_00 == pos.GetPosID())
 			{
 				Alive = false;
-				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND)- 1);
+				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-				ATitleSelectCharacter* SelectCharacter = GetWorld()->SpawnActor<ATitleSelectCharacter>();
 				
-				//ULevel* InGameLevel = UEngineAPICore::GetCore()->GetLevel("InGame");
-				//
-				//// InGameLevel->SpawnActor<APlayer>();
+				APlayer* Player = UEngineAPICore::GetCore()->GetLevel("InGame")->SpawnActor<APlayer>();
+				Player->PlayerInit("Antonio");
 
-				//UEngineAPICore::GetCore()->OpenLevel("InGame");
+				UEngineAPICore::GetCore()->OpenLevel("InGame");
+			}
+			else if (CHARACTER_01 == pos.GetPosID())
+			{
+				Alive = false;
+				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+
+				APlayer* Player = UEngineAPICore::GetCore()->GetLevel("InGame")->SpawnActor<APlayer>();
+				Player->PlayerInit("Imelda");
+
+				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
 			else if (BACK == pos.GetPosID())
 			{
@@ -92,7 +101,7 @@ void ATitleCursor::Tick(float _DeltaTime)
 	}
 }
 
-void ATitleCursor::UpdateCursorPosition()
+void ATitleSelectCursor::UpdateCursorPosition()
 {
 	CPos currentPos = pos.GetPos();
 	LeftCursor->SetComponentLocation(currentPos.LCP);

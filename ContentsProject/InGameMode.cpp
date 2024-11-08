@@ -3,11 +3,11 @@
 
 #include <EngineCore/Level.h>
 
+#include "Player.h"
 #include "PlayMap.h"
 #include "InfiniteMap.h"
-#include "MonsterSpawner.h"
 #include "TitleGameMode.h"
-#include "Player.h"
+#include "MonsterSpawner.h"
 
 AInGameMode::AInGameMode()
 {
@@ -21,15 +21,15 @@ void AInGameMode::BeginPlay()
 {
 	AInfiniteMap* PMAP0 = GetWorld()->SpawnActor<AInfiniteMap>();
 	AMonsterSpawner* MonsterSpawner = GetWorld()->SpawnActor<AMonsterSpawner>();
-		/*switch (ATitleGameMode::SelectedCharacter)
+	/*switch (ATitleGameMode::SelectedCharacter)
 	{
 	case 1:
 		SelectCharacter("Antonio");
 		break;
 	default:
+		SelectCharacter("Imelda");
 		break;
 	}*/
-	SelectCharacter("Imelda");
 }
 
 void AInGameMode::SelectCharacter(std::string_view _Name)
