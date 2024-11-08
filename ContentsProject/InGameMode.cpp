@@ -30,6 +30,8 @@ void AInGameMode::BeginPlay()
 		SelectCharacter("Imelda");
 		break;
 	}*/
+
+	SelectCharacter("Antonio");
 }
 
 void AInGameMode::SelectCharacter(std::string_view _Name)

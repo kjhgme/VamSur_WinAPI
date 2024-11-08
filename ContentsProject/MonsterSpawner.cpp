@@ -33,7 +33,7 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	FVector2D playerPos = GetWorld()->GetMainPawn()->GetActorLocation();
 
 	CurAngle += MoveSpeed * _DeltaTime;
-	Pos =  CalculateCircularPosition(playerPos, 300.0f, CurAngle );
+	Pos =  CalculateCircularPosition(playerPos, 400.0f, CurAngle );
 	
 	SetActorLocation({ Pos });
 
