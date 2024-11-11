@@ -36,8 +36,6 @@ void KillAndGoldUI::Tick(float _DeltaTime)
 void KillAndGoldUI::SetPos()
 {
 	Pos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
-	Pos.X = Pos.X;// -WindowSize.Half().X;
-	Pos.Y = Pos.Y;// -WindowSize.Half().Y;
 
 	SetActorLocation({ Pos });
 }

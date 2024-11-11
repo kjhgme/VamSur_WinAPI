@@ -17,7 +17,6 @@ void Bat1::InitSprite()
 	SpriteRenderer->SetSpriteScale(2.0f);
 }
 
-
 void Bat1::InitMonsterStatus()
 {
 	MonsterStatus.Name = Bat1Status.Name;

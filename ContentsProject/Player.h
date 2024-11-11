@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+#include "CharactersStatus.h"
+
 class APlayer : public AActor
 {
 public:
@@ -19,6 +21,7 @@ public:
 	void InitPlayerStatus(std::string_view _name);
 	void InitSprite(std::string_view _name);
 	void InitCreatePlayerAnim();
+	void InitCollision();
 
 	APlayer* GetPlayer()
 	{
@@ -30,14 +33,12 @@ public:
 	void LevelChangeStart();
 	void LevelChangeEnd();
 
+	void CollisionEnter(AActor* _ColActor);
+	void CollisionStay(AActor* _ColActor);
+	void CollisionEnd(AActor* _ColActor);
+
 protected:
-	struct PSta {
-		std::string Name;
-		int Health = 0;
-		int Armor = 0;
-		int Might = 0;
-		int Speed = 10;
-	} PlayerStatus;
+	CharacterStatus PlayerStatus;
 	
 	class USpriteRenderer* SpriteRenderer = nullptr;
 
@@ -45,5 +46,8 @@ private:
 	int MySpriteIndex = 0;
 	bool HeadDirRight = true;
 
+	U2DCollision* CollisionComponent = nullptr;
+
+	static const std::unordered_map<std::string_view, const CharacterStatus*> characterStatusMap;
 };
 

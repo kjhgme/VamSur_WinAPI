@@ -20,6 +20,7 @@ public:
 	virtual void InitMonsterStatus() {};
 	virtual void InitSprite() {};
 	void InitCreateMonAnim();
+	void InitCollision();
 
 	// SetFunction
 	void SetMonsterPos(FVector2D _pos);
@@ -40,6 +41,7 @@ protected:
 	} MonsterStatus;
 	
 	class USpriteRenderer* SpriteRenderer = nullptr;
+	U2DCollision* CollisionComponent = nullptr;
 
 private:
 	int MonsterKey{};

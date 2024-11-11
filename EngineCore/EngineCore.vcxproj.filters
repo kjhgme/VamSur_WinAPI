@@ -34,6 +34,9 @@
     <ClInclude Include="EngineCoreDebug.h">
       <Filter>Debug</Filter>
     </ClInclude>
+    <ClInclude Include="2DCollision.h">
+      <Filter>Object\Actor\Component\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineAPICore.cpp">
@@ -69,6 +72,9 @@
     <ClCompile Include="EngineCoreDebug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
+    <ClCompile Include="2DCollision.cpp">
+      <Filter>Object\Actor\Component\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -97,6 +103,9 @@
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{f43b1aca-fc8f-401b-ae5e-a792508200f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor\Component\Collision">
+      <UniqueIdentifier>{c689ad8a-b04e-490d-9a5a-343a5fcc1325}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

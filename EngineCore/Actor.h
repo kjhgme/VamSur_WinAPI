@@ -20,7 +20,7 @@ public:
 	AActor& operator=(AActor&& _Other) noexcept = delete;
 
 	virtual void BeginPlay() {}
-	virtual void Tick(float _DeltaTime) {}
+	virtual void Tick(float _DeltaTime);
 
 	// GetFunction
 	class ULevel* GetWorld()
@@ -84,7 +84,6 @@ private:
 	static std::list<class UActorComponent*> ComponentList;
 
 	static void ComponentBeginPlay();
-
-	int CurIndex = 0;
+	void ReleaseCheck(float _DeltaTime) override;
 };
 

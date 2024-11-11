@@ -1,15 +1,20 @@
 #include "PreCompile.h"
 #include "Player.h"
+#include "ContentsEnum.h"
+
+#include <unordered_map>
 
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
-
-#include "CharactersStatus.h"
+#include <EngineCore/2DCollision.h>
 
 APlayer::APlayer()
 {
-	SetActorLocation({ 10, 10 });
+	SetActorLocation({ 0, 0 });
+	InitCollision();
+
+	DebugOn();
 }
 
 APlayer::~APlayer()
@@ -34,6 +39,11 @@ void APlayer::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString("PlayerPos : " + GetActorLocation().ToString());
 
 	PlayerMove(_DeltaTime);
+
+	if (true == UEngineInput::GetInst().IsDown('F'))
+	{
+		UEngineDebug::SwitchIsDebug();
+	}
 }
 
 void APlayer::PlayerInit(std::string_view _name)
@@ -44,27 +54,27 @@ void APlayer::PlayerInit(std::string_view _name)
 
 void APlayer::InitPlayerStatus(std::string_view _name)
 {
-	if (_name == "Antonio") {
-		PlayerStatus.Name = AntonioStatus.Name;
-		PlayerStatus.Health = AntonioStatus.Health;
-		PlayerStatus.Armor = AntonioStatus.Armor;
-		PlayerStatus.Might = AntonioStatus.Might;
-		PlayerStatus.Speed = AntonioStatus.Speed;
+	static const std::unordered_map<std::string_view, const CharacterStatus*> characterStatusMap = {
+		{"Antonio", &AntonioStatus},
+		{"Imelda", &ImeldaStatus}
+	};
+
+	auto it = characterStatusMap.find(_name);
+	if (it != characterStatusMap.end()) {
+		PlayerStatus = *(it->second);
 	}
-	else if (_name == "Imelda") {
-		PlayerStatus.Name = ImeldaStatus.Name;
-		PlayerStatus.Health = ImeldaStatus.Health;
-		PlayerStatus.Armor = ImeldaStatus.Armor;
-		PlayerStatus.Might = ImeldaStatus.Might;
-		PlayerStatus.Speed = ImeldaStatus.Speed;
+	else {
+		PlayerStatus = CharacterStatus();
 	}
 }
 
 void APlayer::InitSprite(std::string_view _name)
 {
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite(_name, 4);
-	SpriteRenderer->SetSpriteScale(2.0f);
+	{
+		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetSprite(_name, 4);
+		SpriteRenderer->SetSpriteScale(1.0f);
+	}
 }
 
 void APlayer::InitCreatePlayerAnim()
@@ -76,6 +86,23 @@ void APlayer::InitCreatePlayerAnim()
 		SpriteRenderer->CreateAnimation("Idle_R", name, 4, 4, 0.15f);
 		SpriteRenderer->CreateAnimation("Move_L", name, 0, 3, 0.15f);
 		SpriteRenderer->CreateAnimation("Move_R", name, 4, 7, 0.15f);
+	}
+}
+
+void APlayer::InitCollision()
+{
+	{
+		CollisionComponent = CreateDefaultSubObject<U2DCollision>();
+		CollisionComponent->SetComponentLocation({ 0, 0 });
+		CollisionComponent->SetComponentScale({ 60, 60 });
+		CollisionComponent->SetCollisionGroup(ECollisionGroup::PlayerBody);
+		CollisionComponent->SetCollisionType(ECollisionType::CirCle);
+
+		GetWorld()->CollisionGroupLink(ECollisionGroup::PlayerBody, ECollisionGroup::MonsterBody);
+
+		CollisionComponent->SetCollisionEnter(std::bind(&APlayer::CollisionEnter, this, std::placeholders::_1));
+		CollisionComponent->SetCollisionStay(std::bind(&APlayer::CollisionStay, this, std::placeholders::_1));
+		CollisionComponent->SetCollisionEnd(std::bind(&APlayer::CollisionEnd, this, std::placeholders::_1));
 	}
 }
 
@@ -134,4 +161,16 @@ void APlayer::LevelChangeStart()
 void APlayer::LevelChangeEnd()
 {
 	Super::LevelChangeEnd();
+}
+
+void APlayer::CollisionEnter(AActor* _ColActor)
+{
+}
+
+void APlayer::CollisionStay(AActor* _ColActor)
+{
+}
+
+void APlayer::CollisionEnd(AActor* _ColActor)
+{
 }

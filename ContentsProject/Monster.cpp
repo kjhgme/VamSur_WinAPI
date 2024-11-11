@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "Monster.h"
+#include "ContentsEnum.h"
 
 #include <EngineCore/EngineAPICore.h>
+#include <EngineCore/2DCollision.h>
  
 AMonster::AMonster()
 {
@@ -13,7 +15,6 @@ AMonster::~AMonster()
 
 void AMonster::BeginPlay()
 {
-	InitCreateMonAnim();
 }
 
 void AMonster::Tick(float _DeltaTime)
@@ -29,6 +30,10 @@ void AMonster::MonsterInit()
 {
 	InitSprite();
 	InitMonsterStatus();
+	InitCreateMonAnim();
+	InitCollision();
+
+	DebugOn();
 }
 
 void AMonster::InitCreateMonAnim()
@@ -38,7 +43,17 @@ void AMonster::InitCreateMonAnim()
 	SpriteRenderer->CreateAnimation(std::string_view(name + "_L_Die"), std::string_view(name + "_L"), 0, 15, 0.15f);
 	SpriteRenderer->CreateAnimation(std::string_view(name + "_R_Idle"), std::string_view(name + "_R"), 16, 19, 0.15f);
 	SpriteRenderer->CreateAnimation(std::string_view(name + "_R_Die"), std::string_view(name + "_R"), 0, 15, 0.15f);
-	// SpriteRenderer->ChangeAnimation(std::string_view(name + "_L_Idle"));
+}
+
+void AMonster::InitCollision()
+{
+	FVector2D scale =SpriteRenderer->GetComponentScale();
+
+	CollisionComponent = CreateDefaultSubObject<U2DCollision>();
+	CollisionComponent->SetComponentLocation({ 0, 0 });
+	CollisionComponent->SetComponentScale(scale);
+	CollisionComponent->SetCollisionGroup(ECollisionGroup::MonsterBody);
+	CollisionComponent->SetCollisionType(ECollisionType::CirCle);
 }
 
 void AMonster::SetMonsterPos(FVector2D _pos)

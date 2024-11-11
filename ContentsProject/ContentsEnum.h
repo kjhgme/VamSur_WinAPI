@@ -8,3 +8,12 @@ enum class ERenderOrder
 	UI = 1000,
 	CURSOR = 10000,
 };
+
+enum class ECollisionGroup
+{
+	PlayerBody,
+	MonsterBody,
+	WeaponBody,
+	ObjectBody,
+	ItemBody
+};

@@ -36,7 +36,7 @@ public:
 	}
 
 
-	// Function
+	// IsFunction
 	virtual bool IsActive()
 	{
 		return IsActiveValue && false == IsDestroyValue;
@@ -47,6 +47,54 @@ public:
 		return IsDestroyValue;
 	}
 
+	bool IsDebug()
+	{
+		return IsDebugValue;
+	}
+
+	void DebugOn()
+	{
+		IsDebugValue = true;
+	}
+
+	void DebugOff()
+	{
+		IsDebugValue = false;
+	}
+
+	void DebugSwitch()
+	{
+		IsDebugValue = !IsDebugValue;
+	}
+
+	// Function
+	void Destroy(float _Time = 0.0f)
+	{
+		DeathTime = _Time;
+
+		if (0.0f < _Time)
+		{
+			IsDeathTimeCheck = true;
+			return;
+		}
+
+		IsDestroyValue = true;
+	}
+
+	virtual void ReleaseCheck(float _DeltaTime)
+	{
+		if (false == IsDeathTimeCheck)
+		{
+			return;
+		}
+
+		CurDeathTime += _DeltaTime;
+
+		if (DeathTime <= CurDeathTime)
+		{
+			IsDestroyValue = true;
+		}
+	}
 
 protected:
 
@@ -55,5 +103,10 @@ private:
 
 	bool IsDestroyValue = false;
 	bool IsActiveValue = true;
+	bool IsDeathTimeCheck = false;
+	bool IsDebugValue = false;
+
+	float DeathTime = 0.0f;
+	float CurDeathTime = 0.0f;
 };
 

@@ -68,6 +68,12 @@ public:
 		return X * other.X + Y * other.Y;
 	}
 
+	static FVector2D Normalize(FVector2D _Value)
+	{
+		_Value.Normalize();
+		return _Value;
+	}
+
 	void Normalize()
 	{
 		float Len = Length();
@@ -78,6 +84,8 @@ public:
 		}
 		return;
 	}
+
+	class FIntPoint ConvertToPoint() const;
 
 	// operator
 	FVector2D operator*(float _Value) const
@@ -143,10 +151,23 @@ public:
 		S += "]";
 		return S;
 	}
+}; 
+
+enum class ECollisionType
+{
+	Point,
+	Rect,
+	CirCle, 
+	Max,
 };
 
 class FTransform
 {
+private:
+	friend class CollisionFunctionInit;
+	static std::function<bool(const FTransform&, const FTransform&)> AllCollisionFunction[static_cast<int>(ECollisionType::Max)][static_cast<int>(ECollisionType::Max)];
+
+
 public:
 	FVector2D Scale;
 	FVector2D Location;
@@ -160,6 +181,10 @@ public:
 	{
 		return Location + Scale.Half();
 	}
+
+	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
+	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
+	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 };
 
 class FIntPoint
@@ -213,13 +238,21 @@ public:
 	}
 };
 
-class EngineMath
+class UEngineMath
 {
+public:
+	static float Sqrt(float _Value)
+	{
+		return ::sqrtf(_Value);
+	}
 };
 
 class UColor
 {
 public:
+	static const UColor WHITE;
+	static const UColor BLACK;
+
 	union
 	{
 		int Color;
@@ -232,9 +265,20 @@ public:
 		};
 	};
 
+	UColor(unsigned long _Value)
+		:Color(_Value)
+	{
+
+	}
+
 	UColor(unsigned char _R, unsigned char _G, unsigned char _B, unsigned char _A)
 		:R(_R), G(_G), B(_B), A(_A)
 	{
 
+	}
+	
+	bool operator==(const UColor& _Other)
+	{
+		return R == _Other.R && G == _Other.G && B == _Other.B;
 	}
 };
