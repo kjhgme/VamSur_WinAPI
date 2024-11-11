@@ -3,7 +3,10 @@
 #include "ContentsEnum.h"
 
 #include <EngineCore/EngineAPICore.h>
-#include <EnginePlatform/EngineWindow.h>
+
+#include "ExpBarUI.h"
+#include "WeaponSlotsUI.h"
+#include "KillAndGoldUI.h"
 
 AInGameUI::AInGameUI()
 {
@@ -16,20 +19,13 @@ AInGameUI::~AInGameUI()
 void AInGameUI::BeginPlay()
 {
 	FVector2D WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	SetActorLocation({ WindowSize.Half().X, -400.0f });
+	SetActorLocation({ WindowSize.Half() });
 
-	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("InGameUI_LevelBar.png");
-		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
-		SpriteRenderer->SetSpriteScale(1.0f);
-	}
+	ExpBarUI* ExpBar = GetWorld()->SpawnActor<ExpBarUI>();
+	WeaponSlotsUI* WeaponSlots = GetWorld()->SpawnActor<WeaponSlotsUI>();
+	KillAndGoldUI* KillAndGold = GetWorld()->SpawnActor<KillAndGoldUI>();
 }
 
-	void AInGameUI::Tick(float _DeltaTime)
+void AInGameUI::Tick(float _DeltaTime)
 {
 }
-
-	void AInGameUI::SetPos()
-	{
-	}

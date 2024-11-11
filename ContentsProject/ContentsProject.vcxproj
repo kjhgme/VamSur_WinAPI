@@ -151,7 +151,15 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExpBarUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="InGameUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="KillAndGoldUI.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -234,9 +242,21 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WeaponSlotsUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExpBarUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="InGameUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="KillAndGoldUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -318,6 +338,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="VamSurContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="WeaponSlotsUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

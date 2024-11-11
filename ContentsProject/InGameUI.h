@@ -13,12 +13,8 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void SetPos();
-
 protected:
 
 private:
-	FVector2D Pos{};
-
 };
 

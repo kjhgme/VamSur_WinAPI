@@ -67,7 +67,16 @@
     <ClInclude Include="TitleCursor.h">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClInclude>
+    <ClInclude Include="ExpBarUI.h">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
     <ClInclude Include="InGameUI.h">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponSlotsUI.h">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="KillAndGoldUI.h">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -135,7 +144,16 @@
     <ClCompile Include="TitleCursor.cpp">
       <Filter>ContentsObjects\Title\MainTitle</Filter>
     </ClCompile>
+    <ClCompile Include="ExpBarUI.cpp">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClCompile>
     <ClCompile Include="InGameUI.cpp">
+      <Filter>ContentsObjects\InGame</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponSlotsUI.cpp">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="KillAndGoldUI.cpp">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
   </ItemGroup>
