@@ -14,7 +14,7 @@ void Bat1::InitSprite()
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("Bat1_L", 0);
 
-	SpriteRenderer->SetSpriteScale(2.0f);
+	SpriteRenderer->SetSpriteScale(1.0f);
 }
 
 void Bat1::InitMonsterStatus()
