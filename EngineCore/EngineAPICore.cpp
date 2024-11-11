@@ -95,6 +95,8 @@ void UEngineAPICore::Tick()
 	UEngineInput::GetInst().EventCheck(DeltaTime);
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);
+	CurLevel->Collision(DeltaTime);
+	CurLevel->Release(DeltaTime);
 }
 
 ULevel* UEngineAPICore::GetLevel(std::string_view _LevelName)

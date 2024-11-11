@@ -241,6 +241,14 @@ void ULevel::Collision(float _DeltaTime)
 
 void ULevel::Release(float _DeltaTime)
 {
+	std::list<AActor*>::iterator StartIter = AllActors.begin();
+	std::list<AActor*>::iterator EndIter = AllActors.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		AActor* CurActor = *StartIter;
+		CurActor->ReleaseTimeCheck(_DeltaTime);
+	}
 	// Collision 제거
 	{
 		std::map<int, std::list<class U2DCollision*>>::iterator StartOrderIter = Collisions.begin();

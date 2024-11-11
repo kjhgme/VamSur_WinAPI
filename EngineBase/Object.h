@@ -83,6 +83,11 @@ public:
 
 	virtual void ReleaseCheck(float _DeltaTime)
 	{
+
+	}
+
+	virtual void ReleaseTimeCheck(float _DeltaTime)
+	{
 		if (false == IsDeathTimeCheck)
 		{
 			return;

@@ -4,6 +4,7 @@
 
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/2DCollision.h>
+#include <EnginePlatform/EngineInput.h>
  
 AMonster::AMonster()
 {
@@ -24,6 +25,12 @@ void AMonster::Tick(float _DeltaTime)
 	ChasePlayer(_DeltaTime);
 
 	ChangeAnimation();
+
+	if (true == UEngineInput::GetInst().IsDown('F'))
+	{
+		Alive = false;
+		Destroy(2.0f);
+	}
 }
 
 void AMonster::MonsterInit()
@@ -40,9 +47,9 @@ void AMonster::InitCreateMonAnim()
 {
 	std::string name = MonsterStatus.Name;
 	SpriteRenderer->CreateAnimation(std::string_view(name + "_L_Idle"), std::string_view(name + "_L"), 16, 19, 0.15f);
-	SpriteRenderer->CreateAnimation(std::string_view(name + "_L_Die"), std::string_view(name + "_L"), 0, 15, 0.15f);
+	SpriteRenderer->CreateAnimation(std::string_view(name + "_L_Die"), std::string_view(name + "_L"), 0, 14, 0.15f);
 	SpriteRenderer->CreateAnimation(std::string_view(name + "_R_Idle"), std::string_view(name + "_R"), 16, 19, 0.15f);
-	SpriteRenderer->CreateAnimation(std::string_view(name + "_R_Die"), std::string_view(name + "_R"), 0, 15, 0.15f);
+	SpriteRenderer->CreateAnimation(std::string_view(name + "_R_Die"), std::string_view(name + "_R"), 0, 14, 0.15f);
 }
 
 void AMonster::InitCollision()

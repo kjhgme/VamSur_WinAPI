@@ -40,7 +40,7 @@ void APlayer::Tick(float _DeltaTime)
 
 	PlayerMove(_DeltaTime);
 
-	if (true == UEngineInput::GetInst().IsDown('F'))
+	if (true == UEngineInput::GetInst().IsDown('R'))
 	{
 		UEngineDebug::SwitchIsDebug();
 	}

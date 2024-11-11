@@ -85,5 +85,6 @@ private:
 
 	static void ComponentBeginPlay();
 	void ReleaseCheck(float _DeltaTime) override;
+	void ReleaseTimeCheck(float _DeltaTime) override;
 };
 
