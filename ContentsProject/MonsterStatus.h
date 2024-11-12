@@ -2,13 +2,13 @@
 #include <string>
 
 struct MonsterStatus {
-	std::string Name = "Bat1";
-	int Health = 1;
-	int Power = 5;
-	int Speed = 140;
-	float KnockBack = 1;
-	int KBMax = 3;
-	int XP = 1;
+	std::string Name = "None";
+	int Health = -1;
+	int Power = -1;
+	int Speed = -1;
+	float KnockBack = -1;
+	int KBMax = -1;
+	int XP = -1;
 
     MonsterStatus() {};
 

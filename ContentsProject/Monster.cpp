@@ -22,16 +22,19 @@ void AMonster::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	ChasePlayer(_DeltaTime);
-
-	ChangeAnimation();
-
-	if (true == UEngineInput::GetInst().IsDown('F'))
+	if ("None" != Status.Name)
 	{
-		Alive = false;
-		Destroy(0.70f);
+		ChasePlayer(_DeltaTime);
+
+		ChangeAnimation();
+
+		if (true == UEngineInput::GetInst().IsDown('F'))
+		{
+			Alive = false;
+			Destroy(0.70f);
+		}
+		Die(_DeltaTime);
 	}
-	Die(_DeltaTime);
 }
 
 void AMonster::InitMonster(MonsterStatus _Type)
@@ -40,7 +43,7 @@ void AMonster::InitMonster(MonsterStatus _Type)
 	InitSprite();
 	InitCreateMonAnim();
 	InitCollision();
-
+	
 	DebugOn();
 }
 

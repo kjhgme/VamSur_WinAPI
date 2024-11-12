@@ -39,7 +39,6 @@ protected:
 	U2DCollision* CollisionComponent = nullptr;
 
 private:
-	int MonsterKey{};
 	bool HeadDirRight = false;
 	bool Alive = true;
 

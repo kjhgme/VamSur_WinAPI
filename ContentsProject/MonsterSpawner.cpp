@@ -22,8 +22,10 @@ void AMonsterSpawner::BeginPlay()
 	SpriteRenderer->SetSprite("Stage", 1);
 	SpriteRenderer->SetComponentScale({ 38, 42 });
 
-	SpawnSpeed = 1.0f;
-	MoveSpeed = 50.f;
+	for (int i = 0; i < 3000; i++)
+	{
+		SpawnMonster(Ghoul1Status);
+	}
 }
 
 void AMonsterSpawner::Tick(float _DeltaTime)
@@ -40,19 +42,19 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	Time += _DeltaTime;
 	if (SpawnSpeed <= Time)
 	{
-		SpawnMonster();
+		SpawnMonster(Ghoul1Status);
 		Time -= SpawnSpeed;
 	}
 }
 
-void AMonsterSpawner::SpawnMonster()
+void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)
 {
 	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
 	if (nullptr != SpawnedMonster)
 	{
-		SpawnedMonster->InitMonster(Ghoul1Status);
+		SpawnedMonster->InitMonster(_Status);
 		SpawnedMonster->SetMonsterPos(Pos);
-		Monsters.push_back(SpawnedMonster);
+		SpawnedMonsters.push_back(SpawnedMonster);
 	}
 }
 

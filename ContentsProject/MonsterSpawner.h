@@ -15,7 +15,7 @@ public:
 	void BeginPlay();
 	void Tick(float _DeltaTime);
 
-	void SpawnMonster();
+	void SpawnMonster(MonsterStatus _Status);
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
@@ -25,9 +25,9 @@ private:
 	float Time = 0.0f;
 	FVector2D Pos{};
 	float CurAngle{};
-	float MoveSpeed{};
-	float SpawnSpeed{};
-	std::list<AMonster*> Monsters;
+	float MoveSpeed = 50.0f;
+	float SpawnSpeed = 1.0f;
+	std::list<AMonster*> SpawnedMonsters;
 
 	// testImage
 	class USpriteRenderer* SpriteRenderer = nullptr;
