@@ -68,17 +68,8 @@ void VamSurContentsCore::BeginPlay()
 		}
 		// Charcters
 		{
-			UEngineDirectory CharacterDir;
-			CharacterDir.MoveParentToDirectory("Resources/Characters");
-			CharacterDir.Append("Antonio");
-
-			UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
-
-			CharacterDir.MoveParentToDirectory("Resources/Characters");
-			CharacterDir.Append("Imelda");
-
-			UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
-
+			LoadCharacterImages("Antonio");
+			LoadCharacterImages("Imelda");
 		}
 		// Stage
 		{
@@ -90,34 +81,8 @@ void VamSurContentsCore::BeginPlay()
 		}
 		// Monster
 		{
-			// Bat1
-			{
-				UEngineDirectory MonsterLDir;
-				MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
-				MonsterLDir.Append("Bat1_L");
-
-				UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
-
-				UEngineDirectory MonsterRDir;
-				MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
-				MonsterRDir.Append("Bat1_R");
-
-				UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
-			}
-			// Ghoul1
-			{
-				UEngineDirectory MonsterLDir;
-				MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
-				MonsterLDir.Append("Ghoul1_L");
-
-				UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
-
-				UEngineDirectory MonsterRDir;
-				MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
-				MonsterRDir.Append("Ghoul1_R");
-
-				UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
-			}
+			LoadMonsterImages("Bat1");
+			LoadMonsterImages("Ghoul1");
 		}
 	}
 
@@ -134,4 +99,27 @@ void VamSurContentsCore::BeginPlay()
 
 void VamSurContentsCore::Tick()
 {
+}
+
+void VamSurContentsCore::LoadCharacterImages(const std::string_view characterName)
+{
+	UEngineDirectory CharacterDir;
+	CharacterDir.MoveParentToDirectory("Resources/Characters");
+	CharacterDir.Append(characterName);
+	UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
+}
+
+void VamSurContentsCore::LoadMonsterImages(const std::string& monsterName)
+{
+	// Left direction images
+	UEngineDirectory MonsterLDir;
+	MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
+	MonsterLDir.Append(monsterName + "_L");
+	UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
+
+	// Right direction images
+	UEngineDirectory MonsterRDir;
+	MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
+	MonsterRDir.Append(monsterName + "_R");
+	UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
 }
