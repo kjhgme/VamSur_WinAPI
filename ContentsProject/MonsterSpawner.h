@@ -5,6 +5,7 @@ class AMonsterSpawner : public AActor
 {
 public:
 	AMonsterSpawner();
+	AMonsterSpawner(int _level);
 	~AMonsterSpawner();
 
 	AMonsterSpawner(const AMonsterSpawner& _Other) = delete;
@@ -16,13 +17,16 @@ public:
 	void Tick(float _DeltaTime);
 
 	void SpawnMonster(MonsterStatus _Status);
+	void SpawnerVersion(float _DeltaTime);
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
 protected:
 
 private:
+	int StageLevel = 1;
 	float Time = 0.0f;
+	float SpawnTime = 0.0f;
 	FVector2D Pos{};
 	float CurAngle{};
 	float MoveSpeed = 50.0f;

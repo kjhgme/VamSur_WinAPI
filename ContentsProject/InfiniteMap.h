@@ -7,7 +7,8 @@
 class AInfiniteMap : public AActor
 {
 public:
-	AInfiniteMap();
+	AInfiniteMap() {};
+	AInfiniteMap(int _level) : StageLevel(_level) {};
 	~AInfiniteMap();
 
 	AInfiniteMap(const AInfiniteMap& _Other) = delete;
@@ -15,16 +16,18 @@ public:
 	AInfiniteMap& operator=(const AInfiniteMap& _Other) = delete;
 	AInfiniteMap& operator=(AInfiniteMap&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
 	void SetStage(USpriteRenderer* _SpriteRenderer, int _level);
 
-	void InitMaps();
+	void InitMaps(int _level);
 	void MapMoveCheck(FVector2D _PlayerPos);
 
 protected:
 
 private:
+	int StageLevel = 0;
 	FVector2D playerPos {};
 	FVector2D MapScale{};
 	FVector2D InfiMapPos{ 1, 1 };

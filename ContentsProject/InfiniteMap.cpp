@@ -5,17 +5,17 @@
 
 #include "ContentsEnum.h"
 
-AInfiniteMap::AInfiniteMap()
-{
-	core = UEngineAPICore::GetCore();
-	playerPos = core->GetCurLevel()->GetMainPawn()->GetActorLocation();
-
-	InitMaps();
-}
-
 AInfiniteMap::~AInfiniteMap()
 {
 	InfiMap.clear();
+}
+
+void AInfiniteMap::BeginPlay()
+{
+    core = UEngineAPICore::GetCore();
+    playerPos = core->GetCurLevel()->GetMainPawn()->GetActorLocation();
+
+    InitMaps(StageLevel);
 }
 
 void AInfiniteMap::Tick(float _DeltaTime)
@@ -30,7 +30,7 @@ void AInfiniteMap::SetStage(USpriteRenderer* _SpriteRenderer, int _level)
 	_SpriteRenderer->SetSprite("Stage", _level);
 }
 
-void AInfiniteMap::InitMaps()
+void AInfiniteMap::InitMaps(int _level)
 {
     InfiMap.resize(3);
 
@@ -42,7 +42,7 @@ void AInfiniteMap::InitMaps()
             USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
             SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
 
-            SetStage(SpriteRenderer, 0);
+            SetStage(SpriteRenderer, _level);
 
             MapScale = SpriteRenderer->SetSpriteScale(1.0f);
 

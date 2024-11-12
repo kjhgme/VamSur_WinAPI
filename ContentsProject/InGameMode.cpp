@@ -19,7 +19,7 @@ AInGameMode::~AInGameMode()
 
 void AInGameMode::BeginPlay()
 {
-	AInfiniteMap* PMAP0 = GetWorld()->SpawnActor<AInfiniteMap>();
+	AInfiniteMap* Map = GetWorld()->SpawnActor<AInfiniteMap>();
 	AMonsterSpawner* MonsterSpawner = GetWorld()->SpawnActor<AMonsterSpawner>();
 	AInGameUI* InGameUI = GetWorld()->SpawnActor<AInGameUI>();
 	/*switch (ATitleGameMode::SelectedCharacter)
