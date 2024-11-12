@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string.h>
+#include <EngineCore/2DCollision.h>
+#include "MonsterStatus.h"
 
 class AMonster : public AActor
 {
@@ -16,9 +18,9 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	virtual void MonsterInit();
-	virtual void InitMonsterStatus() {};
-	virtual void InitSprite() {};
+	void InitMonster(MonsterStatus _Type);
+	void InitMonsterStatus(MonsterStatus _Type);
+	void InitSprite();
 	void InitCreateMonAnim();
 	void InitCollision();
 
@@ -26,19 +28,12 @@ public:
 	void SetMonsterPos(FVector2D _pos);
 
 	// Function
-	virtual void ChasePlayer(float _DeltaTime);
+	void ChasePlayer(float _DeltaTime);
 	void ChangeAnimation();
+	void Die(float _DeltaTime);
 
 protected:
-	struct MonS {
-		std::string Name;
-		int Health{};
-		int Power{};
-		int Speed{};
-		int KnockBack{};
-		int KBMax{};
-		int XP{};
-	} MonsterStatus;
+	MonsterStatus Status;
 	
 	class USpriteRenderer* SpriteRenderer = nullptr;
 	U2DCollision* CollisionComponent = nullptr;
@@ -47,5 +42,10 @@ private:
 	int MonsterKey{};
 	bool HeadDirRight = false;
 	bool Alive = true;
+
+	FVector2D MonsterPos{};
+	FVector2D PlayerPos{};
+	FVector2D DiffPos{};
+	// static std::map<MonsterTypem, >
 };
 

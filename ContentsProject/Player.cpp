@@ -7,7 +7,6 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
-#include <EngineCore/2DCollision.h>
 
 APlayer::APlayer()
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
-
+#include <EngineCore/2DCollision.h>
 #include "CharactersStatus.h"
 
 class APlayer : public AActor

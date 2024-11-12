@@ -6,7 +6,7 @@
 #include <EngineCore/Level.h>
 #include <EngineCore/EngineAPICore.h>
 
-#include "Bat1.h"
+#include "MonsterStatus.h"
 
 AMonsterSpawner::AMonsterSpawner()
 {
@@ -47,10 +47,10 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 
 void AMonsterSpawner::SpawnMonster()
 {
-	AMonster* SpawnedMonster = GetWorld()->SpawnActor<Bat1>();
+	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
 	if (nullptr != SpawnedMonster)
 	{
-		SpawnedMonster->MonsterInit();
+		SpawnedMonster->InitMonster(Ghoul1Status);
 		SpawnedMonster->SetMonsterPos(Pos);
 		Monsters.push_back(SpawnedMonster);
 	}

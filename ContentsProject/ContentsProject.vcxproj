@@ -163,6 +163,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MonsterStatus.h" />
     <ClInclude Include="TitleSelectCursor.h">
       <SubType>
       </SubType>
@@ -197,10 +198,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ResultGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Bat1.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -293,10 +290,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ResultGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Bat1.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -90,17 +90,34 @@ void VamSurContentsCore::BeginPlay()
 		}
 		// Monster
 		{
-			UEngineDirectory MonsterLDir;
-			MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
-			MonsterLDir.Append("Bat1_L");
+			// Bat1
+			{
+				UEngineDirectory MonsterLDir;
+				MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
+				MonsterLDir.Append("Bat1_L");
 
-			UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
+				UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
 
-			UEngineDirectory MonsterRDir;
-			MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
-			MonsterRDir.Append("Bat1_R");
+				UEngineDirectory MonsterRDir;
+				MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
+				MonsterRDir.Append("Bat1_R");
 
-			UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
+				UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
+			}
+			// Ghoul1
+			{
+				UEngineDirectory MonsterLDir;
+				MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
+				MonsterLDir.Append("Ghoul1_L");
+
+				UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
+
+				UEngineDirectory MonsterRDir;
+				MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
+				MonsterRDir.Append("Ghoul1_R");
+
+				UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
+			}
 		}
 	}
 

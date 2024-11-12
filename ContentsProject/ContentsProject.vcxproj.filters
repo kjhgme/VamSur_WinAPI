@@ -22,9 +22,6 @@
     <ClInclude Include="InfiniteMap.h">
       <Filter>ContentsObjects\InGame</Filter>
     </ClInclude>
-    <ClInclude Include="Bat1.h">
-      <Filter>ContentsObjects\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="ResultGameMode.h">
       <Filter>ContentsObjects\GameMode</Filter>
     </ClInclude>
@@ -79,6 +76,9 @@
     <ClInclude Include="KillAndGoldUI.h">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClInclude>
+    <ClInclude Include="MonsterStatus.h">
+      <Filter>ContentsObjects\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -101,9 +101,6 @@
     </ClCompile>
     <ClCompile Include="InfiniteMap.cpp">
       <Filter>ContentsObjects\InGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Bat1.cpp">
-      <Filter>ContentsObjects\Monster</Filter>
     </ClCompile>
     <ClCompile Include="ResultGameMode.cpp">
       <Filter>ContentsObjects\GameMode</Filter>
