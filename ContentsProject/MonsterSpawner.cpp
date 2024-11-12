@@ -10,10 +10,7 @@
 
 AMonsterSpawner::AMonsterSpawner()
 {
-}
-
-AMonsterSpawner::AMonsterSpawner(int _level)
-{
+	InitSpawnerVersion(0);
 }
 
 AMonsterSpawner::~AMonsterSpawner()
@@ -37,20 +34,23 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	Pos =  CalculateCircularPosition(playerPos, 400.0f, CurAngle );
 	
 	SetActorLocation({ Pos });
+}
 
-	Time += _DeltaTime;
-	SpawnTime += _DeltaTime;
-	if (SpawnSpeed <= SpawnTime)
+void AMonsterSpawner::InitSpawnerVersion(int _level)
+{
+	StageLevel = _level;
+	if (0 == StageLevel)
 	{
-		if (Time >= 3.0f)
-		{
-			SpawnMonster(Ghoul1Status);
-		}
-		else {
-			SpawnMonster(Bat1Status);
-		}
-		SpawnTime -= SpawnSpeed;
+		StatusQueue.push(Bat1Status);
+		StatusQueue.push(Ghoul1Status);
 	}
+
+	ChangeMonster();
+
+
+
+	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), 6.0f);
+	TimeEventer.PushEvent(4.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), 3.0f, false);
 }
 
 void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)
@@ -64,8 +64,18 @@ void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)
 	}
 }
 
-void AMonsterSpawner::SpawnerVersion(float _DeltaTime)
+void AMonsterSpawner::SpawnTimer()
 {
+	SpawnMonster(CurStatus);
+}
+
+void AMonsterSpawner::ChangeMonster()
+{
+	if (!StatusQueue.empty())
+	{
+		CurStatus = StatusQueue.front();
+		StatusQueue.pop();
+	}
 }
 
 FVector2D AMonsterSpawner::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)

@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineBase/EngineMath.h>
+#include <EngineBase/TimeEvent.h>
 #include <EngineBase/Object.h>
 
 #include "EngineSprite.h"
@@ -74,6 +75,7 @@ public:
 	virtual void LevelChangeEnd() {}
 
 protected:
+	UTimeEvent TimeEventer;
 
 private:
 	FTransform Transform;

@@ -1,11 +1,12 @@
 #pragma once
 #include "Monster.h"
 
+#include <queue>
+
 class AMonsterSpawner : public AActor
 {
 public:
 	AMonsterSpawner();
-	AMonsterSpawner(int _level);
 	~AMonsterSpawner();
 
 	AMonsterSpawner(const AMonsterSpawner& _Other) = delete;
@@ -15,16 +16,20 @@ public:
 
 	void BeginPlay();
 	void Tick(float _DeltaTime);
+	
+	void InitSpawnerVersion(int _level);
 
 	void SpawnMonster(MonsterStatus _Status);
-	void SpawnerVersion(float _DeltaTime);
+	void SpawnTimer();
+
+	void ChangeMonster();
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
 protected:
 
 private:
-	int StageLevel = 1;
+	int StageLevel = 0;
 	float Time = 0.0f;
 	float SpawnTime = 0.0f;
 	FVector2D Pos{};
@@ -32,6 +37,8 @@ private:
 	float MoveSpeed = 50.0f;
 	float SpawnSpeed = 1.0f;
 	std::list<AMonster*> SpawnedMonsters;
+	std::queue<MonsterStatus> StatusQueue;
+	MonsterStatus CurStatus;
 
 	// testImage
 	class USpriteRenderer* SpriteRenderer = nullptr;
