@@ -1,7 +1,6 @@
 #pragma once
 #include <EngineBase/Object.h>
 
-// 설명 :
 class UActorComponent : public UObject
 {
 public:

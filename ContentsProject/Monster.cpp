@@ -57,6 +57,7 @@ void AMonster::InitSprite()
 	std::string name = Status.Name;
 
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	SpriteRenderer->SetOrder(ERenderOrder::MONSTER);
 	SpriteRenderer->SetSprite(name + "_L", 0);
 
 	SpriteRenderer->SetSpriteScale(1.0f);
@@ -147,9 +148,8 @@ void AMonster::Die(float _DeltaTime)
 	}
 	else if (false == Alive)
 	{
-		UEngineMath EM;
-		float KnockBackX = EM.Clamp(DiffPos.X, -2.0f, 2.0f);
-		float KnockBackY = EM.Clamp(DiffPos.Y, -2.0f, 2.0f);
+		float KnockBackX = UEngineMath::Clamp(DiffPos.X, -2.0f, 2.0f);
+		float KnockBackY = UEngineMath::Clamp(DiffPos.Y, -2.0f, 2.0f);
 
 		if (PlayerPos.X > MonsterPos.X)
 		{

@@ -10,6 +10,7 @@
 
 AMonsterSpawner::AMonsterSpawner()
 {
+	SetActorLocation({ 400.0f, 0.0f });
 	InitSpawnerVersion(0);
 }
 
@@ -41,15 +42,103 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 	StageLevel = _level;
 	if (0 == StageLevel)
 	{
+		//StatusQueue.push(Bat3Status);
+
+		//StatusQueue.push(Ghoul1Status);
 		StatusQueue.push(Bat1Status);
-		StatusQueue.push(Ghoul1Status);
+
+		//StatusQueue.push(Bat1Status);
+		//StatusQueue.push(Bat2Status);
+		//StatusQueue.push(Bat3Status);
+
+		//StatusQueue.push(Skeleton1Status);
+		//
+		//StatusQueue.push(Skeleton1Status);
+		//StatusQueue.push(Ghost1Status);
+
+		//StatusQueue.push(Mudman2Status);
+
+		//StatusQueue.push(Ghoul1Status);
+		//StatusQueue.push(Mudman2Status);
+
+		//StatusQueue.push(Bat2Status);
+		//StatusQueue.push(Bat3Status);
+		//StatusQueue.push(Mudman1Status);
+
+		//StatusQueue.push(Ghoul1Status);
+
+		//StatusQueue.push(GiantBatStatus);
+		//StatusQueue.push(Ghoul1Status);
+
+		//StatusQueue.push(Mudman1Status);
+		//StatusQueue.push(Mudman2Status);
+
+		//StatusQueue.push(Skeleton1Status);
+
+		//StatusQueue.push(WerewolfStatus);
+		//StatusQueue.push(Ghost1Status);
+		//StatusQueue.push(Skeleton1Status);
+
+		//StatusQueue.push(WerewolfStatus);
+		//StatusQueue.push(Ghost1Status);		// *2
+
+		//StatusQueue.push(GiantBatStatus);
+		//StatusQueue.push(WerewolfStatus);
+
+		//StatusQueue.push(WerewolfStatus);
+		//StatusQueue.push(GiantBatStatus);
+		//StatusQueue.push(Mudman2Status);
+
+		//StatusQueue.push(MantichanaStatus);
+		//StatusQueue.push(Mudman1Status);
+		//StatusQueue.push(Mudman2Status);
+
+		//StatusQueue.push(BigMummyStatus);
+
+		//StatusQueue.push(BigMummyStatus);
+		//StatusQueue.push(Mudman1Status);
+
+		//StatusQueue.push(BigMummyStatus);
+		//StatusQueue.push(Mudman1Status);
+
+		//StatusQueue.push(BigMummyStatus);
+		//StatusQueue.push(Mudman2Status);
+		//StatusQueue.push(GiantBatStatus);
+
+		//StatusQueue.push(FlowerWallStatus);
+
+		//StatusQueue.push(FlowerWallStatus);
+		//StatusQueue.push(BigMummyStatus);
+
+		//StatusQueue.push(FlowerWallStatus);
+		//StatusQueue.push(BigMummyStatus);
+
+		//StatusQueue.push(FlowerWallStatus);
+		//StatusQueue.push(BigMummyStatus);
+
+		//StatusQueue.push(VenusStatus);
+
+		//StatusQueue.push(VenusStatus);
+		//StatusQueue.push(FlowerWallStatus);
+
+		//StatusQueue.push(BigMummyStatus);
+		//StatusQueue.push(Mudman1Status);
+		//StatusQueue.push(Mudman2Status);
+
+		//StatusQueue.push(GiantBatStatus);
+		//StatusQueue.push(GlowingBatStatus);
+
+		//StatusQueue.push(GlowingBatStatus);
+		//StatusQueue.push(SilverBatStatus);
+
+		//StatusQueue.push(TheReaperStatus);
 	}
 
 	ChangeMonster();
 
 
 
-	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), 6.0f);
+	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), 60.0f * 30.0f);
 	TimeEventer.PushEvent(4.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), 3.0f, false);
 }
 
