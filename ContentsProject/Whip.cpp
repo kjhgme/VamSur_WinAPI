@@ -38,6 +38,14 @@ void Whip::BeginPlay()
 void Whip::Tick(float _DeltaTime)
 {
 	AWeapon::Tick(_DeltaTime);	
+
+	if (0.9f <= FadeValue)
+	{
+		Active = true;
+	}
+	else {
+		Active = false;
+	}
 }
 
 void Whip::Action()
@@ -48,15 +56,7 @@ void Whip::Action()
 void Whip::ChangeHeadDir()
 {
 	AWeapon::ChangeHeadDir();
-
-	if (0.9f <= FadeValue)
-	{
-		Active = true;
-	}
-	else {
-		Active = false;
-	}
-
+	
 	if (true == Active || 0 >= FadeValue)
 	{
 		if (true == HeadDirRight)
