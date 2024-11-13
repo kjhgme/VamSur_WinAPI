@@ -16,15 +16,15 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	void Action() override;
+	void ChangeHeadDir() override;
 
-	void FadeIn();
-	void FadeOut();
+	void Attack();
 
 protected:
 
 private:
-	float FadeValue = 0.0f;
-	float FadeDir = 1.0f;
-	void FadeChange();
+	float FadeValue = 1.0f;
+	float FadeDir = -1.0f;
+	void FadeOut();
 };
 

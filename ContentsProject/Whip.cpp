@@ -3,6 +3,7 @@
 #include "ContentsEnum.h"
 
 #include <EngineCore/EngineAPICore.h>
+#include <EngineCore/Level.h>
 
 Whip::Whip()
 {
@@ -14,40 +15,70 @@ Whip::~Whip()
 
 void Whip::BeginPlay()
 {
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
-	SpriteRenderer->SetSprite("Whip", 0);
-	SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
-	SpriteRenderer->SetSpriteScale(1.0f);
+	{
+		IconSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		IconSpriteRenderer->SetOrder(ERenderOrder::UI);
+		IconSpriteRenderer->SetSprite("WeaponIcon", 0);
+		IconSpriteRenderer->SetComponentLocation({ -620.0f, -350.0f });
+		IconSpriteRenderer->SetSpriteScale(1.0f);
+	}
+
+	{
+		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
+		SpriteRenderer->SetSprite("Whip", 0);
+		SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
+		SpriteRenderer->SetSpriteScale(1.0f);
+		SpriteRenderer->SetAlphaChar(0);
+	}
 
 	Level = 1;
 }
 
 void Whip::Tick(float _DeltaTime)
 {
-	AWeapon::Tick(_DeltaTime);
+	AWeapon::Tick(_DeltaTime);	
 }
 
 void Whip::Action()
 {
-	FadeOut();
+	TimeEventer.PushEvent(2.0f, std::bind(&Whip::Attack, this), false, -1.0f, true);
 }
 
-void Whip::FadeIn()
+void Whip::ChangeHeadDir()
 {
-	FadeValue = 0.0f;
-	FadeDir = 1.0f;
-	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeChange, this), true);
+	AWeapon::ChangeHeadDir();
+
+	if (0.9f <= FadeValue)
+	{
+		Active = true;
+	}
+	else {
+		Active = false;
+	}
+
+	if (true == Active || 0 >= FadeValue)
+	{
+		if (true == HeadDirRight)
+		{
+			SpriteRenderer->SetSprite("Whip", 0);
+			SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
+		}
+		else
+		{
+			SpriteRenderer->SetSprite("Whip", 1);
+			SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
+		}
+	}
+}
+
+void Whip::Attack()
+{
+	FadeValue = 1.0f;
+	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeOut, this), true);
 }
 
 void Whip::FadeOut()
-{
-	FadeValue = 1.0f;
-	FadeDir = -1.0f;
-	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeChange, this), true);
-}
-
-void Whip::FadeChange()
 {
 	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
 	FadeValue += DeltaTime * 2.0f * FadeDir;

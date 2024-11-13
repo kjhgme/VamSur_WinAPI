@@ -23,6 +23,7 @@ public:
 	UTimeEvent& operator=(const UTimeEvent& _Other) = delete;
 	UTimeEvent& operator=(UTimeEvent&& _Other) noexcept = delete;
 
+	// 횟수and시간, 함수, 틱마다실행, 실행시간, 루프
 	void PushEvent(float _Time, std::function<void()> _Function, bool _IsUpdate = false, float _DuringTime = -1.0f, bool _Loop = true)
 	{
 		Events.push_front({ _Time, _Time, _Function, _IsUpdate, _DuringTime, _Loop });

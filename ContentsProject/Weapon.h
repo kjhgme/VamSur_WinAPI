@@ -14,12 +14,17 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	virtual void Action();
+	virtual void ChangeHeadDir();
 
 protected:
+	USpriteRenderer* IconSpriteRenderer = nullptr;
 	USpriteRenderer* SpriteRenderer = nullptr;
 	int Level = 0;
 
+	bool HeadDirRight = true;
+	bool Active = false;
+
 private:
-	FVector2D PlayerPos;
+	FVector2D PlayerPos{0, 0};
 };
 

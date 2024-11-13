@@ -24,10 +24,6 @@ public:
 	void InitCreatePlayerAnim();
 	void InitCollision();
 
-	APlayer* GetPlayer()
-	{
-		return this;
-	}
 
 	void PlayerMove(float _DeltaTime);
 

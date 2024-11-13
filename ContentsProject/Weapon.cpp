@@ -1,6 +1,9 @@
 #include "PreCompile.h"
 #include "Weapon.h"
 
+#include <EngineCore/EngineAPICore.h>
+#include <EngineCore/Level.h>
+
 AWeapon::AWeapon()
 {
 }
@@ -18,10 +21,14 @@ void AWeapon::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();
-	
 	SetActorLocation(PlayerPos);
 }
 
 void AWeapon::Action()
 {
+}
+
+void AWeapon::ChangeHeadDir()
+{
+	HeadDirRight  = !HeadDirRight;
 }

@@ -46,7 +46,7 @@ public:
 		return CameraPos;
 	}
 
-	AActor* GetMainPawn() const
+	AActor* GetMainPawn()
 	{
 		return MainPawn;
 	}

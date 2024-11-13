@@ -32,6 +32,8 @@ void APlayer::BeginPlay()
 	
 	AWeapon* test = GetWorld()->SpawnActor<Whip>();
 	Weapons[0] = test;
+	Weapons[0]->Action();
+
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -46,11 +48,6 @@ void APlayer::Tick(float _DeltaTime)
 	if (true == UEngineInput::GetInst().IsDown('R'))
 	{
 		UEngineDebug::SwitchIsDebug();
-	}
-	if (true == UEngineInput::GetInst().IsDown('U'))
-	{
-		// FadeChange
-		Weapons[0]->Action();
 	}
 }
 
@@ -120,14 +117,22 @@ void APlayer::PlayerMove(float _DeltaTime)
 	UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->SetActorLocation(this->GetActorLocation());
 	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
-		HeadDirRight = true;
+		if (false == HeadDirRight)
+		{
+			HeadDirRight = true;
+			Weapons[0]->ChangeHeadDir();
+		}
 		SpriteRenderer->ChangeAnimation("Move_R");
 
 		AddActorLocation(FVector2D::RIGHT * _DeltaTime * PlayerStatus.Speed);
 	}
 	else if (true == UEngineInput::GetInst().IsPress('A'))
 	{
-		HeadDirRight = false;
+		if (true == HeadDirRight)
+		{
+			HeadDirRight = false;
+			Weapons[0]->ChangeHeadDir();
+		}
 		SpriteRenderer->ChangeAnimation("Move_L");
 
 		AddActorLocation(FVector2D::LEFT * _DeltaTime * PlayerStatus.Speed);
