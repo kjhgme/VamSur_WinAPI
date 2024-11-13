@@ -7,6 +7,7 @@ public:
 	float Time = 0.0f;
 	float MaxTime = 0.0f;
 	std::function<void()> Event;
+	bool IsUpdate = false;
 	float DuringTime = -1.0f;
 	bool Loop = false;
 };
@@ -22,9 +23,9 @@ public:
 	UTimeEvent& operator=(const UTimeEvent& _Other) = delete;
 	UTimeEvent& operator=(UTimeEvent&& _Other) noexcept = delete;
 
-	void PushEvent(float _Time, std::function<void()> _Function, float _DuringTime = -1.0f, bool _Loop = true)
+	void PushEvent(float _Time, std::function<void()> _Function, bool _IsUpdate = false, float _DuringTime = -1.0f, bool _Loop = true)
 	{
-		Events.push_front({ _Time, _Time, _Function, _DuringTime, _Loop });
+		Events.push_front({ _Time, _Time, _Function, _IsUpdate, _DuringTime, _Loop });
 	}
 
 	void Update(float _DeltaTime)
@@ -36,33 +37,50 @@ public:
 		{
 			TimeEventFunction& TimeEvent = *StartIter;
 			TimeEvent.Time -= _DeltaTime;
-			if (-1 != TimeEvent.DuringTime)
+
+			if (true == TimeEvent.IsUpdate && 0.0f < TimeEvent.Time)
 			{
-				TimeEvent.DuringTime -= _DeltaTime;
+				TimeEvent.Event();
+			}
+			else if (TimeEvent.IsUpdate && 0.0f >= TimeEvent.Time)
+			{
+				TimeEvent.Event();
+				StartIter = Events.erase(StartIter);
+				continue;
 			}
 
 			if (0.0f >= TimeEvent.DuringTime)
 			{
-				TimeEvent.Event();
-
-				StartIter = Events.erase(StartIter);
-			}			
-			else if (0.0f >= TimeEvent.Time)
-			{
-				TimeEvent.Event();
-				if (false == TimeEvent.Loop)
+				if (false == TimeEvent.Loop && true == TimeEvent.IsUpdate)
 				{
-					StartIter = Events.erase(StartIter);
-				}
-				else
-				{
+					TimeEvent.Event();
 					++StartIter;
+					continue;
+				}
+				else if (false == TimeEvent.Loop)
+				{
+					TimeEvent.Event();
+					StartIter = Events.erase(StartIter);
+					continue;
+				}
+				else if (true == TimeEvent.Loop && 0.0f >= TimeEvent.Time)
+				{
+					TimeEvent.Event();
 					TimeEvent.Time = TimeEvent.MaxTime;
 				}
 			}
-			else {
-				++StartIter;
+			else
+			{
+				TimeEvent.DuringTime -= _DeltaTime;
+				if (0.0f >= TimeEvent.DuringTime)
+				{
+					TimeEvent.Event();
+					StartIter = Events.erase(StartIter);
+					continue;
+				}
 			}
+
+			++StartIter;
 		}
 	}
 

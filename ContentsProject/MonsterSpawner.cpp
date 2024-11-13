@@ -136,10 +136,9 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 
 	ChangeMonster();
 
-
-
-	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), 60.0f * 30.0f);
-	TimeEventer.PushEvent(4.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), 3.0f, false);
+	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);// , 60.0f * 30.0f);
+	
+	TimeEventer.PushEvent(4.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, 3.0f, false);
 }
 
 void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)

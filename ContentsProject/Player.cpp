@@ -7,6 +7,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
+#include "Whip.h"
 
 APlayer::APlayer()
 {
@@ -28,6 +29,9 @@ void APlayer::BeginPlay()
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
 
 	InitCreatePlayerAnim();
+	
+	AWeapon* test = GetWorld()->SpawnActor<Whip>();
+	Weapons[0] = test;
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -43,12 +47,18 @@ void APlayer::Tick(float _DeltaTime)
 	{
 		UEngineDebug::SwitchIsDebug();
 	}
+	if (true == UEngineInput::GetInst().IsDown('U'))
+	{
+		// FadeChange
+		Weapons[0]->Action();
+	}
 }
 
 void APlayer::PlayerInit(std::string_view _name)
 {
 	InitSprite(_name);
 	InitPlayerStatus(_name);
+
 }
 
 void APlayer::InitPlayerStatus(std::string_view _name)

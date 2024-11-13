@@ -91,7 +91,14 @@ void USpriteRenderer::Render(float _DeltaTime)
 
 	Trans.Location = Trans.Location - Level->CameraPos;
 
-	CurData.Image->CopyToTrans(BackBufferImage, Trans, CurData.Transform);
+	if (Alpha == 255)
+	{
+		CurData.Image->CopyToTrans(BackBufferImage, Trans, CurData.Transform);
+	}
+	else
+	{
+		CurData.Image->CopyToAlpha(BackBufferImage, Trans, CurData.Transform, Alpha);
+	}
 }
 
 void USpriteRenderer::SetOrder(int _Order)

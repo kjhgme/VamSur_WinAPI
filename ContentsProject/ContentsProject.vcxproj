@@ -239,7 +239,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="WeaponSlotsUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Whip.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -334,7 +342,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="WeaponSlotsUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Whip.cpp">
       <SubType>
       </SubType>
     </ClCompile>

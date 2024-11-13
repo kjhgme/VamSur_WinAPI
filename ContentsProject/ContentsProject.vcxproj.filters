@@ -79,6 +79,12 @@
     <ClInclude Include="MonsterStatus.h">
       <Filter>ContentsObjects\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>ContentsObjects\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Whip.h">
+      <Filter>ContentsObjects\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -153,6 +159,12 @@
     <ClCompile Include="KillAndGoldUI.cpp">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>ContentsObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Whip.cpp">
+      <Filter>ContentsObjects\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -193,6 +205,9 @@
     </Filter>
     <Filter Include="ContentsObjects\InGame\InGameUI">
       <UniqueIdentifier>{65cdf922-9da2-46f2-831a-d4ab30d0ca64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Weapon">
+      <UniqueIdentifier>{de05e550-c459-4e25-b478-cd0015cdefb5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

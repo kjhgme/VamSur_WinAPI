@@ -47,6 +47,11 @@ public:
 
 	ULevel* GetLevel(std::string_view _LevelName);
 
+	float GetDeltaTime()
+	{
+		return DeltaTimer.GetDeltaTime();
+	}
+
 	// Function
 	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)
@@ -70,7 +75,7 @@ private:
 	static UEngineAPICore* MainCore;
 	static UContentsCore* UserCore;
 
-	UEngineWindow EngineMainWindow;
+	UEngineWindow EngineMainWindow = UEngineWindow();
 	UEngineTimer DeltaTimer = UEngineTimer();
 
 	std::map<std::string, class ULevel*> Levels;

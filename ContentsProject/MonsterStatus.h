@@ -9,11 +9,12 @@ struct MonsterStatus {
 	float KnockBack = -1;
 	int KBMax = -1;
 	float XP = -1;
+	bool HaveSkill = false;
 
     MonsterStatus() {};
 
-    MonsterStatus(std::string name, int health, int power, int speed, int knockBack, int kbMax, float xp)
-        : Name(name), Health(health), Power(power), Speed(speed), KnockBack(knockBack), KBMax(kbMax), XP(xp){}
+    MonsterStatus(std::string name, int health, int power, int speed, int knockBack, int kbMax, float xp, bool haveSkill = false)
+        : Name(name), Health(health), Power(power), Speed(speed), KnockBack(knockBack), KBMax(kbMax), XP(xp), HaveSkill(haveSkill){}
 };
 
 								// Name, Health, Armor, Might, Speed
@@ -33,11 +34,11 @@ inline const MonsterStatus MantichanaStatus("Mantichana", 500, 10, 80, 0, 3, 3);
 inline const MonsterStatus BigMummyStatus("BigMummy", 500, 20, 80, 0, 3, 3);
 inline const MonsterStatus VenusStatus("Venus", 500, 20, 80, 0, 3, 3);
 
-inline const MonsterStatus GlowingBatStatus("GlowingBat", 50, 10, 140, 1, 3, 30);
-inline const MonsterStatus SilverBatStatus("SilverBat", 50, 10, 140, 1, 3, 30);
-inline const MonsterStatus FlowerWallStatus("FlowerWall", 30, 1, 20,1, 3, 2);
-inline const MonsterStatus MantichanaLordStatus("MantichanaLord", 150, 20, 160, 0, 1, 50);
-inline const MonsterStatus WerewolfLordStatus("WerewolfLord", 200, 20, 130, 0.1, 1, 2);
-inline const MonsterStatus MummyLordStatus("MummyLord", 250, 20, 80, 0, 1, 25);
-inline const MonsterStatus VenusLordStatus("VenusLord", 150, 30, 160, 0, 1, 50);
-inline const MonsterStatus TheReaperStatus("TheReaper", 655350, 65535, 140, 1200, -0.5, 0);
+inline const MonsterStatus GlowingBatStatus("GlowingBat", 50, 10, 140, 1, 3, 30, true);
+inline const MonsterStatus SilverBatStatus("SilverBat", 50, 10, 140, 1, 3, 30, true);
+inline const MonsterStatus FlowerWallStatus("FlowerWall", 30, 1, 20,1, 3, 2, true);
+inline const MonsterStatus MantichanaLordStatus("MantichanaLord", 150, 20, 160, 0, 1, 50, true);
+inline const MonsterStatus WerewolfLordStatus("WerewolfLord", 200, 20, 130, 0.1, 1, 2, true);
+inline const MonsterStatus MummyLordStatus("MummyLord", 250, 20, 80, 0, 1, 25, true);
+inline const MonsterStatus VenusLordStatus("VenusLord", 150, 30, 160, 0, 1, 50, true);
+inline const MonsterStatus TheReaperStatus("TheReaper", 655350, 65535, 140, 1200, -0.5, 0, true);

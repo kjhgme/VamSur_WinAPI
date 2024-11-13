@@ -23,5 +23,6 @@ private:
 
 	void LoadCharacterImages(const std::string_view characterName);
 	void LoadMonsterImages(const std::string& monsterName);
+	void LoadWeaponImages(const std::string_view weaponName);
 };
 

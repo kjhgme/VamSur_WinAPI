@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 #include <EngineCore/2DCollision.h>
 #include "CharactersStatus.h"
+#include "Weapon.h"
 
 class APlayer : public AActor
 {
@@ -45,6 +46,7 @@ protected:
 private:
 	int MySpriteIndex = 0;
 	bool HeadDirRight = true;
+	AWeapon* Weapons[6]{};
 
 	U2DCollision* CollisionComponent = nullptr;
 

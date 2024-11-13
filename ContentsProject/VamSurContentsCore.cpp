@@ -84,6 +84,11 @@ void VamSurContentsCore::BeginPlay()
 			LoadMonsterImages("Bat1");
 			LoadMonsterImages("Ghoul1");
 		}
+		// Weapon
+		{
+			LoadWeaponImages("WeaponIcon");
+			LoadWeaponImages("Whip");
+		}
 	}
 
 	UEngineAPICore::GetCore()->GetMainWindow().SetWindowTitle("VampireSurvivors");
@@ -122,4 +127,12 @@ void VamSurContentsCore::LoadMonsterImages(const std::string& monsterName)
 	MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
 	MonsterRDir.Append(monsterName + "_R");
 	UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
+}
+
+void VamSurContentsCore::LoadWeaponImages(const std::string_view weaponName)
+{
+	UEngineDirectory WeaponDir;
+	WeaponDir.MoveParentToDirectory("Resources/Weapon");
+	WeaponDir.Append(weaponName);
+	UImageManager::GetInst().LoadFolder(WeaponDir.GetPathToString());
 }
