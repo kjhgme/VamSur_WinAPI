@@ -66,6 +66,23 @@ void VamSurContentsCore::BeginPlay()
 
 			UImageManager::GetInst().LoadFolder(CursorDir.GetPathToString());
 		}
+		// Item
+		{
+			UEngineDirectory Dir;
+			if (false == Dir.MoveParentToDirectory("Resources/Item"))
+			{
+				MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
+				return;
+			}
+
+			std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+
+			for (size_t i = 0; i < ImageFiles.size(); i++)
+			{
+				std::string FilePath = ImageFiles[i].GetPathToString();
+				UImageManager::GetInst().Load(FilePath);
+			}
+		}		
 		// Charcters
 		{
 			LoadCharacterImages("Antonio");

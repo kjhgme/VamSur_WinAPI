@@ -85,6 +85,9 @@
     <ClInclude Include="Whip.h">
       <Filter>ContentsObjects\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="ExpItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -165,6 +168,9 @@
     <ClCompile Include="Whip.cpp">
       <Filter>ContentsObjects\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="ExpItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -208,6 +214,12 @@
     </Filter>
     <Filter Include="ContentsObjects\Weapon">
       <UniqueIdentifier>{de05e550-c459-4e25-b478-cd0015cdefb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Item">
+      <UniqueIdentifier>{d5bb33fe-4193-4ee3-a52d-321937077b1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Item\DropItem">
+      <UniqueIdentifier>{1969d2c2-9f21-4997-8adb-5b43a966e098}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

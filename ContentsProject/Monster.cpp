@@ -2,10 +2,12 @@
 #include "Monster.h"
 #include "ContentsEnum.h"
 
+#include "EngineBase/EngineRandom.h"
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineBase/EngineMath.h>
 #include "Player.h"
+#include "ExpItem.h"
 
 AMonster::AMonster()
 {
@@ -175,7 +177,9 @@ void AMonster::Die()
 
 	Alive = false;
 	CollisionComponent->SetActive(false);
-	
+
+	SpawnExpItem();
+		
 	Destroy(0.70f);
 }
 
@@ -213,4 +217,18 @@ void AMonster::CollisionEnter(AActor* _ColActor)
 
 	AddActorLocation({ ClampedX, ClampedY });
 	_ColActor->AddActorLocation({ -ClampedX, -ClampedY });
+}
+
+void AMonster::SpawnExpItem()
+{
+	UEngineRandom RandomGenerator;
+	float time = UEngineAPICore::GetCore()->GetDeltaTime();
+	__int64 UniqueSeed = static_cast<__int64>((MonsterPos.X * 1000 + MonsterPos.Y * 1000) + time * 10000);
+	RandomGenerator.SetSeed(UniqueSeed);
+	
+	if (RandomGenerator.RandomInt(0, 1) == 1)
+	{
+		AExpItem* newExpItem = GetWorld()->SpawnActor<AExpItem>();
+		newExpItem->SetLocation(MonsterPos);
+	}
 }

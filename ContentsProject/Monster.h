@@ -42,6 +42,8 @@ public:
 
 	void CollisionEnter(AActor* _ColActor);
 
+	void SpawnExpItem();
+
 	U2DCollision* CollisionComponent = nullptr;
 
 protected:

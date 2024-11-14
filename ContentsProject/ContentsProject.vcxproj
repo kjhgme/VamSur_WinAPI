@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExpItem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ExpBarUI.h">
       <SubType>
       </SubType>
@@ -253,6 +257,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExpItem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ExpBarUI.cpp">
       <SubType>
       </SubType>

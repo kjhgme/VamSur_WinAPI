@@ -34,6 +34,9 @@
     <ClInclude Include="TimeEvent.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="EngineRandom.h">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineDebug.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="TimeEvent.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineRandom.cpp">
+      <Filter>Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
