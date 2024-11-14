@@ -118,6 +118,11 @@ bool U2DCollision::Collision(int _OtherCollisionGroup, std::vector<AActor*>& _Re
 		{
 			continue;
 		}
+
+		if (ThisCollision == DestCollision)
+		{
+			continue;
+		}
 		
 		FTransform ThisTrans = ThisCollision->GetActorTransform();
 		FTransform DestTrans = DestCollision->GetActorTransform();

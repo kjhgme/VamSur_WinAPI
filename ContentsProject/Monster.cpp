@@ -86,6 +86,9 @@ void AMonster::InitCollision()
 	CollisionComponent->SetComponentScale(scale);
 	CollisionComponent->SetCollisionGroup(ECollisionGroup::MonsterBody);
 	CollisionComponent->SetCollisionType(ECollisionType::CirCle);
+
+	CollisionComponent->SetCollisionStay(std::bind(&AMonster::CollisionEnter, this, std::placeholders::_1));
+
 }
 
 void AMonster::SetMonsterPos(FVector2D _pos)
@@ -198,4 +201,16 @@ void AMonster::TakeDamage(int _Att)
 void AMonster::EnableCollision()
 {
 	CollisionComponent->SetActive(true);
+}
+
+void AMonster::CollisionEnter(AActor* _ColActor)
+{
+	FVector2D OtherPos = _ColActor->GetActorLocation();
+	FVector2D Offset = MonsterPos - OtherPos;
+
+	float ClampedX = UEngineMath::Clamp(Offset.X, -0.1f, 0.1f);
+	float ClampedY = UEngineMath::Clamp(Offset.Y, -0.1f, 0.1f);
+
+	AddActorLocation({ ClampedX, ClampedY });
+	_ColActor->AddActorLocation({ -ClampedX, -ClampedY });
 }

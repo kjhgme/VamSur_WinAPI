@@ -40,6 +40,8 @@ public:
 	void TakeDamage(int _Att);
 	void EnableCollision();
 
+	void CollisionEnter(AActor* _ColActor);
+
 	U2DCollision* CollisionComponent = nullptr;
 
 protected:

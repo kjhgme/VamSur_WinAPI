@@ -234,6 +234,11 @@ void ULevel::Collision(float _DeltaTime)
 					continue;
 				}
 
+				if (LeftCollision == RightCollision)
+				{
+					continue;
+				}
+
 				LeftCollision->CollisionEventCheck(RightCollision);
 			}
 		}

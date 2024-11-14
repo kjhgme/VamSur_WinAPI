@@ -179,6 +179,13 @@ void APlayer::LevelChangeEnd()
 
 void APlayer::CollisionEnter(AActor* _ColActor)
 {
+	AMonster* monster = static_cast<AMonster*>(_ColActor);
+	PlayerStatus.Hp -= monster->GetAttPower() - PlayerStatus.Armor;
+
+	if (PlayerStatus.Hp <= 0)
+	{
+		Die();
+	}
 }
 
 void APlayer::CollisionStay(AActor* _ColActor)
@@ -212,6 +219,11 @@ void APlayer::TakeDamage(AActor* _ColActor)
 
 	if (PlayerStatus.Hp <= 0)
 	{
-		int a = 0;
+		Die();
 	}
+}
+
+void APlayer::Die()
+{
+
 }

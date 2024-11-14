@@ -43,6 +43,7 @@ public:
 	void CollisionEnd(AActor* _ColActor);
 
 	void TakeDamage(AActor* _ColActor);
+	void Die();
 	
 protected:
 
