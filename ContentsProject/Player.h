@@ -58,5 +58,6 @@ private:
 
 	class USpriteRenderer* SpriteRenderer = nullptr;
 	U2DCollision* CollisionComponent = nullptr;
+	USpriteRenderer* BloodRenderer = nullptr;
 };
 

@@ -83,6 +83,12 @@ void APlayer::InitSprite(std::string_view _name)
 		SpriteRenderer->SetSprite(_name, 4);
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
+
+	{
+		BloodRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		BloodRenderer->SetSprite("Blood", 3);
+		BloodRenderer->SetSpriteScale(1.0f);
+	}
 }
 
 void APlayer::InitCreatePlayerAnim()
@@ -94,6 +100,11 @@ void APlayer::InitCreatePlayerAnim()
 		SpriteRenderer->CreateAnimation("Idle_R", name, 4, 4, 0.15f);
 		SpriteRenderer->CreateAnimation("Move_L", name, 0, 3, 0.15f);
 		SpriteRenderer->CreateAnimation("Move_R", name, 4, 7, 0.15f);
+	}
+
+	{
+		BloodRenderer->CreateAnimation("TakeDamage", "Blood", 0, 2, 0.1f, true);
+		BloodRenderer->CreateAnimation("NoDamage", "Blood", 3, 3);
 	}
 }
 
@@ -186,6 +197,7 @@ void APlayer::CollisionEnter(AActor* _ColActor)
 	{
 		Die();
 	}
+	BloodRenderer->ChangeAnimation("TakeDamage");
 }
 
 void APlayer::CollisionStay(AActor* _ColActor)
@@ -196,6 +208,11 @@ void APlayer::CollisionStay(AActor* _ColActor)
 void APlayer::CollisionEnd(AActor* _ColActor)
 {
 	CollisionStayTimers.erase(_ColActor);
+
+	if (0 == CollisionStayTimers.size())
+	{
+		BloodRenderer->ChangeAnimation("NoDamage");
+	}
 }
 
 void APlayer::TakeDamage(AActor* _ColActor)

@@ -71,6 +71,14 @@ void VamSurContentsCore::BeginPlay()
 			LoadCharacterImages("Antonio");
 			LoadCharacterImages("Imelda");
 		}
+		// Blood
+		{
+			UEngineDirectory Dir;
+			Dir.MoveParentToDirectory("Resources");
+			Dir.Append("Blood");
+
+			UImageManager::GetInst().LoadFolder(Dir.GetPathToString());
+		}
 		// Stage
 		{
 			UEngineDirectory StageDir;
