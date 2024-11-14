@@ -5,7 +5,7 @@ class FVector2D
 {
 public:
 	float X = 0.0f;
-	float Y = 0;
+	float Y = 0.0f;
 
 	static const FVector2D ZERO;
 	static const FVector2D LEFT;
@@ -88,14 +88,6 @@ public:
 	class FIntPoint ConvertToPoint() const;
 
 	// operator
-	FVector2D operator*(float _Value) const
-	{
-		FVector2D Result;
-		Result.X = X * _Value;
-		Result.Y = Y * _Value;
-		return Result;
-	}
-
 	FVector2D operator+(FVector2D _Other) const
 	{
 		FVector2D Result;
@@ -112,7 +104,25 @@ public:
 		return Result;
 	}
 
-	FVector2D operator/(int _Value) const
+	template <typename DataType>
+	FVector2D operator*(DataType _Value) const
+	{
+		FVector2D Result;
+		Result.X = X * _Value;
+		Result.Y = Y * _Value;
+		return Result;
+	}
+
+	FVector2D operator*(FVector2D _Value) const
+	{
+		FVector2D Result;
+		Result.X = X * _Value.X;
+		Result.Y = Y * _Value.Y;
+		return Result;
+	}
+	
+	template <typename DataType>
+	FVector2D operator/(DataType _Value) const
 	{
 		FVector2D Result;
 		Result.X = X / _Value;
