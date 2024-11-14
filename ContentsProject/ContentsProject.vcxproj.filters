@@ -88,6 +88,9 @@
     <ClInclude Include="ExpItem.h">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClInclude>
+    <ClInclude Include="DropItem.h">
+      <Filter>ContentsObjects\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="ExpItem.cpp">
       <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="DropItem.cpp">
+      <Filter>ContentsObjects\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

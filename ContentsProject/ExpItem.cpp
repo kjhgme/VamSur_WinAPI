@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "ExpItem.h"
+#include "ContentsEnum.h"
 
 AExpItem::AExpItem()
 {
@@ -14,8 +15,7 @@ AExpItem::~AExpItem()
 {
 }
 
-void AExpItem::SetLocation(FVector2D _Pos)
+void AExpItem::SetExp(float _Exp)
 {
-	Pos = _Pos;
-	SetActorLocation(Pos);
+	Exp = _Exp;
 }

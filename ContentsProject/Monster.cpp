@@ -7,6 +7,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineBase/EngineMath.h>
 #include "Player.h"
+#include "DropItem.h"
 #include "ExpItem.h"
 
 AMonster::AMonster()
@@ -230,5 +231,6 @@ void AMonster::SpawnExpItem()
 	{
 		AExpItem* newExpItem = GetWorld()->SpawnActor<AExpItem>();
 		newExpItem->SetLocation(MonsterPos);
+		newExpItem->SetExp(Status.XP);
 	}
 }

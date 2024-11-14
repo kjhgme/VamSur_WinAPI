@@ -1,5 +1,7 @@
 #pragma once
-class AExpItem : public AActor
+#include "DropItem.h"
+
+class AExpItem : public ADropItem
 {
 public:
 	AExpItem();
@@ -10,12 +12,11 @@ public:
 	AExpItem& operator=(const AExpItem& _Other) = delete;
 	AExpItem& operator=(AExpItem&& _Other) noexcept = delete;
 
-	void SetLocation(FVector2D _Pos);
+	void SetExp(float _Exp);
 
 protected:
 
 private:
-	USpriteRenderer* SpriteRenderer = nullptr;
-	FVector2D Pos{};
+	float Exp = 0.0f;
 };
 
