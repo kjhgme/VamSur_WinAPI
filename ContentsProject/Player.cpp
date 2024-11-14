@@ -7,7 +7,10 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
+#include "Monster.h"
 #include "Whip.h"
+
+CharacterStatus APlayer::PlayerStatus;
 
 APlayer::APlayer()
 {
@@ -33,7 +36,6 @@ void APlayer::BeginPlay()
 	AWeapon* test = GetWorld()->SpawnActor<Whip>();
 	Weapons[0] = test;
 	Weapons[0]->Action();
-
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -103,8 +105,6 @@ void APlayer::InitCollision()
 		CollisionComponent->SetComponentScale({ 60, 60 });
 		CollisionComponent->SetCollisionGroup(ECollisionGroup::PlayerBody);
 		CollisionComponent->SetCollisionType(ECollisionType::CirCle);
-
-		GetWorld()->CollisionGroupLink(ECollisionGroup::PlayerBody, ECollisionGroup::MonsterBody);
 
 		CollisionComponent->SetCollisionEnter(std::bind(&APlayer::CollisionEnter, this, std::placeholders::_1));
 		CollisionComponent->SetCollisionStay(std::bind(&APlayer::CollisionStay, this, std::placeholders::_1));
@@ -183,8 +183,35 @@ void APlayer::CollisionEnter(AActor* _ColActor)
 
 void APlayer::CollisionStay(AActor* _ColActor)
 {
+	TakeDamage(_ColActor);
 }
 
 void APlayer::CollisionEnd(AActor* _ColActor)
 {
+	CollisionStayTimers.erase(_ColActor);
+}
+
+void APlayer::TakeDamage(AActor* _ColActor)
+{
+	float Time = UEngineAPICore::GetCore()->GetDeltaTime();
+	AMonster* monster = static_cast<AMonster*>(_ColActor);
+
+	if (CollisionStayTimers.find(_ColActor) == CollisionStayTimers.end())
+	{
+		CollisionStayTimers[_ColActor] = 0.0f;
+	}
+
+	CollisionStayTimers[_ColActor] += Time;
+
+	if (CollisionStayTimers[_ColActor] >= 1.0f)
+	{
+		PlayerStatus.Hp -= monster->GetAttPower() - PlayerStatus.Armor;
+
+		CollisionStayTimers[_ColActor] = 0.0f;
+	}
+
+	if (PlayerStatus.Hp <= 0)
+	{
+		int a = 0;
+	}
 }

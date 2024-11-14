@@ -2,6 +2,7 @@
 #include "Whip.h"
 #include "ContentsEnum.h"
 
+#include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/Level.h>
 
@@ -31,20 +32,38 @@ void Whip::BeginPlay()
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetAlphaChar(0);
 	}
+	InitCollision();
 
 	Level = 1;
+	AttackPower = 10;
+
+	DebugOn();
 }
 
 void Whip::Tick(float _DeltaTime)
 {
-	AWeapon::Tick(_DeltaTime);	
+	AWeapon::Tick(_DeltaTime);
+}
 
-	if (0.9f <= FadeValue)
+void Whip::InitCollision()
+{
+	AWeapon::InitCollision();
+
+	CollisionComponents.resize(4);
+
+	for (int i = 0; i < CollisionComponents.size(); ++i)
 	{
-		Active = true;
-	}
-	else {
-		Active = false;
+		CollisionComponents[i] = CreateDefaultSubObject<U2DCollision>();
+		CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * 30.0f), -10.0f });
+		// CollisionComponents[i]->SetComponentLocation({ 0, 0 });
+		CollisionComponents[i]->SetComponentScale({ 40.0f, 40.0f });
+		CollisionComponents[i]->SetCollisionGroup(ECollisionGroup::WeaponBody);
+		CollisionComponents[i]->SetCollisionType(ECollisionType::CirCle);
+
+
+		CollisionComponents[i]->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+		CollisionComponents[i]->SetCollisionStay(std::bind(&AWeapon::CollisionStay, this, std::placeholders::_1));
+		CollisionComponents[i]->SetCollisionEnd(std::bind(&AWeapon::CollisionEnd, this, std::placeholders::_1));
 	}
 }
 
@@ -56,24 +75,36 @@ void Whip::Action()
 void Whip::ChangeHeadDir()
 {
 	AWeapon::ChangeHeadDir();
-	
-	if (true == Active || 0 >= FadeValue)
+
+	if (true == HeadDirRight)
 	{
-		if (true == HeadDirRight)
+		SpriteRenderer->SetSprite("Whip", 0);
+		SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
+
+		for (int i = 0; i < CollisionComponents.size(); ++i)
 		{
-			SpriteRenderer->SetSprite("Whip", 0);
-			SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
+			CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * 30.0f), -10.0f });
 		}
-		else
+	}
+	else
+	{
+		SpriteRenderer->SetSprite("Whip", 1);
+		SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
+
+		for (int i = 0; i < CollisionComponents.size(); ++i)
 		{
-			SpriteRenderer->SetSprite("Whip", 1);
-			SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
+			CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -30.0f), -10.0f });
 		}
 	}
 }
 
 void Whip::Attack()
 {
+	for (int i = 0; i < CollisionComponents.size(); ++i)
+	{
+		CollisionComponents[i]->SetActive(true);
+	}
+
 	FadeValue = 1.0f;
 	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeOut, this), true);
 }
@@ -83,4 +114,12 @@ void Whip::FadeOut()
 	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
 	FadeValue += DeltaTime * 2.0f * FadeDir;
 	SpriteRenderer->SetAlphafloat(FadeValue);
+
+	if (0 >= FadeValue)
+	{
+		for (int i = 0; i < CollisionComponents.size(); ++i)
+		{
+			CollisionComponents[i]->SetActive(false);
+		}
+	}
 }

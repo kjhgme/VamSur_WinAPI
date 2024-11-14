@@ -3,8 +3,8 @@
 
 struct MonsterStatus {
 	std::string Name = "None";
-	int Health = -1;
-	int Power = -1;
+	int Hp = -1;
+	int AttPower = -1;
 	int Speed = -1;
 	float KnockBack = -1;
 	int KBMax = -1;
@@ -13,11 +13,10 @@ struct MonsterStatus {
 
     MonsterStatus() {};
 
-    MonsterStatus(std::string name, int health, int power, int speed, int knockBack, int kbMax, float xp, bool haveSkill = false)
-        : Name(name), Health(health), Power(power), Speed(speed), KnockBack(knockBack), KBMax(kbMax), XP(xp), HaveSkill(haveSkill){}
+    MonsterStatus(std::string name, int hp, int power, int speed, int knockBack, int kbMax, float xp, bool haveSkill = false)
+        : Name(name), Hp(hp), AttPower(power), Speed(speed), KnockBack(knockBack), KBMax(kbMax), XP(xp), HaveSkill(haveSkill){}
 };
 
-								// Name, Health, Armor, Might, Speed
 inline const MonsterStatus Bat1Status("Bat1", 1, 5, 140, 1, 3, 1);
 inline const MonsterStatus Bat2Status("Bat2", 5, 5, 140, 1, 3, 1);
 inline const MonsterStatus Bat3Status("Bat3", 5, 5, 140, 1, 3, 1);

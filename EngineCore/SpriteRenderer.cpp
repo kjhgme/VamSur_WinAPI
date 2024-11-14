@@ -27,10 +27,7 @@ void USpriteRenderer::BeginPlay()
 void USpriteRenderer::ComponentTick(float _DeltaTime)
 {
 	Super::ComponentTick(_DeltaTime);
-}
 
-void USpriteRenderer::Render(float _DeltaTime)
-{
 	if (nullptr != CurAnimation)
 	{
 		std::vector<int>& Indexs = CurAnimation->FrameIndex;
@@ -74,7 +71,10 @@ void USpriteRenderer::Render(float _DeltaTime)
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
 	}
+}
 
+void USpriteRenderer::Render(float _DeltaTime)
+{	
 	if (nullptr == Sprite)
 	{
 		MSGASSERT("Sprite is NULL.(USpriteRenderer::Render)");
@@ -105,6 +105,11 @@ void USpriteRenderer::SetOrder(int _Order)
 {
 	int PrevOrder = Order;
 	Order = _Order;
+
+	if (PrevOrder == Order)
+	{
+		return;
+	}
 
 	ULevel* Level = GetActor()->GetWorld();
 

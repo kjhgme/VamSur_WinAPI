@@ -43,7 +43,7 @@ public:
 			{
 				TimeEvent.Event();
 			}
-			else if (TimeEvent.IsUpdate && 0.0f >= TimeEvent.Time)
+			else if (true == TimeEvent.IsUpdate && 0.0f >= TimeEvent.Time)
 			{
 				TimeEvent.Event();
 				StartIter = Events.erase(StartIter);
@@ -58,7 +58,7 @@ public:
 					++StartIter;
 					continue;
 				}
-				else if (false == TimeEvent.Loop)
+				else if (false == TimeEvent.Loop && 0.0f >= TimeEvent.Time)
 				{
 					TimeEvent.Event();
 					StartIter = Events.erase(StartIter);

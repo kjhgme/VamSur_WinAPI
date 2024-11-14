@@ -24,19 +24,28 @@ public:
 	void InitCreateMonAnim();
 	void InitCollision();
 
+	// GetFunction
+	int GetAttPower()
+	{
+		return Status.AttPower;
+	}
+
 	// SetFunction
 	void SetMonsterPos(FVector2D _pos);
 
 	// Function
 	void ChasePlayer(float _DeltaTime);
 	void ChangeAnimation();
-	void Die(float _DeltaTime);
+	void Die();
+	void TakeDamage(int _Att);
+	void EnableCollision();
+
+	U2DCollision* CollisionComponent = nullptr;
 
 protected:
 	MonsterStatus Status;
 	
 	class USpriteRenderer* SpriteRenderer = nullptr;
-	U2DCollision* CollisionComponent = nullptr;
 
 private:
 	bool HeadDirRight = false;
@@ -45,6 +54,5 @@ private:
 	FVector2D MonsterPos{};
 	FVector2D PlayerPos{};
 	FVector2D DiffPos{};
-	// static std::map<MonsterTypem, >
 };
 

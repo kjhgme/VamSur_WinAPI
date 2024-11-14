@@ -1,4 +1,6 @@
 #pragma once
+#include <unordered_map>
+
 #include <EngineCore/Actor.h>
 #include <EngineCore/2DCollision.h>
 #include "CharactersStatus.h"
@@ -24,7 +26,13 @@ public:
 	void InitCreatePlayerAnim();
 	void InitCollision();
 
+	// GetFunction
+	static int GetLevel()
+	{
+		return PlayerStatus.Level;
+	}
 
+	// Function
 	void PlayerMove(float _DeltaTime);
 
 	void LevelChangeStart();
@@ -34,18 +42,20 @@ public:
 	void CollisionStay(AActor* _ColActor);
 	void CollisionEnd(AActor* _ColActor);
 
-protected:
-	CharacterStatus PlayerStatus;
+	void TakeDamage(AActor* _ColActor);
 	
-	class USpriteRenderer* SpriteRenderer = nullptr;
+protected:
 
 private:
-	int MySpriteIndex = 0;
 	bool HeadDirRight = true;
+	static CharacterStatus PlayerStatus;
+
 	AWeapon* Weapons[6]{};
+	AWeapon* PassiveWeapons[6]{};
 
+	std::unordered_map<AActor*, float> CollisionStayTimers;
+
+	class USpriteRenderer* SpriteRenderer = nullptr;
 	U2DCollision* CollisionComponent = nullptr;
-
-	static const std::unordered_map<std::string_view, const CharacterStatus*> characterStatusMap;
 };
 

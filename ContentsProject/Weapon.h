@@ -1,4 +1,6 @@
 #pragma once
+#include <EngineCore/2DCollision.h>
+
 class AWeapon : public AActor
 {
 public:
@@ -13,18 +15,27 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	virtual void InitCollision() {};
+
 	virtual void Action();
 	virtual void ChangeHeadDir();
+
+	void CollisionEnter(AActor* _ColActor);
+	void CollisionStay(AActor* _ColActor);
+	void CollisionEnd(AActor* _ColActor);
 
 protected:
 	USpriteRenderer* IconSpriteRenderer = nullptr;
 	USpriteRenderer* SpriteRenderer = nullptr;
+	std::vector<U2DCollision*> CollisionComponents;
+	
 	int Level = 0;
+	int AttackPower = 0;
 
 	bool HeadDirRight = true;
-	bool Active = false;
 
 private:
 	FVector2D PlayerPos{0, 0};
+
 };
 

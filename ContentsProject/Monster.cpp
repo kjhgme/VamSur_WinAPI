@@ -5,7 +5,8 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineBase/EngineMath.h>
- 
+#include "Player.h"
+
 AMonster::AMonster()
 {
 }
@@ -30,10 +31,8 @@ void AMonster::Tick(float _DeltaTime)
 
 		if (true == UEngineInput::GetInst().IsDown('F'))
 		{
-			Alive = false;
-			Destroy(0.70f);
+			Die();
 		}
-		Die(_DeltaTime);
 	}
 }
 
@@ -50,6 +49,12 @@ void AMonster::InitMonster(MonsterStatus _Type)
 void AMonster::InitMonsterStatus(MonsterStatus _Type)
 {
 	Status = _Type;
+
+	if (true == Status.HaveSkill)
+	{
+		int PlayerLevel = APlayer::GetLevel();
+		Status.Hp = Status.Hp * PlayerLevel;
+	}
 }
 
 void AMonster::InitSprite()
@@ -111,6 +116,27 @@ void AMonster::ChasePlayer(float _DeltaTime)
 		else
 			AddActorLocation({ 0.0f, -(Status.Speed * _DeltaTime) });
 	}
+	else 
+	{
+		float KnockBackX = UEngineMath::Clamp(DiffPos.X, -2.0f, 2.0f);
+		float KnockBackY = UEngineMath::Clamp(DiffPos.Y, -2.0f, 2.0f);
+
+		if (PlayerPos.X > MonsterPos.X)
+		{
+			HeadDirRight = true;
+			AddActorLocation({ -(KnockBackX * Status.Speed * _DeltaTime), 0.0f });
+		}
+		else
+		{
+			HeadDirRight = false;
+			AddActorLocation({ (-KnockBackX) * Status.Speed * _DeltaTime , 0.0f });
+		}
+
+		if (PlayerPos.Y > MonsterPos.Y)
+			AddActorLocation({ 0.0f, -(KnockBackY * Status.Speed * _DeltaTime) });
+		else
+			AddActorLocation({ 0.0f, (-KnockBackY) * Status.Speed * _DeltaTime });
+	}
 }
 
 void AMonster::ChangeAnimation()
@@ -139,33 +165,37 @@ void AMonster::ChangeAnimation()
 	}
 }
 
-void AMonster::Die(float _DeltaTime)
+void AMonster::Die()
+{	
+	DiffPos = PlayerPos - MonsterPos;
+	DiffPos = DiffPos / 50.0f;
+
+	Alive = false;
+	CollisionComponent->SetActive(false);
+	
+	Destroy(0.70f);
+}
+
+void AMonster::TakeDamage(int _Att)
 {
-	if (true == Alive)
+	if (true == CollisionComponent->IsActive())
 	{
-		DiffPos = PlayerPos - MonsterPos;
-		DiffPos = DiffPos / 50.0f;
-	}
-	else if (false == Alive)
-	{
-		float KnockBackX = UEngineMath::Clamp(DiffPos.X, -2.0f, 2.0f);
-		float KnockBackY = UEngineMath::Clamp(DiffPos.Y, -2.0f, 2.0f);
+		CollisionComponent->SetActive(false);
 
-		if (PlayerPos.X > MonsterPos.X)
-		{
-			HeadDirRight = true;
-			AddActorLocation({ -(KnockBackX * Status.Speed * _DeltaTime), 0.0f });
-		}
-		else
-		{
-			HeadDirRight = false;
-			AddActorLocation({ (-KnockBackX) * Status.Speed * _DeltaTime , 0.0f });
-		}
-		
-		if (PlayerPos.Y > MonsterPos.Y)
-			AddActorLocation({ 0.0f, -(KnockBackY * Status.Speed * _DeltaTime ) });
-		else
-			AddActorLocation({ 0.0f, (-KnockBackY) * Status.Speed * _DeltaTime });
-	}
+		Status.Hp -= _Att;
 
+		if (0 >= Status.Hp)
+		{
+			Die();
+		}
+		else 
+		{
+			TimeEventer.PushEvent(1.0f, std::bind(&AMonster::EnableCollision, this), false, -1.0f, false);
+		}
+	}
+}
+
+void AMonster::EnableCollision()
+{
+	CollisionComponent->SetActive(true);
 }
