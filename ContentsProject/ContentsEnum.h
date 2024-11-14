@@ -17,5 +17,5 @@ enum class ECollisionGroup
 	MonsterBody,
 	WeaponBody,
 	ObjectBody,
-	ItemBody
+	DropItemBody
 };

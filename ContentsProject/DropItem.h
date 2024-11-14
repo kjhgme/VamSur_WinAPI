@@ -1,4 +1,6 @@
 #pragma once
+#include <EngineCore/2DCollision.h>
+
 class ADropItem : public AActor
 {
 public:
@@ -10,10 +12,16 @@ public:
 	ADropItem& operator=(const ADropItem& _Other) = delete;
 	ADropItem& operator=(ADropItem&& _Other) noexcept = delete;
 
-	void SetLocation(FVector2D _Pos);
+	// InitFunction
+	void InitDropItem(FVector2D _Pos);
+	void InitCollision(FVector2D _Pos);
+
+	// Function
+	void CollisionEnter(AActor* _ColActor);
 
 protected:
 	USpriteRenderer* SpriteRenderer = nullptr;
+	U2DCollision* CollisionComponent = nullptr;
 	FVector2D Pos{};
 
 private:

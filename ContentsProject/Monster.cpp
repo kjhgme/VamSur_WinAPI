@@ -85,12 +85,12 @@ void AMonster::InitCollision()
 	FVector2D scale =SpriteRenderer->GetComponentScale();
 
 	CollisionComponent = CreateDefaultSubObject<U2DCollision>();
-	CollisionComponent->SetComponentLocation({ 0, 0 });
+	CollisionComponent->SetComponentLocation({ 0.0f, 0.0f });
 	CollisionComponent->SetComponentScale(scale);
 	CollisionComponent->SetCollisionGroup(ECollisionGroup::MonsterBody);
 	CollisionComponent->SetCollisionType(ECollisionType::CirCle);
 
-	CollisionComponent->SetCollisionStay(std::bind(&AMonster::CollisionEnter, this, std::placeholders::_1));
+	CollisionComponent->SetCollisionEnter(std::bind(&AMonster::CollisionEnter, this, std::placeholders::_1));
 
 }
 
@@ -230,7 +230,7 @@ void AMonster::SpawnExpItem()
 	if (RandomGenerator.RandomInt(0, 1) == 1)
 	{
 		AExpItem* newExpItem = GetWorld()->SpawnActor<AExpItem>();
-		newExpItem->SetLocation(MonsterPos);
+		newExpItem->InitDropItem(MonsterPos);
 		newExpItem->SetExp(Status.XP);
 	}
 }

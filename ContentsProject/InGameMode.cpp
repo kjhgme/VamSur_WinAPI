@@ -23,6 +23,7 @@ void AInGameMode::BeginPlay()
 	GetWorld()->CollisionGroupLink(ECollisionGroup::PlayerBody, ECollisionGroup::MonsterBody);
 	GetWorld()->CollisionGroupLink(ECollisionGroup::WeaponBody, ECollisionGroup::MonsterBody);
 	GetWorld()->CollisionGroupLink(ECollisionGroup::MonsterBody, ECollisionGroup::MonsterBody);
+	GetWorld()->CollisionGroupLink(ECollisionGroup::DropItemBody, ECollisionGroup::PlayerBody);
 
 	AInfiniteMap* Map = GetWorld()->SpawnActor<AInfiniteMap>();
 	AMonsterSpawner* MonsterSpawner = GetWorld()->SpawnActor<AMonsterSpawner>();

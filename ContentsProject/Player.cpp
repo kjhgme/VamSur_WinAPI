@@ -112,8 +112,8 @@ void APlayer::InitCollision()
 {
 	{
 		CollisionComponent = CreateDefaultSubObject<U2DCollision>();
-		CollisionComponent->SetComponentLocation({ 0, 0 });
-		CollisionComponent->SetComponentScale({ 60, 60 });
+		CollisionComponent->SetComponentLocation({ 0.0f, 0.0f });
+		CollisionComponent->SetComponentScale({ 60.0f, 60.0f });
 		CollisionComponent->SetCollisionGroup(ECollisionGroup::PlayerBody);
 		CollisionComponent->SetCollisionType(ECollisionType::CirCle);
 
