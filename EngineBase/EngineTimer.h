@@ -31,6 +31,8 @@ public:
 
 	double DEnd();
 
+	void ToggleTime();
+
 protected:
 
 private:
@@ -43,5 +45,7 @@ private:
 	double DeltaTime = 0.0;
 
 	float fDeltaTime = 0.0f;
+
+	bool bIsTimeStopped = false;
 };
 

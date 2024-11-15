@@ -52,6 +52,12 @@ public:
 		return DeltaTimer.GetDeltaTime();
 	}
 
+	UEngineTimer& GetTimer()
+	{
+		return DeltaTimer;
+	}
+
+
 	// Function
 	template<typename GameModeType, typename MainPawnType>
 	ULevel* CreateLevel(std::string_view _LevelName)

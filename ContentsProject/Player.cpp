@@ -4,6 +4,7 @@
 
 #include <unordered_map>
 
+#include <EngineBase/EngineTimer.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
@@ -50,6 +51,11 @@ void APlayer::Tick(float _DeltaTime)
 	if (true == UEngineInput::GetInst().IsDown('R'))
 	{
 		UEngineDebug::SwitchIsDebug();
+	}
+
+	if (true == UEngineInput::GetInst().IsDown('P'))
+	{
+		UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 	}
 }
 

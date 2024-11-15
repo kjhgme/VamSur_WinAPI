@@ -33,12 +33,31 @@ double UEngineTimer::DEnd()
 	return GetDoubleDeltaTime();
 }
 
+
 void UEngineTimer::TimeCheck()
 {
-	QueryPerformanceCounter(&CurTime);
+	if (false == bIsTimeStopped)
+	{
+		QueryPerformanceCounter(&CurTime);
 
-	double Tick = static_cast<double>(CurTime.QuadPart - PrevTime.QuadPart);
-	DeltaTime = Tick / TimeCounter;
-	fDeltaTime = static_cast<float>(DeltaTime);
-	PrevTime.QuadPart = CurTime.QuadPart;
+		double Tick = static_cast<double>(CurTime.QuadPart - PrevTime.QuadPart);
+		DeltaTime = Tick / TimeCounter;
+		fDeltaTime = static_cast<float>(DeltaTime);
+		PrevTime.QuadPart = CurTime.QuadPart;
+	}
+}
+
+void UEngineTimer::ToggleTime()
+{
+	if (true == bIsTimeStopped)
+	{
+		QueryPerformanceCounter(&PrevTime);
+		bIsTimeStopped = false;
+	}
+	else
+	{
+		bIsTimeStopped = true; 
+		DeltaTime = 0.0;
+		fDeltaTime = 0.0f;
+	}
 }
