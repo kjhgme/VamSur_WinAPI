@@ -90,7 +90,7 @@ void AMonster::InitCollision()
 	CollisionComponent->SetCollisionGroup(ECollisionGroup::MonsterBody);
 	CollisionComponent->SetCollisionType(ECollisionType::CirCle);
 
-	CollisionComponent->SetCollisionEnter(std::bind(&AMonster::CollisionEnter, this, std::placeholders::_1));
+	CollisionComponent->SetCollisionStay(std::bind(&AMonster::CollisionStay, this, std::placeholders::_1));
 
 }
 
@@ -101,7 +101,7 @@ void AMonster::SetMonsterPos(FVector2D _pos)
 
 void AMonster::ChasePlayer(float _DeltaTime)
 {	
-	if (true == Alive)
+	if (true == Alive && true == Hitable)
 	{
 		MonsterPos = GetActorLocation();
 		PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
@@ -122,26 +122,42 @@ void AMonster::ChasePlayer(float _DeltaTime)
 		else
 			AddActorLocation({ 0.0f, -(Status.Speed * _DeltaTime) });
 	}
+	else if (true == Alive && false == Hitable)
+	{
+		if (PlayerPos.X > MonsterPos.X)
+		{
+			AddActorLocation({ -(KnockbackAmount * Status.Speed * _DeltaTime), 0.0f });
+		}
+		else
+		{
+			AddActorLocation({ KnockbackAmount * Status.Speed * _DeltaTime , 0.0f });
+		}
+
+		if (PlayerPos.Y > MonsterPos.Y)
+			AddActorLocation({ 0.0f, -(KnockbackAmount * Status.Speed * _DeltaTime) });
+		else
+			AddActorLocation({ 0.0f, KnockbackAmount * Status.Speed * _DeltaTime });
+	}
 	else 
 	{
-		float KnockBackX = UEngineMath::Clamp(DiffPos.X, -2.0f, 2.0f);
-		float KnockBackY = UEngineMath::Clamp(DiffPos.Y, -2.0f, 2.0f);
+		KnockBack.X = UEngineMath::Clamp(DiffPos.X, -2.0f, 2.0f);
+		KnockBack.Y = UEngineMath::Clamp(DiffPos.Y, -2.0f, 2.0f);
 
 		if (PlayerPos.X > MonsterPos.X)
 		{
 			HeadDirRight = true;
-			AddActorLocation({ -(KnockBackX * Status.Speed * _DeltaTime), 0.0f });
+			AddActorLocation({ -(KnockBack.X * Status.Speed * _DeltaTime), 0.0f });
 		}
 		else
 		{
 			HeadDirRight = false;
-			AddActorLocation({ (-KnockBackX) * Status.Speed * _DeltaTime , 0.0f });
+			AddActorLocation({ (-KnockBack.X) * Status.Speed * _DeltaTime , 0.0f });
 		}
 
 		if (PlayerPos.Y > MonsterPos.Y)
-			AddActorLocation({ 0.0f, -(KnockBackY * Status.Speed * _DeltaTime) });
+			AddActorLocation({ 0.0f, -(KnockBack.Y * Status.Speed * _DeltaTime) });
 		else
-			AddActorLocation({ 0.0f, (-KnockBackY) * Status.Speed * _DeltaTime });
+			AddActorLocation({ 0.0f, (-KnockBack.Y) * Status.Speed * _DeltaTime });
 	}
 }
 
@@ -173,9 +189,6 @@ void AMonster::ChangeAnimation()
 
 void AMonster::Die()
 {	
-	DiffPos = PlayerPos - MonsterPos;
-	DiffPos = DiffPos / 50.0f;
-
 	Alive = false;
 	CollisionComponent->SetActive(false);
 
@@ -184,11 +197,13 @@ void AMonster::Die()
 	Destroy(0.70f);
 }
 
-void AMonster::TakeDamage(int _Att)
+void AMonster::TakeDamage(int _Att, float _KnockBack)
 {
 	if (true == CollisionComponent->IsActive())
 	{
-		CollisionComponent->SetActive(false);
+		DiffPos = PlayerPos - MonsterPos;
+		DiffPos = DiffPos / 50.0f;
+
 
 		Status.Hp -= _Att;
 
@@ -198,6 +213,11 @@ void AMonster::TakeDamage(int _Att)
 		}
 		else 
 		{
+			KnockbackAmount = Status.KnockBack * _KnockBack;
+			KnockbackAmount = UEngineMath::ClampMax(KnockbackAmount, Status.KBMax);
+			Hitable = false;
+			TimeEventer.PushEvent(0.12f, std::bind(&AMonster::KnockbackEnd, this), false, -1.0f, false);
+			CollisionComponent->SetActive(false);
 			TimeEventer.PushEvent(1.0f, std::bind(&AMonster::EnableCollision, this), false, -1.0f, false);
 		}
 	}
@@ -208,7 +228,7 @@ void AMonster::EnableCollision()
 	CollisionComponent->SetActive(true);
 }
 
-void AMonster::CollisionEnter(AActor* _ColActor)
+void AMonster::CollisionStay(AActor* _ColActor)
 {
 	FVector2D OtherPos = _ColActor->GetActorLocation();
 	FVector2D Offset = MonsterPos - OtherPos;
@@ -233,4 +253,9 @@ void AMonster::SpawnExpItem()
 		newExpItem->InitDropItem(MonsterPos);
 		newExpItem->SetExp(Status.XP);
 	}
+}
+
+void AMonster::KnockbackEnd()
+{
+	Hitable = true;
 }

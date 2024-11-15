@@ -39,17 +39,17 @@ void AWeapon::CollisionEnter(AActor* _ColActor)
 	AMonster* Monster = static_cast<AMonster*>(_ColActor);
 	if (true == Monster->CollisionComponent->IsActive())
 	{
-		Monster->TakeDamage(AttackPower);
+		Monster->TakeDamage(AttackPower, KnockBack);
 	}
 }
 
 void AWeapon::CollisionStay(AActor* _ColActor)
 {
-	AMonster* Monster = static_cast<AMonster*>(_ColActor);
+	/*AMonster* Monster = static_cast<AMonster*>(_ColActor);
 	if (true == Monster->CollisionComponent->IsActive())
 	{
 		Monster->TakeDamage(AttackPower);
-	}
+	}*/
 }
 
 void AWeapon::CollisionEnd(AActor* _ColActor)

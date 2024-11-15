@@ -37,12 +37,13 @@ public:
 	void ChasePlayer(float _DeltaTime);
 	void ChangeAnimation();
 	void Die();
-	void TakeDamage(int _Att);
+	void TakeDamage(int _Att, float _KnockBack);
 	void EnableCollision();
 
-	void CollisionEnter(AActor* _ColActor);
+	void CollisionStay(AActor* _ColActor);
 
 	void SpawnExpItem();
+	void KnockbackEnd();
 
 	U2DCollision* CollisionComponent = nullptr;
 
@@ -54,9 +55,13 @@ protected:
 private:
 	bool HeadDirRight = false;
 	bool Alive = true;
+	bool Hitable = true;
+
+	float KnockbackAmount = 0.0f;
 
 	FVector2D MonsterPos{};
 	FVector2D PlayerPos{};
 	FVector2D DiffPos{};
+	FVector2D KnockBack{};
 };
 

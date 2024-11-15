@@ -31,6 +31,7 @@ protected:
 	
 	int Level = 0;
 	int AttackPower = 0;
+	float KnockBack = 0;
 
 	bool HeadDirRight = true;
 
