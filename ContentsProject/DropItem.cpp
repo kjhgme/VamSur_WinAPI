@@ -2,7 +2,7 @@
 #include "DropItem.h"
 #include "ContentsEnum.h"
 
-// #include <EngineCore/EngineCoreDebug.h>
+#include "Player.h"
 
 ADropItem::ADropItem()
 {
@@ -36,5 +36,11 @@ void ADropItem::InitCollision(FVector2D _Pos)
 
 void ADropItem::CollisionEnter(AActor* _ColActor)
 {
+	ApplyItemEffect(); 
+
 	Destroy();
+}
+
+void ADropItem::ApplyItemEffect()
+{
 }

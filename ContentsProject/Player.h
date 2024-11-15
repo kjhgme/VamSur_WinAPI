@@ -44,12 +44,15 @@ public:
 
 	void TakeDamage(AActor* _ColActor);
 	void Die();
-	
+
+	void AddExp(float _add);
+
+	static CharacterStatus PlayerStatus;
+
 protected:
 
 private:
 	bool HeadDirRight = true;
-	static CharacterStatus PlayerStatus;
 
 	AWeapon* Weapons[6]{};
 	AWeapon* PassiveWeapons[6]{};

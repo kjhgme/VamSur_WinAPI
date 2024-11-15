@@ -244,3 +244,8 @@ void APlayer::Die()
 {
 
 }
+
+void APlayer::AddExp(float _add)
+{
+	PlayerStatus.Exp += _add;
+}

@@ -18,6 +18,7 @@ public:
 
 	// Function
 	void CollisionEnter(AActor* _ColActor);
+	virtual void ApplyItemEffect();
 
 protected:
 	USpriteRenderer* SpriteRenderer = nullptr;

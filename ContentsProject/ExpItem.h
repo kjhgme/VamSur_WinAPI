@@ -14,6 +14,8 @@ public:
 
 	void SetExp(float _Exp);
 
+	void ApplyItemEffect() override;
+
 protected:
 
 private:
