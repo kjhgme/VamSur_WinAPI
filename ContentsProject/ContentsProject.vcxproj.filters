@@ -13,9 +13,6 @@
     <ClInclude Include="ContentsEnum.h">
       <Filter>ContentsObjects\Global</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>ContentsObjects\InGame</Filter>
-    </ClInclude>
     <ClInclude Include="TitleGameMode.h">
       <Filter>ContentsObjects\GameMode</Filter>
     </ClInclude>
@@ -91,6 +88,9 @@
     <ClInclude Include="DropItem.h">
       <Filter>ContentsObjects\Item</Filter>
     </ClInclude>
+    <ClInclude Include="LevelUpUI.h">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -104,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="ContentsEnum.cpp">
       <Filter>ContentsObjects\Global</Filter>
-    </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>ContentsObjects\InGame</Filter>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>ContentsObjects\GameMode</Filter>
@@ -176,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="DropItem.cpp">
       <Filter>ContentsObjects\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpUI.cpp">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

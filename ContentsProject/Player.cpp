@@ -8,6 +8,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
+#include "InGameUI.h"
 #include "Monster.h"
 #include "Whip.h"
 
@@ -52,7 +53,6 @@ void APlayer::Tick(float _DeltaTime)
 	{
 		UEngineDebug::SwitchIsDebug();
 	}
-
 	if (true == UEngineInput::GetInst().IsDown('L'))
 	{
 		AddExp(5.0f);
@@ -277,6 +277,8 @@ void APlayer::LevelUp()
 	PlayerStatus.Exp -= GetNextLevelXP(PlayerStatus.Level);
 
 	PlayerStatus.Level++;
+
+	AInGameUI::LevelUpPanel->SetActive();
 }
 
 float APlayer::GetNextLevelXP(int currentLevel)

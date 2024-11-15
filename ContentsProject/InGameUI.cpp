@@ -8,6 +8,8 @@
 #include "WeaponSlotsUI.h"
 #include "KillAndGoldUI.h"
 
+LevelUpUI* AInGameUI::LevelUpPanel;
+
 AInGameUI::AInGameUI()
 {
 }
@@ -24,8 +26,11 @@ void AInGameUI::BeginPlay()
 	ExpBarUI* ExpBar = GetWorld()->SpawnActor<ExpBarUI>();
 	WeaponSlotsUI* WeaponSlots = GetWorld()->SpawnActor<WeaponSlotsUI>();
 	KillAndGoldUI* KillAndGold = GetWorld()->SpawnActor<KillAndGoldUI>();
+
+	LevelUpPanel = GetWorld()->SpawnActor<LevelUpUI>();
 }
 
 void AInGameUI::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
 }
