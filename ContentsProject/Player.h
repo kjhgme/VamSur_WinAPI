@@ -46,6 +46,8 @@ public:
 	void Die();
 
 	void AddExp(float _add);
+	void LevelUp();
+	float GetNextLevelXP(int currentLevel);
 
 	static CharacterStatus PlayerStatus;
 

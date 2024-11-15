@@ -53,6 +53,10 @@ void APlayer::Tick(float _DeltaTime)
 		UEngineDebug::SwitchIsDebug();
 	}
 
+	if (true == UEngineInput::GetInst().IsDown('L'))
+	{
+		AddExp(5.0f);
+	}
 	if (true == UEngineInput::GetInst().IsDown('P'))
 	{
 		UEngineAPICore::GetCore()->GetTimer().ToggleTime();
@@ -254,4 +258,55 @@ void APlayer::Die()
 void APlayer::AddExp(float _add)
 {
 	PlayerStatus.Exp += _add;
+
+	if (PlayerStatus.Level == 20 || PlayerStatus.Level == 40)
+	{
+		PlayerStatus.Exp += _add;
+	}
+
+	while (PlayerStatus.Exp >= GetNextLevelXP(PlayerStatus.Level))
+	{
+		LevelUp();
+	}
+}
+
+void APlayer::LevelUp()
+{
+	UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+
+	PlayerStatus.Exp -= GetNextLevelXP(PlayerStatus.Level);
+
+	PlayerStatus.Level++;
+}
+
+float APlayer::GetNextLevelXP(int currentLevel)
+{
+	float requiredXP = 0.0f;
+
+	if (currentLevel < 20)
+	{
+		// 레벨 1부터 19까지 XP 계산
+		requiredXP = 5 + (currentLevel - 1) * 10;
+	}
+	else if (currentLevel <= 40)
+	{
+		// 레벨 20부터 40까지 XP 계산
+		requiredXP = 15 + (currentLevel - 2) * 13;
+	}
+	else
+	{
+		// 레벨 41부터 XP 계산
+		requiredXP = 25 + (currentLevel - 41) * 16;
+	}
+
+	if (currentLevel == 20)
+	{
+		requiredXP += 600;  // 레벨 20에서 600 XP 보너스
+	}
+	else if (currentLevel == 40)
+	{
+		requiredXP += 2400;  // 레벨 40에서 2400 XP 보너스
+	}
+
+	return requiredXP;
 }
