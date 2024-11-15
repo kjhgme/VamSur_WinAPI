@@ -24,10 +24,12 @@ void AInGameMode::BeginPlay()
 	GetWorld()->CollisionGroupLink(ECollisionGroup::WeaponBody, ECollisionGroup::MonsterBody);
 	GetWorld()->CollisionGroupLink(ECollisionGroup::MonsterBody, ECollisionGroup::MonsterBody);
 	GetWorld()->CollisionGroupLink(ECollisionGroup::DropItemBody, ECollisionGroup::PlayerBody);
+	GetWorld()->CollisionGroupLink(ECollisionGroup::ObjectBody, ECollisionGroup::WeaponBody);
 
 	AInfiniteMap* Map = GetWorld()->SpawnActor<AInfiniteMap>();
 	AMonsterSpawner* MonsterSpawner = GetWorld()->SpawnActor<AMonsterSpawner>();
 	AInGameUI* InGameUI = GetWorld()->SpawnActor<AInGameUI>();
+
 	/*switch (ATitleGameMode::SelectedCharacter)
 	{
 	case 1:
