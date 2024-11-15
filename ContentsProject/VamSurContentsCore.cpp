@@ -4,6 +4,7 @@
 #include <EngineBase/EngineDirectory.h>
 #include <EngineBase/EngineDebug.h>
 #include <EngineBase/EngineFile.h>
+#include <EnginePlatform/EngineSound.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/ImageManager.h>
 
@@ -113,6 +114,24 @@ void VamSurContentsCore::BeginPlay()
 		{
 			LoadWeaponImages("WeaponIcon");
 			LoadWeaponImages("Whip");
+		}
+		// Sounds
+		{
+			UEngineDirectory Dir;
+			if (false == Dir.MoveParentToDirectory("Resources"))
+			{
+				MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
+				return;
+			}
+			Dir.Append("Sounds");
+
+			std::vector<UEngineFile> SoundFiles = Dir.GetAllFile();
+
+			for (size_t i = 0; i < SoundFiles.size(); i++)
+			{
+				std::string FilePath = SoundFiles[i].GetPathToString();
+				UEngineSound::Load(FilePath);
+			}
 		}
 	}
 

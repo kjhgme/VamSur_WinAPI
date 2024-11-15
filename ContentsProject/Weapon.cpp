@@ -41,6 +41,8 @@ void AWeapon::CollisionEnter(AActor* _ColActor)
 	{
 		Monster->TakeDamage(AttackPower, KnockBack);
 	}
+
+	HitSoundPlayer = UEngineSound::Play("Hit.wav");
 }
 
 void AWeapon::CollisionStay(AActor* _ColActor)

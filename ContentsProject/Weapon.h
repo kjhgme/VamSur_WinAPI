@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/2DCollision.h>
+#include <EnginePlatform/EngineSound.h>
 
 class AWeapon : public AActor
 {
@@ -38,5 +39,6 @@ protected:
 private:
 	FVector2D PlayerPos{0, 0};
 
+	USoundPlayer HitSoundPlayer;
 };
 

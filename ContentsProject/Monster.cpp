@@ -217,7 +217,9 @@ void AMonster::TakeDamage(int _Att, float _KnockBack)
 			KnockbackAmount = UEngineMath::ClampMax(KnockbackAmount, Status.KBMax);
 			Hitable = false;
 			TimeEventer.PushEvent(0.12f, std::bind(&AMonster::KnockbackEnd, this), false, -1.0f, false);
-			CollisionComponent->SetActive(false);
+			
+			// 충돌버그 수정필요
+			CollisionComponent->SetActive(true);
 			TimeEventer.PushEvent(1.0f, std::bind(&AMonster::EnableCollision, this), false, -1.0f, false);
 		}
 	}
