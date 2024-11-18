@@ -30,6 +30,8 @@ void ExpBarUI::BeginPlay()
 
 void ExpBarUI::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
+
 	SetPos();
 }
 

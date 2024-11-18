@@ -288,26 +288,26 @@ float APlayer::GetNextLevelXP(int currentLevel)
 	if (currentLevel < 20)
 	{
 		// 레벨 1부터 19까지 XP 계산
-		requiredXP = 5 + (currentLevel - 1) * 10;
+		requiredXP = 5.0f + (currentLevel - 1) * 10.0f;
 	}
 	else if (currentLevel <= 40)
 	{
 		// 레벨 20부터 40까지 XP 계산
-		requiredXP = 15 + (currentLevel - 2) * 13;
+		requiredXP = 15.0f + (currentLevel - 2) * 13.0f;
 	}
 	else
 	{
 		// 레벨 41부터 XP 계산
-		requiredXP = 25 + (currentLevel - 41) * 16;
+		requiredXP = 25.0f + (currentLevel - 41) * 16.0f;
 	}
 
 	if (currentLevel == 20)
 	{
-		requiredXP += 600;  // 레벨 20에서 600 XP 보너스
+		requiredXP += 600.0f;  // 레벨 20에서 600 XP 보너스
 	}
 	else if (currentLevel == 40)
 	{
-		requiredXP += 2400;  // 레벨 40에서 2400 XP 보너스
+		requiredXP += 2400.0f;  // 레벨 40에서 2400 XP 보너스
 	}
 
 	return requiredXP;

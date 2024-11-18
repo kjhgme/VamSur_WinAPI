@@ -60,12 +60,21 @@ void VamSurContentsCore::BeginPlay()
 					UImageManager::GetInst().Load(FilePath);
 				}
 			}
+			{
+				UEngineDirectory CursorDir;
+				CursorDir.MoveParentToDirectory("Resources/UI");
+				CursorDir.Append("Cursor");
 
-			UEngineDirectory CursorDir;
-			CursorDir.MoveParentToDirectory("Resources/UI");
-			CursorDir.Append("Cursor");
+				UImageManager::GetInst().LoadFolder(CursorDir.GetPathToString());
+			}
 
-			UImageManager::GetInst().LoadFolder(CursorDir.GetPathToString());
+			{
+				UEngineDirectory Dir;
+				Dir.MoveParentToDirectory("Resources/UI/Letter");
+				Dir.Append("Letters");
+
+				UImageManager::GetInst().LoadFolder(Dir.GetPathToString());
+			}
 		}
 		// Item
 		{

@@ -7,6 +7,7 @@
 #include "ExpBarUI.h"
 #include "WeaponSlotsUI.h"
 #include "KillAndGoldUI.h"
+#include "TimeUI.h"
 
 LevelUpUI* AInGameUI::LevelUpPanel;
 
@@ -26,6 +27,7 @@ void AInGameUI::BeginPlay()
 	ExpBarUI* ExpBar = GetWorld()->SpawnActor<ExpBarUI>();
 	WeaponSlotsUI* WeaponSlots = GetWorld()->SpawnActor<WeaponSlotsUI>();
 	KillAndGoldUI* KillAndGold = GetWorld()->SpawnActor<KillAndGoldUI>();
+	ATimeUI* TimeUI = GetWorld()->SpawnActor<ATimeUI>();
 
 	LevelUpPanel = GetWorld()->SpawnActor<LevelUpUI>();
 }

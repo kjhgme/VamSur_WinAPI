@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TimeUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DropItem.h">
       <SubType>
       </SubType>
@@ -261,6 +265,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TimeUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DropItem.cpp">
       <SubType>
       </SubType>
