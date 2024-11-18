@@ -6,6 +6,7 @@
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineBase/EngineMath.h>
+#include "InGameUI.h"
 #include "Player.h"
 #include "DropItem.h"
 #include "ExpItem.h"
@@ -193,7 +194,8 @@ void AMonster::Die()
 	CollisionComponent->SetActive(false);
 
 	SpawnExpItem();
-		
+	AInGameUI::KillAndGold->AddKillCount();
+	
 	Destroy(0.70f);
 }
 

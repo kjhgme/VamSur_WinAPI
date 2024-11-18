@@ -28,10 +28,9 @@ public:
 
 	void SetOrder(int _Order);
 
-	void SetValue(int _Score);
+	void SetDisplayTime(float _DeltaTime);
 
 	void SetPos();
-	void SetDisplayTime(float _DeltaTime);
 
 protected:
 
@@ -46,6 +45,6 @@ private:
 
 	FVector2D TextScale{};
 	std::string TextSpriteName;
-	std::vector<class USpriteRenderer*> Renders;
+	std::vector<class USpriteRenderer*> KillRenders;
 };
 

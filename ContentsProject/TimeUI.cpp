@@ -11,7 +11,7 @@ ATimeUI::ATimeUI()
 	for (size_t i = 0; i < 10; i++)
 	{
 		USpriteRenderer* Sprite = CreateDefaultSubObject<USpriteRenderer>();
-		Renders.push_back(Sprite);
+		KillRenders.push_back(Sprite);
 	}
 
 	SetTextSpriteName("Letters");
@@ -40,27 +40,18 @@ void ATimeUI::SetTextSpriteName(const std::string _Text)
 {
 	TextSpriteName = _Text;
 
-	for (int i = 0; i < Renders.size(); i++)
+	for (int i = 0; i < KillRenders.size(); i++)
 	{
-		Renders[i]->SetSprite(TextSpriteName, i);
+		KillRenders[i]->SetSprite(TextSpriteName, i);
 	}
 }
 
 void ATimeUI::SetOrder(int _Order)
 {
-	for (int i = 0; i < Renders.size(); i++)
+	for (int i = 0; i < KillRenders.size(); i++)
 	{
-		Renders[i]->SetOrder(_Order);
+		KillRenders[i]->SetOrder(_Order);
 	}
-}
-
-void ATimeUI::SetPos()
-{
-	Pos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
-	Pos.X = Pos.X - 40.0f;
-	Pos.Y = Pos.Y - WindowSize.Half().Y + 50.0f;
-
-	SetActorLocation({ Pos });
 }
 
 void ATimeUI::SetDisplayTime(float _DeltaTime)
@@ -75,7 +66,7 @@ void ATimeUI::SetDisplayTime(float _DeltaTime)
 
     std::string CombinedTime = MinuteString + ":" + SecondString;
 
-    if (Renders.size() < CombinedTime.size())
+    if (KillRenders.size() < CombinedTime.size())
     {
         MSGASSERT("TimeUI is overflow.");
         return;
@@ -89,21 +80,30 @@ void ATimeUI::SetDisplayTime(float _DeltaTime)
 
         if (Value >= '0' && Value <= '9')
         {
-            Renders[i]->SetSprite(TextSpriteName, Value - '0');
+            KillRenders[i]->SetSprite(TextSpriteName, Value - '0');
         }
         else
         {
-            Renders[i]->SetSprite(TextSpriteName, 10);
+            KillRenders[i]->SetSprite(TextSpriteName, 10);
         }
 
-        Renders[i]->SetComponentScale(TextScale);
-        Renders[i]->SetComponentLocation(Pos);
+        KillRenders[i]->SetComponentScale(TextScale);
+        KillRenders[i]->SetComponentLocation(Pos);
         Pos.X += TextScale.X;
-        Renders[i]->SetActive(true);
+        KillRenders[i]->SetActive(true);
     }
 
-    for (size_t i = CombinedTime.size(); i < Renders.size(); i++)
+    for (size_t i = CombinedTime.size(); i < KillRenders.size(); i++)
     {
-        Renders[i]->SetActive(false);
+        KillRenders[i]->SetActive(false);
     }
+}
+
+void ATimeUI::SetPos()
+{
+    Pos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
+    Pos.X = Pos.X - 40.0f;
+    Pos.Y = Pos.Y - WindowSize.Half().Y + 50.0f;
+
+    SetActorLocation({ Pos });
 }

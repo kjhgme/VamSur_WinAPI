@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LevelUpUI.h"
+#include "KillAndGoldUI.h"
 
 class AInGameUI : public AActor
 {
@@ -17,6 +18,7 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	static LevelUpUI* LevelUpPanel;
+	static KillAndGoldUI* KillAndGold;
 
 protected:
 
