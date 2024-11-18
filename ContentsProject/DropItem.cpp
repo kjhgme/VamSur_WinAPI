@@ -72,30 +72,30 @@ void ADropItem::ItemToPlayer(float _DeltaTime)
 
 		if (false == IsReturning)
 		{
-			AddActorLocation({ KnockBack.X * 200.0f * _DeltaTime, KnockBack.Y * 200.0f * _DeltaTime });
+			AddActorLocation({ KnockBack.X * 2.0f * APlayer::PlayerStatus.Speed * _DeltaTime,
+							KnockBack.Y * 2.0f * APlayer::PlayerStatus.Speed * _DeltaTime });
 		
 			if (0.25f <= KnockBackTime)
 			{
 				IsReturning = true;
+				KnockBackTime = 0.0f;
 			}
 		}
 		else
 		{
 			ItemPos = GetActorLocation();
 			PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
-			FVector2D DiffPos = PlayerPos -ItemPos;
 
-			KnockBack.X = UEngineMath::Clamp(DiffPos.X, -1.0f, 1.0f);
-			KnockBack.Y = UEngineMath::Clamp(DiffPos.Y, -1.0f, 1.0f);
+			FVector2D NewPos = FVector2D::Lerp(ItemPos, PlayerPos, _DeltaTime * 8.0f);
+			SetActorLocation(NewPos);
 
-			AddActorLocation({ KnockBack.X * 2.0f * APlayer::PlayerStatus.Speed * _DeltaTime, KnockBack.Y * 2.0f * APlayer::PlayerStatus.Speed * _DeltaTime });
+			FVector2D DiffPos = PlayerPos - ItemPos;
 
-			if (UEngineMath::Abs(DiffPos.X) <= 1.0f && UEngineMath::Abs(DiffPos.Y) <= 1.0f)
+			if (
+				(UEngineMath::Abs(DiffPos.X) <= 50.0f && UEngineMath::Abs(DiffPos.Y) <= 50.0f))
 			{
-				IsPickedUp = false;
 				Destroy();
 			}
 		}
 	}
-
 }

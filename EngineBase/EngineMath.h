@@ -1,5 +1,48 @@
 #pragma once
 
+class UEngineMath
+{
+public:
+	static float Sqrt(float _Value)
+	{
+		return ::sqrtf(_Value);
+	}
+
+	template <typename DataType>
+	static DataType ClampMax(DataType value, DataType maxValue)
+	{
+		return (value > maxValue) ? maxValue : value;
+	}
+
+	template <typename DataType>
+	static DataType ClampMin(DataType value, DataType minValue)
+	{
+		return (value < minValue) ? minValue : value;
+	}
+
+	template <typename DataType>
+	static DataType Clamp(DataType value, DataType minValue, DataType maxValue)
+	{
+		if (value < minValue)
+			return minValue;
+		else if (value > maxValue)
+			return maxValue;
+		else
+			return value;
+	}
+
+	template <typename DataType>
+	static DataType Abs(DataType value)
+	{
+		return (value < 0) ? -value : value;
+	}
+
+	template <typename DataType>
+	static DataType Lerp(DataType A, DataType B, DataType Alpha)
+	{
+		return A * (1 - Alpha) + B * Alpha;
+	}
+};
 
 class FVector2D
 {
@@ -86,6 +129,15 @@ public:
 	}
 
 	class FIntPoint ConvertToPoint() const;
+
+	static FVector2D Lerp(FVector2D _A, FVector2D _B, float _Alpha)
+	{
+		FVector2D Result;
+		_Alpha = UEngineMath::Clamp(_Alpha, 0.0f, 1.0f);
+		Result.X = UEngineMath::Lerp(_A.X, _B.X, _Alpha);
+		Result.Y = UEngineMath::Lerp(_A.Y, _B.Y, _Alpha);
+		return Result;
+	}
 
 	// operator
 	FVector2D operator+(FVector2D _Other) const
@@ -250,44 +302,6 @@ public:
 		X += _Other.X;
 		Y += _Other.Y;
 		return *this;
-	}
-};
-
-class UEngineMath
-{
-public:
-	static float Sqrt(float _Value)
-	{
-		return ::sqrtf(_Value);
-	}
-
-	template <typename DataType>
-	static DataType ClampMax(DataType value, DataType maxValue)
-	{
-		return (value > maxValue) ? maxValue : value;
-	}
-
-	template <typename DataType>
-	static DataType ClampMin(DataType value, DataType minValue)
-	{
-		return (value < minValue) ? minValue : value;
-	}
-
-	template <typename DataType>
-	static DataType Clamp(DataType value, DataType minValue, DataType maxValue)
-	{
-		if (value < minValue)
-			return minValue;
-		else if (value > maxValue)
-			return maxValue;
-		else
-			return value;
-	}
-
-	template <typename DataType>
-	static DataType Abs(DataType value)
-	{
-		return (value < 0) ? -value : value;
 	}
 };
 
