@@ -40,7 +40,7 @@ private:
 	FVector2D Scale{};
 	FVector2D Pos{};
 
-	float Time{170};
+	float Time{};
 	int Minutes{};
 	int Seconds{};
 

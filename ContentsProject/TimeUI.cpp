@@ -106,49 +106,4 @@ void ATimeUI::SetDisplayTime(float _DeltaTime)
     {
         Renders[i]->SetActive(false);
     }
-
-	//SetValue(static_cast<int>(Time));
-}
-
-void ATimeUI::SetValue(int _Time)
-{
-    Minutes = _Time / 60;
-    Seconds = _Time % 60;
-
-    std::string MinuteString = (Minutes < 10 ? "0" : "") + std::to_string(Minutes);
-    std::string SecondString = (Seconds < 10 ? "0" : "") + std::to_string(Seconds);
-
-    std::string CombinedTime = MinuteString + ":" + SecondString;
-
-    if (Renders.size() < CombinedTime.size())
-    {
-        MSGASSERT("TimeUI is overflow.");
-        return;
-    }
-
-    FVector2D Pos = FVector2D::ZERO;
-
-    for (int i = 0; i < CombinedTime.size(); i++)
-    {
-        char Value = CombinedTime[i];
-
-        if (Value >= '0' && Value <= '9')
-        {
-            Renders[i]->SetSprite(TextSpriteName, Value - '0');
-        }
-        else
-        {
-            Renders[i]->SetSprite(TextSpriteName, 10);
-        }
-
-        Renders[i]->SetComponentScale(TextScale);
-        Renders[i]->SetComponentLocation(Pos);
-        Pos.X += TextScale.X;
-        Renders[i]->SetActive(true);
-    }
-
-    for (size_t i = CombinedTime.size(); i < Renders.size(); i++)
-    {
-        Renders[i]->SetActive(false);
-    }
 }

@@ -44,6 +44,8 @@ void ATitleSelectCursor::BeginPlay()
 
 void ATitleSelectCursor::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
+
 	if (true == Alive)
 	{
 		UpdateCursorPosition();
