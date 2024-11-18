@@ -2,6 +2,8 @@
 #include "DropItem.h"
 #include "ContentsEnum.h"
 
+#include <EngineBase/EngineMath.h>
+#include <EngineCore/EngineAPICore.h>
 #include "Player.h"
 
 ADropItem::ADropItem()
@@ -10,6 +12,13 @@ ADropItem::ADropItem()
 
 ADropItem::~ADropItem()
 {
+}
+
+void ADropItem::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
+
+	ItemToPlayer(_DeltaTime);
 }
 
 void ADropItem::InitDropItem(FVector2D _Pos)
@@ -36,11 +45,57 @@ void ADropItem::InitCollision(FVector2D _Pos)
 
 void ADropItem::CollisionEnter(AActor* _ColActor)
 {
-	ApplyItemEffect(); 
-
-	Destroy();
+	ApplyItemEffect();
 }
 
 void ADropItem::ApplyItemEffect()
 {
+	IsPickedUp = true;
+
+	CollisionComponent->SetActive(false);
+	ItemPos = GetActorLocation();
+	PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
+
+	FVector2D DiffPos = PlayerPos - ItemPos;
+
+	DiffPos.X = UEngineMath::Clamp(DiffPos.X, -1.0f, 1.0f);
+	DiffPos.Y = UEngineMath::Clamp(DiffPos.Y, -1.0f, 1.0f);
+
+	KnockBack = -DiffPos;
+}
+
+void ADropItem::ItemToPlayer(float _DeltaTime)
+{
+	if (true == IsPickedUp)
+	{
+		KnockBackTime += _DeltaTime;
+
+		if (false == IsReturning)
+		{
+			AddActorLocation({ KnockBack.X * 200.0f * _DeltaTime, KnockBack.Y * 200.0f * _DeltaTime });
+		
+			if (0.25f <= KnockBackTime)
+			{
+				IsReturning = true;
+			}
+		}
+		else
+		{
+			ItemPos = GetActorLocation();
+			PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
+			FVector2D DiffPos = PlayerPos -ItemPos;
+
+			KnockBack.X = UEngineMath::Clamp(DiffPos.X, -1.0f, 1.0f);
+			KnockBack.Y = UEngineMath::Clamp(DiffPos.Y, -1.0f, 1.0f);
+
+			AddActorLocation({ KnockBack.X * 2.0f * APlayer::PlayerStatus.Speed * _DeltaTime, KnockBack.Y * 2.0f * APlayer::PlayerStatus.Speed * _DeltaTime });
+
+			if (UEngineMath::Abs(DiffPos.X) <= 1.0f && UEngineMath::Abs(DiffPos.Y) <= 1.0f)
+			{
+				IsPickedUp = false;
+				Destroy();
+			}
+		}
+	}
+
 }

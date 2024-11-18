@@ -138,6 +138,11 @@ public:
 		return Result;
 	}
 
+	FVector2D operator-() const
+	{
+		return FVector2D(-X, -Y);
+	}
+
 	bool operator==(FVector2D _Other) const
 	{
 		return X == _Other.X && Y == _Other.Y;
@@ -279,7 +284,11 @@ public:
 			return value;
 	}
 
-
+	template <typename DataType>
+	static DataType Abs(DataType value)
+	{
+		return (value < 0) ? -value : value;
+	}
 };
 
 class UColor

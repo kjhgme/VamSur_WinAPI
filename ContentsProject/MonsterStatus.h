@@ -17,7 +17,7 @@ struct MonsterStatus {
         : Name(name), Hp(hp), AttPower(power), Speed(speed), KnockBack(knockBack), KBMax(kbMax), XP(xp), HaveSkill(haveSkill){}
 };
 
-inline const MonsterStatus Bat1Status("Bat1", 111, 5, 140, 1.0f, 3.0f, 1.0f);
+inline const MonsterStatus Bat1Status("Bat1", 1, 5, 140, 1.0f, 3.0f, 1.0f);
 inline const MonsterStatus Bat2Status("Bat2", 5, 5, 140, 1.0f, 3.0f, 1.0f);
 inline const MonsterStatus Bat3Status("Bat3", 5, 5, 140, 1.0f, 3.0f, 1.0f);
 inline const MonsterStatus Ghoul1Status("Ghoul1", 10, 10, 100, 0.8f, 3.0f, 1.0f);

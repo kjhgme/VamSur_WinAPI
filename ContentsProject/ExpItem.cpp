@@ -8,7 +8,7 @@ AExpItem::AExpItem()
 {
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("ExpItem.png");
+		SpriteRenderer->SetSprite("ExpItem_00.png");
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
 }
