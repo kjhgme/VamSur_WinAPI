@@ -24,6 +24,14 @@ public:
 		Order = _Order;
 	}
 
+	void SetOrder(int _Order)
+	{
+		Order = _Order;
+		SetOrder();
+	}
+
+	void SetOrder();
+
 	void SetTextSpriteName(const std::string& _Text = "Letters");
 
 	void SetTextScale(int _TextScale)
@@ -55,7 +63,6 @@ private:
 
 	void SetSize(int _Size);
 
-	void SetOrder();
 
 };
 

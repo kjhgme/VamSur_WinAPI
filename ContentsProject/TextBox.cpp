@@ -132,6 +132,7 @@ int ATextBox::MapCharacterToSpriteIndex(char Character)
     //기호 매핑
     switch (Character)
     {
+    case ':': return 10;
     case '.': return 63;
     case ',': return 64;
     case '(': return 65;

@@ -7,6 +7,15 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include "InGameUI.h"
+#include "Weapon.h"
+
+constexpr float WeaponNameX = 500.0f;
+constexpr float WeaponStatusX = 700.0f;
+constexpr float WeaponDescriptionX = 450.0f;
+
+constexpr float Weapon1Y = 250.0f;
+constexpr float Weapon2Y = 370.0f;
+constexpr float Weapon3Y = 485.0f;
 
 LevelUpUI::LevelUpUI()
 {
@@ -14,24 +23,33 @@ LevelUpUI::LevelUpUI()
 	SetPos();
 
 	{
-		MainPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		MainPanelRenderer->SetSprite("InGameUI_LevelUpPanel.png");
-		MainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-		MainPanelRenderer->SetSpriteScale(1.0f);
+		LevelUpMainPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		LevelUpMainPanelRenderer->SetSprite("InGameUI_LevelUpPanel.png");
+		LevelUpMainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		LevelUpMainPanelRenderer->SetSpriteScale(1.0f);
 
-		Scale = MainPanelRenderer->GetComponentScale();
+		MainPanelScale = LevelUpMainPanelRenderer->GetComponentScale();
 	}
 
 	{
-		WeaponsPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		WeaponsPanelRenderer->SetSprite("InGameUI_LevelUpWeapons.png");
-		WeaponsPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 2);
-		WeaponsPanelRenderer->SetSpriteScale(1.0f);
-	}
+		WeaponSelectionPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		WeaponSelectionPanelRenderer->SetSprite("InGameUI_LevelUpWeapons.png");
+		WeaponSelectionPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		WeaponSelectionPanelRenderer->SetSpriteScale(1.0f);
+	}	
 }
 
 LevelUpUI::~LevelUpUI()
 {
+}
+
+void LevelUpUI::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, "Whip", "New!", "A Description.", Weapon1Y);
+	CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, "Weapon2", "LV:2", "B Description.", Weapon2Y);
+	CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, "Weapon3", "LV:3", "C Description.", Weapon3Y);
 }
 
 void LevelUpUI::Tick(float _DeltaTime)
@@ -40,8 +58,7 @@ void LevelUpUI::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::GetInst().IsDown('K'))
 	{
-		MainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-		WeaponsPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 2);
+		SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 
 		UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 	}
@@ -51,14 +68,49 @@ void LevelUpUI::Tick(float _DeltaTime)
 
 void LevelUpUI::SetPos()
 {
-	Pos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
-	Pos.Y = Pos.Y - WindowSize.Half().Y + Scale.Half().Y;
+	LevelUpUIPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
+	LevelUpUIPos.Y = LevelUpUIPos.Y - WindowSize.Half().Y + MainPanelScale.Half().Y;
 
-	SetActorLocation({ Pos });
+	SetActorLocation({ LevelUpUIPos });
 }
 
 void LevelUpUI::SetActive()
 {
-	MainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
-	WeaponsPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 2);
+	SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
+}
+
+void LevelUpUI::CreateWeaponUI(ATextBox*& NameBox, ATextBox*& StatusBox, ATextBox*& DescriptionBox,
+	const std::string& Name, const std::string& Status, const std::string& Description, float PosY)
+{
+	NameBox = CreateTextBox(Name, { WeaponNameX, PosY });
+	StatusBox = CreateTextBox(Status, { WeaponStatusX, PosY });
+	DescriptionBox = CreateTextBox(Description, { WeaponDescriptionX, PosY + 60.0f });
+}
+
+ATextBox* LevelUpUI::CreateTextBox(const std::string& Text, const FVector2D& Pos)
+{
+	ATextBox* TextBox = GetWorld()->SpawnActor<ATextBox>();
+	TextBox->InitOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+	TextBox->SetTextScale(12);
+	TextBox->SetText(Text);
+	TextBox->SetPos(Pos);
+	return TextBox;
+}
+
+void LevelUpUI::SetOrder(int NewOrder)
+{
+	LevelUpMainPanelRenderer->SetOrder(NewOrder);
+	WeaponSelectionPanelRenderer->SetOrder(NewOrder);
+
+	Weapon1Name->SetOrder(NewOrder);
+	Weapon1StatusText->SetOrder(NewOrder);
+	Weapon1Description->SetOrder(NewOrder);
+
+	Weapon2Name->SetOrder(NewOrder);
+	Weapon2StatusText->SetOrder(NewOrder);
+	Weapon2Description->SetOrder(NewOrder);
+
+	Weapon3Name->SetOrder(NewOrder);
+	Weapon3StatusText->SetOrder(NewOrder);
+	Weapon3Description->SetOrder(NewOrder);
 }
