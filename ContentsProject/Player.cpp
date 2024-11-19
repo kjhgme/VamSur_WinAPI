@@ -34,7 +34,7 @@ void APlayer::BeginPlay()
 	GetWorld()->SetCameraPivot(Size.Half() * -1.0f);
 
 	InitCreatePlayerAnim();
-	
+
 	AWeapon* test = GetWorld()->SpawnActor<Whip>();
 	Weapons[0] = test;
 	Weapons[0]->Action();
@@ -277,6 +277,8 @@ void APlayer::LevelUp()
 	PlayerStatus.Exp -= GetNextLevelXP(PlayerStatus.Level);
 
 	PlayerStatus.Level++;
+	
+	AInGameUI::ExpBar->SetPlayerLevel();
 
 	AInGameUI::LevelUpPanel->SetActive();
 }

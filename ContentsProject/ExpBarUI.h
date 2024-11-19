@@ -1,4 +1,7 @@
 #pragma once
+
+#include "TextBox.h"
+
 class ExpBarUI : public AActor
 {
 public:
@@ -14,6 +17,7 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	void SetPos();
+	void SetPlayerLevel();
 
 protected:
 
@@ -21,5 +25,9 @@ private:
 	FVector2D WindowSize{};
 	FVector2D Pos{};
 	FVector2D Scale{};
+
+	int PlayerLevel = 1;
+
+	ATextBox* LevelText = nullptr;
 };
 

@@ -33,7 +33,7 @@ public:
 
 	void SetPos(FVector2D _Pos = {0.0f, 0.0f});
 
-	void SetText(std::string_view _Text);	
+	void SetText(const std::string& _Text);
 
 	void SetAlignLeft(bool _Align)
 	{
@@ -45,7 +45,7 @@ public:
 protected:
 
 private:
-	FVector2D Pos{};
+	FVector2D TextPos{};
 	FVector2D TextScale{};
 	int Order{};
 	bool AlignLeft = true;

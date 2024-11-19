@@ -45,39 +45,40 @@ void ATextBox::SetOrder()
 
 void ATextBox::SetPos(FVector2D _Pos)
 {
-    Pos = _Pos;
+    TextPos = _Pos;
 
-    SetActorLocation({ Pos });
+    SetActorLocation({ TextPos });
 }
 
-void ATextBox::SetText(std::string_view _Text)
+void ATextBox::SetText(const std::string& _Text)
 {
     SetSize(_Text.size());
     SetTextSpriteName("Letters");
     SetOrder();
 
-    FVector2D StartPos = Pos;
+    FVector2D StartPos = FVector2D::ZERO;
 
     if (false == AlignLeft)
     {
         float TotalWidth = TextScale.X * _Text.size();
-        Pos.X -= TotalWidth;
+        StartPos.X -= TotalWidth;
     }
+
+    FVector2D CurrentPos = StartPos;
 
 	for (size_t i = 0; i < _Text.size(); i++)
 	{
 		char Value = _Text[i];
-              
-        
+
         if (Value == ' ')
         {
-            Pos.X += TextScale.X;
+            CurrentPos.X += TextScale.X;
             continue;
         }
         if (Value == '\n')
         {
-            Pos.X = 0.0f;
-            Pos.Y += TextScale.Y;
+            CurrentPos.X = StartPos.X;
+            CurrentPos.Y += TextScale.Y;
             continue;
         }
         int SpriteIndex = MapCharacterToSpriteIndex(Value);
@@ -89,8 +90,8 @@ void ATextBox::SetText(std::string_view _Text)
 
         TextRenders[i]->SetSprite(TextSpriteName, SpriteIndex);
         TextRenders[i]->SetComponentScale(TextScale);
-        TextRenders[i]->SetComponentLocation(Pos);
-        Pos.X += TextScale.X;
+        TextRenders[i]->SetComponentLocation(CurrentPos);
+        CurrentPos.X += TextScale.X;
         TextRenders[i]->SetActive(true);        
 	}
 
@@ -102,12 +103,14 @@ void ATextBox::SetText(std::string_view _Text)
 
 void ATextBox::SetSize(int _Size)
 {
-    TextRenders.clear();
-
-    for (size_t i = 0; i < _Size; i++)
+    if (_Size > TextRenders.size())
     {
-        USpriteRenderer* Sprite = CreateDefaultSubObject<USpriteRenderer>();
-        TextRenders.push_back(Sprite);
+        for (size_t i = TextRenders.size(); i < _Size; i++)
+        {
+            USpriteRenderer* Sprite = CreateDefaultSubObject<USpriteRenderer>();
+            Sprite->SetCameraEffect(false);
+            TextRenders.push_back(Sprite);
+        }
     }
 }
 

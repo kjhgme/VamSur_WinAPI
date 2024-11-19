@@ -79,6 +79,11 @@ public:
 		Alpha = static_cast<unsigned char>(_Value * 255.0f);
 	}
 
+	void SetCameraEffect(bool _Value)
+	{
+		IsCameraEffect = _Value;
+	}
+
 	// Function
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop = true);
@@ -91,6 +96,9 @@ private:
 	int Order = 0;
 	int CurIndex = 0;
 	unsigned char Alpha = 255;
+	bool IsCameraEffect = true;
+	float CameraEffectScale = 1.0f;
+	FVector2D Pivot = FVector2D::ZERO;
 
 	class UEngineSprite* Sprite = nullptr;
 	

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ExpBarUI.h"
 #include "LevelUpUI.h"
 #include "KillAndGoldUI.h"
 
@@ -17,6 +18,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	static ExpBarUI* ExpBar;
 	static LevelUpUI* LevelUpPanel;
 	static KillAndGoldUI* KillAndGold;
 
