@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Knife.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TextBox.h">
       <SubType>
       </SubType>
@@ -269,6 +273,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Knife.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TextBox.cpp">
       <SubType>
       </SubType>

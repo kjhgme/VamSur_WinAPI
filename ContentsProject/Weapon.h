@@ -2,6 +2,17 @@
 #include <EngineCore/2DCollision.h>
 #include <EnginePlatform/EngineSound.h>
 
+struct WeaponLevelData {
+	int Level;
+	std::string Description;
+
+	WeaponLevelData()
+		: Level(1), Description("Default Description") {}
+
+	WeaponLevelData(int InLevel, const std::string& InDescription)
+		: Level(InLevel), Description(InDescription) {}
+};
+
 class AWeapon : public AActor
 {
 public:
@@ -16,8 +27,29 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	// InitFunction
 	virtual void InitCollision() {};
 
+	// GetFunction
+	std::string GetWeaponName() const
+	{
+		return WeaponName;
+	}
+
+	std::string GetWeaponDescriptionByLevel(int _Level) const
+	{
+		for (const auto& Data : LevelDescriptions)
+		{
+			if (Data.Level == _Level)
+			{
+				return Data.Description;
+			}
+		}
+		return "Unknown Level...";
+	}
+
+
+	// Function
 	virtual void Action();
 	virtual void ChangeHeadDir();
 
@@ -25,15 +57,17 @@ public:
 	void CollisionStay(AActor* _ColActor);
 	void CollisionEnd(AActor* _ColActor);
 
+	std::string WeaponName;
+	std::vector<WeaponLevelData> LevelDescriptions;
+
 protected:
 	USpriteRenderer* IconSpriteRenderer = nullptr;
 	USpriteRenderer* SpriteRenderer = nullptr;
 	std::vector<U2DCollision*> CollisionComponents;
-	
+
 	int Level = 0;
 	int AttackPower = 0;
 	float KnockBack = 0;
-
 	bool HeadDirRight = true;
 
 private:

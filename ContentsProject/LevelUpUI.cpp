@@ -7,7 +7,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include "InGameUI.h"
-#include "Weapon.h"
+#include "Player.h"
 
 constexpr float WeaponNameX = 500.0f;
 constexpr float WeaponStatusX = 700.0f;

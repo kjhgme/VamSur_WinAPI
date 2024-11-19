@@ -97,6 +97,9 @@
     <ClInclude Include="TextBox.h">
       <Filter>ContentsObjects\Text</Filter>
     </ClInclude>
+    <ClInclude Include="Knife.h">
+      <Filter>ContentsObjects\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -188,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="TextBox.cpp">
       <Filter>ContentsObjects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Knife.cpp">
+      <Filter>ContentsObjects\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

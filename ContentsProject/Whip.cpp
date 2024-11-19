@@ -8,6 +8,18 @@
 
 Whip::Whip()
 {
+	WeaponName = "Whip";
+
+	LevelDescriptions = {
+		{1, "Attacks horizontally, passes through enemies."},
+		{2, "Fires 1 more projectile."},
+		{3, "Base Damage up by 5."},
+		{4, "Base Area up by 10%. Base Damage up by 5."},
+		{5, "Base Damage up by 5."},
+		{6, "Base Area up by 10%. Base Damage up by 5."},
+		{7, "Base Damage up by 5."},
+		{8, "Base Damage up by 5."},
+	};
 }
 
 Whip::~Whip()
