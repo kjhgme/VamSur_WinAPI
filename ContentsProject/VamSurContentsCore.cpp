@@ -74,6 +74,13 @@ void VamSurContentsCore::BeginPlay()
 				Dir.Append("Letters");
 
 				UImageManager::GetInst().LoadFolder(Dir.GetPathToString());
+			} 
+			{
+				UEngineDirectory Dir;
+				Dir.MoveParentToDirectory("Resources/UI/Letter");
+				Dir.Append("DamageNum");
+
+				UImageManager::GetInst().LoadFolder(Dir.GetPathToString());
 			}
 		}
 		// Item

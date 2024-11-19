@@ -24,7 +24,7 @@ public:
 		Order = _Order;
 	}
 
-	void SetTextSpriteName(const std::string _Text);
+	void SetTextSpriteName(const std::string& _Text = "Letters");
 
 	void SetTextScale(int _TextScale)
 	{
@@ -33,7 +33,7 @@ public:
 
 	void SetPos(FVector2D _Pos = {0.0f, 0.0f});
 
-	void SetText(const std::string& _Text);
+	void SetText(const std::string& _Text, const std::string& _Font = "Letters");
 
 	void SetAlignLeft(bool _Align)
 	{

@@ -7,7 +7,7 @@
 ATextBox::ATextBox()
 {
     SetSize(0);
-    SetTextSpriteName("Letters");
+    SetTextSpriteName();
     SetText("");
 }
 
@@ -25,7 +25,7 @@ void ATextBox::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 }
 
-void ATextBox::SetTextSpriteName(const std::string _Text)
+void ATextBox::SetTextSpriteName(const std::string& _Text)
 {
     TextSpriteName = _Text;
 
@@ -50,10 +50,10 @@ void ATextBox::SetPos(FVector2D _Pos)
     SetActorLocation({ TextPos });
 }
 
-void ATextBox::SetText(const std::string& _Text)
+void ATextBox::SetText(const std::string& _Text, const std::string& _Font)
 {
     SetSize(_Text.size());
-    SetTextSpriteName("Letters");
+    SetTextSpriteName(_Font);
     SetOrder();
 
     FVector2D StartPos = FVector2D::ZERO;
