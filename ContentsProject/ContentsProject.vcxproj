@@ -151,7 +151,19 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Axe.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="KingBible.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Knife.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MagicWand.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -273,7 +285,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Axe.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="KingBible.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Knife.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MagicWand.cpp">
       <SubType>
       </SubType>
     </ClCompile>

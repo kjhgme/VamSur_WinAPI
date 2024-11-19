@@ -7,7 +7,6 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include "InGameUI.h"
-#include "Player.h"
 
 constexpr float WeaponNameX = 500.0f;
 constexpr float WeaponStatusX = 700.0f;
@@ -47,7 +46,7 @@ void LevelUpUI::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, "Whip", "New!", "A Description.", Weapon1Y);
+	CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, "Weapon1", "New!", "A Description.", Weapon1Y);
 	CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, "Weapon2", "LV:2", "B Description.", Weapon2Y);
 	CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, "Weapon3", "LV:3", "C Description.", Weapon3Y);
 }
@@ -113,4 +112,8 @@ void LevelUpUI::SetOrder(int NewOrder)
 	Weapon3Name->SetOrder(NewOrder);
 	Weapon3StatusText->SetOrder(NewOrder);
 	Weapon3Description->SetOrder(NewOrder);
+}
+
+void LevelUpUI::ChangeTextBox()
+{
 }

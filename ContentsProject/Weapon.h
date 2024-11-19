@@ -13,6 +13,15 @@ struct WeaponLevelData {
 		: Level(InLevel), Description(InDescription) {}
 };
 
+enum class WeaponType {
+	Whip,
+	MagicWand,
+	Knife,
+	Axe,
+	KingBible,
+	_Count,
+};
+
 class AWeapon : public AActor
 {
 public:
@@ -57,17 +66,18 @@ public:
 	void CollisionStay(AActor* _ColActor);
 	void CollisionEnd(AActor* _ColActor);
 
+	WeaponType Type;
 	std::string WeaponName;
 	std::vector<WeaponLevelData> LevelDescriptions;
+	int Level = 0;
+	int AttackPower = 0;
+	float KnockBack = 0;
 
 protected:
 	USpriteRenderer* IconSpriteRenderer = nullptr;
 	USpriteRenderer* SpriteRenderer = nullptr;
 	std::vector<U2DCollision*> CollisionComponents;
 
-	int Level = 0;
-	int AttackPower = 0;
-	float KnockBack = 0;
 	bool HeadDirRight = true;
 
 private:

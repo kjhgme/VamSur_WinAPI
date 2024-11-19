@@ -79,9 +79,6 @@
     <ClInclude Include="Weapon.h">
       <Filter>ContentsObjects\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="Whip.h">
-      <Filter>ContentsObjects\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="ExpItem.h">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClInclude>
@@ -98,7 +95,19 @@
       <Filter>ContentsObjects\Text</Filter>
     </ClInclude>
     <ClInclude Include="Knife.h">
-      <Filter>ContentsObjects\Weapon</Filter>
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="Whip.h">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicWand.h">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="Axe.h">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="KingBible.h">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -174,9 +183,6 @@
     <ClCompile Include="Weapon.cpp">
       <Filter>ContentsObjects\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="Whip.cpp">
-      <Filter>ContentsObjects\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="ExpItem.cpp">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClCompile>
@@ -193,7 +199,19 @@
       <Filter>ContentsObjects\Text</Filter>
     </ClCompile>
     <ClCompile Include="Knife.cpp">
-      <Filter>ContentsObjects\Weapon</Filter>
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="Whip.cpp">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicWand.cpp">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="Axe.cpp">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="KingBible.cpp">
+      <Filter>ContentsObjects\Weapon\Sub</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +265,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Text">
       <UniqueIdentifier>{12503f64-d3a7-4f82-9997-2c2c9be1bf39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Weapon\Sub">
+      <UniqueIdentifier>{dc35cda0-dd4c-4bde-a97e-4e1c4784d318}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

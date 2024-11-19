@@ -1,6 +1,8 @@
 #pragma once
 
 #include "TextBox.h"
+#include "InGameMode.h"
+#include "Player.h"
 
 class LevelUpUI : public AActor
 {
@@ -25,6 +27,8 @@ public:
 
 	void SetOrder(int NewOrder);
 
+	void ChangeTextBox();
+
 protected:
 
 private:
@@ -44,5 +48,7 @@ private:
 	ATextBox* Weapon3Name = nullptr;
 	ATextBox* Weapon3StatusText = nullptr;
 	ATextBox* Weapon3Description = nullptr;
+
+	APlayer* Player = AInGameMode::Player;
 };
 
