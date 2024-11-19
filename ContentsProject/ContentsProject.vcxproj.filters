@@ -94,6 +94,9 @@
     <ClInclude Include="TimeUI.h">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>ContentsObjects\Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -183,6 +186,9 @@
     <ClCompile Include="TimeUI.cpp">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>ContentsObjects\Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -232,6 +238,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Item\DropItem">
       <UniqueIdentifier>{1969d2c2-9f21-4997-8adb-5b43a966e098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Text">
+      <UniqueIdentifier>{12503f64-d3a7-4f82-9997-2c2c9be1bf39}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

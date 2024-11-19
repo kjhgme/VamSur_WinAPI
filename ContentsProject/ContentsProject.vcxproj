@@ -151,6 +151,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TextBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TimeUI.h">
       <SubType>
       </SubType>
@@ -265,6 +269,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TextBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TimeUI.cpp">
       <SubType>
       </SubType>
