@@ -14,12 +14,19 @@ LevelUpUI::LevelUpUI()
 	SetPos();
 
 	{
-		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("InGameUI_LevelUpPanel.png");
-		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-		SpriteRenderer->SetSpriteScale(1.0f);
+		MainPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		MainPanelRenderer->SetSprite("InGameUI_LevelUpPanel.png");
+		MainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		MainPanelRenderer->SetSpriteScale(1.0f);
 
-		Scale = SpriteRenderer->GetComponentScale();
+		Scale = MainPanelRenderer->GetComponentScale();
+	}
+
+	{
+		WeaponsPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		WeaponsPanelRenderer->SetSprite("InGameUI_LevelUpWeapons.png");
+		WeaponsPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 2);
+		WeaponsPanelRenderer->SetSpriteScale(1.0f);
 	}
 }
 
@@ -33,7 +40,8 @@ void LevelUpUI::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::GetInst().IsDown('K'))
 	{
-		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		MainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		WeaponsPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 2);
 
 		UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 	}
@@ -51,5 +59,6 @@ void LevelUpUI::SetPos()
 
 void LevelUpUI::SetActive()
 {
-	SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
+	MainPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
+	WeaponsPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 2);
 }

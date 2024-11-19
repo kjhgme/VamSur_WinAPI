@@ -19,7 +19,8 @@ public:
 protected:
 
 private:
-	USpriteRenderer* SpriteRenderer = nullptr;
+	USpriteRenderer* MainPanelRenderer = nullptr;
+	USpriteRenderer* WeaponsPanelRenderer = nullptr;
 
 	FVector2D WindowSize{};
 	FVector2D Pos{};
