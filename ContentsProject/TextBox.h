@@ -13,25 +13,32 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	template<typename EnumType>
+	void InitOrder(EnumType _Order)
+	{
+		InitOrder(static_cast<int>(_Order));
+	}
+
+	void InitOrder(int _Order)
+	{
+		Order = _Order;
+	}
+
 	void SetTextSpriteName(const std::string _Text);
 
-	void SetTextScale(FVector2D _TextScale)
+	void SetTextScale(int _TextScale)
 	{
-		TextScale = _TextScale;
+		TextScale = { static_cast<float>(_TextScale), 2.0f * _TextScale };
 	}
-
-	template<typename EnumType>
-	void SetOrder(EnumType _Order)
-	{
-		SetOrder(static_cast<int>(_Order));
-	}
-
-	void SetOrder(int _Order);
 
 	void SetPos(FVector2D _Pos = {0.0f, 0.0f});
 
-	void SetText(std::string_view _Text);
-	void SetSize(int _Size);
+	void SetText(std::string_view _Text);	
+
+	void SetAlignLeft(bool _Align)
+	{
+		AlignLeft = _Align;
+	}
 
 	int MapCharacterToSpriteIndex(char Character);
 
@@ -40,8 +47,15 @@ protected:
 private:
 	FVector2D Pos{};
 	FVector2D TextScale{};
+	int Order{};
+	bool AlignLeft = true;
 
 	std::string TextSpriteName;
 	std::vector<class USpriteRenderer*> TextRenders;
+
+	void SetSize(int _Size);
+
+	void SetOrder();
+
 };
 

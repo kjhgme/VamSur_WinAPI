@@ -5,9 +5,10 @@
 #include <EngineCore/EngineAPICore.h>
 
 ATextBox::ATextBox()
-{    
+{
+    SetSize(0);
+    SetTextSpriteName("Letters");
     SetText("");
-
 }
 
 ATextBox::~ATextBox()
@@ -34,11 +35,11 @@ void ATextBox::SetTextSpriteName(const std::string _Text)
     }
 }
 
-void ATextBox::SetOrder(int _Order)
+void ATextBox::SetOrder()
 {
     for (int i = 0; i < TextRenders.size(); i++)
     {
-        TextRenders[i]->SetOrder(_Order);
+        TextRenders[i]->SetOrder(Order);
     }
 }
 
@@ -53,16 +54,21 @@ void ATextBox::SetText(std::string_view _Text)
 {
     SetSize(_Text.size());
     SetTextSpriteName("Letters");
-    SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
-    SetTextScale({ 18, 42 });
-    SetPos();
+    SetOrder();
 
-	FVector2D Pos = FVector2D::ZERO;
+    FVector2D StartPos = Pos;
+
+    if (false == AlignLeft)
+    {
+        float TotalWidth = TextScale.X * _Text.size();
+        Pos.X -= TotalWidth;
+    }
 
 	for (size_t i = 0; i < _Text.size(); i++)
 	{
 		char Value = _Text[i];
-
+              
+        
         if (Value == ' ')
         {
             Pos.X += TextScale.X;
@@ -84,8 +90,8 @@ void ATextBox::SetText(std::string_view _Text)
         TextRenders[i]->SetSprite(TextSpriteName, SpriteIndex);
         TextRenders[i]->SetComponentScale(TextScale);
         TextRenders[i]->SetComponentLocation(Pos);
-		Pos.X += TextScale.X;
-        TextRenders[i]->SetActive(true);
+        Pos.X += TextScale.X;
+        TextRenders[i]->SetActive(true);        
 	}
 
 	for (size_t i = _Text.size(); i < TextRenders.size(); i++)
