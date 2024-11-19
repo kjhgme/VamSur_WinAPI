@@ -21,6 +21,13 @@ AMonster::~AMonster()
 
 void AMonster::BeginPlay()
 {
+	Super::BeginPlay();
+
+	DamageText = GetWorld()->SpawnActor<ATextBox>();
+	DamageText->InitOrder(static_cast<int>(ERenderOrder::UI) + 1);
+	DamageText->SetTextScale(12);
+	DamageText->SetText("", "DamageNum");
+	DamageText->SetActorLocation(UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize().Half());
 }
 
 void AMonster::Tick(float _DeltaTime)
@@ -204,8 +211,11 @@ void AMonster::TakeDamage(int _Att, float _KnockBack)
 	if (true == CollisionComponent->IsActive())
 	{
 		DiffPos = PlayerPos - MonsterPos;
-		DiffPos = DiffPos / 50.0f;
 
+		DamageText->AddActorLocation(-DiffPos);
+		DamageText->SetText(std::to_string(_Att), "DamageNum");
+
+		DiffPos = DiffPos / 50.0f;
 
 		Status.Hp -= _Att;
 

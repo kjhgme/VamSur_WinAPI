@@ -4,6 +4,8 @@
 #include <EngineCore/2DCollision.h>
 #include "MonsterStatus.h"
 
+#include "TextBox.h"
+
 class AMonster : public AActor
 {
 public:
@@ -63,5 +65,7 @@ private:
 	FVector2D PlayerPos{};
 	FVector2D DiffPos{};
 	FVector2D KnockBack{};
+
+	ATextBox* DamageText = nullptr;
 };
 
