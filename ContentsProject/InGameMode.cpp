@@ -3,12 +3,13 @@
 
 #include <EngineCore/Level.h>
 
-#include "Player.h"
 #include "InGameUI.h"
 #include "InfiniteMap.h"
 #include "TitleGameMode.h"
 #include "MonsterSpawner.h"
 #include "ContentsEnum.h"
+
+APlayer* AInGameMode::Player = nullptr;
 
 AInGameMode::AInGameMode()
 {
@@ -45,7 +46,7 @@ void AInGameMode::BeginPlay()
 
 void AInGameMode::SelectCharacter(std::string_view _Name)
 {
-	APlayer* player = GetWorld()->SpawnActor<APlayer>();
-	player->PlayerInit(_Name);
+	Player = GetWorld()->SpawnActor<APlayer>();
+	Player->PlayerInit(_Name);
 }
 

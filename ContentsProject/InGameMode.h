@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include "Player.h"
 
 class AInGameMode : public AGameMode
 {
@@ -15,6 +16,8 @@ public:
 	void BeginPlay();
 
 	void SelectCharacter(std::string_view _name);
+
+	static APlayer* Player;
 
 protected:
 
