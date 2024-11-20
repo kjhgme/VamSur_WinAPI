@@ -35,6 +35,7 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 	USpriteRenderer* Icon = _Weapon->GetIconSpriteRenderer();
 	Icon = CreateDefaultSubObject<USpriteRenderer>();
 	Icon->SetOrder(ERenderOrder::UI);
+	Icon->SetCameraEffect(false);
 
 	switch (_Weapon->WeaponType)
 	{
@@ -57,8 +58,7 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 	for (int i = 0; i < 6; ++i) {
 		if (Weapons[i]->WeaponType == _Weapon->WeaponType)
 		{
-			Icon->SetComponentLocation({ -620.0f + (i * 35.0f), -350.0f});
-
+			Icon->SetComponentLocation({ 20.0f + (i * 32.0f), 50.0f });
 			break;
 		}
 	}
