@@ -109,6 +109,9 @@
     <ClInclude Include="KingBible.h">
       <Filter>ContentsObjects\Weapon\Sub</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerHpUI.h">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="KingBible.cpp">
       <Filter>ContentsObjects\Weapon\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHpUI.cpp">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -26,8 +26,7 @@ private:
 	FVector2D Pos{};
 	FVector2D Scale{};
 
-	int PlayerLevel = 1;
-
 	ATextBox* LevelText = nullptr;
+	USpriteRenderer* LevelFillRenderer = nullptr;
 };
 

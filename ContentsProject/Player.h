@@ -52,7 +52,7 @@ public:
 
 	void AddExp(float _add);
 	void LevelUp();
-	float GetNextLevelXP(int currentLevel);
+	void UpdateMaxExp();
 
 	static CharacterStatus PlayerStatus;
 

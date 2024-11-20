@@ -18,7 +18,10 @@ void ADropItem::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	ItemToPlayer(_DeltaTime);
+	if (true == IsPickedUp)
+	{
+		ItemToPlayer(_DeltaTime);
+	}
 }
 
 void ADropItem::InitDropItem(FVector2D _Pos)
@@ -45,11 +48,6 @@ void ADropItem::InitCollision(FVector2D _Pos)
 
 void ADropItem::CollisionEnter(AActor* _ColActor)
 {
-	ApplyItemEffect();
-}
-
-void ADropItem::ApplyItemEffect()
-{
 	IsPickedUp = true;
 
 	CollisionComponent->SetActive(false);
@@ -62,6 +60,11 @@ void ADropItem::ApplyItemEffect()
 	DiffPos.Y = UEngineMath::Clamp(DiffPos.Y, -1.0f, 1.0f);
 
 	KnockBack = -DiffPos;
+
+}
+
+void ADropItem::ApplyItemEffect()
+{
 }
 
 void ADropItem::ItemToPlayer(float _DeltaTime)
@@ -94,6 +97,7 @@ void ADropItem::ItemToPlayer(float _DeltaTime)
 			if (
 				(UEngineMath::Abs(DiffPos.X) <= 50.0f && UEngineMath::Abs(DiffPos.Y) <= 50.0f))
 			{
+				ApplyItemEffect();
 				Destroy();
 			}
 		}

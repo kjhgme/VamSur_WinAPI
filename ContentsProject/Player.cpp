@@ -8,6 +8,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
+#include "PlayerHpUI.h"
 #include "InGameUI.h"
 #include "Monster.h"
 #include "Whip.h"
@@ -35,8 +36,9 @@ void APlayer::BeginPlay()
 
 	InitCreatePlayerAnim();
 
-	AWeapon* test = GetWorld()->SpawnActor<Whip>();
-	Weapons[0] = test;
+	PlayerHpUI* HpUI = GetWorld()->SpawnActor<PlayerHpUI>();
+	AWeapon* Weapon = GetWorld()->SpawnActor<Whip>();
+	Weapons[0] = Weapon;
 	Weapons[0]->Action();
 }
 
@@ -259,12 +261,7 @@ void APlayer::AddExp(float _add)
 {
 	PlayerStatus.Exp += _add;
 
-	if (PlayerStatus.Level == 20 || PlayerStatus.Level == 40)
-	{
-		PlayerStatus.Exp += _add;
-	}
-
-	while (PlayerStatus.Exp >= GetNextLevelXP(PlayerStatus.Level))
+	if (PlayerStatus.Exp >= PlayerStatus.MaxExp)
 	{
 		LevelUp();
 	}
@@ -274,43 +271,37 @@ void APlayer::LevelUp()
 {
 	UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 
-	PlayerStatus.Exp -= GetNextLevelXP(PlayerStatus.Level);
+	PlayerStatus.Exp -= PlayerStatus.MaxExp;
+
+	UpdateMaxExp();
 
 	PlayerStatus.Level++;
-	
-	AInGameUI::ExpBar->SetPlayerLevel();
 
+	AInGameUI::ExpBar->SetPlayerLevel();
 	AInGameUI::LevelUpPanel->SetActive();
 }
 
-float APlayer::GetNextLevelXP(int currentLevel)
+void APlayer::UpdateMaxExp()
 {
-	float requiredXP = 0.0f;
-
-	if (currentLevel < 20)
+	if (PlayerStatus.Level < 20)
 	{
-		// 레벨 1부터 19까지 XP 계산
-		requiredXP = 5.0f + (currentLevel - 1) * 10.0f;
+		PlayerStatus.MaxExp += 10.0f;
 	}
-	else if (currentLevel <= 40)
+	else if (PlayerStatus.Level <= 40)
 	{
-		// 레벨 20부터 40까지 XP 계산
-		requiredXP = 15.0f + (currentLevel - 2) * 13.0f;
+		PlayerStatus.MaxExp += 13.0f;
 	}
 	else
 	{
-		// 레벨 41부터 XP 계산
-		requiredXP = 25.0f + (currentLevel - 41) * 16.0f;
+		PlayerStatus.MaxExp += 16.0f;
 	}
 
-	if (currentLevel == 20)
+	if (PlayerStatus.Level == 20)
 	{
-		requiredXP += 600.0f;  // 레벨 20에서 600 XP 보너스
+		PlayerStatus.MaxExp += 600.0f;  
 	}
-	else if (currentLevel == 40)
+	else if (PlayerStatus.Level == 40)
 	{
-		requiredXP += 2400.0f;  // 레벨 40에서 2400 XP 보너스
+		PlayerStatus.MaxExp += 2400.0f; 
 	}
-
-	return requiredXP;
 }

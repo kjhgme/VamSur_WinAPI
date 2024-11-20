@@ -6,6 +6,16 @@
 #include "SceneComponent.h"
 #include "EngineSprite.h"
 
+enum class PivotType
+{
+	Center,
+	Left,
+	Right,
+	Bot,
+	Top,
+	LeftTop,
+};
+
 class USpriteRenderer : public USceneComponent
 {
 public:
@@ -84,6 +94,9 @@ public:
 		IsCameraEffect = _Value;
 	}
 
+	void SetPivotValue(FVector2D _Value);
+	void SetPivotType(PivotType _Type);
+
 	// Function
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
 	void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, float _Frame, bool _Loop = true);
@@ -98,7 +111,7 @@ private:
 	unsigned char Alpha = 255;
 	bool IsCameraEffect = true;
 	float CameraEffectScale = 1.0f;
-	FVector2D Pivot = FVector2D::ZERO;
+	FVector2D Pivot = FVector2D(0.5f, 0.5f);
 
 	class UEngineSprite* Sprite = nullptr;
 	

@@ -2,7 +2,7 @@
 #include "ExpItem.h"
 #include "ContentsEnum.h"
 
-#include "Player.h"
+#include "InGameMode.h"
 
 AExpItem::AExpItem()
 {
@@ -26,6 +26,6 @@ void AExpItem::ApplyItemEffect()
 {
 	ADropItem::ApplyItemEffect();
 
-	APlayer::PlayerStatus.Exp += Exp;
+	AInGameMode::Player->AddExp(Exp);
 }
 

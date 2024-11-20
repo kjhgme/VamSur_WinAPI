@@ -94,7 +94,10 @@ void USpriteRenderer::Render(float _DeltaTime)
 		Trans.Location = Trans.Location - (Level->CameraPos * CameraEffectScale);
 	}
 
-	Trans.Location += Pivot;
+	FVector2D PivotRealScale;
+	PivotRealScale.X = std::floorf((0.5f - Pivot.X) * Trans.Scale.X);
+	PivotRealScale.Y = std::floorf((0.5f - Pivot.Y) * Trans.Scale.Y);
+	Trans.Location += PivotRealScale;
 
 	if (Alpha == 255)
 	{
@@ -183,6 +186,50 @@ FVector2D USpriteRenderer::SetSpriteScale(float _Ratio, int _CurIndex)
 	SetComponentScale(CurData.Transform.Scale * _Ratio);
 
 	return Scale;
+}
+
+void USpriteRenderer::SetPivotValue(FVector2D _Value)
+{
+	Pivot = _Value;
+}
+
+void USpriteRenderer::SetPivotType(PivotType _Type)
+{
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("Sprite is NULL.");
+		return;
+	}
+
+	switch (_Type)
+	{
+	case PivotType::Center:
+		Pivot.X = 0.5f;
+		Pivot.Y = 0.5f;
+		break;
+	case PivotType::Bot:
+		Pivot.X = 0.5f;
+		Pivot.Y = 1.0f;
+		break;
+	case PivotType::Top:
+		Pivot.X = 0.5f;
+		Pivot.Y = 0.0f;
+		break;
+	case PivotType::Left:
+		Pivot.X = 0.0f;
+		Pivot.Y = 0.5f;
+		break;
+	case PivotType::Right:
+		Pivot.X = 1.0f;
+		Pivot.Y = 0.5f;
+		break;
+	case PivotType::LeftTop:
+		Pivot.X = 0.0f;
+		Pivot.Y = 0.0f;
+		break;
+	default:
+		break;
+	}
 }
 
 void USpriteRenderer::CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time, bool _Loop)

@@ -8,11 +8,12 @@ struct CharacterStatus {
     int Might = 0;
     float Speed = 160.0f;
     int Level = 1;
+    float MaxExp = 5.0f;
     float Exp = 0.0f;
 
     CharacterStatus() {};
 
-    CharacterStatus(std::string name, int hp, int armor, int might, float speed, int level = 1, float Exp = 0.0f)
+    CharacterStatus(std::string name, int hp, int armor, int might, float speed, int level = 1, float MaxExp = 0.0f, float Exp = 0.0f)
         : Name(name), Hp(hp), Armor(armor), Might(might), Speed(speed), Level(level) {}
 };
                                 // Name, Health, Armor, Might, Speed

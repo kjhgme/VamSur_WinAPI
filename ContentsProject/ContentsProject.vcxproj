@@ -167,6 +167,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PlayerHpUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TextBox.h">
       <SubType>
       </SubType>
@@ -298,6 +302,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MagicWand.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlayerHpUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>
