@@ -10,6 +10,13 @@ public:
 	MagicWand(MagicWand&& _Other) noexcept = delete;
 	MagicWand& operator=(const MagicWand& _Other) = delete;
 	MagicWand& operator=(MagicWand&& _Other) noexcept = delete;
+	
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	void InitCollision() override;
+
+	void Action() override;
 
 protected:
 

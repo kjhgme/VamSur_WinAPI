@@ -130,6 +130,7 @@ void VamSurContentsCore::BeginPlay()
 		{
 			LoadWeaponImages("WeaponIcon");
 			LoadWeaponImages("Whip");
+			LoadWeaponImages("MagicWand");
 		}
 		// Sounds
 		{

@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "MagicWand.h"
+#include "ContentsEnum.h"
 
 MagicWand::MagicWand()
 {
@@ -18,5 +19,31 @@ MagicWand::MagicWand()
 }
 
 MagicWand::~MagicWand()
+{
+}
+
+void MagicWand::BeginPlay()
+{
+	AWeapon::BeginPlay();
+	
+	{
+		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
+		SpriteRenderer->SetSprite("MagicWand", 0);
+		SpriteRenderer->SetComponentLocation({ 50.0f, 50.0f });
+		SpriteRenderer->SetSpriteScale(1.0f);
+		// SpriteRenderer->SetAlphaChar(0);
+	}
+}
+
+void MagicWand::Tick(float _DeltaTime)
+{
+}
+
+void MagicWand::InitCollision()
+{
+}
+
+void MagicWand::Action()
 {
 }

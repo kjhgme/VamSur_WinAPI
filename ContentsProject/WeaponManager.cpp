@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "WeaponManager.h"
+#include "ContentsEnum.h"
 
 #include "InGameMode.h"
 #include "Whip.h"
@@ -19,14 +20,50 @@ void AWeaponManager::InitWeapon()
 {
 	if (AInGameMode::Player->PlayerStatus.Name == "Antonio")
 	{
-		Weapons[0] = GetWorld()->SpawnActor<Whip>();
+		AddWeapon(EWeaponType::Whip);
 	}
 	else if (AInGameMode::Player->PlayerStatus.Name == "Imelda")
 	{
-		Weapons[0] = GetWorld()->SpawnActor<MagicWand>();
+		AddWeapon(EWeaponType::MagicWand);
 	}
 
 	Weapons[0]->Action();
+}
+
+void AWeaponManager::SetIconPos(AWeapon* _Weapon)
+{
+	USpriteRenderer* Icon = _Weapon->GetIconSpriteRenderer();
+	Icon = CreateDefaultSubObject<USpriteRenderer>();
+	Icon->SetOrder(ERenderOrder::UI);
+
+	switch (_Weapon->WeaponType)
+	{
+	case EWeaponType::Whip:
+		Icon->SetSprite("WeaponIcon", 0);
+		break;
+	case EWeaponType::MagicWand:
+		Icon->SetSprite("WeaponIcon", 2);
+		break;
+	case EWeaponType::Knife:
+		break;
+	case EWeaponType::Axe:
+		break;
+	case EWeaponType::KingBible:
+		break;
+	default:
+		return;
+	}
+
+	for (int i = 0; i < 6; ++i) {
+		if (Weapons[i]->WeaponType == _Weapon->WeaponType)
+		{
+			Icon->SetComponentLocation({ -620.0f + (i * 35.0f), -350.0f});
+
+			break;
+		}
+	}
+
+	Icon->SetSpriteScale(1.0f);
 }
 
 void AWeaponManager::ChangeDir()
@@ -73,10 +110,11 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 			default:
 				return;
 			}
-			
+
+			SetIconPos(Weapons[i]);
 			Weapons[i]->Action();
 
-			return;  // 무기를 추가했으면 함수를 종료
+			return; 
 		}
 	}
 }

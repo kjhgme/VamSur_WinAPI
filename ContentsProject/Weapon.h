@@ -61,6 +61,10 @@ public:
 		return "Unknown Level...";
 	}
 
+	USpriteRenderer* GetIconSpriteRenderer()
+	{
+		return IconSpriteRenderer;
+	}
 
 	// Function
 	virtual void Action();

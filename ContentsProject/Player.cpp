@@ -277,6 +277,8 @@ void APlayer::LevelUp()
 
 	PlayerStatus.Level++;
 
+	WeaponManager->AddWeapon(EWeaponType::MagicWand);
+
 	AInGameUI::ExpBar->SetPlayerLevel();
 	AInGameUI::LevelUpPanel->SetActive();
 }

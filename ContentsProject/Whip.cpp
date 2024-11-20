@@ -28,13 +28,7 @@ Whip::~Whip()
 
 void Whip::BeginPlay()
 {
-	{
-		IconSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		IconSpriteRenderer->SetOrder(ERenderOrder::UI);
-		IconSpriteRenderer->SetSprite("WeaponIcon", 0);
-		IconSpriteRenderer->SetComponentLocation({ -620.0f, -350.0f });
-		IconSpriteRenderer->SetSpriteScale(1.0f);
-	}
+	AWeapon::BeginPlay();
 
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
@@ -44,6 +38,7 @@ void Whip::BeginPlay()
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetAlphaChar(0);
 	}
+
 	InitCollision();
 
 	Level = 1;

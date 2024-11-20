@@ -16,9 +16,11 @@ public:
 
 	void InitWeapon();
 
+	void SetIconPos(AWeapon* _Weapon);
+
 	void ChangeDir();
 	void AddWeapon(EWeaponType _Type);
-
+	
 protected:
 
 private:
