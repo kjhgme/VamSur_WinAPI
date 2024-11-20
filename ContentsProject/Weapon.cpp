@@ -26,6 +26,11 @@ void AWeapon::ChangeHeadDir()
 	HeadDirRight  = !HeadDirRight;
 }
 
+void AWeapon::LevelUp()
+{
+	Level++;
+}
+
 void AWeapon::CollisionEnter(AActor* _ColActor)
 {
 	AMonster* Monster = static_cast<AMonster*>(_ColActor);

@@ -3,7 +3,7 @@
 
 Knife::Knife()
 {
-	WeaponName = "Knife";
+	WeaponType = EWeaponType::Knife;
 
 	LevelDescriptions = {
 		{1, "Fires quickly in the faced direction."},

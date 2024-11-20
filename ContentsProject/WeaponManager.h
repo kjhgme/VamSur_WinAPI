@@ -1,4 +1,6 @@
 #pragma once
+
+#include "Weapon.h"
 class AWeaponManager : public AActor
 {
 public:
@@ -15,6 +17,7 @@ public:
 	void InitWeapon();
 
 	void ChangeDir();
+	void AddWeapon(EWeaponType _Type);
 
 protected:
 

@@ -3,7 +3,7 @@
 
 Axe::Axe()
 {
-	WeaponName = "Axe";
+	WeaponType = EWeaponType::Axe;
 
 	LevelDescriptions = {
 		{1, "High damage, high Area scaling."},

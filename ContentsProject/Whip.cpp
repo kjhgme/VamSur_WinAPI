@@ -8,7 +8,7 @@
 
 Whip::Whip()
 {
-	WeaponName = "Whip";
+	WeaponType = EWeaponType::Whip;
 
 	LevelDescriptions = {
 		{1, "Attacks horizontally, passes through enemies."},

@@ -13,7 +13,7 @@ struct WeaponLevelData {
 		: Level(InLevel), Description(InDescription) {}
 };
 
-enum class WeaponType {
+enum class EWeaponType : int {
 	Whip,
 	MagicWand,
 	Knife,
@@ -22,14 +22,14 @@ enum class WeaponType {
 	_Count,
 };
 
-enum class PassiveWeaponType {
-	HollowHeart,
-	EmptyTome,
-	Bracer,
-	Candelabrador,
-	Spellbinder,
-	_Count,
-};
+//enum class PassiveWeaponType {
+//	HollowHeart,
+//	EmptyTome,
+//	Bracer,
+//	Candelabrador,
+//	Spellbinder,
+//	_Count,
+//};
 
 class AWeapon : public AActor
 {
@@ -49,11 +49,6 @@ public:
 	virtual void InitCollision() {};
 
 	// GetFunction
-	std::string GetWeaponName() const
-	{
-		return WeaponName;
-	}
-
 	std::string GetWeaponDescriptionByLevel(int _Level) const
 	{
 		for (const auto& Data : LevelDescriptions)
@@ -70,13 +65,13 @@ public:
 	// Function
 	virtual void Action();
 	virtual void ChangeHeadDir();
+	virtual void LevelUp();
 
 	void CollisionEnter(AActor* _ColActor);
 	void CollisionStay(AActor* _ColActor);
 	void CollisionEnd(AActor* _ColActor);
 
-	WeaponType Type;
-	std::string WeaponName;
+	EWeaponType WeaponType;
 	std::vector<WeaponLevelData> LevelDescriptions;
 	int Level = 0;
 	int AttackPower = 0;

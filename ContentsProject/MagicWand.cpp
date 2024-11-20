@@ -3,7 +3,7 @@
 
 MagicWand::MagicWand()
 {
-	WeaponName = "MagicWand";
+	WeaponType = EWeaponType::MagicWand;
 
 	LevelDescriptions = {
 		{1, "Fires at the nearest enemy."},

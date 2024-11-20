@@ -3,7 +3,7 @@
 
 KingBible::KingBible()
 {
-	WeaponName = "KingBible";
+	WeaponType = EWeaponType::KingBible;
 
 	LevelDescriptions = {
 		{1, "Orbits around the character."},
