@@ -14,10 +14,16 @@ public:
 
 	void BeginPlay() override;
 
+	// InitFunction
 	void InitWeapon();
 
+	// GetFunction
+	std::vector<std::pair<EWeaponType, WeaponLevelData>> GetRandWeapons();
+
+	// SetFunction
 	void SetIconPos(AWeapon* _Weapon);
 
+	// Function
 	void ChangeDir();
 	void AddWeapon(EWeaponType _Type);
 	

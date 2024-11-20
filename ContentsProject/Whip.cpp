@@ -18,7 +18,8 @@ Whip::Whip()
 		{5, "Base Damage up by 5."},
 		{6, "Base Area up by 10%. Base Damage up by 5."},
 		{7, "Base Damage up by 5."},
-		{8, "Base Damage up by 5."},
+		{8, "This is for test."},
+		// {8, "Base Damage up by 5."},
 	};
 }
 

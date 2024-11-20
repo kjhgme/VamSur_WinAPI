@@ -19,17 +19,18 @@ enum class EWeaponType : int {
 	Knife,
 	Axe,
 	KingBible,
-	_Count,
+	WeaponCount,
 };
 
-//enum class PassiveWeaponType {
-//	HollowHeart,
-//	EmptyTome,
-//	Bracer,
-//	Candelabrador,
-//	Spellbinder,
-//	_Count,
-//};
+enum class EPassiveWeaponType {
+	START = static_cast<int>(EWeaponType::WeaponCount) - 1,
+	HollowHeart,
+	EmptyTome,
+	Bracer,
+	Candelabrador,
+	Spellbinder,
+	TotalCount,
+};
 
 class AWeapon : public AActor
 {

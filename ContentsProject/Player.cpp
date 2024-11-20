@@ -56,6 +56,7 @@ void APlayer::Tick(float _DeltaTime)
 	if (true == UEngineInput::GetInst().IsDown('L'))
 	{
 		AddExp(5.0f);
+		WeaponManager->GetRandWeapons();
 	}
 	if (true == UEngineInput::GetInst().IsDown('P'))
 	{
@@ -276,9 +277,6 @@ void APlayer::LevelUp()
 	UpdateMaxExp();
 
 	PlayerStatus.Level++;
-
-	// test
-	WeaponManager->AddWeapon(EWeaponType::MagicWand);
 
 	AInGameUI::ExpBar->SetPlayerLevel();
 	AInGameUI::LevelUpPanel->SetActive();

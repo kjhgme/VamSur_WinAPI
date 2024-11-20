@@ -2,6 +2,8 @@
 #include "WeaponManager.h"
 #include "ContentsEnum.h"
 
+#include <EngineBase/EngineRandom.h>
+#include <EngineCore/EngineAPICore.h>
 #include "InGameMode.h"
 #include "Whip.h"
 #include "MagicWand.h"
@@ -28,6 +30,67 @@ void AWeaponManager::InitWeapon()
 	}
 
 	Weapons[0]->Action();
+}
+
+std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeapons()
+{	
+	UEngineRandom RandomGenerator;
+	float time = UEngineAPICore::GetCore()->GetDeltaTime();
+	__int64 UniqueSeed = static_cast<__int64>(time * 10'000'000);
+	RandomGenerator.SetSeed(UniqueSeed);
+
+	// int WeaponCount = static_cast<int>(EPassiveWeaponType::TotalCount);
+	int Count = static_cast<int>(EWeaponType::WeaponCount);
+	std::vector<int> WeaponIndices;
+	for (int i = 0; i < Count; ++i) {
+		WeaponIndices.push_back(i);
+	}
+
+	std::vector<int> RandomSelections;
+	for (int i = 0; i < 3; ++i) {
+		int RandomIndex = RandomGenerator.RandomInt(0, static_cast<int>(WeaponIndices.size()) - 1);
+		RandomSelections.push_back(WeaponIndices[RandomIndex]);
+		WeaponIndices.erase(WeaponIndices.begin() + RandomIndex);
+	}
+
+	// TODO
+	// 무기의 레벨이 최대치면 다른 무기
+	// 레벨이 최대치가 아닌 무기가 없으면 골드
+	std::vector<std::pair<EWeaponType, WeaponLevelData>> RandWeapons;
+		
+	for (int i = 0; i < RandomSelections.size(); ++i)
+	{
+		int SelectedIndex = RandomSelections[i];
+		EWeaponType SelectedType = static_cast<EWeaponType>(SelectedIndex);
+
+		if (SelectedIndex < static_cast<int>(EWeaponType::WeaponCount))
+		{
+			for (int j = 0; j < 6; ++j)
+			{
+				if (Weapons[j] == nullptr)
+				{
+					RandWeapons.emplace_back(SelectedType, Weapons[0]->LevelDescriptions[7]);
+					break;
+				}
+
+				// 가지고 있을 때
+				if (Weapons[j]->WeaponType == SelectedType)
+				{
+					RandWeapons.emplace_back(SelectedType, Weapons[j]->LevelDescriptions[Weapons[j]->Level]);
+					break;
+				}
+			}
+		}
+		else if(SelectedIndex < static_cast<int>(EPassiveWeaponType::TotalCount))
+		{	// 패시브
+
+		}
+		else {
+			// 골드
+		}
+	}
+
+	return RandWeapons;
 }
 
 void AWeaponManager::SetIconPos(AWeapon* _Weapon)

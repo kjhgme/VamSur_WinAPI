@@ -7,6 +7,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include "InGameUI.h"
+#include "WeaponManager.h"
 
 constexpr float WeaponNameX = 500.0f;
 constexpr float WeaponStatusX = 700.0f;
@@ -75,6 +76,7 @@ void LevelUpUI::SetPos()
 
 void LevelUpUI::SetActive()
 {
+
 	ChangeTextBox();
 	SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
 }
