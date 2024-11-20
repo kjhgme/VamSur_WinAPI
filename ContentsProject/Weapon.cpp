@@ -5,14 +5,6 @@
 #include <EngineCore/Level.h>
 #include "Monster.h"
 
-AWeapon::AWeapon()
-{
-}
-
-AWeapon::~AWeapon()
-{
-}
-
 void AWeapon::BeginPlay()
 {
 }

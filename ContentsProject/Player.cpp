@@ -8,10 +8,10 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
+#include "WeaponManager.h"
 #include "PlayerHpUI.h"
 #include "InGameUI.h"
 #include "Monster.h"
-#include "Whip.h"
 
 CharacterStatus APlayer::PlayerStatus;
 
@@ -37,9 +37,7 @@ void APlayer::BeginPlay()
 	InitCreatePlayerAnim();
 
 	PlayerHpUI* HpUI = GetWorld()->SpawnActor<PlayerHpUI>();
-	AWeapon* Weapon = GetWorld()->SpawnActor<Whip>();
-	Weapons[0] = Weapon;
-	Weapons[0]->Action();
+	WeaponManager = GetWorld()->SpawnActor<AWeaponManager>();
 }
 
 void APlayer::Tick(float _DeltaTime)
@@ -143,7 +141,8 @@ void APlayer::PlayerMove(float _DeltaTime)
 		if (false == HeadDirRight)
 		{
 			HeadDirRight = true;
-			Weapons[0]->ChangeHeadDir();
+			WeaponManager->ChangeDir();
+			// Weapons[0]->ChangeHeadDir();
 		}
 		SpriteRenderer->ChangeAnimation("Move_R");
 
@@ -154,7 +153,8 @@ void APlayer::PlayerMove(float _DeltaTime)
 		if (true == HeadDirRight)
 		{
 			HeadDirRight = false;
-			Weapons[0]->ChangeHeadDir();
+			WeaponManager->ChangeDir();
+			// Weapons[0]->ChangeHeadDir();
 		}
 		SpriteRenderer->ChangeAnimation("Move_L");
 

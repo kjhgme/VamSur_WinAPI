@@ -22,11 +22,20 @@ enum class WeaponType {
 	_Count,
 };
 
+enum class PassiveWeaponType {
+	HollowHeart,
+	EmptyTome,
+	Bracer,
+	Candelabrador,
+	Spellbinder,
+	_Count,
+};
+
 class AWeapon : public AActor
 {
 public:
-	AWeapon();
-	~AWeapon();
+	AWeapon() {};
+	~AWeapon() {};
 
 	AWeapon(const AWeapon& _Other) = delete;
 	AWeapon(AWeapon&& _Other) noexcept = delete;

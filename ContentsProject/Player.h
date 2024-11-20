@@ -4,7 +4,6 @@
 #include <EngineCore/Actor.h>
 #include <EngineCore/2DCollision.h>
 #include "CharactersStatus.h"
-#include "Weapon.h"
 
 class APlayer : public AActor
 {
@@ -32,11 +31,6 @@ public:
 		return PlayerStatus.Level;
 	}
 
-	AWeapon* GetWeapon()
-	{
-		return Weapons[0];
-	}
-
 	// Function
 	void PlayerMove(float _DeltaTime);
 
@@ -61,10 +55,9 @@ protected:
 private:
 	bool HeadDirRight = true;
 
-	AWeapon* Weapons[6]{};
-	AWeapon* PassiveWeapons[6]{};
-
 	std::unordered_map<AActor*, float> CollisionStayTimers;
+
+	class AWeaponManager* WeaponManager = nullptr;
 
 	class USpriteRenderer* SpriteRenderer = nullptr;
 	U2DCollision* CollisionComponent = nullptr;

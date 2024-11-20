@@ -29,6 +29,8 @@ public:
 
 	void ChangeTextBox();
 
+	// void SetWeaponInfo(const AWeapon* Weapon, int CurrentLevel);
+
 protected:
 
 private:

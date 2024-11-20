@@ -95,22 +95,25 @@
       <Filter>ContentsObjects\Text</Filter>
     </ClInclude>
     <ClInclude Include="Knife.h">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
     <ClInclude Include="Whip.h">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
     <ClInclude Include="MagicWand.h">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
     <ClInclude Include="Axe.h">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
     <ClInclude Include="KingBible.h">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHpUI.h">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponManager.h">
+      <Filter>ContentsObjects\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,22 +205,25 @@
       <Filter>ContentsObjects\Text</Filter>
     </ClCompile>
     <ClCompile Include="Knife.cpp">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
     <ClCompile Include="Whip.cpp">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
     <ClCompile Include="MagicWand.cpp">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
     <ClCompile Include="Axe.cpp">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
     <ClCompile Include="KingBible.cpp">
-      <Filter>ContentsObjects\Weapon\Sub</Filter>
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHpUI.cpp">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponManager.cpp">
+      <Filter>ContentsObjects\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,8 +278,11 @@
     <Filter Include="ContentsObjects\Text">
       <UniqueIdentifier>{12503f64-d3a7-4f82-9997-2c2c9be1bf39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContentsObjects\Weapon\Sub">
+    <Filter Include="ContentsObjects\Weapon\Aggressive">
       <UniqueIdentifier>{dc35cda0-dd4c-4bde-a97e-4e1c4784d318}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Weapon\Passive">
+      <UniqueIdentifier>{54f835fb-456c-40ce-9ea7-defcf5a24cd3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

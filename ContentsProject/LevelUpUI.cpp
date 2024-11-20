@@ -75,6 +75,7 @@ void LevelUpUI::SetPos()
 
 void LevelUpUI::SetActive()
 {
+	ChangeTextBox();
 	SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
 }
 
@@ -116,4 +117,14 @@ void LevelUpUI::SetOrder(int NewOrder)
 
 void LevelUpUI::ChangeTextBox()
 {
+	// WeaponType._Count + PassiveWeaponType._Count 만큼 랜덤하게
+	// Level이 최대치인 무기는 제외.
 }
+
+//void LevelUpUI::SetWeaponInfo(const AWeapon* Weapon, int CurrentLevel) {
+//	if (!Weapon) return;
+//
+//	Weapon1Name->SetText(Weapon->GetWeaponName());
+//	Weapon1StatusText->SetText("LV:" + std::to_string(CurrentLevel));
+//	Weapon1Description->SetText(Weapon->GetWeaponDescriptionByLevel(CurrentLevel));
+//}
