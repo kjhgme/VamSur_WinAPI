@@ -4,6 +4,8 @@
 
 #include "InGameMode.h"
 
+const FVector2D HpFillScale{ 68.0f, 9.0f };
+
 PlayerHpUI::PlayerHpUI()
 {
 	{
@@ -20,9 +22,9 @@ PlayerHpUI::PlayerHpUI()
 		HpBarFillRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		HpBarFillRenderer->SetSprite("InGameUI_HpBarFill.png");
 		HpBarFillRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
-		HpBarFillRenderer->SetPivotType(PivotType::LeftTop);
-		// HpBarFillRenderer->SetComponentScale({ 0.0f, 20.0f });
-		// HpBarFillRenderer->SetComponentLocation({ -(MaxExp / 2.0f), 0.0f });
+		HpBarFillRenderer->SetPivotType(PivotType::Left);
+		HpBarFillRenderer->SetComponentScale(HpFillScale);
+		HpBarFillRenderer->SetComponentLocation({ -(HpFillScale.X / 2.0f), 0.0f });
 	}
 }
 
@@ -41,6 +43,8 @@ void PlayerHpUI::Tick(float _DeltaTime)
 
 	FVector2D Pos = AInGameMode::Player->GetActorLocation();
 	Pos.Y += 45.0f;
-
 	SetActorLocation(Pos);
+
+	float CurHpfill = AInGameMode::Player->PlayerStatus.Hp / AInGameMode::Player->PlayerStatus.MaxHp;
+	HpBarFillRenderer->SetComponentScale({ HpFillScale.X * CurHpfill, HpFillScale.Y });
 }
