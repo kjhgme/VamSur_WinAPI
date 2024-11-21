@@ -36,6 +36,24 @@ LevelUpUI::LevelUpUI()
 		WeaponSelectionPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 		WeaponSelectionPanelRenderer->SetSpriteScale(1.0f);
 	}	
+	{
+		LeftCursor = CreateDefaultSubObject<USpriteRenderer>();
+		LeftCursor->SetSprite("Cursor", 0);
+		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND)-1);
+		LeftCursor->SetSpriteScale(1.0f);
+
+		LeftCursor->CreateAnimation("Cursor_L", "Cursor", 0, 7, 0.15f);
+		LeftCursor->ChangeAnimation("Cursor_L");
+	}
+	{
+		RightCursor = CreateDefaultSubObject<USpriteRenderer>();
+		RightCursor->SetSprite("Cursor", 8);
+		RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND)-1);
+		RightCursor->SetSpriteScale(1.0f);
+
+		RightCursor->CreateAnimation("Cursor_R", "Cursor", 8, 15, 0.15f);
+		RightCursor->ChangeAnimation("Cursor_R");
+	}
 }
 
 LevelUpUI::~LevelUpUI()
@@ -55,11 +73,30 @@ void LevelUpUI::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (true == UEngineInput::GetInst().IsDown('K'))
+	if (IsActive == true)
 	{
-		SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		UpdateCursorPosition();
 
-		UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+		if (true == UEngineInput::GetInst().IsDown('K'))
+		{
+			SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+
+			UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+
+			IsActive = false;
+		}
+		if (true == UEngineInput::GetInst().IsDown('W'))
+		{
+			pos.move("up");
+		}
+		else if (true == UEngineInput::GetInst().IsDown('S'))
+		{
+			pos.move("down");
+		}
+		else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
+		{
+
+		}
 	}
 
 	SetPos();
@@ -75,7 +112,11 @@ void LevelUpUI::SetPos()
 
 void LevelUpUI::SetActive()
 {
+	IsActive = true;
 	SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
+
+	LeftCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
+	RightCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
 }
 
 void LevelUpUI::CreateWeaponUI(ATextBox*& NameBox, ATextBox*& StatusBox, ATextBox*& DescriptionBox,
@@ -153,4 +194,11 @@ std::string LevelUpUI::EWeaponTypeToString(EWeaponType WeaponType) {
 	case EWeaponType::WeaponCount: return "WeaponCount";
 	default:                       return "Unknown";
 	}
+}
+
+void LevelUpUI::UpdateCursorPosition()
+{
+	CPos currentPos = pos.GetPos();
+	LeftCursor->SetComponentLocation(currentPos.LCP);
+	RightCursor->SetComponentLocation(currentPos.RCP);
 }

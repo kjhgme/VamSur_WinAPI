@@ -1,9 +1,64 @@
 #pragma once
+#include <unordered_map>
 
 #include "TextBox.h"
 #include "InGameMode.h"
 #include "Player.h"
 #include "WeaponManager.h"
+
+struct CPos {
+	FVector2D LCP;
+	FVector2D RCP;
+};
+
+enum LocationID {
+	TOP = 1,
+	MID,
+	BOT,
+};
+
+class LevelUPCursorPosition {
+public:
+
+	LevelUPCursorPosition() : current(TOP) {}
+
+    void move(const std::string& direction) {
+        if (transitions[current].find(direction) != transitions[current].end()) {
+            current = transitions[current][direction];
+        }
+    }
+
+    CPos GetPos() const {
+        switch (current) {
+        case TOP:
+            return TOPPos;
+        case MID:
+            return MIDPos;
+        case BOT:
+            return BOTPos;
+        default:
+            return TOPPos;
+        }
+    }
+
+    LocationID GetPosID() {
+        return current;
+    }
+
+private:
+    LocationID current;
+
+    // 각 위치와 이동 가능한 방향을 정의한 해시맵
+    std::unordered_map<LocationID, std::unordered_map<std::string, LocationID>> transitions = {
+		{TOP, { {"down", MID} }},
+        {MID, { {"up", TOP}, {"down", BOT} }},
+		{BOT, { {"up", MID} }}
+    };
+
+    inline static const CPos TOPPos = { { -245.0f,-120.0f }, { 245.0f, -120.0f } };
+    inline static const CPos MIDPos = { { -245.0f, 0.0f }, { 245.0f, 0.0f } };
+    inline static const CPos BOTPos = { { -245.0f,120.0f }, { 245.0f, 120.0f } };
+};
 
 class LevelUpUI : public AActor
 {
@@ -32,11 +87,18 @@ public:
 
 	std::string EWeaponTypeToString(EWeaponType WeaponType);
 		
+	void UpdateCursorPosition();
+
 protected:
 
 private:
+	bool IsActive = false;
+
 	USpriteRenderer* LevelUpMainPanelRenderer = nullptr;
 	USpriteRenderer* WeaponSelectionPanelRenderer = nullptr;
+	USpriteRenderer* LeftCursor = nullptr;
+	USpriteRenderer* RightCursor = nullptr;
+	LevelUPCursorPosition pos;
 
 	FVector2D WindowSize{};
 	FVector2D LevelUpUIPos{};
