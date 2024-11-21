@@ -31,6 +31,11 @@ public:
 		return PlayerStatus.Level;
 	}
 
+	class AWeaponManager* GetWeaponManager()
+	{
+		return WeaponManager;
+	}
+
 	// Function
 	void PlayerMove(float _DeltaTime);
 

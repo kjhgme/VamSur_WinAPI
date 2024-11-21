@@ -115,5 +115,7 @@ private:
 	ATextBox* Weapon3Description = nullptr;
 
 	APlayer* Player = AInGameMode::Player;
+
+	std::vector<std::pair<EWeaponType, WeaponLevelData>> RandomWeapons;
 };
 

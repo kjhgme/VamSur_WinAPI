@@ -78,11 +78,9 @@ void LevelUpUI::Tick(float _DeltaTime)
 
 		if (true == UEngineInput::GetInst().IsDown('K'))
 		{
-			SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-
+			SetActive();
 			UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 
-			IsActive = false;
 		}
 		if (true == UEngineInput::GetInst().IsDown('W'))
 		{
@@ -94,7 +92,21 @@ void LevelUpUI::Tick(float _DeltaTime)
 		}
 		else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 		{
+			if (pos.GetPosID() == LocationID::TOP)
+			{
+				Player->GetWeaponManager()->AddWeapon(RandomWeapons[0].first);
+			}
+			else if (pos.GetPosID() == LocationID::MID)
+			{
+				Player->GetWeaponManager()->AddWeapon(RandomWeapons[1].first);
+			}
+			else if (pos.GetPosID() == LocationID::BOT)
+			{
+				Player->GetWeaponManager()->AddWeapon(RandomWeapons[2].first);
+			}
 
+			SetActive();
+			UEngineAPICore::GetCore()->GetTimer().ToggleTime();			
 		}
 	}
 
@@ -111,11 +123,23 @@ void LevelUpUI::SetPos()
 
 void LevelUpUI::SetActive()
 {
-	IsActive = true;
-	SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
+	if (IsActive == false)
+	{
+		IsActive = true;
+		SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
 
-	LeftCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
-	RightCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
+		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
+		RightCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
+	}
+	else if (IsActive == true)
+	{
+		IsActive = false;
+		SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+
+		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+
+	}
 }
 
 void LevelUpUI::CreateWeaponUI(ATextBox*& NameBox, ATextBox*& StatusBox, ATextBox*& DescriptionBox,
@@ -165,18 +189,24 @@ void LevelUpUI::ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData
 	Weapon3Name->Destroy();
 	Weapon3StatusText->Destroy();
 	Weapon3Description->Destroy();
+	RandomWeapons.clear();
 
-	std::string Weapon1Type = EWeaponTypeToString(_RandWeapons[0].first);
-	std::string Weapon2Type = EWeaponTypeToString(_RandWeapons[1].first);
-	std::string Weapon3Type = EWeaponTypeToString(_RandWeapons[2].first);
+	for (int i = 0; i < _RandWeapons.size(); ++i)
+	{
+		RandomWeapons.emplace_back(_RandWeapons[i]);
+	}
 
-	std::string Weapon1Level = std::to_string(_RandWeapons[0].second.Level);
-	std::string Weapon2Level = std::to_string(_RandWeapons[1].second.Level);
-	std::string Weapon3Level = std::to_string(_RandWeapons[2].second.Level);
+	std::string Weapon1Type = EWeaponTypeToString(RandomWeapons[0].first);
+	std::string Weapon2Type = EWeaponTypeToString(RandomWeapons[1].first);
+	std::string Weapon3Type = EWeaponTypeToString(RandomWeapons[2].first);
 
-	std::string Weapon1Des = _RandWeapons[0].second.Description;
-	std::string Weapon2Des = _RandWeapons[1].second.Description;
-	std::string Weapon3Des = _RandWeapons[2].second.Description;
+	std::string Weapon1Level = std::to_string(RandomWeapons[0].second.Level);
+	std::string Weapon2Level = std::to_string(RandomWeapons[1].second.Level);
+	std::string Weapon3Level = std::to_string(RandomWeapons[2].second.Level);
+
+	std::string Weapon1Des = RandomWeapons[0].second.Description;
+	std::string Weapon2Des = RandomWeapons[1].second.Description;
+	std::string Weapon3Des = RandomWeapons[2].second.Description;
 
 	CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, Weapon1Type, "LV:" + Weapon1Level, Weapon1Des, Weapon1Y);
 	CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, Weapon2Type, "LV:" + Weapon2Level, Weapon2Des, Weapon2Y);
