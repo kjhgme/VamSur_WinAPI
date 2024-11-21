@@ -96,6 +96,9 @@ private:
 
 	USpriteRenderer* LevelUpMainPanelRenderer = nullptr;
 	USpriteRenderer* WeaponSelectionPanelRenderer = nullptr;
+	USpriteRenderer* Weapon1PanelIconRenderer = nullptr;
+	USpriteRenderer* Weapon2PanelIconRenderer = nullptr;
+	USpriteRenderer* Weapon3PanelIconRenderer = nullptr;
 	USpriteRenderer* LeftCursor = nullptr;
 	USpriteRenderer* RightCursor = nullptr;
 	LevelUPCursorPosition pos;

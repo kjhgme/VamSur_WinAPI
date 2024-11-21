@@ -10,5 +10,6 @@ P : 게임 정지, 재개
 	- Monster
 F : 모든 몬스터 사망
 
-	- LevelUpUI
-K : 레벨업 판넬 치우고 게임 재개
+	- Level Up UI
+WS : Level Up 중 커서 이동
+Space Bar : 선택

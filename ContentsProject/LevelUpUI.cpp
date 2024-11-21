@@ -19,8 +19,7 @@ constexpr float Weapon3Y = 485.0f;
 LevelUpUI::LevelUpUI()
 {
 	WindowSize = UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize();
-	SetPos();
-
+	
 	{
 		LevelUpMainPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		LevelUpMainPanelRenderer->SetSprite("InGameUI_LevelUpPanel.png");
@@ -34,7 +33,21 @@ LevelUpUI::LevelUpUI()
 		WeaponSelectionPanelRenderer->SetSprite("InGameUI_LevelUpWeapons.png");
 		WeaponSelectionPanelRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 		WeaponSelectionPanelRenderer->SetSpriteScale(1.0f);
-	}	
+	}
+	{
+		Weapon1PanelIconRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		Weapon1PanelIconRenderer->SetSprite("WeaponIcon", 0);
+		Weapon1PanelIconRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		Weapon1PanelIconRenderer->SetSpriteScale(1.0f);
+		Weapon2PanelIconRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		Weapon2PanelIconRenderer->SetSprite("WeaponIcon", 2);
+		Weapon2PanelIconRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		Weapon2PanelIconRenderer->SetSpriteScale(1.0f);
+		Weapon3PanelIconRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		Weapon3PanelIconRenderer->SetSprite("WeaponIcon", 4);
+		Weapon3PanelIconRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+		Weapon3PanelIconRenderer->SetSpriteScale(1.0f);
+	}
 	{
 		LeftCursor = CreateDefaultSubObject<USpriteRenderer>();
 		LeftCursor->SetSprite("Cursor", 0);
@@ -53,6 +66,8 @@ LevelUpUI::LevelUpUI()
 		RightCursor->CreateAnimation("Cursor_R", "Cursor", 8, 15, 0.15f);
 		RightCursor->ChangeAnimation("Cursor_R");
 	}
+
+	SetPos();
 }
 
 LevelUpUI::~LevelUpUI()
@@ -121,6 +136,11 @@ void LevelUpUI::SetPos()
 	LevelUpUIPos.Y = LevelUpUIPos.Y - WindowSize.Half().Y + MainPanelScale.Half().Y;
 
 	SetActorLocation({ LevelUpUIPos });
+
+	Weapon1PanelIconRenderer->SetComponentLocation({ -195.0f, -142.0f });
+	Weapon2PanelIconRenderer->SetComponentLocation({ -195.0f, -26.0f });
+	Weapon3PanelIconRenderer->SetComponentLocation({ -195.0f, 92.0f });
+
 }
 
 void LevelUpUI::SetActive()
@@ -166,27 +186,19 @@ void LevelUpUI::SetOrder(int NewOrder)
 	LevelUpMainPanelRenderer->SetOrder(NewOrder);
 	WeaponSelectionPanelRenderer->SetOrder(NewOrder);
 
-	for (int i = 0; i < RandomWeapons.size(); ++i)
-	{
-		if (i == 0)
-		{
-			Weapon1Name->SetOrder(NewOrder);
-			Weapon1StatusText->SetOrder(NewOrder);
-			Weapon1Description->SetOrder(NewOrder);
-		}
-		else if (i == 1)
-		{
-			Weapon2Name->SetOrder(NewOrder);
-			Weapon2StatusText->SetOrder(NewOrder);
-			Weapon2Description->SetOrder(NewOrder);
-		}
-		else if (i == 2)
-		{
-			Weapon3Name->SetOrder(NewOrder);
-			Weapon3StatusText->SetOrder(NewOrder);
-			Weapon3Description->SetOrder(NewOrder);
-		}
-	}
+	Weapon1PanelIconRenderer->SetOrder(NewOrder);
+	Weapon2PanelIconRenderer->SetOrder(NewOrder);
+	Weapon3PanelIconRenderer->SetOrder(NewOrder);
+
+	Weapon1Name->SetOrder(NewOrder);
+	Weapon1StatusText->SetOrder(NewOrder);
+	Weapon1Description->SetOrder(NewOrder);
+	Weapon2Name->SetOrder(NewOrder);
+	Weapon2StatusText->SetOrder(NewOrder);
+	Weapon2Description->SetOrder(NewOrder);
+	Weapon3Name->SetOrder(NewOrder);
+	Weapon3StatusText->SetOrder(NewOrder);
+	Weapon3Description->SetOrder(NewOrder);
 }
 
 void LevelUpUI::ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData>> _RandWeapons)
