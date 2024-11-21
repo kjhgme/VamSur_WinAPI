@@ -29,7 +29,6 @@ LevelUpUI::LevelUpUI()
 
 		MainPanelScale = LevelUpMainPanelRenderer->GetComponentScale();
 	}
-
 	{
 		WeaponSelectionPanelRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		WeaponSelectionPanelRenderer->SetSprite("InGameUI_LevelUpWeapons.png");

@@ -21,6 +21,19 @@ void UEngineTimer::TimeStart()
 	QueryPerformanceCounter(&PrevTime);
 }
 
+void UEngineTimer::TimeCheck()
+{
+	if (false == bIsTimeStopped)
+	{
+		QueryPerformanceCounter(&CurTime);
+
+		double Tick = static_cast<double>(CurTime.QuadPart - PrevTime.QuadPart);
+		DeltaTime = Tick / TimeCounter;
+		fDeltaTime = static_cast<float>(DeltaTime);
+		PrevTime.QuadPart = CurTime.QuadPart;
+	}
+}
+
 float UEngineTimer::End()
 {
 	TimeCheck();
@@ -33,18 +46,16 @@ double UEngineTimer::DEnd()
 	return GetDoubleDeltaTime();
 }
 
-
-void UEngineTimer::TimeCheck()
+float UEngineTimer::GetIndependentDeltaTime()
 {
-	if (false == bIsTimeStopped)
-	{
-		QueryPerformanceCounter(&CurTime);
+	QueryPerformanceCounter(&IndependentCurTime);
 
-		double Tick = static_cast<double>(CurTime.QuadPart - PrevTime.QuadPart);
-		DeltaTime = Tick / TimeCounter;
-		fDeltaTime = static_cast<float>(DeltaTime);
-		PrevTime.QuadPart = CurTime.QuadPart;
-	}
+	double Tick = static_cast<double>(IndependentCurTime.QuadPart - IndependentPrevTime.QuadPart);
+	float IndependentDeltaTime = static_cast<float>(Tick / TimeCounter);
+
+	IndependentPrevTime = IndependentCurTime;
+
+	return IndependentDeltaTime;
 }
 
 void UEngineTimer::ToggleTime()

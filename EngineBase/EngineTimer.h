@@ -13,8 +13,13 @@ public:
 	UEngineTimer& operator=(const UEngineTimer& _Other) = delete;
 	UEngineTimer& operator=(UEngineTimer&& _Other) noexcept = delete;
 
+	void TimeStart();
 	void TimeCheck();
 
+	float End();
+	double DEnd();
+
+	// GetFunction
 	float GetDeltaTime()
 	{
 		return fDeltaTime;
@@ -25,13 +30,11 @@ public:
 		return DeltaTime;
 	}
 
-	void TimeStart();
+	float GetIndependentDeltaTime();
 
-	float End();
-
-	double DEnd();
-
+	// Function
 	void ToggleTime();
+
 
 protected:
 
@@ -39,6 +42,9 @@ private:
 	LARGE_INTEGER Count = LARGE_INTEGER();
 	LARGE_INTEGER PrevTime = LARGE_INTEGER();
 	LARGE_INTEGER CurTime = LARGE_INTEGER();
+
+	LARGE_INTEGER IndependentPrevTime = LARGE_INTEGER();
+	LARGE_INTEGER IndependentCurTime = LARGE_INTEGER();
 
 	double TimeCounter = 0.0f;
 
