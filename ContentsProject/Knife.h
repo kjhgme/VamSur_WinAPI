@@ -12,6 +12,13 @@ public:
 	Knife& operator=(const Knife& _Other) = delete;
 	Knife& operator=(Knife&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	void InitCollision() override;
+
+	void Action() override;
+
 protected:
 
 private:

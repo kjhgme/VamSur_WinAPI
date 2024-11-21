@@ -17,3 +17,14 @@ Bracer::Bracer()
 Bracer::~Bracer()
 {
 }
+
+void Bracer::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void Bracer::Action()
+{
+}

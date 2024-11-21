@@ -17,3 +17,14 @@ Candelabrador::Candelabrador()
 Candelabrador::~Candelabrador()
 {
 }
+
+void Candelabrador::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void Candelabrador::Action()
+{
+}

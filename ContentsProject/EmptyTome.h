@@ -11,6 +11,10 @@ public:
 	EmptyTome& operator=(const EmptyTome& _Other) = delete;
 	EmptyTome& operator=(EmptyTome&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+
+	void Action() override;
+
 protected:
 
 private:

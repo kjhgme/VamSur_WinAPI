@@ -11,6 +11,10 @@ public:
 	Bracer& operator=(const Bracer& _Other) = delete;
 	Bracer& operator=(Bracer&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+
+	void Action() override;
+
 protected:
 
 private:

@@ -20,3 +20,22 @@ KingBible::KingBible()
 KingBible::~KingBible()
 {
 }
+
+void KingBible::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void KingBible::Tick(float _DeltaTime)
+{
+}
+
+void KingBible::InitCollision()
+{
+}
+
+void KingBible::Action()
+{
+}

@@ -17,3 +17,14 @@ Spellbinder::Spellbinder()
 Spellbinder::~Spellbinder()
 {
 }
+
+void Spellbinder::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void Spellbinder::Action()
+{
+}

@@ -20,3 +20,22 @@ Knife::Knife()
 Knife::~Knife()
 {
 }
+
+void Knife::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void Knife::Tick(float _DeltaTime)
+{
+}
+
+void Knife::InitCollision()
+{
+}
+
+void Knife::Action()
+{
+}

@@ -32,8 +32,11 @@ void MagicWand::BeginPlay()
 		SpriteRenderer->SetSprite("MagicWand", 0);
 		SpriteRenderer->SetComponentLocation({ 50.0f, 50.0f });
 		SpriteRenderer->SetSpriteScale(1.0f);
-		// SpriteRenderer->SetAlphaChar(0);
 	}
+
+	Level = 1;
+	AttackPower = 10;
+	KnockBack = 1;
 }
 
 void MagicWand::Tick(float _DeltaTime)

@@ -11,6 +11,10 @@ public:
 	Spellbinder& operator=(const Spellbinder& _Other) = delete;
 	Spellbinder& operator=(Spellbinder&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+
+	void Action() override;
+
 protected:
 
 private:

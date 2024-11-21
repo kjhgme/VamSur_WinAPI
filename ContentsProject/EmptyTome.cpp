@@ -17,3 +17,14 @@ EmptyTome::EmptyTome()
 EmptyTome::~EmptyTome()
 {
 }
+
+void EmptyTome::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void EmptyTome::Action()
+{
+}

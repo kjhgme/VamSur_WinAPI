@@ -11,6 +11,13 @@ public:
 	KingBible& operator=(const KingBible& _Other) = delete;
 	KingBible& operator=(KingBible&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	void InitCollision() override;
+
+	void Action() override;
+
 protected:
 
 private:

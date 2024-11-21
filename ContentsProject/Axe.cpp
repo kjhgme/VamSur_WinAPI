@@ -20,3 +20,22 @@ Axe::Axe()
 Axe::~Axe()
 {
 }
+
+void Axe::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void Axe::Tick(float _DeltaTime)
+{
+}
+
+void Axe::InitCollision()
+{
+}
+
+void Axe::Action()
+{
+}

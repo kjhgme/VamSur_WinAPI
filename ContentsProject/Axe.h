@@ -11,6 +11,13 @@ public:
 	Axe& operator=(const Axe& _Other) = delete;
 	Axe& operator=(Axe&& _Other) noexcept = delete;
 
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+
+	void InitCollision() override;
+
+	void Action() override;
+
 protected:
 
 private:

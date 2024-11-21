@@ -17,3 +17,14 @@ HollowHeart::HollowHeart()
 HollowHeart::~HollowHeart()
 {
 }
+
+void HollowHeart::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Level = 1;
+}
+
+void HollowHeart::Action()
+{
+}
