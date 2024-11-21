@@ -82,12 +82,6 @@ void LevelUpUI::Tick(float _DeltaTime)
 	{
 		UpdateCursorPosition();
 
-		if (true == UEngineInput::GetInst().IsDown('K'))
-		{
-			SetActive();
-			UEngineAPICore::GetCore()->GetTimer().ToggleTime();
-
-		}
 		if (true == UEngineInput::GetInst().IsDown('W'))
 		{
 			pos.move("up");
