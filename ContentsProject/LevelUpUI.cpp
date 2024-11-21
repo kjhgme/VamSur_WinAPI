@@ -226,6 +226,21 @@ void LevelUpUI::ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData
 				CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, WeaponType, "     ", WeaponDes, Weapon3Y);
 			}
 		}
+		else if (RandomWeapons[i].second.Level == 1)
+		{
+			if (i == 0)
+			{
+				CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, WeaponType, "New!", WeaponDes, Weapon1Y);
+			}
+			else if (i == 1)
+			{
+				CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, WeaponType, "New!", WeaponDes, Weapon2Y);
+			}
+			else if (i == 2)
+			{
+				CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, WeaponType, "New!", WeaponDes, Weapon3Y);
+			}
+		}
 		else {
 			if (i == 0)
 			{
