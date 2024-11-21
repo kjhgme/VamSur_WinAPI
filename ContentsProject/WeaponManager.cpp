@@ -4,6 +4,7 @@
 
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/EngineAPICore.h>
+#include "WeaponsLevelDescriptions.h"
 #include "InGameMode.h"
 #include "Whip.h"
 #include "MagicWand.h"
@@ -36,7 +37,7 @@ std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeap
 {	
 	UEngineRandom RandomGenerator;
 
-	// int WeaponCount = static_cast<int>(EPassiveWeaponType::TotalCount);
+	//int Count = static_cast<int>(EPassiveWeaponType::TotalCount);
 	int Count = static_cast<int>(EWeaponType::WeaponCount);
 	std::vector<int> WeaponIndices;
 	for (int i = 0; i < Count; ++i) {
@@ -64,9 +65,11 @@ std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeap
 		{
 			for (int j = 0; j < 6; ++j)
 			{
+				// 가지고 있지 않을때
 				if (Weapons[j] == nullptr)
 				{
-					RandWeapons.emplace_back(SelectedType, Weapons[0]->LevelDescriptions[7]);
+					std::string Description = WeaponLevelDescriptions::GetLevel1Description(SelectedType);
+					RandWeapons.emplace_back(SelectedType, WeaponLevelData{ 1, Description });
 					break;
 				}
 

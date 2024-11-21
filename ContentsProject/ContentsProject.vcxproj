@@ -155,6 +155,22 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Bracer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Candelabrador.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EmptyTome.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="HollowHeart.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="KingBible.h">
       <SubType>
       </SubType>
@@ -168,6 +184,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PlayerHpUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Spellbinder.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -283,6 +303,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="WeaponsLevelDescriptions.h" />
     <ClInclude Include="WeaponSlotsUI.h">
       <SubType>
       </SubType>
@@ -294,6 +315,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Axe.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Bracer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Candelabrador.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EmptyTome.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="HollowHeart.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -310,6 +347,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PlayerHpUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Spellbinder.cpp">
       <SubType>
       </SubType>
     </ClCompile>

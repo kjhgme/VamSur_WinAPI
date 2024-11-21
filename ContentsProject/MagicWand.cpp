@@ -6,7 +6,7 @@ MagicWand::MagicWand()
 {
 	WeaponType = EWeaponType::MagicWand;
 
-	LevelDescriptions = {
+	LevelDescriptions = {	
 		{1, "Fires at the nearest enemy."},
 		{2, "Fires 1 more projectile."},
 		{3, "Cooldown reduced by 0.2 seconds."},

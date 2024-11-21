@@ -147,7 +147,7 @@ void LevelUpUI::CreateWeaponUI(ATextBox*& NameBox, ATextBox*& StatusBox, ATextBo
 {
 	NameBox = CreateTextBox(Name, { WeaponNameX, PosY });
 	StatusBox = CreateTextBox(Status, { WeaponStatusX, PosY });
-	DescriptionBox = CreateTextBox(Description, { WeaponDescriptionX, PosY + 60.0f });
+	DescriptionBox = CreateTextBox(Description, { WeaponDescriptionX, PosY + 50.0f });
 }
 
 ATextBox* LevelUpUI::CreateTextBox(const std::string& Text, const FVector2D& Pos)

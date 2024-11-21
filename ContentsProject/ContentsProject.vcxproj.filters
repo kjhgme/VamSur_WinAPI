@@ -115,6 +115,24 @@
     <ClInclude Include="WeaponManager.h">
       <Filter>ContentsObjects\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="HollowHeart.h">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyTome.h">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClInclude>
+    <ClInclude Include="Bracer.h">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClInclude>
+    <ClInclude Include="Candelabrador.h">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClInclude>
+    <ClInclude Include="Spellbinder.h">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponsLevelDescriptions.h">
+      <Filter>ContentsObjects\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -224,6 +242,21 @@
     </ClCompile>
     <ClCompile Include="WeaponManager.cpp">
       <Filter>ContentsObjects\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="HollowHeart.cpp">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClCompile>
+    <ClCompile Include="EmptyTome.cpp">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClCompile>
+    <ClCompile Include="Bracer.cpp">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClCompile>
+    <ClCompile Include="Candelabrador.cpp">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClCompile>
+    <ClCompile Include="Spellbinder.cpp">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
