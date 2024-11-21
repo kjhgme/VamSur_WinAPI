@@ -138,6 +138,7 @@ int ATextBox::MapCharacterToSpriteIndex(char Character)
     case '(': return 65;
     case ')': return 66;
     case '!': return 67;
+    case '%': return 68;
     default: return -1; 
     }
 }

@@ -19,6 +19,18 @@ public:
             return "High damage, high Area scaling.";
         case EWeaponType::KingBible:
             return "Orbits around the player.";
+        case EWeaponType::HollowHeart:
+            return "Augment max health by 20%.";
+        case EWeaponType::EmptyTome:
+            return "Reduces weapons cooldown by 8%";
+        case EWeaponType::Bracer:
+            return "Increases projectiles speed by 10%";
+        case EWeaponType::Candelabrador:
+            return "Augments area of attacks by 10%";
+        case EWeaponType::Spellbinder:
+            return "Effect lasts 10% longer";
+        case EWeaponType::TotalCount:
+            return "It is TotalCount.\nWrong Input.";
         default:
             return "Unknown weapon.";
         }        

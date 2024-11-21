@@ -19,11 +19,6 @@ enum class EWeaponType : int {
 	Knife,
 	Axe,
 	KingBible,
-	WeaponCount,
-};
-
-enum class EPassiveWeaponType {
-	START = static_cast<int>(EWeaponType::WeaponCount) - 1,
 	HollowHeart,
 	EmptyTome,
 	Bracer,

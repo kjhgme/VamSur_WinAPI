@@ -30,7 +30,7 @@ public:
 protected:
 
 private:
-	class AWeapon* Weapons[6]{};
-	class AWeapon* PassiveWeapons[6]{};
+	class AWeapon* Weapons[12]{};
+	std::vector<int> AvailableWeaponTypes;
 };
 

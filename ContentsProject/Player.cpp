@@ -55,7 +55,8 @@ void APlayer::Tick(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsDown('L'))
 	{
-		AddExp(5.0f);
+		// AddExp(5.0f);
+		LevelUp();
 	}
 	if (true == UEngineInput::GetInst().IsDown('P'))
 	{
@@ -273,11 +274,10 @@ void APlayer::LevelUp()
 	UpdateMaxExp();
 	PlayerStatus.Level++;
 
-	std::vector<std::pair<EWeaponType, WeaponLevelData>> test = WeaponManager->GetRandWeapons();
-
+	std::vector<std::pair<EWeaponType, WeaponLevelData>> RandomWeapons = WeaponManager->GetRandWeapons();
 
 	AInGameUI::ExpBar->SetPlayerLevel();
-	AInGameUI::LevelUpPanel->ChangeTextBox(test);
+	AInGameUI::LevelUpPanel->ChangeTextBox(RandomWeapons);
 	AInGameUI::LevelUpPanel->SetActive();
 }
 
