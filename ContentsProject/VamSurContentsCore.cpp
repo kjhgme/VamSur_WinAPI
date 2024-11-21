@@ -99,7 +99,14 @@ void VamSurContentsCore::BeginPlay()
 				std::string FilePath = ImageFiles[i].GetPathToString();
 				UImageManager::GetInst().Load(FilePath);
 			}
-		}		
+
+			{
+				UEngineDirectory Dir;
+				Dir.MoveParentToDirectory("Resources/InGame");
+				Dir.Append("ItemContainer");
+				UImageManager::GetInst().LoadFolder(Dir.GetPathToString());
+			}
+		}
 		// Charcters
 		{
 			LoadCharacterImages("Antonio");

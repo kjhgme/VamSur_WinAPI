@@ -14,14 +14,11 @@ PlayerHpUI::PlayerHpUI()
 		HpBarRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 
 		HpBarRenderer->SetSpriteScale(1.0f);
-
-		// HpBarRenderer->SetComponentScale({ 0.0f, 20.0f });
-		// HpBarRenderer->SetComponentLocation({ -(MaxExp / 2.0f), 0.0f });
 	}
 	{
 		HpBarFillRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		HpBarFillRenderer->SetSprite("InGameUI_HpBarFill.png");
-		HpBarFillRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
+		HpBarFillRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
 		HpBarFillRenderer->SetPivotType(PivotType::Left);
 		HpBarFillRenderer->SetComponentScale(HpFillScale);
 		HpBarFillRenderer->SetComponentLocation({ -(HpFillScale.X / 2.0f), 0.0f });

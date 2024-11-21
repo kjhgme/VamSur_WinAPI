@@ -2,14 +2,17 @@
 #include "Monster.h"
 #include "ContentsEnum.h"
 
-#include "EngineBase/EngineRandom.h"
-#include <EngineCore/EngineAPICore.h>
-#include <EnginePlatform/EngineInput.h>
 #include <EngineBase/EngineMath.h>
-#include "InGameUI.h"
+#include <EngineBase/EngineRandom.h>
+#include <EnginePlatform/EngineInput.h>
+#include <EngineCore/EngineAPICore.h>
+#include <EngineCore/2DCollision.h>
 #include "Player.h"
-#include "DropItem.h"
 #include "ExpItem.h"
+#include "TextBox.h"
+#include "InGameUI.h"
+#include "DropItem.h"
+
 
 AMonster::AMonster()
 {
@@ -91,6 +94,7 @@ void AMonster::InitCreateMonAnim()
 void AMonster::InitCollision()
 {
 	FVector2D scale =SpriteRenderer->GetComponentScale();
+	scale.Y = scale.X;
 
 	CollisionComponent = CreateDefaultSubObject<U2DCollision>();
 	CollisionComponent->SetComponentLocation({ 0.0f, 0.0f });

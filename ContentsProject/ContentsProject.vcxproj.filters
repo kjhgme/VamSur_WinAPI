@@ -133,6 +133,9 @@
     <ClInclude Include="WeaponsLevelDescriptions.h">
       <Filter>ContentsObjects\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="ItemContainer.h">
+      <Filter>ContentsObjects\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -257,6 +260,9 @@
     </ClCompile>
     <ClCompile Include="Spellbinder.cpp">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemContainer.cpp">
+      <Filter>ContentsObjects\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

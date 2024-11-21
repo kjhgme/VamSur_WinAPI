@@ -17,7 +17,7 @@ CharacterStatus APlayer::PlayerStatus;
 
 APlayer::APlayer()
 {
-	SetActorLocation({ 0, 0 });
+	SetActorLocation( FVector2D::ZERO );
 	InitCollision();
 
 	DebugOn();

@@ -1,10 +1,8 @@
 #pragma once
 
 #include <string.h>
-#include <EngineCore/2DCollision.h>
-#include "MonsterStatus.h"
 
-#include "TextBox.h"
+#include "MonsterStatus.h"
 
 class AMonster : public AActor
 {
@@ -47,7 +45,7 @@ public:
 	void SpawnExpItem();
 	void KnockbackEnd();
 
-	U2DCollision* CollisionComponent = nullptr;
+	class U2DCollision* CollisionComponent = nullptr;
 
 protected:
 	MonsterStatus Status;
@@ -66,6 +64,6 @@ private:
 	FVector2D DiffPos{};
 	FVector2D KnockBack{};
 
-	ATextBox* DamageText = nullptr;
+	class ATextBox* DamageText = nullptr;
 };
 
