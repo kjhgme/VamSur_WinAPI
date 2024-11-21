@@ -35,18 +35,13 @@ LevelUpUI::LevelUpUI()
 		WeaponSelectionPanelRenderer->SetSpriteScale(1.0f);
 	}
 	{
-		Weapon1PanelIconRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		Weapon1PanelIconRenderer->SetSprite("WeaponIcon", 0);
-		Weapon1PanelIconRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-		Weapon1PanelIconRenderer->SetSpriteScale(1.0f);
-		Weapon2PanelIconRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		Weapon2PanelIconRenderer->SetSprite("WeaponIcon", 2);
-		Weapon2PanelIconRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-		Weapon2PanelIconRenderer->SetSpriteScale(1.0f);
-		Weapon3PanelIconRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		Weapon3PanelIconRenderer->SetSprite("WeaponIcon", 4);
-		Weapon3PanelIconRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-		Weapon3PanelIconRenderer->SetSpriteScale(1.0f);
+		for (int i = 0; i < 3; ++i)
+		{
+			WeaponPanelIconRenderer[i] = CreateDefaultSubObject<USpriteRenderer>();
+			WeaponPanelIconRenderer[i]->SetSprite("WeaponIcon", 0);
+			WeaponPanelIconRenderer[i]->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
+			WeaponPanelIconRenderer[i]->SetSpriteScale(1.0f);
+		}
 	}
 	{
 		LeftCursor = CreateDefaultSubObject<USpriteRenderer>();
@@ -137,10 +132,9 @@ void LevelUpUI::SetPos()
 
 	SetActorLocation({ LevelUpUIPos });
 
-	Weapon1PanelIconRenderer->SetComponentLocation({ -195.0f, -142.0f });
-	Weapon2PanelIconRenderer->SetComponentLocation({ -195.0f, -26.0f });
-	Weapon3PanelIconRenderer->SetComponentLocation({ -195.0f, 92.0f });
-
+	WeaponPanelIconRenderer[0]->SetComponentLocation({-195.0f, -142.0f});
+	WeaponPanelIconRenderer[1]->SetComponentLocation({-195.0f, -26.0f});
+	WeaponPanelIconRenderer[2]->SetComponentLocation({-195.0f, 92.0f});
 }
 
 void LevelUpUI::SetActive()
@@ -186,9 +180,10 @@ void LevelUpUI::SetOrder(int NewOrder)
 	LevelUpMainPanelRenderer->SetOrder(NewOrder);
 	WeaponSelectionPanelRenderer->SetOrder(NewOrder);
 
-	Weapon1PanelIconRenderer->SetOrder(NewOrder);
-	Weapon2PanelIconRenderer->SetOrder(NewOrder);
-	Weapon3PanelIconRenderer->SetOrder(NewOrder);
+	for (int i = 0; i < 3; ++i)
+	{
+		WeaponPanelIconRenderer[i]->SetOrder(NewOrder);
+	}
 
 	Weapon1Name->SetOrder(NewOrder);
 	Weapon1StatusText->SetOrder(NewOrder);
@@ -251,6 +246,9 @@ void LevelUpUI::ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData
 				CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon3Y);
 			}
 		}
+
+		int IconIndex = GetWeaponIconIndex(RandomWeapons[i].first);
+		WeaponPanelIconRenderer[i]->SetSprite("WeaponIcon", IconIndex);
 	}
 }
 
@@ -278,4 +276,25 @@ void LevelUpUI::UpdateCursorPosition()
 	CPos currentPos = pos.GetPos();
 	LeftCursor->SetComponentLocation(currentPos.LCP);
 	RightCursor->SetComponentLocation(currentPos.RCP);
+}
+
+int LevelUpUI::GetWeaponIconIndex(EWeaponType WeaponType)
+{
+	switch (WeaponType)
+	{
+	case EWeaponType::Whip:				return 0;
+	case EWeaponType::MagicWand:		return 2;
+	case EWeaponType::Knife:			return 4;
+	case EWeaponType::Axe:				return 6;
+	case EWeaponType::KingBible:		return 8;
+	case EWeaponType::HollowHeart:		return 10;
+	case EWeaponType::EmptyTome:		return 11;
+	case EWeaponType::Bracer:			return 12;
+	case EWeaponType::Candelabrador:	return 13;
+	case EWeaponType::Spellbinder:		return 14;
+	case EWeaponType::BigCoinBag:		return 15;
+	case EWeaponType::FloorChicken:		return 16;
+
+	default: return -1;
+	}
 }

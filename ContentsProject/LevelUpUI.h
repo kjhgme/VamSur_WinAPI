@@ -89,6 +89,8 @@ public:
 		
 	void UpdateCursorPosition();
 
+	int GetWeaponIconIndex(EWeaponType WeaponType);
+
 protected:
 
 private:
@@ -96,9 +98,8 @@ private:
 
 	USpriteRenderer* LevelUpMainPanelRenderer = nullptr;
 	USpriteRenderer* WeaponSelectionPanelRenderer = nullptr;
-	USpriteRenderer* Weapon1PanelIconRenderer = nullptr;
-	USpriteRenderer* Weapon2PanelIconRenderer = nullptr;
-	USpriteRenderer* Weapon3PanelIconRenderer = nullptr;
+	USpriteRenderer* WeaponPanelIconRenderer[3]{};
+
 	USpriteRenderer* LeftCursor = nullptr;
 	USpriteRenderer* RightCursor = nullptr;
 	LevelUPCursorPosition pos;
