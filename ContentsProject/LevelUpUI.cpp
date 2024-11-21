@@ -209,18 +209,35 @@ void LevelUpUI::ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData
 		std::string WeaponType = EWeaponTypeToString(RandomWeapons[i].first);
 		std::string WeaponLevel = std::to_string(RandomWeapons[i].second.Level);
 		std::string WeaponDes = RandomWeapons[i].second.Description;
-
-		if (i == 0)
+	
+		if (RandomWeapons[i].first == EWeaponType::BigCoinBag || RandomWeapons[i].first == EWeaponType::FloorChicken)
 		{
-			CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon1Y);
+			if (i == 0)
+			{
+				CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, WeaponType, "     ", WeaponDes, Weapon1Y);
+			}
+			else if (i == 1)
+			{
+				CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, WeaponType, "     ", WeaponDes, Weapon2Y);
+			}
+			else if (i == 2)
+			{
+				CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, WeaponType, "     ", WeaponDes, Weapon3Y);
+			}
 		}
-		else if (i == 1)
-		{
-			CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon2Y);
-		}
-		else if (i == 2)
-		{
-			CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon3Y);
+		else {
+			if (i == 0)
+			{
+				CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon1Y);
+			}
+			else if (i == 1)
+			{
+				CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon2Y);
+			}
+			else if (i == 2)
+			{
+				CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, WeaponType, "LV:" + WeaponLevel, WeaponDes, Weapon3Y);
+			}
 		}
 	}
 }
@@ -238,6 +255,8 @@ std::string LevelUpUI::EWeaponTypeToString(EWeaponType WeaponType) {
 	case EWeaponType::Candelabrador:	return "Candelabrador";
 	case EWeaponType::Spellbinder:		return "Spellbinder";
 	case EWeaponType::TotalCount:		return "TotalCount";
+	case EWeaponType::BigCoinBag:		return "BigCoinBag";
+	case EWeaponType::FloorChicken:		return "FloorChicken";
 	default:							return "Unknown";
 	}
 }

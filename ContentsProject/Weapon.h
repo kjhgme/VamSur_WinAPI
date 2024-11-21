@@ -25,6 +25,8 @@ enum class EWeaponType : int {
 	Candelabrador,
 	Spellbinder,
 	TotalCount,
+	BigCoinBag,
+	FloorChicken,
 };
 
 class AWeapon : public AActor

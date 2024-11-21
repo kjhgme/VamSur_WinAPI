@@ -112,10 +112,16 @@ std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeap
 	{
 		if (RandWeapons.size() >= 3)
 			break;
-
-		// 치킨 골드로 변경필요
-		std::string Description = WeaponLevelDescriptions::GetLevel1Description(EWeaponType::TotalCount);
-		RandWeapons.emplace_back(EWeaponType::TotalCount, WeaponLevelData{ 1, Description });
+		if (RandomGenerator.RandomInt(0, 1) == 1)
+		{
+			std::string Description = WeaponLevelDescriptions::GetLevel1Description(EWeaponType::BigCoinBag);
+			RandWeapons.emplace_back(EWeaponType::BigCoinBag, WeaponLevelData{ 1, Description });
+		}
+		else 
+		{
+			std::string Description = WeaponLevelDescriptions::GetLevel1Description(EWeaponType::FloorChicken);
+			RandWeapons.emplace_back(EWeaponType::FloorChicken, WeaponLevelData{ 1, Description });
+		}
 	}
 
 	return RandWeapons;
@@ -189,7 +195,6 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 				break;
 			}
 		}
-
 	}
 
 	Icon->SetSpriteScale(1.0f);

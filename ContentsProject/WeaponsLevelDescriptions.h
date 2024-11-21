@@ -31,6 +31,10 @@ public:
             return "Effect lasts 10% longer";
         case EWeaponType::TotalCount:
             return "It is TotalCount.\nWrong Input.";
+        case EWeaponType::BigCoinBag:
+            return "Adds 25 to your gold coins total.";
+        case EWeaponType::FloorChicken:
+            return "Restores 30 health points.";
         default:
             return "Unknown weapon.";
         }        
