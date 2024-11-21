@@ -7,7 +7,6 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/EngineAPICore.h>
 #include "InGameUI.h"
-#include "WeaponManager.h"
 
 constexpr float WeaponNameX = 500.0f;
 constexpr float WeaponStatusX = 700.0f;
@@ -76,8 +75,6 @@ void LevelUpUI::SetPos()
 
 void LevelUpUI::SetActive()
 {
-
-	ChangeTextBox();
 	SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
 }
 
@@ -117,16 +114,43 @@ void LevelUpUI::SetOrder(int NewOrder)
 	Weapon3Description->SetOrder(NewOrder);
 }
 
-void LevelUpUI::ChangeTextBox()
+void LevelUpUI::ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData>> _RandWeapons)
 {
-	// WeaponType._Count + PassiveWeaponType._Count 만큼 랜덤하게
-	// Level이 최대치인 무기는 제외.
+	Weapon1Name->Destroy();
+	Weapon1StatusText->Destroy();
+	Weapon1Description->Destroy();
+	Weapon2Name->Destroy();
+	Weapon2StatusText->Destroy();
+	Weapon2Description->Destroy();
+	Weapon3Name->Destroy();
+	Weapon3StatusText->Destroy();
+	Weapon3Description->Destroy();
+
+	std::string Weapon1Type = EWeaponTypeToString(_RandWeapons[0].first);
+	std::string Weapon2Type = EWeaponTypeToString(_RandWeapons[1].first);
+	std::string Weapon3Type = EWeaponTypeToString(_RandWeapons[2].first);
+
+	std::string Weapon1Level = std::to_string(_RandWeapons[0].second.Level);
+	std::string Weapon2Level = std::to_string(_RandWeapons[1].second.Level);
+	std::string Weapon3Level = std::to_string(_RandWeapons[2].second.Level);
+
+	std::string Weapon1Des = _RandWeapons[0].second.Description;
+	std::string Weapon2Des = _RandWeapons[1].second.Description;
+	std::string Weapon3Des = _RandWeapons[2].second.Description;
+
+	CreateWeaponUI(Weapon1Name, Weapon1StatusText, Weapon1Description, Weapon1Type, "LV:" + Weapon1Level, Weapon1Des, Weapon1Y);
+	CreateWeaponUI(Weapon2Name, Weapon2StatusText, Weapon2Description, Weapon2Type, "LV:" + Weapon2Level, Weapon2Des, Weapon2Y);
+	CreateWeaponUI(Weapon3Name, Weapon3StatusText, Weapon3Description, Weapon3Type, "LV:" + Weapon3Level, Weapon3Des, Weapon3Y);
 }
 
-//void LevelUpUI::SetWeaponInfo(const AWeapon* Weapon, int CurrentLevel) {
-//	if (!Weapon) return;
-//
-//	Weapon1Name->SetText(Weapon->GetWeaponName());
-//	Weapon1StatusText->SetText("LV:" + std::to_string(CurrentLevel));
-//	Weapon1Description->SetText(Weapon->GetWeaponDescriptionByLevel(CurrentLevel));
-//}
+std::string LevelUpUI::EWeaponTypeToString(EWeaponType WeaponType) {
+	switch (WeaponType) {
+	case EWeaponType::Whip:        return "Whip";
+	case EWeaponType::MagicWand:   return "MagicWand";
+	case EWeaponType::Knife:       return "Knife";
+	case EWeaponType::Axe:         return "Axe";
+	case EWeaponType::KingBible:   return "KingBible";
+	case EWeaponType::WeaponCount: return "WeaponCount";
+	default:                       return "Unknown";
+	}
+}

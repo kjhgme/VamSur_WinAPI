@@ -69,5 +69,11 @@ void ExpBarUI::SetPos()
 
 void ExpBarUI::SetPlayerLevel()
 {
+	LevelText->Destroy(); 
+	LevelText = GetWorld()->SpawnActor<ATextBox>();
+	LevelText->InitOrder(static_cast<int>(ERenderOrder::UI) + 1);
+	LevelText->SetTextScale(12);
+	LevelText->SetAlignLeft(false);
+	LevelText->SetPos({ 1260.0f, 13.0f });
 	LevelText->SetText("LV " + std::to_string(AInGameMode::Player->PlayerStatus.Level));
 }

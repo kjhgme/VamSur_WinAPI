@@ -35,9 +35,6 @@ void AWeaponManager::InitWeapon()
 std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeapons()
 {	
 	UEngineRandom RandomGenerator;
-	float time = UEngineAPICore::GetCore()->GetDeltaTime();
-	__int64 UniqueSeed = static_cast<__int64>(time * 10'000'000);
-	RandomGenerator.SetSeed(UniqueSeed);
 
 	// int WeaponCount = static_cast<int>(EPassiveWeaponType::TotalCount);
 	int Count = static_cast<int>(EWeaponType::WeaponCount);
@@ -89,6 +86,7 @@ std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeap
 			// 골드
 		}
 	}
+
 
 	return RandWeapons;
 }

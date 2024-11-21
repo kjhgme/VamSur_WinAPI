@@ -3,6 +3,7 @@
 #include "TextBox.h"
 #include "InGameMode.h"
 #include "Player.h"
+#include "WeaponManager.h"
 
 class LevelUpUI : public AActor
 {
@@ -27,10 +28,10 @@ public:
 
 	void SetOrder(int NewOrder);
 
-	void ChangeTextBox();
+	void ChangeTextBox(std::vector<std::pair<EWeaponType, WeaponLevelData>> _RandWeapons);
 
-	// void SetWeaponInfo(const AWeapon* Weapon, int CurrentLevel);
-
+	std::string EWeaponTypeToString(EWeaponType WeaponType);
+		
 protected:
 
 private:

@@ -56,7 +56,6 @@ void APlayer::Tick(float _DeltaTime)
 	if (true == UEngineInput::GetInst().IsDown('L'))
 	{
 		AddExp(5.0f);
-		WeaponManager->GetRandWeapons();
 	}
 	if (true == UEngineInput::GetInst().IsDown('P'))
 	{
@@ -68,7 +67,6 @@ void APlayer::PlayerInit(std::string_view _name)
 {
 	InitSprite(_name);
 	InitPlayerStatus(_name);
-
 }
 
 void APlayer::InitPlayerStatus(std::string_view _name)
@@ -143,7 +141,6 @@ void APlayer::PlayerMove(float _DeltaTime)
 		{
 			HeadDirRight = true;
 			WeaponManager->ChangeDir();
-			// Weapons[0]->ChangeHeadDir();
 		}
 		SpriteRenderer->ChangeAnimation("Move_R");
 
@@ -155,7 +152,6 @@ void APlayer::PlayerMove(float _DeltaTime)
 		{
 			HeadDirRight = false;
 			WeaponManager->ChangeDir();
-			// Weapons[0]->ChangeHeadDir();
 		}
 		SpriteRenderer->ChangeAnimation("Move_L");
 
@@ -275,10 +271,13 @@ void APlayer::LevelUp()
 	PlayerStatus.Exp -= PlayerStatus.MaxExp;
 
 	UpdateMaxExp();
-
 	PlayerStatus.Level++;
 
+	std::vector<std::pair<EWeaponType, WeaponLevelData>> test = WeaponManager->GetRandWeapons();
+
+
 	AInGameUI::ExpBar->SetPlayerLevel();
+	AInGameUI::LevelUpPanel->ChangeTextBox(test);
 	AInGameUI::LevelUpPanel->SetActive();
 }
 
