@@ -3,6 +3,7 @@
 #include "ContentsEnum.h"
 
 #include "InGameMode.h"
+#include "TantoSkill.h"
 
 ATantoItem::ATantoItem()
 {
@@ -16,4 +17,13 @@ ATantoItem::ATantoItem()
 
 ATantoItem::~ATantoItem()
 {
+}
+
+void ATantoItem::ApplyItemEffect()
+{
+	ADropItem::ApplyItemEffect();
+
+	FVector2D pos = GetWorld()->GetMainPawn()->GetActorLocation();
+	ATantoSkill* Fire = GetWorld()->SpawnActor<ATantoSkill>();
+	Fire->SetActorLocation(pos);
 }

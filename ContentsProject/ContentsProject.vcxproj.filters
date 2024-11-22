@@ -157,6 +157,9 @@
     <ClInclude Include="RichCoinBagItem.h">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClInclude>
+    <ClInclude Include="TantoSkill.h">
+      <Filter>ContentsObjects\Item\DropItemSkill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -306,6 +309,9 @@
     <ClCompile Include="RichCoinBagItem.cpp">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClCompile>
+    <ClCompile Include="TantoSkill.cpp">
+      <Filter>ContentsObjects\Item\DropItemSkill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -364,6 +370,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Weapon\Passive">
       <UniqueIdentifier>{54f835fb-456c-40ce-9ea7-defcf5a24cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\Item\DropItemSkill">
+      <UniqueIdentifier>{ec5834d5-b579-47ab-b68d-c6974985cfdb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

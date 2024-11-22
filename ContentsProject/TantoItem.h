@@ -11,9 +11,11 @@ public:
 	ATantoItem& operator=(const ATantoItem& _Other) = delete;
 	ATantoItem& operator=(ATantoItem&& _Other) noexcept = delete;
 
+	void ApplyItemEffect() override;
+
 protected:
 
 private:
-
+	USpriteRenderer* FireRenderer = nullptr;
 };
 

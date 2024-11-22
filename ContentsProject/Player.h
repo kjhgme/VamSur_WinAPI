@@ -36,6 +36,23 @@ public:
 		return WeaponManager;
 	}
 
+	bool GetHeadDirRight()
+	{
+		return HeadDirRight;
+	}
+	bool GetHeadDirTop()
+	{
+		return HeadDirTop;
+	}
+	bool GetHeadDirBottom()
+	{
+		return HeadDirBottom;
+	}
+	bool GetHeadDirStationary()
+	{
+		return HeadDirStationary;
+	}
+
 	// Function
 	void PlayerMove(float _DeltaTime);
 
@@ -61,6 +78,9 @@ protected:
 
 private:
 	bool HeadDirRight = true;
+	bool HeadDirStationary = true;
+	bool HeadDirTop = false;
+	bool HeadDirBottom = false;
 
 	std::unordered_map<AActor*, float> CollisionStayTimers;
 

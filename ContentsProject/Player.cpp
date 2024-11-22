@@ -138,6 +138,7 @@ void APlayer::PlayerMove(float _DeltaTime)
 	UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->SetActorLocation(this->GetActorLocation());
 	if (true == UEngineInput::GetInst().IsPress('D'))
 	{
+		HeadDirStationary = false;
 		if (false == HeadDirRight)
 		{
 			HeadDirRight = true;
@@ -149,6 +150,8 @@ void APlayer::PlayerMove(float _DeltaTime)
 	}
 	else if (true == UEngineInput::GetInst().IsPress('A'))
 	{
+		HeadDirStationary = false;
+
 		if (true == HeadDirRight)
 		{
 			HeadDirRight = false;
@@ -160,6 +163,8 @@ void APlayer::PlayerMove(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsPress('S'))
 	{
+		HeadDirBottom = true;
+
 		if (true == HeadDirRight)
 			SpriteRenderer->ChangeAnimation("Move_R");
 		else
@@ -169,12 +174,27 @@ void APlayer::PlayerMove(float _DeltaTime)
 	}
 	else if (true == UEngineInput::GetInst().IsPress('W'))
 	{
+		HeadDirTop = true;
+
 		if (true == HeadDirRight)
 			SpriteRenderer->ChangeAnimation("Move_R");
 		else
 			SpriteRenderer->ChangeAnimation("Move_L");
 
 		AddActorLocation(FVector2D::UP * _DeltaTime * PlayerStatus.Speed);
+	}
+	if (true == UEngineInput::GetInst().IsUp('S'))
+	{
+		HeadDirBottom = false;
+	}
+	if (true == UEngineInput::GetInst().IsUp('W'))
+	{
+		HeadDirTop = false;
+	}
+	if (true == UEngineInput::GetInst().IsFree('A') &&
+		true == UEngineInput::GetInst().IsFree('D'))
+	{
+		HeadDirStationary = true;
 	}
 	if (true == UEngineInput::GetInst().IsFree('A') &&
 		true == UEngineInput::GetInst().IsFree('D') &&
