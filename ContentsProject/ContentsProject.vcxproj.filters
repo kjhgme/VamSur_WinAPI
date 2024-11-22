@@ -136,6 +136,27 @@
     <ClInclude Include="ItemContainer.h">
       <Filter>ContentsObjects\Item</Filter>
     </ClInclude>
+    <ClInclude Include="GoldItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="RosaryItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="TantoItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="OrologionItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="VacuumItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="FloorChickenItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
+    <ClInclude Include="RichCoinBagItem.h">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -263,6 +284,27 @@
     </ClCompile>
     <ClCompile Include="ItemContainer.cpp">
       <Filter>ContentsObjects\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="GoldItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="RosaryItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="TantoItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="OrologionItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="VacuumItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="FloorChickenItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
+    </ClCompile>
+    <ClCompile Include="RichCoinBagItem.cpp">
+      <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

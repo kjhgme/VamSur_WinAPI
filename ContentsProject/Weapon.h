@@ -73,7 +73,7 @@ public:
 	void CollisionStay(AActor* _ColActor);
 	void CollisionEnd(AActor* _ColActor);
 
-	EWeaponType WeaponType;
+	EWeaponType WeaponType = EWeaponType::TotalCount;
 	std::vector<WeaponLevelData> LevelDescriptions;
 	int Level = 0;
 	int AttackPower = 0;
