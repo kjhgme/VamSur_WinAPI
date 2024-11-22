@@ -17,6 +17,8 @@ public:
 
 	void SelectCharacter(std::string_view _name);
 
+	void SpawnItemContainer();
+
 	static APlayer* Player;
 
 protected:

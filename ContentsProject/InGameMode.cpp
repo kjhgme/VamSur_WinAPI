@@ -2,6 +2,7 @@
 #include "InGameMode.h"
 #include "ContentsEnum.h"
 
+#include <EngineBase/EngineRandom.h>
 #include <EngineCore/Level.h>
 
 #include "InGameUI.h"
@@ -31,7 +32,8 @@ void AInGameMode::BeginPlay()
 	AInfiniteMap* Map = GetWorld()->SpawnActor<AInfiniteMap>();
 	AMonsterSpawner* MonsterSpawner = GetWorld()->SpawnActor<AMonsterSpawner>();
 	AInGameUI* InGameUI = GetWorld()->SpawnActor<AInGameUI>();
-	AItemContainer* ItemContainer = GetWorld()->SpawnActor<AItemContainer>();
+	TimeEventer.PushEvent(1.0f, std::bind(&AInGameMode::SpawnItemContainer, this), false, -1.0f, true);
+	
 	/*switch (ATitleGameMode::SelectedCharacter)
 	{
 	case 1:
@@ -50,4 +52,16 @@ void AInGameMode::SelectCharacter(std::string_view _Name)
 	Player = GetWorld()->SpawnActor<APlayer>();
 	Player->PlayerInit(_Name);
 }
+
+void AInGameMode::SpawnItemContainer()
+{
+	UEngineRandom RandomGenerator;
+
+	if (0 == RandomGenerator.RandomInt(0, 9))
+	{
+		AItemContainer* ItemContainer = GetWorld()->SpawnActor<AItemContainer>();
+		ItemContainer->SetActorLocation(Player->GetActorLocation());
+	}
+}
+
 

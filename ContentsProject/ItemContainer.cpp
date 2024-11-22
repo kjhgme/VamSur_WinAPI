@@ -18,15 +18,6 @@
 
 AItemContainer::AItemContainer()
 {
-}
-
-AItemContainer::~AItemContainer()
-{
-}
-
-void AItemContainer::BeginPlay()
-{
-	Super::BeginPlay();
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetSprite("ItemContainer", 0);
@@ -52,6 +43,15 @@ void AItemContainer::BeginPlay()
 	}
 
 	SetActorLocation(FVector2D::ZERO);
+}
+
+AItemContainer::~AItemContainer()
+{
+}
+
+void AItemContainer::BeginPlay()
+{
+	Super::BeginPlay();
 
 	DebugOn();
 }
