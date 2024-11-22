@@ -1,5 +1,6 @@
 #pragma once
 #include <deque>
+#include "Weapon.h"
 
 struct DirectionCondition {
 	bool HeadDirRight;
@@ -25,16 +26,27 @@ const std::vector<DirectionCondition> DirectionMapping = {
 	{ true,  true,  false, false, "Fire_RU.png", {1.0f, -1.0f} },
 };
 
-class ATantoSkill : public AActor
+static const std::unordered_map<std::string, FVector2D> MoveOffsets = {
+	{ "Fire_RC.png", { 2.0f,  0.0f } },
+	{ "Fire_RD.png", { 2.0f,  2.0f } },
+	{ "Fire_CD.png", { 0.0f,  2.0f } },
+	{ "Fire_LD.png", { -2.0f, 2.0f } },
+	{ "Fire_LC.png", { -2.0f, 0.0f } },
+	{ "Fire_LU.png", { -2.0f, -2.0f } },
+	{ "Fire_CU.png", { 0.0f,  -2.0f } },
+	{ "Fire_RU.png", { 2.0f,  -2.0f } }
+};
+
+class TantoSkill : public AWeapon
 {
 public:
-	ATantoSkill();
-	~ATantoSkill();
+	TantoSkill();
+	~TantoSkill();
 
-	ATantoSkill(const ATantoSkill& _Other) = delete;
-	ATantoSkill(ATantoSkill&& _Other) noexcept = delete;
-	ATantoSkill& operator=(const ATantoSkill& _Other) = delete;
-	ATantoSkill& operator=(ATantoSkill&& _Other) noexcept = delete;
+	TantoSkill(const TantoSkill& _Other) = delete;
+	TantoSkill(TantoSkill&& _Other) noexcept = delete;
+	TantoSkill& operator=(const TantoSkill& _Other) = delete;
+	TantoSkill& operator=(TantoSkill&& _Other) noexcept = delete;
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

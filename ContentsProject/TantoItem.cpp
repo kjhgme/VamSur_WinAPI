@@ -24,6 +24,6 @@ void ATantoItem::ApplyItemEffect()
 	ADropItem::ApplyItemEffect();
 
 	FVector2D pos = GetWorld()->GetMainPawn()->GetActorLocation();
-	ATantoSkill* Fire = GetWorld()->SpawnActor<ATantoSkill>();
+	TantoSkill* Fire = GetWorld()->SpawnActor<TantoSkill>();
 	Fire->SetActorLocation(pos);
 }

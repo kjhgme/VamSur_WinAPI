@@ -7,78 +7,102 @@
 #include "InGameMode.h"
 #include "Player.h"
 
-ATantoSkill::ATantoSkill()
+TantoSkill::TantoSkill()
 {
 	DebugOn();
 }
 
-ATantoSkill::~ATantoSkill()
+TantoSkill::~TantoSkill()
 {
 }
 
-void ATantoSkill::BeginPlay()
+void TantoSkill::BeginPlay()
 {
 	Super::BeginPlay();
 
 	player = AInGameMode::Player;
 
-	TimeEventer.PushEvent(0.05f, std::bind(&ATantoSkill::Fire, this), false, 10.0f, false);
+	AttackPower = 30;
+	KnockBack = 1;
+
+	TimeEventer.PushEvent(0.1f, std::bind(&TantoSkill::Fire, this), false, 10.0f, false);
 }
 
-void ATantoSkill::Tick(float _DeltaTime)
+void TantoSkill::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
 	SetActorLocation(player->GetActorLocation());
 
-	for (auto& Renderer : FireRenderers)
+	for (size_t i = 0; i < FireRenderers.size(); ++i)
 	{
-		if (Renderer.first == "Fire_RC.png")
-		{
-			Renderer.second->AddComponentLocation({ 2.0f, 0.0f });			
-		}
-		else if (Renderer.first == "Fire_RD.png")
-		{
-			Renderer.second->AddComponentLocation({ 2.0f, 2.0f });
-		}
-		else if (Renderer.first == "Fire_CD.png")
-		{
-			Renderer.second->AddComponentLocation({ 0.0f, 2.0f });
-		}
-		else if (Renderer.first == "Fire_LD.png")
-		{
-			Renderer.second->AddComponentLocation({ -2.0f, 2.0f });
-		}
-		else if (Renderer.first == "Fire_LC.png")
-		{
-			Renderer.second->AddComponentLocation({ -2.0f, 0.0f });
-		}
-		else if (Renderer.first == "Fire_LU.png")
-		{
-			Renderer.second->AddComponentLocation({ -2.0f, -2.0f });
-		}
-		else if (Renderer.first == "Fire_CU.png")
-		{
-			Renderer.second->AddComponentLocation({ 0.0f, -2.0f });
-		}
-		else if (Renderer.first == "Fire_RU.png")
-		{
-			Renderer.second->AddComponentLocation({ 2.0f, -2.0f });
+		auto& Renderer = FireRenderers[i];
+		auto OffsetIt = MoveOffsets.find(Renderer.first);
+
+		if (OffsetIt != MoveOffsets.end()) {
+			Renderer.second->AddComponentLocation(OffsetIt->second);
 		}
 
-		if (-500.0f >= Renderer.second->GetComponentLocation().X ||
-			500.0f <= Renderer.second->GetComponentLocation().X ||
-			-500.0f >= Renderer.second->GetComponentLocation().Y ||
-			500.0f <= Renderer.second->GetComponentLocation().Y)
-		{
+		const FVector2D Location = Renderer.second->GetComponentLocation();
+		if (Location.X <= -500.0f || Location.X >= 500.0f || Location.Y <= -500.0f || Location.Y >= 500.0f) {
 			PopFire();
+			continue;
+		}
+
+		if (i < CollisionComponents.size()) {
+			CollisionComponents[i]->SetComponentLocation(Location);
 		}
 	}
 
-	for (auto& Collision : CollisionComponents)
-	{
-		Collision->AddComponentLocation({ 2.0f, 0.0f });
-	}
+
+	//for (auto& Renderer : FireRenderers)
+	//{
+	//	if (Renderer.first == "Fire_RC.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ 2.0f, 0.0f });			
+	//	}
+	//	else if (Renderer.first == "Fire_RD.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ 2.0f, 2.0f });
+	//	}
+	//	else if (Renderer.first == "Fire_CD.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ 0.0f, 2.0f });
+	//	}
+	//	else if (Renderer.first == "Fire_LD.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ -2.0f, 2.0f });
+	//	}
+	//	else if (Renderer.first == "Fire_LC.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ -2.0f, 0.0f });
+	//	}
+	//	else if (Renderer.first == "Fire_LU.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ -2.0f, -2.0f });
+	//	}
+	//	else if (Renderer.first == "Fire_CU.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ 0.0f, -2.0f });
+	//	}
+	//	else if (Renderer.first == "Fire_RU.png")
+	//	{
+	//		Renderer.second->AddComponentLocation({ 2.0f, -2.0f });
+	//	}
+
+	//	if (-500.0f >= Renderer.second->GetComponentLocation().X ||
+	//		500.0f <= Renderer.second->GetComponentLocation().X ||
+	//		-500.0f >= Renderer.second->GetComponentLocation().Y ||
+	//		500.0f <= Renderer.second->GetComponentLocation().Y)
+	//	{
+	//		PopFire();
+	//	}
+	//}
+
+	//for (auto& Collision : CollisionComponents)
+	//{
+	//	// FireRenderers 와 같은 위치. CollisionComponents에는 Renderer.first가 없음.
+	//}
 
 	Time += _DeltaTime;
 
@@ -86,9 +110,8 @@ void ATantoSkill::Tick(float _DeltaTime)
 		Destroy();
 }
 
-void ATantoSkill::Fire()
-{
-	
+void TantoSkill::Fire()
+{	
 	FireRenderers.push_back(std::make_pair("Fire_RC.png", CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
@@ -115,10 +138,11 @@ void ATantoSkill::Fire()
 		CollisionComponents.back()->SetComponentScale(scale);
 		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
 		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
+		CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
 	}
 }
 
-void ATantoSkill::PopFire()
+void TantoSkill::PopFire()
 {
 	if (!FireRenderers.empty())
 	{
@@ -133,7 +157,7 @@ void ATantoSkill::PopFire()
 	}
 }
 
-void ATantoSkill::SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos)
+void TantoSkill::SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos)
 {
 	_Renderer->SetSprite(_SpriteName);
 	_Renderer->SetSpriteScale(1.0f);
