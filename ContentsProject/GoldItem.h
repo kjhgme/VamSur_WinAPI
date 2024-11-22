@@ -11,9 +11,12 @@ public:
 	AGoldItem& operator=(const AGoldItem& _Other) = delete;
 	AGoldItem& operator=(AGoldItem&& _Other) noexcept = delete;
 
+	void SetGold(int _Gold);
+	void ApplyItemEffect() override;
+
 protected:
 
 private:
-
+	int Gold = 1;
 };
 

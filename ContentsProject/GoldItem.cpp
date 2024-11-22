@@ -2,7 +2,7 @@
 #include "GoldItem.h"
 #include "ContentsEnum.h"
 
-#include "InGameMode.h"
+#include "InGameUI.h"
 
 AGoldItem::AGoldItem()
 {
@@ -16,4 +16,16 @@ AGoldItem::AGoldItem()
 
 AGoldItem::~AGoldItem()
 {
+}
+
+void AGoldItem::SetGold(int _Gold)
+{
+	Gold = _Gold;
+}
+
+void AGoldItem::ApplyItemEffect()
+{
+	ADropItem::ApplyItemEffect();
+
+	AInGameUI::KillAndGold->AddGoldCount(Gold);
 }

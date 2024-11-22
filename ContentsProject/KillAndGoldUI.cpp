@@ -69,7 +69,7 @@ void KillAndGoldUI::SetOrder(int _Order)
 void KillAndGoldUI::SetDisplay()
 {
     DisplayKillCount();
-    DisplayGold();
+    DisplayGoldCount();
 }
 
 void KillAndGoldUI::SetPos()
@@ -112,7 +112,7 @@ void KillAndGoldUI::DisplayKillCount()
     }
 }
 
-void KillAndGoldUI::DisplayGold()
+void KillAndGoldUI::DisplayGoldCount()
 {
     std::string Number = std::to_string(GoldCount);
 
@@ -149,4 +149,10 @@ void KillAndGoldUI::AddKillCount()
 {   
     KillCount++;
     DisplayKillCount();
+}
+
+void KillAndGoldUI::AddGoldCount(int _Gold)
+{
+    GoldCount += _Gold;
+    DisplayGoldCount();
 }

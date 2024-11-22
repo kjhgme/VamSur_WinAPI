@@ -33,9 +33,10 @@ public:
 	void SetPos();
 
 	void DisplayKillCount();
-	void DisplayGold();
+	void DisplayGoldCount();
 
 	void AddKillCount();
+	void AddGoldCount(int _Gold);
 
 protected:
 
