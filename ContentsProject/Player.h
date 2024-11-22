@@ -2,7 +2,6 @@
 #include <unordered_map>
 
 #include <EngineCore/Actor.h>
-#include <EngineCore/2DCollision.h>
 #include "CharactersStatus.h"
 
 class APlayer : public AActor
@@ -34,6 +33,11 @@ public:
 	class AWeaponManager* GetWeaponManager()
 	{
 		return WeaponManager;
+	}
+
+	FVector2D GetPlayerScale() const
+	{		
+		return SpriteRenderer->GetComponentScale();
 	}
 
 	bool GetHeadDirRight()
@@ -87,7 +91,7 @@ private:
 	class AWeaponManager* WeaponManager = nullptr;
 
 	class USpriteRenderer* SpriteRenderer = nullptr;
-	U2DCollision* CollisionComponent = nullptr;
+	class U2DCollision* CollisionComponent = nullptr;
 	USpriteRenderer* BloodRenderer = nullptr;
 };
 

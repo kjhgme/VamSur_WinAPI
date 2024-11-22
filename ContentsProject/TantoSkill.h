@@ -7,21 +7,22 @@ struct DirectionCondition {
 	bool HeadDirBottom;
 	bool HeadDirStationary;
 	std::string SpriteName;
+	FVector2D FirePos;
 };
 
 const std::vector<DirectionCondition> DirectionMapping = {
-	{ true,  false, false, false, "Fire_00.png" },
-	{ true,  false, false, true, "Fire_00.png" },
-	{ true,  false, true, false, "Fire_01.png" },
-	{ false, false, true, true, "Fire_02.png" },
-	{ true, false, true, true, "Fire_02.png" },
-	{ false, false, true, false, "Fire_03.png" },
-	{ false, false, false, false, "Fire_04.png" },
-	{ false, false, false, true, "Fire_04.png" },
-	{ false, true,  false, false, "Fire_05.png" },
-	{ false, true,  false, true, "Fire_06.png" },
-	{ true, true,  false, true, "Fire_06.png" },
-	{ true,  true,  false, false, "Fire_07.png" },
+	{ true,  false, false, false, "Fire_RC.png", {1.0f, 0.0f} },
+	{ true,  false, false, true, "Fire_RC.png", {1.0f, 0.0f} },
+	{ true,  false, true, false, "Fire_RD.png", {1.0f, 1.0f} },
+	{ false, false, true, true, "Fire_CD.png", {0.0f, 1.0f} },
+	{ true, false, true, true, "Fire_CD.png", {0.0f, 1.0f} },
+	{ false, false, true, false, "Fire_LD.png", {-1.0f, 0.0f} },
+	{ false, false, false, false, "Fire_LC.png", {-1.0f, 0.0f} },
+	{ false, false, false, true, "Fire_LC.png", {-1.0f, 0.0f} },
+	{ false, true,  false, false, "Fire_LU.png", {-1.0f, -1.0f} },
+	{ false, true,  false, true, "Fire_CU.png", {0.0f, -1.0f} },
+	{ true, true,  false, true, "Fire_CU.png", {0.0f, -1.0f} },
+	{ true,  true,  false, false, "Fire_RU.png", {1.0f, -1.0f} },
 };
 
 class ATantoSkill : public AActor
@@ -41,15 +42,14 @@ public:
 	void Fire();
 	void PopFire();
 
-	void SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName);
+	void SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos);
 
 protected:
 
 private:
 	std::deque<USpriteRenderer*> FireRenderers;
-	std::deque< U2DCollision*> CollisionComponents;
+	std::deque<class U2DCollision*> CollisionComponents;
 	float Time = 0.0f;
-	bool PopStart = false;
 
 	class APlayer* player = nullptr;
 };
