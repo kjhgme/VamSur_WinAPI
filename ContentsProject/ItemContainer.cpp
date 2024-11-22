@@ -2,10 +2,19 @@
 #include "ItemContainer.h"
 #include "ContentsEnum.h"
 
+#include <EngineBase/EngineRandom.h>
+#include <EngineCore/EngineAPICore.h>
 #include <EngineCore/2DCollision.h>
 #include "DropItem.h"
-#include "ExpItem.h"
 #include "Weapon.h"
+#include "FloorChickenItem.h"
+#include "RichCoinBagItem.h"
+#include "OrologionItem.h"
+#include "VacuumItem.h"
+#include "RosaryItem.h"
+#include "TantoItem.h"
+#include "GoldItem.h"
+#include "ExpItem.h"
 
 AItemContainer::AItemContainer()
 {
@@ -75,9 +84,47 @@ void AItemContainer::ChangeIdle()
 
 void AItemContainer::SpawnDropItem()
 {
-	// ADropItem* DropItem = GetWorld()->SpawnActor<ADropItem>();
+	typedef AActor* (*ItemSpawner)(ULevel*);
 
-	AExpItem* newExpItem = GetWorld()->SpawnActor<AExpItem>();
-	newExpItem->InitDropItem(GetActorLocation());
-	newExpItem->SetExp(10);
+	auto SpawnGoldItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<AGoldItem>();
+		};
+	auto SpawnRichCoinBagItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<ARichCoinBagItem>();
+		};
+	auto SpawnRosaryItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<ARosaryItem>();
+		};
+	auto SpawnTantoItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<ATantoItem>();
+		};
+	auto SpawnOrologionItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<AOrologionItem>();
+		};
+	auto SpawnVacuumItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<AVacuumItem>();
+		};
+	auto SpawnFloorChickenItem = [](ULevel* World) -> AActor* {
+		return World->SpawnActor<AFloorChickenItem>();
+		};
+
+	ItemSpawner Spawners[] = {
+		SpawnGoldItem,
+		SpawnRichCoinBagItem,
+		SpawnRosaryItem,
+		SpawnTantoItem,
+		SpawnOrologionItem,
+		SpawnVacuumItem,
+		SpawnFloorChickenItem
+	};
+
+	UEngineRandom RandomGenerator;
+	int ItemType = RandomGenerator.RandomInt(0, sizeof(Spawners) / sizeof(Spawners[0]) - 1);
+
+	if (ItemType >= 0 && ItemType < sizeof(Spawners) / sizeof(Spawners[0]))
+	{
+		ADropItem* SpawnItem = static_cast<ADropItem*>(Spawners[ItemType](GetWorld()));
+
+		SpawnItem->InitDropItem(GetActorLocation());
+	}
 }
