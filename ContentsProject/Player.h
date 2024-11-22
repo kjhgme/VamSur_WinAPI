@@ -53,6 +53,8 @@ public:
 	void LevelUp();
 	void UpdateMaxExp();
 
+	void AddHp(float _add);
+
 	static CharacterStatus PlayerStatus;
 
 protected:

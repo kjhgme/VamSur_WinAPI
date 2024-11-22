@@ -17,3 +17,15 @@ AFloorChickenItem::AFloorChickenItem()
 AFloorChickenItem::~AFloorChickenItem()
 {
 }
+
+void AFloorChickenItem::SetHp(float _Hp)
+{
+	Hp = _Hp;
+}
+
+void AFloorChickenItem::ApplyItemEffect()
+{
+	ADropItem::ApplyItemEffect();
+
+	AInGameMode::Player->AddHp(Hp);
+}

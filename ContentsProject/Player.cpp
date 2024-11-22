@@ -305,3 +305,9 @@ void APlayer::UpdateMaxExp()
 		PlayerStatus.MaxExp += 2400.0f; 
 	}
 }
+
+void APlayer::AddHp(float _add)
+{
+	PlayerStatus.Hp += _add;
+	PlayerStatus.Hp = UEngineMath::ClampMax(PlayerStatus.Hp, PlayerStatus.MaxHp);
+}
