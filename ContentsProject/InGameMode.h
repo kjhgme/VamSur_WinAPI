@@ -24,5 +24,8 @@ public:
 protected:
 
 private:
+	class AInfiniteMap* Map = nullptr;
+	class AMonsterSpawner* MonsterSpawner = nullptr;
+	class AInGameUI* InGameUI = nullptr;
 };
 
