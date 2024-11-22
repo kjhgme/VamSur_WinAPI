@@ -42,7 +42,6 @@ public:
 	void PopFire();
 
 	void SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName);
-	void UpdateFire();
 
 protected:
 

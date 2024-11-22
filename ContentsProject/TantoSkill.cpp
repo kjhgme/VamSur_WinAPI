@@ -65,64 +65,29 @@ void ATantoSkill::Tick(float _DeltaTime)
 
 void ATantoSkill::Fire()
 {
-	UpdateFire();
+	{
+		FireRenderers.push_back(CreateDefaultSubObject<USpriteRenderer>());
 
-	/*if (true == player->GetHeadDirRight() && false == player->GetHeadDirTop() && false == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_00.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
+		for (const auto& Condition : DirectionMapping) {
+			if (player->GetHeadDirRight() == Condition.HeadDirRight &&
+				player->GetHeadDirTop() == Condition.HeadDirTop &&
+				player->GetHeadDirBottom() == Condition.HeadDirBottom &&
+				player->GetHeadDirStationary() == Condition.HeadDirStationary) {
+				SetFireRendererProperties(FireRenderers.back(), Condition.SpriteName);
+				break;
+			}
+		}
 	}
-	else if (true == player->GetHeadDirRight() && false == player->GetHeadDirTop() && true == player->GetHeadDirBottom())
 	{
-		FireRenderers.back()->SetSprite("Fire_01.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
+		FVector2D scale = FireRenderers.back()->GetComponentScale();
+		scale.Y = scale.X;
+
+		CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
+		CollisionComponents.back()->SetComponentLocation({ 0.0f, 0.0f });
+		CollisionComponents.back()->SetComponentScale(scale);
+		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
+		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
 	}
-	else if (true == player->GetHeadDirStationary() && false == player->GetHeadDirTop() && true == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_02.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
-	}
-	else if (false == player->GetHeadDirRight() && false == player->GetHeadDirTop() && true == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_03.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
-	}
-	else if (false == player->GetHeadDirRight() && false == player->GetHeadDirTop() && false == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_04.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
-	}
-	else if (false == player->GetHeadDirRight() && true == player->GetHeadDirTop() && false == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_05.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
-	}
-	else if (true == player->GetHeadDirStationary() && true == player->GetHeadDirTop() && false == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_06.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
-	}
-	else if (true == player->GetHeadDirRight() && true == player->GetHeadDirTop() && false == player->GetHeadDirBottom())
-	{
-		FireRenderers.back()->SetSprite("Fire_07.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);
-		FireRenderers.back()->SetComponentLocation({ 0,0 });
-	}*/
 }
 
 void ATantoSkill::PopFire()
@@ -150,29 +115,3 @@ void ATantoSkill::SetFireRendererProperties(USpriteRenderer* _Renderer, const st
 	_Renderer->SetComponentLocation({ 0.0f, 0.0f });
 }
 
-void ATantoSkill::UpdateFire()
-{
-	{
-		FireRenderers.push_back(CreateDefaultSubObject<USpriteRenderer>());
-
-		for (const auto& Condition : DirectionMapping) {
-			if (player->GetHeadDirRight() == Condition.HeadDirRight &&
-				player->GetHeadDirTop() == Condition.HeadDirTop &&
-				player->GetHeadDirBottom() == Condition.HeadDirBottom &&
-				player->GetHeadDirStationary() == Condition.HeadDirStationary) {
-				SetFireRendererProperties(FireRenderers.back(), Condition.SpriteName);
-				break;
-			}
-		}
-	}
-	{
-		FVector2D scale = FireRenderers.back()->GetComponentScale();
-		scale.Y = scale.X;
-
-		CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
-		CollisionComponents.back()->SetComponentLocation({ 0.0f, 0.0f });
-		CollisionComponents.back()->SetComponentScale(scale);
-		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
-		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
-	}
-}
