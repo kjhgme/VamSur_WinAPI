@@ -2,7 +2,7 @@
 #include "RichCoinBagItem.h"
 #include "ContentsEnum.h"
 
-#include "InGameMode.h"
+#include "InGameUI.h"
 
 ARichCoinBagItem::ARichCoinBagItem()
 {
@@ -16,4 +16,16 @@ ARichCoinBagItem::ARichCoinBagItem()
 
 ARichCoinBagItem::~ARichCoinBagItem()
 {
+}
+
+void ARichCoinBagItem::SetGold(int _Gold)
+{
+	Gold = _Gold;
+}
+
+void ARichCoinBagItem::ApplyItemEffect()
+{
+	ADropItem::ApplyItemEffect();
+
+	AInGameUI::KillAndGold->AddGoldCount(Gold);
 }

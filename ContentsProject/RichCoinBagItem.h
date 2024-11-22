@@ -11,9 +11,12 @@ public:
 	ARichCoinBagItem& operator=(const ARichCoinBagItem& _Other) = delete;
 	ARichCoinBagItem& operator=(ARichCoinBagItem&& _Other) noexcept = delete;
 
+	void SetGold(int _Gold);
+	void ApplyItemEffect() override;
+
 protected:
 
 private:
-
+	int Gold = 100;
 };
 
