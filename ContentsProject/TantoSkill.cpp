@@ -9,25 +9,6 @@
 
 ATantoSkill::ATantoSkill()
 {
-	{
-		FireRenderers.push_back(CreateDefaultSubObject<USpriteRenderer>());		
-		FireRenderers.back()->SetSprite("Fire_RC.png");
-		FireRenderers.back()->SetSpriteScale(1.0f);
-		FireRenderers.back()->SetOrder(ERenderOrder::WEAPON);		
-	}
-	{
-		FVector2D scale = FireRenderers.back()->GetComponentScale();
-		scale.Y = scale.X;
-
-		CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
-		CollisionComponents.back()->SetComponentLocation({ 0.0f, 0.0f });
-		CollisionComponents.back()->SetComponentScale(scale);
-		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
-		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
-
-		//CollisionComponents.back()->SetCollisionEnter(std::bind(&ATantoSkill::CollisionEnter, this, std::placeholders::_1));
-	}
-
 	DebugOn();
 }
 
@@ -50,16 +31,46 @@ void ATantoSkill::Tick(float _DeltaTime)
 
 	SetActorLocation(player->GetActorLocation());
 
-
-
 	for (auto& Renderer : FireRenderers)
 	{
-		Renderer->AddComponentLocation({ 0.0f, 2.0f });
-
-		if (Renderer->GetComponentLocation().X >= 500.0f)
+		if (Renderer.first == "Fire_RC.png")
 		{
-			Renderer->Destroy();
+			Renderer.second->AddComponentLocation({ 2.0f, 0.0f });			
+		}
+		else if (Renderer.first == "Fire_RD.png")
+		{
+			Renderer.second->AddComponentLocation({ 2.0f, 2.0f });
+		}
+		else if (Renderer.first == "Fire_CD.png")
+		{
+			Renderer.second->AddComponentLocation({ 0.0f, 2.0f });
+		}
+		else if (Renderer.first == "Fire_LD.png")
+		{
+			Renderer.second->AddComponentLocation({ -2.0f, 2.0f });
+		}
+		else if (Renderer.first == "Fire_LC.png")
+		{
+			Renderer.second->AddComponentLocation({ -2.0f, 0.0f });
+		}
+		else if (Renderer.first == "Fire_LU.png")
+		{
+			Renderer.second->AddComponentLocation({ -2.0f, -2.0f });
+		}
+		else if (Renderer.first == "Fire_CU.png")
+		{
+			Renderer.second->AddComponentLocation({ 0.0f, -2.0f });
+		}
+		else if (Renderer.first == "Fire_RU.png")
+		{
+			Renderer.second->AddComponentLocation({ 2.0f, -2.0f });
+		}
 
+		if (-500.0f >= Renderer.second->GetComponentLocation().X ||
+			500.0f <= Renderer.second->GetComponentLocation().X ||
+			-500.0f >= Renderer.second->GetComponentLocation().Y ||
+			500.0f <= Renderer.second->GetComponentLocation().Y)
+		{
 			PopFire();
 		}
 	}
@@ -78,16 +89,19 @@ void ATantoSkill::Tick(float _DeltaTime)
 void ATantoSkill::Fire()
 {
 	
-	FireRenderers.push_back(CreateDefaultSubObject<USpriteRenderer>());
+	FireRenderers.push_back(std::make_pair("Fire_RC.png", CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
 	{
-		for (const auto& Condition : DirectionMapping) {
+		for (const auto& Condition : DirectionMapping) 
+		{
 			if (player->GetHeadDirRight() == Condition.HeadDirRight &&
 				player->GetHeadDirTop() == Condition.HeadDirTop &&
 				player->GetHeadDirBottom() == Condition.HeadDirBottom &&
-				player->GetHeadDirStationary() == Condition.HeadDirStationary) {
-				SetFireRendererProperties(FireRenderers.back(), Condition.SpriteName, Condition.FirePos);
+				player->GetHeadDirStationary() == Condition.HeadDirStationary) 
+			{
+				FireRenderers.back().first = Condition.SpriteName;
+				SetFireRendererProperties(FireRenderers.back().second, Condition.SpriteName, Condition.FirePos);
 
 				CollisionComponents.back()->SetComponentLocation(Condition.FirePos * player->GetPlayerScale());
 
@@ -96,7 +110,7 @@ void ATantoSkill::Fire()
 		}
 	}
 	{
-		FVector2D scale = FireRenderers.back()->GetComponentScale();
+		FVector2D scale = FireRenderers.back().second->GetComponentScale();
 		scale.Y = scale.X;
 		CollisionComponents.back()->SetComponentScale(scale);
 		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
@@ -108,7 +122,7 @@ void ATantoSkill::PopFire()
 {
 	if (!FireRenderers.empty())
 	{
-		FireRenderers.front()->Destroy();
+		FireRenderers.front().second->Destroy();
 		FireRenderers.pop_front();
 	}
 

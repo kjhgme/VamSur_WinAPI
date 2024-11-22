@@ -47,7 +47,7 @@ public:
 protected:
 
 private:
-	std::deque<USpriteRenderer*> FireRenderers;
+	std::deque<std::pair<std::string, USpriteRenderer*>> FireRenderers;
 	std::deque<class U2DCollision*> CollisionComponents;
 	float Time = 0.0f;
 
