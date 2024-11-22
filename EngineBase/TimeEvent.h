@@ -49,16 +49,24 @@ public:
 				StartIter = Events.erase(StartIter);
 				continue;
 			}
-
-			if (0.0f >= TimeEvent.DuringTime)
+			
+			if(0.0f <= TimeEvent.DuringTime && false == TimeEvent.IsUpdate)
 			{
-				if (false == TimeEvent.Loop && true == TimeEvent.IsUpdate)
+				TimeEvent.DuringTime -= _DeltaTime;
+				
+				if (0.0f >= TimeEvent.Time)
 				{
 					TimeEvent.Event();
-					++StartIter;
-					continue;
+					TimeEvent.Time = TimeEvent.MaxTime;
 				}
-				else if (false == TimeEvent.Loop && 0.0f >= TimeEvent.Time)
+				if (0.0f >= TimeEvent.DuringTime)
+				{
+					StartIter = Events.erase(StartIter);
+					continue;
+				}				
+			}
+			else {
+				if (false == TimeEvent.Loop && 0.0f >= TimeEvent.Time)
 				{
 					TimeEvent.Event();
 					StartIter = Events.erase(StartIter);
@@ -68,16 +76,6 @@ public:
 				{
 					TimeEvent.Event();
 					TimeEvent.Time = TimeEvent.MaxTime;
-				}
-			}
-			else
-			{
-				TimeEvent.DuringTime -= _DeltaTime;
-				if (0.0f >= TimeEvent.DuringTime)
-				{
-					TimeEvent.Event();
-					StartIter = Events.erase(StartIter);
-					continue;
 				}
 			}
 

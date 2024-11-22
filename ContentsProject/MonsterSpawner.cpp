@@ -44,7 +44,9 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 	{
 		//StatusQueue.push(Bat3Status);
 
-		//StatusQueue.push(Ghoul1Status);
+		StatusQueue.push(Ghoul1Status);
+		StatusQueue.push(Bat1Status);
+		StatusQueue.push(Ghoul1Status);
 		StatusQueue.push(Bat1Status);
 
 		//StatusQueue.push(Bat1Status);
@@ -138,7 +140,7 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 
 	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);// , 60.0f * 30.0f);
 	
-	TimeEventer.PushEvent(4.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, 3.0f, false);
+	TimeEventer.PushEvent(3.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, 9.0f, false);
 }
 
 void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)
