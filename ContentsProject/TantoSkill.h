@@ -5,18 +5,23 @@ struct DirectionCondition {
 	bool HeadDirRight;
 	bool HeadDirTop;
 	bool HeadDirBottom;
+	bool HeadDirStationary;
 	std::string SpriteName;
 };
 
 const std::vector<DirectionCondition> DirectionMapping = {
-	{ true,  false, false, "Fire_00.png" },
-	{ true,  false, true,  "Fire_01.png" },
-	{ false, false, true,  "Fire_02.png" },
-	{ false, false, true,  "Fire_03.png" },
-	{ false, false, false, "Fire_04.png" },
-	{ false, true,  false, "Fire_05.png" },
-	{ false, true,  false, "Fire_06.png" },
-	{ true,  true,  false, "Fire_07.png" },
+	{ true,  false, false, false, "Fire_00.png" },
+	{ true,  false, false, true, "Fire_00.png" },
+	{ true,  false, true, false, "Fire_01.png" },
+	{ false, false, true, true, "Fire_02.png" },
+	{ true, false, true, true, "Fire_02.png" },
+	{ false, false, true, false, "Fire_03.png" },
+	{ false, false, false, false, "Fire_04.png" },
+	{ false, false, false, true, "Fire_04.png" },
+	{ false, true,  false, false, "Fire_05.png" },
+	{ false, true,  false, true, "Fire_06.png" },
+	{ true, true,  false, true, "Fire_06.png" },
+	{ true,  true,  false, false, "Fire_07.png" },
 };
 
 class ATantoSkill : public AActor

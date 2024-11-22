@@ -192,10 +192,17 @@ void APlayer::PlayerMove(float _DeltaTime)
 		HeadDirTop = false;
 	}
 	if (true == UEngineInput::GetInst().IsFree('A') &&
-		true == UEngineInput::GetInst().IsFree('D'))
+		true == UEngineInput::GetInst().IsFree('D') &&
+		true == UEngineInput::GetInst().IsPress('S'))
 	{
 		HeadDirStationary = true;
 	}
+	if (true == UEngineInput::GetInst().IsFree('A') &&
+		true == UEngineInput::GetInst().IsFree('D') &&
+		true == UEngineInput::GetInst().IsPress('W'))
+	{
+		HeadDirStationary = true;
+	}	
 	if (true == UEngineInput::GetInst().IsFree('A') &&
 		true == UEngineInput::GetInst().IsFree('D') &&
 		true == UEngineInput::GetInst().IsFree('W') &&

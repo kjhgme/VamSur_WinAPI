@@ -40,13 +40,12 @@ void ATantoSkill::BeginPlay()
 
 	player = AInGameMode::Player;
 
-	TimeEventer.PushEvent(0.1f, std::bind(&ATantoSkill::Fire, this), false, 3.0f, false);
+	TimeEventer.PushEvent(0.1f, std::bind(&ATantoSkill::Fire, this), false, 10.0f, false);
 }
 
 void ATantoSkill::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
 
 	for (auto& Renderer : FireRenderers)
 	{
@@ -58,16 +57,14 @@ void ATantoSkill::Tick(float _DeltaTime)
 		Collision->AddComponentLocation({ 1.0f, 0.0f });
 	}
 
-
 	Time += _DeltaTime;
 
-	if (5.0f <= Time)
+	if (12.0f <= Time)
 		Destroy();
 }
 
 void ATantoSkill::Fire()
-{	
-		
+{
 	UpdateFire();
 
 	/*if (true == player->GetHeadDirRight() && false == player->GetHeadDirTop() && false == player->GetHeadDirBottom())
@@ -161,7 +158,8 @@ void ATantoSkill::UpdateFire()
 		for (const auto& Condition : DirectionMapping) {
 			if (player->GetHeadDirRight() == Condition.HeadDirRight &&
 				player->GetHeadDirTop() == Condition.HeadDirTop &&
-				player->GetHeadDirBottom() == Condition.HeadDirBottom) {
+				player->GetHeadDirBottom() == Condition.HeadDirBottom &&
+				player->GetHeadDirStationary() == Condition.HeadDirStationary) {
 				SetFireRendererProperties(FireRenderers.back(), Condition.SpriteName);
 				break;
 			}
