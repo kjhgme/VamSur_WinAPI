@@ -2,10 +2,13 @@
 #include "TantoSkill.h"
 #include "ContentsEnum.h"
 
+#include <EngineBase/EngineRandom.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/2DCollision.h>
 #include "InGameMode.h"
 #include "Player.h"
+
+UEngineRandom RandomGenerator;
 
 TantoSkill::TantoSkill()
 {
@@ -38,9 +41,22 @@ void TantoSkill::Tick(float _DeltaTime)
 	{
 		auto& Renderer = FireRenderers[i];
 		auto OffsetIt = MoveOffsets.find(Renderer.first);
-
+		
 		if (OffsetIt != MoveOffsets.end()) {
 			Renderer.second->AddComponentLocation(OffsetIt->second);
+
+			if (0 == OffsetIt->second.X)
+			{
+				Renderer.second->AddComponentLocation({ RandomGenerator.Randomfloat(-5.0f, 5.0f), 0.0f});
+			}
+			else if (0 == OffsetIt->second.Y)
+			{
+				Renderer.second->AddComponentLocation({ 0.0f, RandomGenerator.Randomfloat(-5.0f, 5.0f) });
+			}
+			else
+			{
+				Renderer.second->AddComponentLocation({ RandomGenerator.Randomfloat(-5.0f, 5.0f), RandomGenerator.Randomfloat(-5.0f, 5.0f) });
+			}
 		}
 
 		const FVector2D Location = Renderer.second->GetComponentLocation();
