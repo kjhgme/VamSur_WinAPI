@@ -140,6 +140,8 @@ void LevelUpUI::SetActive()
 
 		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
 		RightCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
+		pos.move("up");
+		pos.move("up");
 	}
 	else if (IsActive == true)
 	{
