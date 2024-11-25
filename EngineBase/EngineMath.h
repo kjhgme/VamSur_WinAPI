@@ -139,6 +139,27 @@ public:
 		return Result;
 	}
 
+	static float Dist(const FVector2D& V1, const FVector2D& V2)
+	{
+		float DX = V2.X - V1.X;
+		float DY = V2.Y - V1.Y;
+		return sqrtf(DX * DX + DY * DY);
+	}
+
+	static FVector2D NormalizeDirection(const FVector2D& A, const FVector2D& B)
+	{
+		FVector2D Direction = B - A;
+
+		float Length = UEngineMath::Sqrt(Direction.X * Direction.X + Direction.Y * Direction.Y);
+
+		if (Length == 0.0f)
+		{
+			return FVector2D(0.0f, 0.0f);
+		}
+
+		return Direction / Length;
+	}
+
 	// operator
 	FVector2D operator+(FVector2D _Other) const
 	{

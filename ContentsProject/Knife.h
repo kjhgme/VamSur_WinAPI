@@ -2,7 +2,7 @@
 #include "Weapon.h"
 #include <deque>
 
-struct DirectionCondition {
+struct KnifeDirCondition {
 	bool HeadDirRight;
 	bool HeadDirTop;
 	bool HeadDirBottom;
@@ -11,7 +11,7 @@ struct DirectionCondition {
 	FVector2D KnifePos;
 };
 
-const std::vector<DirectionCondition> KnifeDirMapping {
+const std::vector<KnifeDirCondition> KnifeDirMapping {
 	{ true,  false, false, false, 0, {1.0f, 0.0f} },
 	{ true,  false, false, true, 0, {1.0f, 0.0f} },
 	{ true,  false, true, false, 1, {1.0f, 1.0f} },

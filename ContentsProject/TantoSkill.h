@@ -2,7 +2,7 @@
 #include <deque>
 #include "Weapon.h"
 
-struct DirectionCondition {
+struct FireDirCondition {
 	bool HeadDirRight;
 	bool HeadDirTop;
 	bool HeadDirBottom;
@@ -11,7 +11,7 @@ struct DirectionCondition {
 	FVector2D FirePos;
 };
 
-const std::vector<DirectionCondition> DirectionMapping = {
+const std::vector<FireDirCondition> FireDirMapping = {
 	{ true,  false, false, false, "Fire_RC.png", {1.0f, 0.0f} },
 	{ true,  false, false, true, "Fire_RC.png", {1.0f, 0.0f} },
 	{ true,  false, true, false, "Fire_RD.png", {1.0f, 1.0f} },

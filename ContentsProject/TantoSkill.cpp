@@ -82,7 +82,7 @@ void TantoSkill::Fire()
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
 	{
-		for (const auto& Condition : DirectionMapping) 
+		for (const auto& Condition : FireDirMapping) 
 		{
 			if (player->GetHeadDirRight() == Condition.HeadDirRight &&
 				player->GetHeadDirTop() == Condition.HeadDirTop &&

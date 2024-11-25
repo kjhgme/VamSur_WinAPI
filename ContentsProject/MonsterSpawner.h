@@ -19,6 +19,24 @@ public:
 	
 	void InitSpawnerVersion(int _level);
 
+	std::list<AMonster*> GetMonsters()
+	{
+		std::list<AMonster*> LimitedMonsters;
+
+		if (SpawnedMonsters.size() > 100)
+		{
+			auto it = SpawnedMonsters.begin();
+			std::advance(it, 100);
+			LimitedMonsters.insert(LimitedMonsters.begin(), SpawnedMonsters.begin(), it);
+		}
+		else
+		{
+			LimitedMonsters = SpawnedMonsters;
+		}
+
+		return LimitedMonsters;
+	}
+
 	void SpawnMonster(MonsterStatus _Status);
 	void SpawnTimer();
 

@@ -2,6 +2,14 @@
 #include "MagicWand.h"
 #include "ContentsEnum.h"
 
+#include <limits>
+
+#include <EngineBase/EngineRandom.h>
+#include "InGameMode.h"
+#include "Monster.h"
+
+UEngineRandom MWRandomGenerator;
+
 MagicWand::MagicWand()
 {
 	WeaponType = EWeaponType::MagicWand;
@@ -25,15 +33,10 @@ MagicWand::~MagicWand()
 void MagicWand::BeginPlay()
 {
 	AWeapon::BeginPlay();
-	
-	{
-		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
-		SpriteRenderer->SetSprite("MagicWand", 0);
-		SpriteRenderer->SetComponentLocation({ 50.0f, 50.0f });
-		SpriteRenderer->SetSpriteScale(1.0f);
-	}
 
+	player = AInGameMode::Player;
+	MonsterSpawner = AInGameMode::MonsterSpawner;
+	
 	Level = 1;
 	AttackPower = 10;
 	KnockBack = 1;
@@ -41,12 +44,127 @@ void MagicWand::BeginPlay()
 
 void MagicWand::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
+
+	for (size_t i = 0; i < CollisionComponents.size(); ++i)
+	{
+		auto& Renderer = MagicWandRenderers[i];
+		auto OffsetIt = MagicMoveOffsets.find(Renderer.first);
+
+		if (OffsetIt != MagicMoveOffsets.end()) {
+			Renderer.second->AddComponentLocation(OffsetIt->second);
+		}
+		if (0 == OffsetIt->second.X)
+		{
+			Renderer.second->AddComponentLocation({ MWRandomGenerator.Randomfloat(-3.0f, 3.0f), 0.0f });
+		}
+		else if (0 == OffsetIt->second.Y)
+		{
+			Renderer.second->AddComponentLocation({ 0.0f, MWRandomGenerator.Randomfloat(-3.0f, 3.0f) });
+		}
+		else
+		{
+			Renderer.second->AddComponentLocation({ MWRandomGenerator.Randomfloat(-3.0f, 3.0f), MWRandomGenerator.Randomfloat(-3.0f, 3.0f) });
+		}
+		const FVector2D Location = Renderer.second->GetComponentLocation();
+		if (Location.X <= -1000.0f || Location.X >= 1000.0f || Location.Y <= -1000.0f || Location.Y >= 1000.0f) {
+			PopMagicWand();
+			continue;
+		}
+
+		if (i < CollisionComponents.size()) {
+			CollisionComponents[i]->SetComponentLocation(Location);
+		}
+	}
 }
 
 void MagicWand::InitCollision()
 {
+	AWeapon::InitCollision();
 }
 
 void MagicWand::Action()
 {
+	TimeEventer.PushEvent(1.0f, std::bind(&MagicWand::Attack, this), false, -1.0f, true);
+}
+
+void MagicWand::Attack()
+{
+	SetActorLocation(player->GetActorLocation());
+
+	MagicWandRenderers.push_back(std::make_pair(0, CreateDefaultSubObject<USpriteRenderer>()));
+	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
+
+	std::list<AMonster*> Monsters = MonsterSpawner->GetMonsters();
+	AMonster* ClosestMonster = FindClosestMonster(GetActorLocation(), Monsters);
+
+	FVector2D Direction = FVector2D::NormalizeDirection(GetActorLocation(), ClosestMonster->GetActorLocation());
+
+	{
+		for (const auto& Condition : MagicWandDirMapping)
+		{
+			if (Direction.X >= Condition.DirMinX && Direction.X <= Condition.DirMaxX &&
+				Direction.Y >= Condition.DirMinY && Direction.Y <= Condition.DirMaxY)
+			{
+				MagicWandRenderers.back().first = Condition.SpriteNum;
+				SetFireRendererProperties(MagicWandRenderers.back().second, Condition.SpriteNum, Condition.Pos);
+
+				CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
+				break;
+			}
+		}		
+	}
+	{
+		FVector2D scale = MagicWandRenderers.back().second->GetComponentScale();
+		scale.Y = scale.X;
+		CollisionComponents.back()->SetComponentScale(scale);
+		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
+		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
+		CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+	}
+}
+
+void MagicWand::PopMagicWand()
+{
+	if (!MagicWandRenderers.empty())
+	{
+		MagicWandRenderers.front().second->Destroy();
+		MagicWandRenderers.pop_front();
+	}
+
+	if (!CollisionComponents.empty())
+	{
+		CollisionComponents.front()->Destroy();
+		CollisionComponents.pop_front();
+	}
+}
+
+void MagicWand::SetFireRendererProperties(USpriteRenderer* _Renderer, int _SpriteNum, FVector2D _Pos)
+{
+	_Renderer->SetSprite("MagicWand", _SpriteNum);
+	_Renderer->SetSpriteScale(1.0f);
+	_Renderer->SetOrder(ERenderOrder::WEAPON);
+	_Renderer->SetComponentLocation(_Pos * player->GetPlayerScale());
+}
+
+AMonster* MagicWand::FindClosestMonster(const FVector2D& ActorLocation, const std::list<AMonster*>& Monsters)
+{
+	AMonster* ClosestMonster = nullptr;
+	float MinDistance = FLT_MAX;
+
+	for (AMonster* Monster : Monsters)
+	{
+		if (Monster == nullptr)
+			continue;
+
+		float Distance = FVector2D::Dist(ActorLocation, Monster->GetActorLocation());
+
+		if (Distance < MinDistance)
+		{
+			MinDistance = Distance;
+			ClosestMonster = Monster;
+		}
+	}
+
+	return ClosestMonster;
 }

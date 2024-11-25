@@ -8,10 +8,10 @@
 #include "InGameUI.h"
 #include "InfiniteMap.h"
 #include "TitleGameMode.h"
-#include "MonsterSpawner.h"
 #include "ItemContainer.h"
 
 APlayer* AInGameMode::Player = nullptr;
+AMonsterSpawner* AInGameMode::MonsterSpawner = nullptr;
 
 AInGameMode::AInGameMode()
 {
