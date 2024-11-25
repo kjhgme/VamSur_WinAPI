@@ -110,9 +110,10 @@ void MagicWand::Attack()
 				SetFireRendererProperties(MagicWandRenderers.back().second, Condition.SpriteNum, Condition.Pos);
 
 				CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
+				
 				break;
 			}
-		}		
+		}
 	}
 	{
 		FVector2D scale = MagicWandRenderers.back().second->GetComponentScale();

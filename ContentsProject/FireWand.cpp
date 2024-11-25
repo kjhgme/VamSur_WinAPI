@@ -106,7 +106,7 @@ void FireWand::Attack()
 				SetFireRendererProperties(FireWandRenderers.back().second, Condition.SpriteName, Condition.Pos);
 
 				CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
-
+				
 				break;
 			}
 		}

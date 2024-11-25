@@ -75,6 +75,8 @@ void Knife::Attack()
 	KnifeRenderers.push_back(std::make_pair(00, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
+	int DebugNum = 0;
+
 	{
 		for (const auto& Condition : KnifeDirMapping)
 		{
@@ -88,8 +90,16 @@ void Knife::Attack()
 
 				CollisionComponents.back()->SetComponentLocation(Condition.KnifePos * player->GetPlayerScale());
 
+				DebugNum = 1;
+
 				break;
 			}
+		}
+		if (0 == DebugNum)
+		{
+			KnifeRenderers.pop_back();
+			CollisionComponents.pop_back();
+			return;
 		}
 	}
 	{

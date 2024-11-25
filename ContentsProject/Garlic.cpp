@@ -31,7 +31,7 @@ void Garlic::BeginPlay()
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
-		SpriteRenderer->SetSprite("Garlic", 0);
+		SpriteRenderer->SetSprite("Garlic", 1);
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetAlphafloat(0.1f);
 	}
