@@ -42,9 +42,9 @@ void Knife::Tick(float _DeltaTime)
 	for (size_t i = 0; i < CollisionComponents.size(); ++i)
 	{
 		auto& Renderer = KnifeRenderers[i];
-		auto OffsetIt = MoveOffsets.find(Renderer.first);
+		auto OffsetIt = KnifeMoveOffsets.find(Renderer.first);
 
-		if (OffsetIt != MoveOffsets.end()) {
+		if (OffsetIt != KnifeMoveOffsets.end()) {
 			Renderer.second->AddComponentLocation(OffsetIt->second);
 		}
 

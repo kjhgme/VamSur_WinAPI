@@ -26,7 +26,7 @@ const std::vector<FireDirCondition> FireDirMapping = {
 	{ true,  true,  false, false, "Fire_RU.png", {1.0f, -1.0f} },
 };
 
-static const std::unordered_map<std::string, FVector2D> MoveOffsets = {
+static const std::unordered_map<std::string, FVector2D> TtMoveOffsets = {
 	{ "Fire_RC.png", { 2.0f,  0.0f } },
 	{ "Fire_RD.png", { 2.0f,  2.0f } },
 	{ "Fire_CD.png", { 0.0f,  2.0f } },

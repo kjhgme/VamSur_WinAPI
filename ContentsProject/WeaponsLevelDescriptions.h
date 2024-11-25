@@ -15,8 +15,8 @@ public:
             return "Fires at the nearest enemy.";
         case EWeaponType::Knife:
             return "Fires quickly in the faced\ndirection.";
-        case EWeaponType::Axe:
-            return "High damage, high Area scaling.";
+        case EWeaponType::FireWand:
+            return "Fires at a random enemy,\ndeals heavy damage.";
         case EWeaponType::KingBible:
             return "Orbits around the player.";
         case EWeaponType::Garlic:

@@ -26,7 +26,7 @@ const std::vector<KnifeDirCondition> KnifeDirMapping {
 	{ true,  true,  false, false, 7, {1.0f, -1.0f} },
 };
 
-static const std::unordered_map<int, FVector2D> MoveOffsets = {
+static const std::unordered_map<int, FVector2D> KnifeMoveOffsets = {
 	{ 00, { 3.0f,  0.0f } },
 	{ 01, { 3.0f,  3.0f } },
 	{ 02, { 0.0f,  3.0f } },

@@ -268,7 +268,7 @@ std::string LevelUpUI::EWeaponTypeToString(EWeaponType WeaponType) {
 	case EWeaponType::Whip:				return "Whip";
 	case EWeaponType::MagicWand:		return "MagicWand";
 	case EWeaponType::Knife:			return "Knife";
-	case EWeaponType::Axe:				return "Axe";
+	case EWeaponType::FireWand:			return "FireWand";
 	case EWeaponType::KingBible:		return "KingBible";
 	case EWeaponType::Garlic:			return "Garlic";
 	case EWeaponType::HollowHeart:		return "HollowHeart";
@@ -298,7 +298,7 @@ int LevelUpUI::GetWeaponIconIndex(EWeaponType WeaponType)
 	case EWeaponType::Whip:				return 0;
 	case EWeaponType::MagicWand:		return 2;
 	case EWeaponType::Knife:			return 4;
-	case EWeaponType::Axe:				return 6;
+	case EWeaponType::FireWand:			return 6;
 	case EWeaponType::KingBible:		return 8;
 	case EWeaponType::Garlic:			return 10;
 	case EWeaponType::HollowHeart:		return 12;

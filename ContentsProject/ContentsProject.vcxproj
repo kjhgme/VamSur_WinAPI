@@ -151,7 +151,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Axe.h">
+    <ClInclude Include="FireWand.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -358,7 +358,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Axe.cpp">
+    <ClCompile Include="FireWand.cpp">
       <SubType>
       </SubType>
     </ClCompile>

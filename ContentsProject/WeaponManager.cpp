@@ -9,7 +9,7 @@
 #include "Whip.h"
 #include "MagicWand.h"
 #include "Knife.h"
-#include "Axe.h"
+#include "FireWand.h"
 #include "KingBible.h"
 #include "Garlic.h"
 #include "HollowHeart.h"
@@ -149,7 +149,7 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 		case EWeaponType::Knife:
 			Icon->SetSprite("WeaponIcon", 4);
 			break;
-		case EWeaponType::Axe:
+		case EWeaponType::FireWand:
 			Icon->SetSprite("WeaponIcon", 6);
 			break;
 		case EWeaponType::KingBible:
@@ -258,8 +258,8 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 				case EWeaponType::Knife:
 					Weapons[i] = GetWorld()->SpawnActor<Knife>();
 					break;
-				case EWeaponType::Axe:
-					Weapons[i] = GetWorld()->SpawnActor<Axe>();
+				case EWeaponType::FireWand:
+					Weapons[i] = GetWorld()->SpawnActor<FireWand>();
 					break;
 				case EWeaponType::KingBible:
 					Weapons[i] = GetWorld()->SpawnActor<KingBible>();

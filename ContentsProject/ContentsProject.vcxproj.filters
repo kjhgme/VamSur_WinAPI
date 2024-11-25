@@ -103,7 +103,7 @@
     <ClInclude Include="MagicWand.h">
       <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
-    <ClInclude Include="Axe.h">
+    <ClInclude Include="FireWand.h">
       <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClInclude>
     <ClInclude Include="KingBible.h">
@@ -264,7 +264,7 @@
     <ClCompile Include="MagicWand.cpp">
       <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
-    <ClCompile Include="Axe.cpp">
+    <ClCompile Include="FireWand.cpp">
       <Filter>ContentsObjects\Weapon\Aggressive</Filter>
     </ClCompile>
     <ClCompile Include="KingBible.cpp">

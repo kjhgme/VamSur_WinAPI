@@ -17,7 +17,7 @@ enum class EWeaponType : int {
 	Whip,
 	MagicWand,
 	Knife,
-	Axe,
+	FireWand,
 	KingBible,
 	Garlic,
 	HollowHeart,

@@ -40,9 +40,9 @@ void TantoSkill::Tick(float _DeltaTime)
 	for (size_t i = 0; i < FireRenderers.size(); ++i)
 	{
 		auto& Renderer = FireRenderers[i];
-		auto OffsetIt = MoveOffsets.find(Renderer.first);
+		auto OffsetIt = TtMoveOffsets.find(Renderer.first);
 		
-		if (OffsetIt != MoveOffsets.end()) {
+		if (OffsetIt != TtMoveOffsets.end()) {
 			Renderer.second->AddComponentLocation(OffsetIt->second);
 
 			if (0 == OffsetIt->second.X)
