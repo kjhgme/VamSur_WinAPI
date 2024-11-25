@@ -7,6 +7,7 @@
 
 void AWeapon::BeginPlay()
 {
+	DebugOn();
 }
 
 void AWeapon::Tick(float _DeltaTime)

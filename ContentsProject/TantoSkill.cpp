@@ -70,56 +70,6 @@ void TantoSkill::Tick(float _DeltaTime)
 		}
 	}
 
-
-	//for (auto& Renderer : FireRenderers)
-	//{
-	//	if (Renderer.first == "Fire_RC.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ 2.0f, 0.0f });			
-	//	}
-	//	else if (Renderer.first == "Fire_RD.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ 2.0f, 2.0f });
-	//	}
-	//	else if (Renderer.first == "Fire_CD.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ 0.0f, 2.0f });
-	//	}
-	//	else if (Renderer.first == "Fire_LD.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ -2.0f, 2.0f });
-	//	}
-	//	else if (Renderer.first == "Fire_LC.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ -2.0f, 0.0f });
-	//	}
-	//	else if (Renderer.first == "Fire_LU.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ -2.0f, -2.0f });
-	//	}
-	//	else if (Renderer.first == "Fire_CU.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ 0.0f, -2.0f });
-	//	}
-	//	else if (Renderer.first == "Fire_RU.png")
-	//	{
-	//		Renderer.second->AddComponentLocation({ 2.0f, -2.0f });
-	//	}
-
-	//	if (-500.0f >= Renderer.second->GetComponentLocation().X ||
-	//		500.0f <= Renderer.second->GetComponentLocation().X ||
-	//		-500.0f >= Renderer.second->GetComponentLocation().Y ||
-	//		500.0f <= Renderer.second->GetComponentLocation().Y)
-	//	{
-	//		PopFire();
-	//	}
-	//}
-
-	//for (auto& Collision : CollisionComponents)
-	//{
-	//	// FireRenderers 와 같은 위치. CollisionComponents에는 Renderer.first가 없음.
-	//}
-
 	Time += _DeltaTime;
 
 	if (12.0f <= Time)

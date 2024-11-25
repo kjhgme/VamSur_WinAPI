@@ -44,8 +44,6 @@ void Whip::BeginPlay()
 	Level = 1;
 	AttackPower = 10;
 	KnockBack = 1;
-
-	DebugOn();
 }
 
 void Whip::Tick(float _DeltaTime)

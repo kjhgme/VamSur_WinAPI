@@ -107,7 +107,7 @@ void VamSurContentsCore::BeginPlay()
 				UImageManager::GetInst().LoadFolder(Dir.GetPathToString());
 			}
 		}
-		// Charcters
+		// Characters
 		{
 			LoadCharacterImages("Antonio");
 			LoadCharacterImages("Imelda");
@@ -138,6 +138,7 @@ void VamSurContentsCore::BeginPlay()
 			LoadWeaponImages("WeaponIcon");
 			LoadWeaponImages("Whip");
 			LoadWeaponImages("MagicWand");
+			LoadWeaponImages("Knife");
 		}
 		// Sounds
 		{
