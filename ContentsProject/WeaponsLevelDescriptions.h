@@ -27,8 +27,8 @@ public:
             return "Reduces weapons cooldown by 8%";
         case EWeaponType::Bracer:
             return "Increases projectiles speed by 10%";
-        case EWeaponType::Candelabrador:
-            return "Augments area of attacks by 10%";
+        case EWeaponType::Spinach:
+            return "Raises inflicted damage by 10%";
         case EWeaponType::Spellbinder:
             return "Effect lasts 10% longer.";
         case EWeaponType::Pummarola:

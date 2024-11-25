@@ -23,7 +23,7 @@ enum class EWeaponType : int {
 	HollowHeart,
 	EmptyTome,
 	Bracer,
-	Candelabrador,
+	Spinach,
 	Spellbinder,
 	Pummarola,
 	TotalCount,
@@ -82,9 +82,14 @@ public:
 
 	EWeaponType WeaponType = EWeaponType::TotalCount;
 	std::vector<WeaponLevelData> LevelDescriptions;
+
 	int Level = 0;
 	int AttackPower = 0;
-	float KnockBack = 0;
+	int Amount = 0;
+	float KnockBack = 0.0f;
+	float Area = 0.0f;
+	float Speed = 0.0f;
+	
 
 protected:
 	USpriteRenderer* IconSpriteRenderer = nullptr;

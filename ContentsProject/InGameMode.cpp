@@ -57,12 +57,12 @@ void AInGameMode::SpawnItemContainer()
 {
 	UEngineRandom RandomGenerator;
 
-	AItemContainer* ItemContainer = GetWorld()->SpawnActor<AItemContainer>();
-	ItemContainer->SetActorLocation(MonsterSpawner->GetActorLocation());
+	//AItemContainer* ItemContainer = GetWorld()->SpawnActor<AItemContainer>();
+	//ItemContainer->SetActorLocation(MonsterSpawner->GetActorLocation());
 
-	/*if (0 == RandomGenerator.RandomInt(0, 9))
+	if (0 == RandomGenerator.RandomInt(0, 9))
 	{
 		AItemContainer* ItemContainer = GetWorld()->SpawnActor<AItemContainer>();
 		ItemContainer->SetActorLocation(MonsterSpawner->GetActorLocation());
-	}*/
+	}
 }

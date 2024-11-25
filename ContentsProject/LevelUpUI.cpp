@@ -274,7 +274,7 @@ std::string LevelUpUI::EWeaponTypeToString(EWeaponType WeaponType) {
 	case EWeaponType::HollowHeart:		return "HollowHeart";
 	case EWeaponType::EmptyTome:		return "EmptyTome";
 	case EWeaponType::Bracer:			return "Bracer";
-	case EWeaponType::Candelabrador:	return "Candelabrador";
+	case EWeaponType::Spinach:			return "Spinach";
 	case EWeaponType::Spellbinder:		return "Spellbinder";
 	case EWeaponType::Pummarola:		return "Pummarola";
 	case EWeaponType::TotalCount:		return "TotalCount";
@@ -304,7 +304,7 @@ int LevelUpUI::GetWeaponIconIndex(EWeaponType WeaponType)
 	case EWeaponType::HollowHeart:		return 12;
 	case EWeaponType::EmptyTome:		return 13;
 	case EWeaponType::Bracer:			return 14;
-	case EWeaponType::Candelabrador:	return 15;
+	case EWeaponType::Spinach:			return 15;
 	case EWeaponType::Spellbinder:		return 16;
 	case EWeaponType::Pummarola:		return 17;
 	case EWeaponType::BigCoinBag:		return 18;

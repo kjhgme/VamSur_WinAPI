@@ -15,7 +15,7 @@
 #include "HollowHeart.h"
 #include "EmptyTome.h"
 #include "Bracer.h"
-#include "Candelabrador.h"
+#include "Spinach.h"
 #include "Spellbinder.h"
 #include "Pummarola.h"
 
@@ -183,7 +183,7 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 		case EWeaponType::Bracer:
 			Icon->SetSprite("WeaponIcon", 14);
 			break;
-		case EWeaponType::Candelabrador:
+		case EWeaponType::Spinach:
 			Icon->SetSprite("WeaponIcon", 15);
 			break;
 		case EWeaponType::Spellbinder:
@@ -316,8 +316,8 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 				case EWeaponType::Bracer:
 					Weapons[i] = GetWorld()->SpawnActor<Bracer>();
 					break;
-				case EWeaponType::Candelabrador:
-					Weapons[i] = GetWorld()->SpawnActor<Candelabrador>();
+				case EWeaponType::Spinach:
+					Weapons[i] = GetWorld()->SpawnActor<Spinach>();
 					break;
 				case EWeaponType::Spellbinder:
 					Weapons[i] = GetWorld()->SpawnActor<Spellbinder>();

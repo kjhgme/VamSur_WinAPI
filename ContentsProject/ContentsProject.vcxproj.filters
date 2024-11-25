@@ -124,7 +124,7 @@
     <ClInclude Include="Bracer.h">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClInclude>
-    <ClInclude Include="Candelabrador.h">
+    <ClInclude Include="Spinach.h">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClInclude>
     <ClInclude Include="Spellbinder.h">
@@ -285,7 +285,7 @@
     <ClCompile Include="Bracer.cpp">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClCompile>
-    <ClCompile Include="Candelabrador.cpp">
+    <ClCompile Include="Spinach.cpp">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClCompile>
     <ClCompile Include="Spellbinder.cpp">
