@@ -22,6 +22,8 @@ public:
 protected:
 
 private:
-
+	float FadeValue = 1.0f;
+	float FadeDir = -1.0f;
+	void FadeChange();
 };
 
