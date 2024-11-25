@@ -14,9 +14,9 @@ Whip::Whip()
 		{1, "Attacks horizontally,\npasses through enemies."},
 		{2, "Fires 1 more projectile."},
 		{3, "Base Damage up by 5."},
-		{4, "Base Area up by 10%.\nBase Damage up by 5."},
+		{4, "Base Area up by 10%\nBase Damage up by 5."},
 		{5, "Base Damage up by 5."},
-		{6, "Base Area up by 10%.\nBase Damage up by 5."},
+		{6, "Base Area up by 10%\nBase Damage up by 5."},
 		{7, "Base Damage up by 5."},
 		{8, "Base Damage up by 5."},
 	};

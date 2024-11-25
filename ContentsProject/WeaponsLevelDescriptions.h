@@ -19,8 +19,10 @@ public:
             return "High damage, high Area scaling.";
         case EWeaponType::KingBible:
             return "Orbits around the player.";
+        case EWeaponType::Garlic:
+            return "Damages nearby enemies.\nReduces resistance to knockback.";
         case EWeaponType::HollowHeart:
-            return "Augment max health by 20%.";
+            return "Augment max health by 20%";
         case EWeaponType::EmptyTome:
             return "Reduces weapons cooldown by 8%";
         case EWeaponType::Bracer:
@@ -28,7 +30,9 @@ public:
         case EWeaponType::Candelabrador:
             return "Augments area of attacks by 10%";
         case EWeaponType::Spellbinder:
-            return "Effect lasts 10% longer";
+            return "Effect lasts 10% longer.";
+        case EWeaponType::Pummarola:
+            return "Character recovers 0.2 HP\nper second.";
         case EWeaponType::TotalCount:
             return "It is TotalCount.\nWrong Input.";
         case EWeaponType::BigCoinBag:

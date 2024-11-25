@@ -76,7 +76,7 @@ void Knife::Attack()
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
 	{
-		for (const auto& Condition : DirectionMapping)
+		for (const auto& Condition : KnifeDirMapping)
 		{
 			if (player->GetHeadDirRight() == Condition.HeadDirRight &&
 				player->GetHeadDirTop() == Condition.HeadDirTop &&

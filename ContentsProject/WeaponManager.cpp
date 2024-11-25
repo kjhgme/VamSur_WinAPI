@@ -11,11 +11,13 @@
 #include "Knife.h"
 #include "Axe.h"
 #include "KingBible.h"
+#include "Garlic.h"
 #include "HollowHeart.h"
 #include "EmptyTome.h"
 #include "Bracer.h"
 #include "Candelabrador.h"
 #include "Spellbinder.h"
+#include "Pummarola.h"
 
 void AWeaponManager::BeginPlay()
 {
@@ -153,6 +155,9 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 		case EWeaponType::KingBible:
 			Icon->SetSprite("WeaponIcon", 8);
 			break;
+		case EWeaponType::Garlic:
+			Icon->SetSprite("WeaponIcon", 10);
+			break;
 		default:
 			return;
 		}
@@ -170,19 +175,22 @@ void AWeaponManager::SetIconPos(AWeapon* _Weapon)
 		switch (_Weapon->WeaponType)
 		{
 		case EWeaponType::HollowHeart:
-			Icon->SetSprite("WeaponIcon", 10);
-			break;
-		case EWeaponType::EmptyTome:
-			Icon->SetSprite("WeaponIcon", 11);
-			break;
-		case EWeaponType::Bracer:
 			Icon->SetSprite("WeaponIcon", 12);
 			break;
-		case EWeaponType::Candelabrador:
+		case EWeaponType::EmptyTome:
 			Icon->SetSprite("WeaponIcon", 13);
 			break;
-		case EWeaponType::Spellbinder:
+		case EWeaponType::Bracer:
 			Icon->SetSprite("WeaponIcon", 14);
+			break;
+		case EWeaponType::Candelabrador:
+			Icon->SetSprite("WeaponIcon", 15);
+			break;
+		case EWeaponType::Spellbinder:
+			Icon->SetSprite("WeaponIcon", 16);
+			break;
+		case EWeaponType::Pummarola:
+			Icon->SetSprite("WeaponIcon", 17);
 			break;
 		default:
 			return;
@@ -256,6 +264,9 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 				case EWeaponType::KingBible:
 					Weapons[i] = GetWorld()->SpawnActor<KingBible>();
 					break;
+				case EWeaponType::Garlic:
+					Weapons[i] = GetWorld()->SpawnActor<Garlic>();
+					break;
 				default:
 					return;
 				}
@@ -310,6 +321,9 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 					break;
 				case EWeaponType::Spellbinder:
 					Weapons[i] = GetWorld()->SpawnActor<Spellbinder>();
+					break;
+				case EWeaponType::Pummarola:
+					Weapons[i] = GetWorld()->SpawnActor<Pummarola>();
 					break;
 				default:
 					return;

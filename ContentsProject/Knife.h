@@ -11,19 +11,19 @@ struct DirectionCondition {
 	FVector2D KnifePos;
 };
 
-const std::vector<DirectionCondition> DirectionMapping = {
-	{ true,  false, false, false, 00, {1.0f, 0.0f} },
-	{ true,  false, false, true, 00, {1.0f, 0.0f} },
-	{ true,  false, true, false, 01, {1.0f, 1.0f} },
-	{ false, false, true, true, 02, {0.0f, 1.0f} },
-	{ true, false, true, true, 02, {0.0f, 1.0f} },
-	{ false, false, true, false, 03, {-1.0f, 0.0f} },
-	{ false, false, false, false, 04, {-1.0f, 0.0f} },
-	{ false, false, false, true, 04, {-1.0f, 0.0f} },
-	{ false, true,  false, false, 05, {-1.0f, -1.0f} },
-	{ false, true,  false, true, 06, {0.0f, -1.0f} },
-	{ true, true,  false, true, 06, {0.0f, -1.0f} },
-	{ true,  true,  false, false, 07, {1.0f, -1.0f} },
+const std::vector<DirectionCondition> KnifeDirMapping {
+	{ true,  false, false, false, 0, {1.0f, 0.0f} },
+	{ true,  false, false, true, 0, {1.0f, 0.0f} },
+	{ true,  false, true, false, 1, {1.0f, 1.0f} },
+	{ false, false, true, true, 2, {0.0f, 1.0f} },
+	{ true, false, true, true, 2, {0.0f, 1.0f} },
+	{ false, false, true, false, 3, {-1.0f, 0.0f} },
+	{ false, false, false, false, 4, {-1.0f, 0.0f} },
+	{ false, false, false, true, 4, {-1.0f, 0.0f} },
+	{ false, true,  false, false, 5, {-1.0f, -1.0f} },
+	{ false, true,  false, true, 6, {0.0f, -1.0f} },
+	{ true, true,  false, true, 6, {0.0f, -1.0f} },
+	{ true,  true,  false, false, 7, {1.0f, -1.0f} },
 };
 
 static const std::unordered_map<int, FVector2D> MoveOffsets = {

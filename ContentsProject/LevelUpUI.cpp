@@ -270,11 +270,13 @@ std::string LevelUpUI::EWeaponTypeToString(EWeaponType WeaponType) {
 	case EWeaponType::Knife:			return "Knife";
 	case EWeaponType::Axe:				return "Axe";
 	case EWeaponType::KingBible:		return "KingBible";
+	case EWeaponType::Garlic:			return "Garlic";
 	case EWeaponType::HollowHeart:		return "HollowHeart";
 	case EWeaponType::EmptyTome:		return "EmptyTome";
 	case EWeaponType::Bracer:			return "Bracer";
 	case EWeaponType::Candelabrador:	return "Candelabrador";
 	case EWeaponType::Spellbinder:		return "Spellbinder";
+	case EWeaponType::Pummarola:		return "Pummarola";
 	case EWeaponType::TotalCount:		return "TotalCount";
 	case EWeaponType::BigCoinBag:		return "BigCoinBag";
 	case EWeaponType::FloorChicken:		return "FloorChicken";
@@ -298,13 +300,15 @@ int LevelUpUI::GetWeaponIconIndex(EWeaponType WeaponType)
 	case EWeaponType::Knife:			return 4;
 	case EWeaponType::Axe:				return 6;
 	case EWeaponType::KingBible:		return 8;
-	case EWeaponType::HollowHeart:		return 10;
-	case EWeaponType::EmptyTome:		return 11;
-	case EWeaponType::Bracer:			return 12;
-	case EWeaponType::Candelabrador:	return 13;
-	case EWeaponType::Spellbinder:		return 14;
-	case EWeaponType::BigCoinBag:		return 15;
-	case EWeaponType::FloorChicken:		return 16;
+	case EWeaponType::Garlic:			return 10;
+	case EWeaponType::HollowHeart:		return 12;
+	case EWeaponType::EmptyTome:		return 13;
+	case EWeaponType::Bracer:			return 14;
+	case EWeaponType::Candelabrador:	return 15;
+	case EWeaponType::Spellbinder:		return 16;
+	case EWeaponType::Pummarola:		return 17;
+	case EWeaponType::BigCoinBag:		return 18;
+	case EWeaponType::FloorChicken:		return 19;
 
 	default: return -1;
 	}

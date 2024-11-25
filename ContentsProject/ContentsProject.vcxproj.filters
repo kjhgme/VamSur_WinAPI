@@ -160,6 +160,12 @@
     <ClInclude Include="TantoSkill.h">
       <Filter>ContentsObjects\Item\DropItemSkill</Filter>
     </ClInclude>
+    <ClInclude Include="Garlic.h">
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
+    </ClInclude>
+    <ClInclude Include="Pummarola.h">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -311,6 +317,12 @@
     </ClCompile>
     <ClCompile Include="TantoSkill.cpp">
       <Filter>ContentsObjects\Item\DropItemSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="Garlic.cpp">
+      <Filter>ContentsObjects\Weapon\Aggressive</Filter>
+    </ClCompile>
+    <ClCompile Include="Pummarola.cpp">
+      <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
