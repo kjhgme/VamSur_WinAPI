@@ -8,6 +8,8 @@
 void AWeapon::BeginPlay()
 {
 	DebugOn();
+
+	PlayerPos = GetWorld()->GetMainPawn()->GetActorLocation();
 }
 
 void AWeapon::Tick(float _DeltaTime)

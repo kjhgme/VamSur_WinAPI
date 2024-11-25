@@ -139,6 +139,7 @@ void VamSurContentsCore::BeginPlay()
 			LoadWeaponImages("Whip");
 			LoadWeaponImages("MagicWand");
 			LoadWeaponImages("Knife");
+			LoadWeaponImages("KingBible");
 		}
 		// Sounds
 		{

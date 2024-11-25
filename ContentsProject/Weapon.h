@@ -64,6 +64,11 @@ public:
 		return IconSpriteRenderer;
 	}
 
+	FVector2D GetPlayerPosition()
+	{
+		return PlayerPos;
+	}
+
 	// Function
 	virtual void Action();
 	virtual void ChangeHeadDir();

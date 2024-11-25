@@ -103,7 +103,6 @@ void AMonster::InitCollision()
 	CollisionComponent->SetCollisionType(ECollisionType::CirCle);
 
 	CollisionComponent->SetCollisionStay(std::bind(&AMonster::CollisionStay, this, std::placeholders::_1));
-
 }
 
 void AMonster::SetMonsterPos(FVector2D _pos)

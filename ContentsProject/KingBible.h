@@ -18,9 +18,15 @@ public:
 
 	void Action() override;
 
+	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
+
 protected:
 
 private:
+	float MoveSpeed = 150.0f;
+	float CurAngle{};
 
+	FVector2D Pos{};
+	std::vector<USpriteRenderer*> BibleRenderers;
 };
 
