@@ -27,14 +27,14 @@ const std::vector<DirectionCondition> DirectionMapping = {
 };
 
 static const std::unordered_map<int, FVector2D> MoveOffsets = {
-	{ 00, { 2.0f,  0.0f } },
-	{ 01, { 2.0f,  2.0f } },
-	{ 02, { 0.0f,  2.0f } },
-	{ 03, { -2.0f, 2.0f } },
-	{ 04, { -2.0f, 0.0f } },
-	{ 05, { -2.0f, -2.0f } },
-	{ 06, { 0.0f,  -2.0f } },
-	{ 07, { 2.0f,  -2.0f } }
+	{ 00, { 3.0f,  0.0f } },
+	{ 01, { 3.0f,  3.0f } },
+	{ 02, { 0.0f,  3.0f } },
+	{ 03, { -3.0f, 3.0f } },
+	{ 04, { -3.0f, 0.0f } },
+	{ 05, { -3.0f, -3.0f } },
+	{ 06, { 0.0f,  -3.0f } },
+	{ 07, { 3.0f,  -3.0f } }
 };
 
 class Knife : public AWeapon
@@ -66,7 +66,6 @@ protected:
 private:
 	std::deque<std::pair<int, USpriteRenderer*>> KnifeRenderers;
 	std::deque<class U2DCollision*> CollisionComponents;
-	float Time = 0.0f;
 
 	class APlayer* player = nullptr;
 };

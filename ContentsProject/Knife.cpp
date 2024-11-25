@@ -37,9 +37,7 @@ void Knife::BeginPlay()
 
 void Knife::Tick(float _DeltaTime)
 {
-	AWeapon::Tick(_DeltaTime);
-
-	SetActorLocation(player->GetActorLocation());
+	Super::Tick(_DeltaTime);
 
 	for (size_t i = 0; i < CollisionComponents.size(); ++i)
 	{
@@ -51,7 +49,7 @@ void Knife::Tick(float _DeltaTime)
 		}
 
 		const FVector2D Location = Renderer.second->GetComponentLocation();
-		if (Location.X <= -500.0f || Location.X >= 500.0f || Location.Y <= -500.0f || Location.Y >= 500.0f) {
+		if (Location.X <= -1000.0f || Location.X >= 1000.0f || Location.Y <= -1000.0f || Location.Y >= 1000.0f) {
 			PopKnife();
 			continue;
 		}
@@ -60,9 +58,6 @@ void Knife::Tick(float _DeltaTime)
 			CollisionComponents[i]->SetComponentLocation(Location);
 		}
 	}
-
-	Time += _DeltaTime;
-
 }
 
 void Knife::InitCollision()
@@ -105,6 +100,8 @@ void Knife::Attack()
 		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
 		CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
 	}
+
+	SetActorLocation(player->GetActorLocation());
 }
 
 void Knife::PopKnife()
