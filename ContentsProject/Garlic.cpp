@@ -18,6 +18,12 @@ Garlic::Garlic()
 		{7, "Cooldown reduced by 0.1 seconds.\nBase Damage up by 1."},
 		{8, "Base Area up by 20%.\nBase Damage up by 1."},
 	};
+
+	Level = 1;
+	AttackPower = 5.0f;
+	Area = 100.0f;
+	Cooldown = 1.3f;
+	KnockBack = 0.3f;
 }
 
 Garlic::~Garlic()
@@ -37,12 +43,6 @@ void Garlic::BeginPlay()
 	}
 
 	InitCollision();
-
-	Level = 1;
-	AttackPower = 5;
-	Area = 100.0f;
-	Cooldown = 1.3f;
-	KnockBack = 1;
 }
 
 void Garlic::Tick(float _DeltaTime)

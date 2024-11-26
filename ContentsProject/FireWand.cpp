@@ -23,11 +23,11 @@ FireWand::FireWand()
 	};
 
 	Level = 1;
-	AttackPower = 20;
+	AttackPower = 20.0f;
 	Speed = 85.0f;
 	Amount = 3;
 	Cooldown = 3.0f;
-	KnockBack = 1;
+	KnockBack = 1.0f;
 }
 
 FireWand::~FireWand()

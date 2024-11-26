@@ -21,7 +21,7 @@ MagicWand::MagicWand()
 		{4, "Fires 1 more projectile."},
 		{5, "Base Damage up by 10."},
 		{6, "Fires 1 more projectile."},
-		{7, "Passes through 1 more enemy."},
+		{7, "Cooldown reduced by 0.2 seconds."},
 		{8, "Base Damage up by 10."},
 	};
 
@@ -101,22 +101,24 @@ void MagicWand::LevelUp()
 		Amount += 1;
 		break;
 	case 3:
-		Cooldown += 0.2;
+		Cooldown -= 0.2f;
+		TimeEventer.ChangeCoolTime(std::bind(&MagicWand::Attack, this), Cooldown);
 		break;
 	case 4:
 		Amount += 1;
 		break;
 	case 5:
-		AttackPower += 10;
+		AttackPower += 10.0f;
 		break;
 	case 6:
 		Amount += 1;
 		break;
 	case 7:
-		EnterCount += 1;
+		Cooldown -= 0.2f;
+		TimeEventer.ChangeCoolTime(std::bind(&MagicWand::Attack, this), Cooldown);
 		break;
 	case 8:
-		AttackPower += 10;
+		AttackPower += 10.0f;
 		break;
 	}
 }
