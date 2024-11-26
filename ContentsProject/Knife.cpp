@@ -18,6 +18,13 @@ Knife::Knife()
 		{7, "Fires 1 more projectile.\nBase Damage up by 5."},
 		{8, "Passes through 1 more enemy."},
 	};
+
+	Level = 1;
+	AttackPower = 6.5f;
+	Speed = 100.0f;
+	Amount = 3;
+	KnockBack = 0.5f;
+	Cooldown = 1.0f;
 }
 
 Knife::~Knife()
@@ -29,13 +36,6 @@ void Knife::BeginPlay()
 	AWeapon::BeginPlay();
 
 	player = AInGameMode::Player;
-
-	Level = 1;
-	AttackPower = 6.5f;
-	Speed = 100.0f;
-	Amount = 3;
-	KnockBack = 0.5f;
-	Cooldown = 1.0f;
 }
 
 void Knife::Tick(float _DeltaTime)
@@ -70,7 +70,8 @@ void Knife::InitCollision()
 
 void Knife::Action()
 {
-	TimeEventer.PushEvent(1.0f, std::bind(&Knife::Attack, this), false, -1.0f, true);
+	AWeapon::Action();
+	TimeEventer.PushEvent(Cooldown, std::bind(&Knife::Attack, this), false, -1.0f, true);
 }
 
 void Knife::LevelUp()

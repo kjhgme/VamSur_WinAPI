@@ -84,6 +84,19 @@ public:
 		}
 	}
 
+	void ChangeCoolTime(std::function<void()> _Event, float _Time)
+	{
+		for (TimeEventFunction& TimeEvent : Events)
+		{
+			if (TimeEvent.Event.target_type() == _Event.target_type() &&
+				TimeEvent.Event.target<void()>() == _Event.target<void()>())
+			{
+				TimeEvent.Time = _Time;
+				TimeEvent.MaxTime = _Time;
+			}
+		}
+	}
+
 protected:
 
 private:
