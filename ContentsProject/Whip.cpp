@@ -20,6 +20,13 @@ Whip::Whip()
 		{7, "Base Damage up by 5."},
 		{8, "Base Damage up by 5."},
 	};
+
+	Level = 1;
+	AttackPower = 10.0f;
+	KnockBack = 1.0f;
+	Area = 100.0f;
+	Amount = 1;
+	Cooldown = 1.35f;
 }
 
 Whip::~Whip()
@@ -35,15 +42,11 @@ void Whip::BeginPlay()
 		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
 		SpriteRenderer->SetSprite("Whip", 0);
 		SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
-		SpriteRenderer->SetSpriteScale(1.0f);
+		SpriteRenderer->SetSpriteScale(Area / 100.0f);
 		SpriteRenderer->SetAlphaChar(0);
 	}
 
 	InitCollision();
-
-	Level = 1;
-	AttackPower = 10;
-	KnockBack = 1;
 }
 
 void Whip::Tick(float _DeltaTime)
@@ -55,17 +58,18 @@ void Whip::InitCollision()
 {
 	AWeapon::InitCollision();
 
-	CollisionComponents.resize(4);
+	Scale = SpriteRenderer->GetComponentScale();
+	Scale.X = Scale.Y;
+
+	CollisionComponents.resize(7);
 
 	for (int i = 0; i < CollisionComponents.size(); ++i)
 	{
 		CollisionComponents[i] = CreateDefaultSubObject<U2DCollision>();
-		CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * 30.0f), -10.0f });
-		// CollisionComponents[i]->SetComponentLocation({ 0, 0 });
-		CollisionComponents[i]->SetComponentScale({ 40.0f, 40.0f });
+		CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * Scale.X), -10.0f });
+		CollisionComponents[i]->SetComponentScale(Scale);
 		CollisionComponents[i]->SetCollisionGroup(ECollisionGroup::WeaponBody);
 		CollisionComponents[i]->SetCollisionType(ECollisionType::CirCle);
-
 
 		CollisionComponents[i]->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
 		CollisionComponents[i]->SetCollisionStay(std::bind(&AWeapon::CollisionStay, this, std::placeholders::_1));
@@ -75,7 +79,7 @@ void Whip::InitCollision()
 
 void Whip::Action()
 {
-	TimeEventer.PushEvent(2.0f, std::bind(&Whip::Attack, this), false, -1.0f, true);
+	TimeEventer.PushEvent(Cooldown, std::bind(&Whip::Attack, this), false, -1.0f, true);
 }
 
 void Whip::LevelUp()
@@ -85,7 +89,8 @@ void Whip::LevelUp()
 	switch (Level)
 	{
 	case 2:
-		Amount += 1;
+		Area += 20.0f;
+		AddWhip();
 		break;
 	case 3:
 		AttackPower += 5;
@@ -108,6 +113,15 @@ void Whip::LevelUp()
 		AttackPower += 5;
 		break;
 	}
+
+	SpriteRenderer->SetSpriteScale(1.0f * (Area / 100.0f));
+	Scale = SpriteRenderer->GetComponentScale();
+	Scale.X = Scale.Y;
+
+	for (int i = 0; i < CollisionComponents.size(); ++i)
+	{
+		CollisionComponents[i]->SetComponentScale(Scale);
+	}
 }
 
 void Whip::ChangeHeadDir()
@@ -117,11 +131,22 @@ void Whip::ChangeHeadDir()
 	if (true == HeadDirRight)
 	{
 		SpriteRenderer->SetSprite("Whip", 0);
-		SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
+		SpriteRenderer->SetComponentLocation({  110.0f, -10.0f });
 
-		for (int i = 0; i < CollisionComponents.size(); ++i)
+		for (int i = 0; i < CollisionComponents.size() / 2; ++i)
 		{
-			CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * 30.0f), -10.0f });
+			CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * Scale.X), -10.0f });
+		}
+
+		if (Amount >= 2)
+		{
+			SecondRenderer->SetSprite("Whip", 1);
+			SecondRenderer->SetComponentLocation({ -110.0f, -40.0f });
+
+			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (CollisionComponents.size() / 2)) * -Scale.X), -40.0f });
+			}
 		}
 	}
 	else
@@ -131,20 +156,45 @@ void Whip::ChangeHeadDir()
 
 		for (int i = 0; i < CollisionComponents.size(); ++i)
 		{
-			CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -30.0f), -10.0f });
+			CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -Scale.X), -10.0f });
+		}
+
+		if (Amount >= 2)
+		{
+			SecondRenderer->SetSprite("Whip", 0);
+			SecondRenderer->SetComponentLocation({ 110.0f, -40.0f });
+
+			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetComponentLocation({ 40.0f + ((i - CollisionComponents.size() / 2) * Scale.X), -40.0f });
+			}
 		}
 	}
 }
 
 void Whip::Attack()
 {
-	for (int i = 0; i < CollisionComponents.size(); ++i)
+	if (2 <= Amount)
 	{
-		CollisionComponents[i]->SetActive(true);
+		for (int i = 0; i < CollisionComponents.size() / 2; ++i)
+		{
+			CollisionComponents[i]->SetActive(true);
+		}
+
+		FadeValue = 1.0f;
+		SecondFadeValue = 1.0f;
+	}
+	else 
+	{
+		for (int i = 0; i < CollisionComponents.size(); ++i)
+		{
+			CollisionComponents[i]->SetActive(true);
+		}
+
+		FadeValue = 1.0f;
 	}
 
-	FadeValue = 1.0f;
-	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeOut, this), true);
+	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeOut, this), true, -1.0f, false);
 }
 
 void Whip::FadeOut()
@@ -153,11 +203,82 @@ void Whip::FadeOut()
 	FadeValue += DeltaTime * 2.0f * FadeDir;
 	SpriteRenderer->SetAlphafloat(FadeValue);
 
-	if (0 >= FadeValue)
+	if (2 <= Amount)
 	{
-		for (int i = 0; i < CollisionComponents.size(); ++i)
+		if (0 >= FadeValue)
 		{
-			CollisionComponents[i]->SetActive(false);
+			for (int i = 0; i < CollisionComponents.size() / 2; ++i)
+			{
+				CollisionComponents[i]->SetActive(false);
+			}
+			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetActive(true);
+			}
+
+			SecondFadeValue += DeltaTime * 2.0f * FadeDir;
+			SecondRenderer->SetAlphafloat(SecondFadeValue);
+
+			if (0 >= SecondFadeValue)
+			{
+				for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+				{
+					CollisionComponents[i]->SetActive(false);
+				}
+			}
 		}
 	}
+	else {
+		if (0 >= FadeValue)
+		{
+			for (int i = 0; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetActive(false);
+			}
+		}
+	}
+}
+
+void Whip::AddWhip()
+{
+	Amount += 1;
+
+	{
+		SecondRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		SecondRenderer->SetOrder(ERenderOrder::WEAPON);
+		
+		if (true == HeadDirRight)
+		{
+			SecondRenderer->SetSprite("Whip", 1);
+			SecondRenderer->SetComponentLocation({ -110.0f, -40.0f });
+		}
+		else
+		{
+			SecondRenderer->SetSprite("Whip", 0);
+			SecondRenderer->SetComponentLocation({ 110.0f, -40.0f });
+		}
+		
+		SecondRenderer->SetSpriteScale(Area / 100.0f);
+		SecondRenderer->SetAlphaChar(0);
+	}
+	
+
+	Scale = SecondRenderer->GetComponentScale();
+	Scale.X = Scale.Y;
+
+	CollisionComponents.resize(14);
+
+	for (int i = (CollisionComponents.size() / 2); i < CollisionComponents.size(); ++i)
+	{
+		CollisionComponents[i] = CreateDefaultSubObject<U2DCollision>();
+		CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (CollisionComponents.size() / 2)) * -Scale.X), -40.0f });
+		CollisionComponents[i]->SetComponentScale(Scale);
+		CollisionComponents[i]->SetCollisionGroup(ECollisionGroup::WeaponBody);
+		CollisionComponents[i]->SetCollisionType(ECollisionType::CirCle);
+
+		CollisionComponents[i]->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+		CollisionComponents[i]->SetCollisionStay(std::bind(&AWeapon::CollisionStay, this, std::placeholders::_1));
+		CollisionComponents[i]->SetCollisionEnd(std::bind(&AWeapon::CollisionEnd, this, std::placeholders::_1));
+	}
+
 }

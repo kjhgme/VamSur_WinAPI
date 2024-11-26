@@ -26,7 +26,12 @@ protected:
 
 private:
 	float FadeValue = 1.0f;
+	float SecondFadeValue = 1.0f;
 	float FadeDir = -1.0f;
+	FVector2D Scale{};
+	class USpriteRenderer* SecondRenderer = nullptr;
+
 	void FadeOut();
+	void AddWhip();
 };
 
