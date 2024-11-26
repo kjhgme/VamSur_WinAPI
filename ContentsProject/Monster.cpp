@@ -13,6 +13,7 @@
 #include "InGameUI.h"
 #include "DropItem.h"
 
+UEngineRandom MRandomGenerator;
 
 AMonster::AMonster()
 {
@@ -259,12 +260,11 @@ void AMonster::CollisionStay(AActor* _ColActor)
 
 void AMonster::SpawnExpItem()
 {
-	UEngineRandom RandomGenerator;
 	float time = UEngineAPICore::GetCore()->GetDeltaTime();
 	__int64 UniqueSeed = static_cast<__int64>((MonsterPos.X * 1000 + MonsterPos.Y * 1000) + time * 10000);
-	RandomGenerator.SetSeed(UniqueSeed);
+	MRandomGenerator.SetSeed(UniqueSeed);
 	
-	if (RandomGenerator.RandomInt(0, 1) == 1)
+	if (MRandomGenerator.RandomInt(0, 1) == 1)
 	{
 		AExpItem* newExpItem = GetWorld()->SpawnActor<AExpItem>();
 		newExpItem->InitDropItem(MonsterPos);
