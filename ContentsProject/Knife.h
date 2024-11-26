@@ -56,7 +56,7 @@ public:
 	void LevelUp() override;
 
 	void Attack();
-
+	void ShootKnife();
 	void PopKnife();
 
 	void SetFireRendererProperties(USpriteRenderer* _Renderer, int _SpriteNum, FVector2D _Pos);

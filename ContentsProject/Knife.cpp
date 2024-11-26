@@ -33,7 +33,7 @@ void Knife::BeginPlay()
 	Level = 1;
 	AttackPower = 6.5f;
 	Speed = 100.0f;
-	Amount = 1;
+	Amount = 3;
 	KnockBack = 0.5f;
 	Cooldown = 1.0f;
 }
@@ -48,7 +48,7 @@ void Knife::Tick(float _DeltaTime)
 		auto OffsetIt = KnifeMoveOffsets.find(Renderer.first);
 
 		if (OffsetIt != KnifeMoveOffsets.end()) {
-			Renderer.second->AddComponentLocation(OffsetIt->second);
+			Renderer.second->AddComponentLocation(OffsetIt->second * (Speed / 100.0f));
 		}
 
 		const FVector2D Location = Renderer.second->GetComponentLocation();
@@ -106,6 +106,11 @@ void Knife::LevelUp()
 }
 
 void Knife::Attack()
+{	
+	TimeEventer.PushEvent(0.1f, std::bind(&Knife::ShootKnife, this), false, 0.1f * Amount, true);
+}
+
+void Knife::ShootKnife()
 {
 	KnifeRenderers.push_back(std::make_pair(00, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
