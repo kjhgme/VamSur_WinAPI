@@ -6,6 +6,7 @@
 #include <EngineCore/EngineAPICore.h>
 #include "WeaponsLevelDescriptions.h"
 #include "InGameMode.h"
+#include "InGameUI.h"
 #include "Whip.h"
 #include "MagicWand.h"
 #include "Knife.h"
@@ -220,6 +221,15 @@ void AWeaponManager::ChangeDir()
 
 void AWeaponManager::AddWeapon(EWeaponType _Type)
 {
+	if (_Type == EWeaponType::BigCoinBag)
+	{
+		AInGameUI::KillAndGold->AddGoldCount(25);
+	}
+	else if (_Type == EWeaponType::FloorChicken)
+	{
+		AInGameMode::Player->AddHp(30);
+	}
+
 	// 무기만
 	if (static_cast<int>(_Type) < static_cast<int>(EWeaponType::TotalCount) / 2)
 	{
@@ -281,7 +291,7 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 	// 패시브 무기
 	else
 	{
-		for (int i = 6; i < 12; ++i)
+		for (int i = static_cast<int>(EWeaponType::TotalCount) / 2; i < static_cast<int>(EWeaponType::TotalCount); ++i)
 		{
 			if (Weapons[i] != nullptr && Weapons[i]->WeaponType == _Type)
 			{
@@ -302,7 +312,7 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 			}
 		}
 		// 같은게 없다면
-		for (int i = 6; i < 12; ++i) {
+		for (int i = static_cast<int>(EWeaponType::TotalCount) / 2; i < static_cast<int>(EWeaponType::TotalCount); ++i) {
 			if (Weapons[i] == nullptr)
 			{
 				switch (_Type)
