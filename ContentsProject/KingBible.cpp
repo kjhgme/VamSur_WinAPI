@@ -26,6 +26,7 @@ KingBible::KingBible()
 	Duration = 3.0f;
 	Cooldown = 3.0f;
 	KnockBack = 1.0f;
+	Area = 100.0f;
 }
 
 KingBible::~KingBible()
@@ -50,14 +51,14 @@ void KingBible::Tick(float _DeltaTime)
 {
 	AWeapon::Tick(_DeltaTime);
 
-	CurAngle += MoveSpeed * _DeltaTime;
+	CurAngle += Speed * _DeltaTime;
 	
 	for (size_t i = 0; i < BibleRenderers.size(); ++i)
 	{
 		float RendererAngle = CurAngle + (360.0f / BibleRenderers.size()) * i;
 		RendererAngle = fmod(RendererAngle, 360.0f);
 		
-		Pos = CalculateCircularPosition(FVector2D::ZERO, 80.0f, RendererAngle);
+		Pos = CalculateCircularPosition(FVector2D::ZERO, Area, RendererAngle);
 
 		BibleRenderers[i]->SetComponentLocation(Pos); 
 		CollisionComponents[i]->SetComponentLocation(Pos);
@@ -86,6 +87,7 @@ void KingBible::InitCollision(int _num)
 
 void KingBible::Action()
 {
+	Attack();
 	TimeEventer.PushEvent(Duration + Cooldown, std::bind(&KingBible::Attack, this), false, -1.0f, true);
 }
 
@@ -103,7 +105,9 @@ void KingBible::LevelUp()
 		Speed += 30.0f;
 		break;
 	case 4:
-		AttackPower += 10;
+		Duration += 0.5f;
+		ChangeDuration();
+		AttackPower += 10.0f;
 		break;
 	case 5:
 		AddBible();
@@ -113,7 +117,9 @@ void KingBible::LevelUp()
 		Speed += 30.0f;
 		break;
 	case 7:
-		AttackPower += 10;
+		Duration += 0.5f;
+		ChangeDuration();
+		AttackPower += 10.0f;
 		break;
 	case 8:
 		AddBible();
@@ -144,6 +150,11 @@ void KingBible::FadeOut()
 			CollisionComponents[i]->SetActive(false);
 		}
 	}
+}
+
+void KingBible::ChangeDuration()
+{
+	TimeEventer.ChangeCoolTime(std::bind(&KingBible::Attack, this), Duration + Cooldown);
 }
 
 FVector2D KingBible::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)
