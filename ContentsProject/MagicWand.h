@@ -47,7 +47,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void InitCollision() override;
+	void InitCollision();
 	void Action() override;
 	void LevelUp() override;
 
@@ -69,6 +69,6 @@ private:
 	class APlayer* player = nullptr;
 	class AMonsterSpawner* MonsterSpawner = nullptr;
 
-	int EnterCount = 0;
+	int EnterCount = 1;
 };
 

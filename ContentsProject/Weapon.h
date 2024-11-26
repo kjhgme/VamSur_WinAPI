@@ -45,9 +45,6 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	// InitFunction
-	virtual void InitCollision() {};
-
 	// GetFunction
 	std::string GetWeaponDescriptionByLevel(int _Level) const
 	{

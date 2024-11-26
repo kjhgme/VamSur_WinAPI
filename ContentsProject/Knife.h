@@ -51,7 +51,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void InitCollision() override;
+	void InitCollision();
 	void Action() override;
 	void LevelUp() override;
 

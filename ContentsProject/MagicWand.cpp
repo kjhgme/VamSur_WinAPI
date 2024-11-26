@@ -83,7 +83,6 @@ void MagicWand::Tick(float _DeltaTime)
 
 void MagicWand::InitCollision()
 {
-	AWeapon::InitCollision();
 }
 
 void MagicWand::Action()

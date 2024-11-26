@@ -21,6 +21,13 @@ FireWand::FireWand()
 		{7, "Base Damage up by 10.\nBase Speed up by 20%"},
 		{8, "Base Damage up by 10."},
 	};
+
+	Level = 1;
+	AttackPower = 20;
+	Speed = 85.0f;
+	Amount = 3;
+	Cooldown = 3.0f;
+	KnockBack = 1;
 }
 
 FireWand::~FireWand()
@@ -34,13 +41,6 @@ void FireWand::BeginPlay()
 	AWeapon::BeginPlay();
 
 	player = AInGameMode::Player;
-
-	Level = 1;
-	AttackPower = 20;
-	Speed = 85.0f;
-	Amount = 3;
-	Cooldown = 3.0f;
-	KnockBack = 1;
 }
 
 void FireWand::Tick(float _DeltaTime)
@@ -70,14 +70,14 @@ void FireWand::Tick(float _DeltaTime)
 
 void FireWand::InitCollision()
 {
-	AWeapon::InitCollision();
 }
 
 void FireWand::Action()
 {
-	TimeEventer.PushEvent(1.0f, std::bind(&FireWand::Attack, this), false, -1.0f, true);
+	AWeapon::Action();
+	TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::Attack, this), false, -1.0f, true);
 }
-
+ 
 void FireWand::LevelUp()
 {
 	AWeapon::LevelUp();
@@ -112,11 +112,8 @@ void FireWand::LevelUp()
 }
 
 void FireWand::Attack()
-{
-	for(int i = 0 ; i < Amount; ++i)
-	{
-		TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::ShootFire, this), false, -1.0f, false);
-	}
+{	
+	TimeEventer.PushEvent(0.1f, std::bind(&FireWand::ShootFire, this), false, 0.1f * Amount, false);
 }
 
 void FireWand::ShootFire()
@@ -149,6 +146,31 @@ void FireWand::ShootFire()
 		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
 		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
 		CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+
+		/*auto CurrentComponent = CollisionComponents.back();
+		CollisionComponents.back()->SetCollisionEnter([this, CurrentComponent](AActor* _ColActor) {			
+			AWeapon::CollisionEnter(_ColActor);
+
+			for (int i = 0; i < CollisionComponents.size(); ++i)
+			{
+				if (CollisionComponents[i] == CurrentComponent)
+				{
+					if (i < FireWandRenderers.size())
+					{
+						FireWandRenderers[i].second->Destroy();
+						auto iter = FireWandRenderers.begin() + i;
+						FireWandRenderers.erase(iter);
+					}
+
+					if (i < CollisionComponents.size())
+					{
+						CollisionComponents[i]->Destroy();
+						auto Citer = CollisionComponents.begin() + i;
+						CollisionComponents.erase(Citer);
+					}
+				}
+			}			
+		});*/
 	}
 }
 

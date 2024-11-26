@@ -44,7 +44,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void InitCollision() override;
+	void InitCollision();
 	void Action() override;
 	void LevelUp() override;
 
@@ -53,7 +53,7 @@ public:
 	void PopFireWand();
 
 	void SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos);
-
+	
 protected:
 
 private:

@@ -65,7 +65,6 @@ void Knife::Tick(float _DeltaTime)
 
 void Knife::InitCollision()
 {
-	AWeapon::InitCollision();
 }
 
 void Knife::Action()

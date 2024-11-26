@@ -14,7 +14,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void InitCollision() override;
+	void InitCollision(int _Num);
 	void Action() override;
 	void LevelUp() override;
 
@@ -28,5 +28,7 @@ private:
 
 	FVector2D Pos{};
 	std::vector<USpriteRenderer*> BibleRenderers;
+
+	void AddBible();
 };
 

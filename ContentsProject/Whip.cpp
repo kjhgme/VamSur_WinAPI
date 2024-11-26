@@ -56,8 +56,6 @@ void Whip::Tick(float _DeltaTime)
 
 void Whip::InitCollision()
 {
-	AWeapon::InitCollision();
-
 	Scale = SpriteRenderer->GetComponentScale();
 	Scale.X = Scale.Y;
 
