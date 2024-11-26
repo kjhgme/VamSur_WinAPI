@@ -115,11 +115,11 @@ void FireWand::Attack()
 {
 	for(int i = 0 ; i < Amount; ++i)
 	{
-		TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::FireBurst, this), false, -1.0f, true);
+		TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::ShootFire, this), false, -1.0f, true);
 	}
 }
 
-void FireWand::FireBurst()
+void FireWand::ShootFire()
 {
 	SetActorLocation(player->GetActorLocation());
 

@@ -49,7 +49,7 @@ public:
 	void LevelUp() override;
 
 	void Attack();
-	void FireBurst();
+	void ShootFire();
 	void PopFireWand();
 
 	void SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos);
