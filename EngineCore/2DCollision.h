@@ -87,6 +87,7 @@ public:
 protected:
 
 private:
+	void CollisionSetRelease();
 	void CollisionEventCheck(class U2DCollision* _Other);
 
 	ECollisionType CollisionType = ECollisionType::CirCle;

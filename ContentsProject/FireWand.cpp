@@ -36,7 +36,10 @@ void FireWand::BeginPlay()
 	player = AInGameMode::Player;
 
 	Level = 1;
-	AttackPower = 10;
+	AttackPower = 20;
+	Speed = 75.0f;
+	Amount = 3;
+	Cooldown = 3.0f;
 	KnockBack = 1;
 }
 
@@ -50,20 +53,7 @@ void FireWand::Tick(float _DeltaTime)
 		auto OffsetIt = FWMoveOffsets.find(Renderer.first);
 
 		if (OffsetIt != FWMoveOffsets.end()) {
-			Renderer.second->AddComponentLocation(OffsetIt->second);
-
-			if (0 == OffsetIt->second.X)
-			{
-				Renderer.second->AddComponentLocation({ FWRandomGenerator.Randomfloat(-5.0f, 5.0f), 0.0f });
-			}
-			else if (0 == OffsetIt->second.Y)
-			{
-				Renderer.second->AddComponentLocation({ 0.0f, FWRandomGenerator.Randomfloat(-5.0f, 5.0f) });
-			}
-			else
-			{
-				Renderer.second->AddComponentLocation({ FWRandomGenerator.Randomfloat(-5.0f, 5.0f), FWRandomGenerator.Randomfloat(-5.0f, 5.0f) });
-			}
+			Renderer.second->AddComponentLocation(OffsetIt->second * (Speed / 100.0f));
 		}
 
 		const FVector2D Location = Renderer.second->GetComponentLocation();
@@ -85,7 +75,7 @@ void FireWand::InitCollision()
 
 void FireWand::Action()
 {
-	TimeEventer.PushEvent(1.0f, std::bind(&FireWand::Attack, this), false, -1.0f, true);
+	TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::Attack, this), false, -1.0f, false);
 }
 
 void FireWand::LevelUp()
@@ -123,6 +113,14 @@ void FireWand::LevelUp()
 
 void FireWand::Attack()
 {
+	for(int i = 0 ; i < Amount; ++i)
+	{
+		TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::FireBurst, this), false, -1.0f, true);
+	}
+}
+
+void FireWand::FireBurst()
+{
 	SetActorLocation(player->GetActorLocation());
 
 	FireWandRenderers.push_back(std::make_pair("Fire_RC.png", CreateDefaultSubObject<USpriteRenderer>()));
@@ -139,7 +137,7 @@ void FireWand::Attack()
 				SetFireRendererProperties(FireWandRenderers.back().second, Condition.SpriteName, Condition.Pos);
 
 				CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
-				
+
 				break;
 			}
 		}

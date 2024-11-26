@@ -49,7 +49,7 @@ public:
 	void LevelUp() override;
 
 	void Attack();
-
+	void FireBurst();
 	void PopFireWand();
 
 	void SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos);
@@ -61,6 +61,6 @@ private:
 	std::deque<class U2DCollision*> CollisionComponents;
 
 	class APlayer* player = nullptr;
-
+	FVector2D Dir{};
 };
 

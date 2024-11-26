@@ -32,14 +32,16 @@ void Garlic::BeginPlay()
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
 		SpriteRenderer->SetSprite("Garlic", 0);
-		SpriteRenderer->SetSpriteScale(1.0f);
+		SpriteRenderer->SetSpriteScale(1.0f * (Area / 100.0f));
 		SpriteRenderer->SetAlphafloat(0.1f);
 	}
 
 	InitCollision();
 
 	Level = 1;
-	AttackPower = 10;
+	AttackPower = 5;
+	Area = 100.0f;
+	Cooldown = 1.3f;
 	KnockBack = 1;
 }
 
@@ -84,7 +86,7 @@ void Garlic::LevelUp()
 		AttackPower += 2;
 		break;
 	case 3:
-		Cooldown += 0.1f;
+		Cooldown -= 0.1f;
 		AttackPower += 1;
 		break;
 	case 4:
@@ -92,7 +94,7 @@ void Garlic::LevelUp()
 		AttackPower += 1;
 		break;
 	case 5:
-		Cooldown += 0.1f;
+		Cooldown -= 0.1f;
 		AttackPower += 2;
 		break;
 	case 6:
@@ -100,7 +102,7 @@ void Garlic::LevelUp()
 		AttackPower += 1;
 		break;
 	case 7:
-		Cooldown += 0.1f;
+		Cooldown -= 0.1f;
 		AttackPower += 1;
 		break;
 	case 8:
@@ -108,6 +110,9 @@ void Garlic::LevelUp()
 		AttackPower += 1;
 		break;
 	}
+
+	SpriteRenderer->SetSpriteScale(1.0f * (Area / 100.0f));
+	CollisionComponents[0]->SetComponentScale(SpriteRenderer->GetComponentScale());
 }
 
 void Garlic::Attack()

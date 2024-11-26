@@ -31,8 +31,11 @@ void Knife::BeginPlay()
 	player = AInGameMode::Player;
 
 	Level = 1;
-	AttackPower = 10;
-	KnockBack = 1;
+	AttackPower = 6.5f;
+	Speed = 100.0f;
+	Amount = 1;
+	KnockBack = 0.5f;
+	Cooldown = 1.0f;
 }
 
 void Knife::Tick(float _DeltaTime)
