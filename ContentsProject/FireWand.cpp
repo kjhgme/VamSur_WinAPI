@@ -37,7 +37,7 @@ void FireWand::BeginPlay()
 
 	Level = 1;
 	AttackPower = 20;
-	Speed = 75.0f;
+	Speed = 85.0f;
 	Amount = 3;
 	Cooldown = 3.0f;
 	KnockBack = 1;
@@ -57,7 +57,7 @@ void FireWand::Tick(float _DeltaTime)
 		}
 
 		const FVector2D Location = Renderer.second->GetComponentLocation();
-		if (Location.X <= -500.0f || Location.X >= 500.0f || Location.Y <= -500.0f || Location.Y >= 500.0f) {
+		if (Location.X <= -400.0f || Location.X >= 400.0f || Location.Y <= -400.0f || Location.Y >= 400.0f) {
 			PopFireWand();
 			continue;
 		}
@@ -75,7 +75,7 @@ void FireWand::InitCollision()
 
 void FireWand::Action()
 {
-	TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::Attack, this), false, -1.0f, false);
+	TimeEventer.PushEvent(1.0f, std::bind(&FireWand::Attack, this), false, -1.0f, true);
 }
 
 void FireWand::LevelUp()
@@ -115,7 +115,7 @@ void FireWand::Attack()
 {
 	for(int i = 0 ; i < Amount; ++i)
 	{
-		TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::ShootFire, this), false, -1.0f, true);
+		TimeEventer.PushEvent(Cooldown, std::bind(&FireWand::ShootFire, this), false, -1.0f, false);
 	}
 }
 

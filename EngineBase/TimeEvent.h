@@ -61,6 +61,7 @@ public:
 				}
 				if (0.0f >= TimeEvent.DuringTime)
 				{
+					TimeEvent.Event();
 					StartIter = Events.erase(StartIter);
 					continue;
 				}				
