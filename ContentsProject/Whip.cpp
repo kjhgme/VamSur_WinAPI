@@ -128,48 +128,64 @@ void Whip::ChangeHeadDir()
 {
 	AWeapon::ChangeHeadDir();
 
-	if (true == HeadDirRight)
+	if (2 <= Amount)
 	{
-		SpriteRenderer->SetSprite("Whip", 0);
-		SpriteRenderer->SetComponentLocation({  110.0f, -10.0f });
-
-		for (int i = 0; i < CollisionComponents.size() / 2; ++i)
+		if (true == HeadDirRight)
 		{
-			CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * Scale.X), -10.0f });
-		}
-
-		if (Amount >= 2)
-		{
+			SpriteRenderer->SetSprite("Whip", 0);
+			SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
 			SecondRenderer->SetSprite("Whip", 1);
 			SecondRenderer->SetComponentLocation({ -110.0f, -40.0f });
 
+			for (int i = 0; i < CollisionComponents.size() / 2; ++i)
+			{
+				CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * Scale.X), -10.0f });
+			}
 			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
 			{
 				CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (CollisionComponents.size() / 2)) * -Scale.X), -40.0f });
 			}
 		}
-	}
-	else
-	{
-		SpriteRenderer->SetSprite("Whip", 1);
-		SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
-
-		for (int i = 0; i < CollisionComponents.size(); ++i)
+		else
 		{
-			CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -Scale.X), -10.0f });
-		}
-
-		if (Amount >= 2)
-		{
+			SpriteRenderer->SetSprite("Whip", 1);
+			SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
 			SecondRenderer->SetSprite("Whip", 0);
 			SecondRenderer->SetComponentLocation({ 110.0f, -40.0f });
 
+			for (int i = 0; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -Scale.X), -10.0f });
+			}
 			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
 			{
 				CollisionComponents[i]->SetComponentLocation({ 40.0f + ((i - CollisionComponents.size() / 2) * Scale.X), -40.0f });
 			}
 		}
 	}
+	else 
+	{
+		if (true == HeadDirRight)
+		{
+			SpriteRenderer->SetSprite("Whip", 0);
+			SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
+
+			for (int i = 0; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * Scale.X), -10.0f });
+			}
+		}
+		else
+		{
+			SpriteRenderer->SetSprite("Whip", 1);
+			SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
+
+			for (int i = 0; i < CollisionComponents.size(); ++i)
+			{
+				CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -Scale.X), -10.0f });
+			}
+		}
+	}	
 }
 
 void Whip::Attack()
