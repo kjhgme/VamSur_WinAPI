@@ -39,7 +39,12 @@ public:
 			TimeEventFunction& TimeEvent = *StartIter;
 			TimeEvent.Time -= _DeltaTime;
 
-			if (true == TimeEvent.IsUpdate && 0.0f < TimeEvent.Time)
+			if (true == TimeEvent.IsUpdate && 0.0f < TimeEvent.Time && 0.0f < TimeEvent.DuringTime)
+			{
+				TimeEvent.DuringTime -= _DeltaTime;
+				TimeEvent.Time += _DeltaTime;
+			}
+			else if (true == TimeEvent.IsUpdate && 0.0f < TimeEvent.Time)
 			{
 				TimeEvent.Event();
 			}

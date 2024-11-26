@@ -18,6 +18,9 @@ public:
 	void Action() override;
 	void LevelUp() override;
 
+	void Attack();
+	void FadeOut();
+
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
 protected:
@@ -25,6 +28,11 @@ protected:
 private:
 	float MoveSpeed = 150.0f;
 	float CurAngle{};
+	float FadeValue = 1.0f;
+	float FadeDir = -1.0f;
+
+	bool bStartAttack = false;
+	bool bStartFadeOut = false;
 
 	FVector2D Pos{};
 	std::vector<USpriteRenderer*> BibleRenderers;

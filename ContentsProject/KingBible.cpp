@@ -2,6 +2,8 @@
 #include "KingBible.h"
 #include "ContentsEnum.h"
 
+#include "EngineCore/EngineAPICore.h"
+
 KingBible::KingBible()
 {
 	WeaponType = EWeaponType::KingBible;
@@ -59,6 +61,10 @@ void KingBible::Tick(float _DeltaTime)
 
 		BibleRenderers[i]->SetComponentLocation(Pos); 
 		CollisionComponents[i]->SetComponentLocation(Pos);
+				
+		FadeValue += _DeltaTime * 3.0f * FadeDir;
+		FadeValue = UEngineMath::Clamp(FadeValue, 0.0f, 1.0f);
+		BibleRenderers[i]->SetAlphafloat(FadeValue);
 	}
 }
 
@@ -80,6 +86,7 @@ void KingBible::InitCollision(int _num)
 
 void KingBible::Action()
 {
+	TimeEventer.PushEvent(Duration + Cooldown, std::bind(&KingBible::Attack, this), false, -1.0f, true);
 }
 
 void KingBible::LevelUp()
@@ -111,6 +118,31 @@ void KingBible::LevelUp()
 	case 8:
 		AddBible();
 		break;
+	}
+}
+
+void KingBible::Attack()
+{
+	FadeDir = 1.0f;
+		
+	for (int i = 0; i < CollisionComponents.size(); ++i)
+	{
+		CollisionComponents[i]->SetActive(true);
+	}	
+	
+	TimeEventer.PushEvent(1.0f, std::bind(&KingBible::FadeOut, this), true, Duration, false);
+}
+
+void KingBible::FadeOut()
+{
+	FadeDir = -1.0f;
+	
+	if (0.0f >= FadeValue)
+	{
+		for (int i = 0; i < CollisionComponents.size(); ++i)
+		{
+			CollisionComponents[i]->SetActive(false);
+		}
 	}
 }
 
