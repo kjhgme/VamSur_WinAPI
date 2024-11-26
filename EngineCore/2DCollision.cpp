@@ -154,24 +154,27 @@ void U2DCollision::CollisionSetRelease()
 	std::set<U2DCollision*>::iterator StartIter = CollisionCheckSet.begin();
 	std::set<U2DCollision*>::iterator EndIter = CollisionCheckSet.end();
 
-	for (; StartIter != EndIter; ++StartIter)
+	for (; StartIter != EndIter; )
 	{
 		U2DCollision* ColCollison = *StartIter;
 
 		if (nullptr == ColCollison)
 		{
+			++StartIter;
 			continue;
 		}
 
 		if (false == ColCollison->IsActive() || true == ColCollison->IsDestroy())
 		{
-			CollisionCheckSet.erase(ColCollison);
-
 			if (nullptr != End)
 			{
 				End(ColCollison->GetActor());
 			}
+			StartIter = CollisionCheckSet.erase(StartIter);
+			continue;
 		}
+
+		++StartIter;
 	}
 }
 
