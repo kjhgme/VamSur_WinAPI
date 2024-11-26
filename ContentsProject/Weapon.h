@@ -89,7 +89,10 @@ public:
 	float KnockBack = 0.0f;
 	float Area = 0.0f;
 	float Speed = 0.0f;
-	
+	float Cooldown = 0.0f;
+	float Recovery = 0.0f;
+	float Duration = 0.0f;
+	float Health = 0.0f;
 
 protected:
 	USpriteRenderer* IconSpriteRenderer = nullptr;

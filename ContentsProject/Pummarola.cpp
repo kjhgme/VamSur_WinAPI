@@ -21,8 +21,30 @@ Pummarola::~Pummarola()
 void Pummarola::BeginPlay()
 {
 	Level = 1;
+	Recovery += 0.2f;
 }
 
 void Pummarola::Action()
 {
+}
+
+void Pummarola::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Recovery += 0.2f;
+		break;
+	case 3:
+		Recovery += 0.2f;
+		break;
+	case 4:
+		Recovery += 0.2f;
+		break;
+	case 5:
+		Recovery += 0.2f;
+		break;
+	}
 }

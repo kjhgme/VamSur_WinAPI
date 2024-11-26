@@ -88,6 +88,39 @@ void FireWand::Action()
 	TimeEventer.PushEvent(1.0f, std::bind(&FireWand::Attack, this), false, -1.0f, true);
 }
 
+void FireWand::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		AttackPower += 10;
+		break;
+	case 3:
+		AttackPower += 10;
+		Speed += 20.0f;
+		break;
+	case 4:
+		AttackPower += 10;
+		break;
+	case 5:
+		AttackPower += 10;
+		Speed += 20.0f;
+		break;
+	case 6:
+		AttackPower += 10;
+		break;
+	case 7:
+		AttackPower += 10;
+		Speed += 20.0f;
+		break;
+	case 8:
+		AttackPower += 10;
+		break;
+	}
+}
+
 void FireWand::Attack()
 {
 	SetActorLocation(player->GetActorLocation());

@@ -16,6 +16,8 @@ public:
 
 	void Action() override;
 
+	void LevelUp() override;
+
 protected:
 
 private:

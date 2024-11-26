@@ -15,8 +15,8 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	void InitCollision() override;
-
 	void Action() override;
+	void LevelUp() override;
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 

@@ -52,8 +52,8 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	void InitCollision() override;
-
 	void Action() override;
+	void LevelUp() override;
 
 	void Attack();
 
@@ -68,5 +68,7 @@ private:
 	std::deque<class U2DCollision*> CollisionComponents;
 
 	class APlayer* player = nullptr;
+
+	int EnterCount = 0;
 };
 

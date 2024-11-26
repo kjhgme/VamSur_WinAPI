@@ -23,8 +23,30 @@ void Bracer::BeginPlay()
 	Super::BeginPlay();
 
 	Level = 1;
+	Speed += 20.0f;
 }
 
 void Bracer::Action()
 {
+}
+
+void Bracer::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Speed += 20.0f;
+		break;
+	case 3:
+		Speed += 20.0f;
+		break;
+	case 4:
+		Speed += 20.0f;
+		break;
+	case 5:
+		Speed += 20.0f;
+		break;
+	}
 }

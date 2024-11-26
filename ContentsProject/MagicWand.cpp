@@ -88,6 +88,36 @@ void MagicWand::Action()
 	TimeEventer.PushEvent(1.0f, std::bind(&MagicWand::Attack, this), false, -1.0f, true);
 }
 
+void MagicWand::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Amount += 1;
+		break;
+	case 3:
+		Cooldown += 0.2;
+		break;
+	case 4:
+		Amount += 1;
+		break;
+	case 5:
+		AttackPower += 10;
+		break;
+	case 6:
+		Amount += 1;
+		break;
+	case 7:
+		EnterCount += 1;
+		break;
+	case 8:
+		AttackPower += 10;
+		break;
+	}
+}
+
 void MagicWand::Attack()
 {
 	SetActorLocation(player->GetActorLocation());

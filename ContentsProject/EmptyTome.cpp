@@ -23,8 +23,30 @@ void EmptyTome::BeginPlay()
 	Super::BeginPlay();
 
 	Level = 1;
+	Cooldown += 8.0f;
 }
 
 void EmptyTome::Action()
 {
+}
+
+void EmptyTome::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Cooldown += 8.0f;
+		break;
+	case 3:
+		Cooldown += 8.0f;
+		break;
+	case 4:
+		Cooldown += 8.0f;
+		break;
+	case 5:
+		Cooldown += 8.0f;
+		break;
+	}
 }

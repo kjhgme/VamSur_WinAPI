@@ -78,6 +78,38 @@ void Whip::Action()
 	TimeEventer.PushEvent(2.0f, std::bind(&Whip::Attack, this), false, -1.0f, true);
 }
 
+void Whip::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Amount += 1;
+		break;
+	case 3:
+		AttackPower += 5;
+		break;
+	case 4:
+		Area += 10.0f;
+		AttackPower += 5;
+		break;
+	case 5:
+		AttackPower += 5;
+		break;
+	case 6:
+		Area += 10.0f;
+		AttackPower += 5;
+		break;
+	case 7:
+		AttackPower += 5;
+		break;
+	case 8:
+		AttackPower += 5;
+		break;
+	}
+}
+
 void Whip::ChangeHeadDir()
 {
 	AWeapon::ChangeHeadDir();

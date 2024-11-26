@@ -31,7 +31,7 @@ void Garlic::BeginPlay()
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		SpriteRenderer->SetOrder(ERenderOrder::WEAPON);
-		SpriteRenderer->SetSprite("Garlic", 1);
+		SpriteRenderer->SetSprite("Garlic", 0);
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetAlphafloat(0.1f);
 	}
@@ -71,6 +71,43 @@ void Garlic::InitCollision()
 void Garlic::Action()
 {
 	TimeEventer.PushEvent(0.5f, std::bind(&Garlic::FadeChange, this));
+}
+
+void Garlic::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Area += 40.0f;
+		AttackPower += 2;
+		break;
+	case 3:
+		Cooldown += 0.1f;
+		AttackPower += 1;
+		break;
+	case 4:
+		Area += 20.0f;
+		AttackPower += 1;
+		break;
+	case 5:
+		Cooldown += 0.1f;
+		AttackPower += 2;
+		break;
+	case 6:
+		Area += 20.0f;
+		AttackPower += 1;
+		break;
+	case 7:
+		Cooldown += 0.1f;
+		AttackPower += 1;
+		break;
+	case 8:
+		Area += 20.0f;
+		AttackPower += 1;
+		break;
+	}
 }
 
 void Garlic::Attack()

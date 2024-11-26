@@ -78,6 +78,38 @@ void KingBible::Action()
 {
 }
 
+void KingBible::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Amount += 1;
+		break;
+	case 3:
+		Area += 25.0f;
+		Speed += 30.0f;
+		break;
+	case 4:
+		AttackPower += 10;
+		break;
+	case 5:
+		Amount += 1;
+		break;
+	case 6:
+		Area += 25.0f;
+		Speed += 30.0f;
+		break;
+	case 7:
+		AttackPower += 10;
+		break;
+	case 8:
+		Amount += 1;
+		break;
+	}
+}
+
 FVector2D KingBible::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)
 {
 	float AngleInRadians = _CurAngle * (3.1415f / 180.0f);

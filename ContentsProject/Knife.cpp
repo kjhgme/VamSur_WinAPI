@@ -70,6 +70,38 @@ void Knife::Action()
 	TimeEventer.PushEvent(1.0f, std::bind(&Knife::Attack, this), false, -1.0f, true);
 }
 
+void Knife::LevelUp()
+{
+	AWeapon::LevelUp();
+
+	switch (Level)
+	{
+	case 2:
+		Amount += 1;
+		break;
+	case 3:
+		Amount += 1;
+		AttackPower += 5;
+		break;
+	case 4:
+		Amount += 1;
+		break;
+	case 5:
+		EnterCount += 1;
+		break;
+	case 6:
+		Amount += 1;
+		break;
+	case 7:
+		Amount += 1;
+		AttackPower += 5;
+		break;
+	case 8:
+		EnterCount += 1;
+		break;
+	}
+}
+
 void Knife::Attack()
 {
 	KnifeRenderers.push_back(std::make_pair(00, CreateDefaultSubObject<USpriteRenderer>()));

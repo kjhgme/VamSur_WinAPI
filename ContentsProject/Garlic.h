@@ -15,8 +15,8 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	void InitCollision() override;
-
 	void Action() override;
+	void LevelUp() override;
 
 	void Attack();
 protected:
