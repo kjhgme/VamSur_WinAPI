@@ -108,7 +108,7 @@ void Knife::LevelUp()
 
 void Knife::Attack()
 {	
-	TimeEventer.PushEvent(0.1f, std::bind(&Knife::ShootKnife, this), false, 0.1f * Amount, true);
+	TimeEventer.PushEvent(0.1f, std::bind(&Knife::ShootKnife, this), false, 0.1f * Amount, false);
 }
 
 void Knife::ShootKnife()

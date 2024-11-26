@@ -24,6 +24,13 @@ MagicWand::MagicWand()
 		{7, "Passes through 1 more enemy."},
 		{8, "Base Damage up by 10."},
 	};
+
+	Level = 1;
+	AttackPower = 10.0f;
+	KnockBack = 1.0f;
+	Speed = 100.0f;
+	Amount = 1;
+	Cooldown = 1.2f;
 }
 
 MagicWand::~MagicWand()
@@ -36,10 +43,6 @@ void MagicWand::BeginPlay()
 
 	player = AInGameMode::Player;
 	MonsterSpawner = AInGameMode::MonsterSpawner;
-	
-	Level = 1;
-	AttackPower = 10;
-	KnockBack = 1;
 }
 
 void MagicWand::Tick(float _DeltaTime)
@@ -52,7 +55,7 @@ void MagicWand::Tick(float _DeltaTime)
 		auto OffsetIt = MagicMoveOffsets.find(Renderer.first);
 
 		if (OffsetIt != MagicMoveOffsets.end()) {
-			Renderer.second->AddComponentLocation(OffsetIt->second);
+			Renderer.second->AddComponentLocation(OffsetIt->second * (Speed / 100.0f));
 		}
 		if (0 == OffsetIt->second.X)
 		{
@@ -85,7 +88,8 @@ void MagicWand::InitCollision()
 
 void MagicWand::Action()
 {
-	TimeEventer.PushEvent(1.0f, std::bind(&MagicWand::Attack, this), false, -1.0f, true);
+	AWeapon::Action();
+	TimeEventer.PushEvent(Cooldown, std::bind(&MagicWand::Attack, this), false, -1.0f, true);
 }
 
 void MagicWand::LevelUp()
@@ -120,6 +124,11 @@ void MagicWand::LevelUp()
 
 void MagicWand::Attack()
 {
+	TimeEventer.PushEvent(0.1f, std::bind(&MagicWand::ShootMagic, this), false, 0.1f * Amount, false);
+}
+
+void MagicWand::ShootMagic()
+{
 	SetActorLocation(player->GetActorLocation());
 
 	MagicWandRenderers.push_back(std::make_pair(0, CreateDefaultSubObject<USpriteRenderer>()));
@@ -140,7 +149,7 @@ void MagicWand::Attack()
 				SetFireRendererProperties(MagicWandRenderers.back().second, Condition.SpriteNum, Condition.Pos);
 
 				CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
-				
+
 				break;
 			}
 		}
