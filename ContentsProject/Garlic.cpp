@@ -115,6 +115,18 @@ void Garlic::LevelUp()
 	CollisionComponents[0]->SetComponentScale(SpriteRenderer->GetComponentScale());
 }
 
+void Garlic::Revolution()
+{
+	AWeapon::Revolution();
+
+	AttackPower += 5.0f;
+	Area += 100.0f;
+
+	SpriteRenderer->SetSpriteScale(1.0f * (Area / 100.0f));
+	SpriteRenderer->SetSprite("Garric", 1);
+	CollisionComponents[0]->SetComponentScale(SpriteRenderer->GetComponentScale());
+}
+
 void Garlic::Attack()
 {
 }

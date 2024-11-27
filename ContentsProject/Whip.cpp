@@ -129,6 +129,15 @@ void Whip::Revolution()
 	AttackPower *= 2.0f;
 	Area += 30.f;
 
+	SpriteRenderer->SetSpriteScale(1.0f * (Area / 100.0f));
+	Scale = SpriteRenderer->GetComponentScale();
+	Scale.X = Scale.Y;
+
+	for (int i = 0; i < CollisionComponents.size(); ++i)
+	{
+		CollisionComponents[i]->SetComponentScale(Scale);
+	}
+
 	SpriteRenderer->SetSprite("Whip", 2);
 	SecondRenderer->SetSprite("Whip", 3);
 }
