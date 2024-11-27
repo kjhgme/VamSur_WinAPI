@@ -9,7 +9,7 @@ ATantoItem::ATantoItem()
 {
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("TantoItem_00.png");
+		SpriteRenderer->SetSprite("Tanto", 0);
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetOrder(ERenderOrder::ITEM);
 	}

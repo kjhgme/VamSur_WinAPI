@@ -8,7 +8,7 @@ AOrologionItem::AOrologionItem()
 {
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("OrologionItem_00.png");
+		SpriteRenderer->SetSprite("Orologion", 0);
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetOrder(ERenderOrder::ITEM);
 	}

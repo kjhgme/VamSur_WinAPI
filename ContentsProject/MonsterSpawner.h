@@ -40,6 +40,9 @@ public:
 	void SpawnMonster(MonsterStatus _Status);
 	void SpawnTimer();
 
+	void SpawnBoss(MonsterStatus _Status);
+	void SpawnBossTimer();
+
 	void ChangeMonster();
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
@@ -56,6 +59,8 @@ private:
 	float SpawnSpeed = 1.0f;
 	std::list<AMonster*> SpawnedMonsters;
 	std::queue<MonsterStatus> StatusQueue;
+	std::queue<MonsterStatus> BossQueue;
+	std::queue<MonsterStatus> MapEventQueue;
 	MonsterStatus CurStatus;
 
 	// testImage

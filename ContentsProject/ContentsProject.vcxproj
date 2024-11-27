@@ -151,6 +151,14 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ChestItem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ChestUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FireWand.h">
       <SubType>
       </SubType>
@@ -358,6 +366,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChestItem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ChestUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FireWand.cpp">
       <SubType>
       </SubType>

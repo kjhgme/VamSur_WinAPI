@@ -166,6 +166,12 @@
     <ClInclude Include="Pummarola.h">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
     </ClInclude>
+    <ClInclude Include="ChestItem.h">
+      <Filter>ContentsObjects\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestUI.h">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -323,6 +329,12 @@
     </ClCompile>
     <ClCompile Include="Pummarola.cpp">
       <Filter>ContentsObjects\Weapon\Passive</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestItem.cpp">
+      <Filter>ContentsObjects\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestUI.cpp">
+      <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

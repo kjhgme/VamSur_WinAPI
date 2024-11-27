@@ -12,6 +12,7 @@
 #include "TextBox.h"
 #include "InGameUI.h"
 #include "DropItem.h"
+#include "ChestItem.h"
 
 UEngineRandom MRandomGenerator;
 
@@ -204,7 +205,13 @@ void AMonster::Die()
 	Alive = false;
 	CollisionComponent->SetActive(false);
 
+	if (true == bHasChest) {
+		AChestItem* newChestItem = GetWorld()->SpawnActor<AChestItem>();
+		newChestItem->InitDropItem(MonsterPos);
+	}
+
 	SpawnExpItem();
+	
 	AInGameUI::KillAndGold->AddKillCount();
 	
 	Destroy(0.70f);

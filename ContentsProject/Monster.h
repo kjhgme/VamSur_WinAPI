@@ -36,6 +36,11 @@ public:
 	{
 		Status.Hp = _Hp;
 	}
+	
+	void SetChest(bool _Has)
+	{
+		bHasChest = _Has;
+	}
 
 	// Function
 	void ChasePlayer(float _DeltaTime);
@@ -60,6 +65,7 @@ private:
 	bool HeadDirRight = false;
 	bool Alive = true;
 	bool Hitable = true;
+	bool bHasChest = false;
 
 	float KnockbackAmount = 0.0f;
 

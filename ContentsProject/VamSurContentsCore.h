@@ -21,8 +21,9 @@ private:
 	ULevel* InGameLevel = nullptr;
 	ULevel* ResultLevel = nullptr;
 
-	void LoadCharacterImages(const std::string_view characterName);
-	void LoadMonsterImages(const std::string& monsterName);
-	void LoadWeaponImages(const std::string_view weaponName);
+	void LoadItemImages(const std::string_view _ItemName);
+	void LoadCharacterImages(const std::string_view _CharacterName);
+	void LoadMonsterImages(const std::string& _MonsterName);
+	void LoadWeaponImages(const std::string_view _WeaponName);
 };
 

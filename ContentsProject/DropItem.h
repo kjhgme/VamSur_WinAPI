@@ -16,7 +16,7 @@ public:
 
 	// InitFunction
 	void InitDropItem(FVector2D _Pos);
-	void InitCollision(FVector2D _Pos);
+	virtual void InitCollision(FVector2D _Pos);
 
 	// Function
 	void CollisionEnter(AActor* _ColActor);

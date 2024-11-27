@@ -85,21 +85,30 @@ void VamSurContentsCore::BeginPlay()
 		}
 		// Item
 		{
-			UEngineDirectory Dir;
-			if (false == Dir.MoveParentToDirectory("Resources/Item"))
 			{
-				MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
-				return;
+				UEngineDirectory Dir;
+				if (false == Dir.MoveParentToDirectory("Resources/Item/Items"))
+				{
+					MSGASSERT("Resources folder is not exist.(VamSurContentsCore::BeginPlay)");
+					return;
+				}
+
+				std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
+
+				for (size_t i = 0; i < ImageFiles.size(); i++)
+				{
+					std::string FilePath = ImageFiles[i].GetPathToString();
+					UImageManager::GetInst().Load(FilePath);
+				}
 			}
-
-			std::vector<UEngineFile> ImageFiles = Dir.GetAllFile();
-
-			for (size_t i = 0; i < ImageFiles.size(); i++)
 			{
-				std::string FilePath = ImageFiles[i].GetPathToString();
-				UImageManager::GetInst().Load(FilePath);
+				LoadItemImages("Chest");
+				LoadItemImages("ChestCursor");
+				LoadItemImages("Orologion");
+				LoadItemImages("Rosary");
+				LoadItemImages("Tanto");
+				LoadItemImages("Vacuum");
 			}
-
 			{
 				UEngineDirectory Dir;
 				Dir.MoveParentToDirectory("Resources/InGame");
@@ -203,33 +212,41 @@ void VamSurContentsCore::Tick()
 {
 }
 
-void VamSurContentsCore::LoadCharacterImages(const std::string_view characterName)
+void VamSurContentsCore::LoadItemImages(const std::string_view _ItemName)
+{
+	UEngineDirectory ItemDir;
+	ItemDir.MoveParentToDirectory("Resources/Item");
+	ItemDir.Append(_ItemName);
+	UImageManager::GetInst().LoadFolder(ItemDir.GetPathToString());
+}
+
+void VamSurContentsCore::LoadCharacterImages(const std::string_view _CharacterName)
 {
 	UEngineDirectory CharacterDir;
 	CharacterDir.MoveParentToDirectory("Resources/Characters");
-	CharacterDir.Append(characterName);
+	CharacterDir.Append(_CharacterName);
 	UImageManager::GetInst().LoadFolder(CharacterDir.GetPathToString());
 }
 
-void VamSurContentsCore::LoadMonsterImages(const std::string& monsterName)
+void VamSurContentsCore::LoadMonsterImages(const std::string& _MonsterName)
 {
 	// Left direction images
 	UEngineDirectory MonsterLDir;
 	MonsterLDir.MoveParentToDirectory("Resources/Monster_L");
-	MonsterLDir.Append(monsterName + "_L");
+	MonsterLDir.Append(_MonsterName + "_L");
 	UImageManager::GetInst().LoadFolder(MonsterLDir.GetPathToString());
 
 	// Right direction images
 	UEngineDirectory MonsterRDir;
 	MonsterRDir.MoveParentToDirectory("Resources/Monster_R");
-	MonsterRDir.Append(monsterName + "_R");
+	MonsterRDir.Append(_MonsterName + "_R");
 	UImageManager::GetInst().LoadFolder(MonsterRDir.GetPathToString());
 }
 
-void VamSurContentsCore::LoadWeaponImages(const std::string_view weaponName)
+void VamSurContentsCore::LoadWeaponImages(const std::string_view _WeaponName)
 {
 	UEngineDirectory WeaponDir;
 	WeaponDir.MoveParentToDirectory("Resources/Weapon");
-	WeaponDir.Append(weaponName);
+	WeaponDir.Append(_WeaponName);
 	UImageManager::GetInst().LoadFolder(WeaponDir.GetPathToString());
 }

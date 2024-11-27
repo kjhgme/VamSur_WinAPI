@@ -8,7 +8,7 @@ ARosaryItem::ARosaryItem()
 {
 	{
 		SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("RosaryItem_00.png");
+		SpriteRenderer->SetSprite("Rosary", 0);
 		SpriteRenderer->SetSpriteScale(1.0f);
 		SpriteRenderer->SetOrder(ERenderOrder::ITEM);
 	}
