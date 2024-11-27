@@ -105,6 +105,15 @@ void Knife::LevelUp()
 	}
 }
 
+void Knife::Revolution()
+{
+	AWeapon::Revolution();
+
+	Speed += 50.0f;
+	Cooldown -= 0.65f;
+	TimeEventer.ChangeCoolTime(std::bind(&Knife::Attack, this), Cooldown);
+}
+
 void Knife::Attack()
 {	
 	TimeEventer.PushEvent(0.1f, std::bind(&Knife::ShootKnife, this), false, 0.1f * Amount, false);

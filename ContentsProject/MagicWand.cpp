@@ -127,8 +127,10 @@ void MagicWand::Revolution()
 {
 	AWeapon::Revolution();
 
-	Cooldown /= 2.0f;
+	Cooldown -= 0.5f;
 	Speed *= 2.0f;
+
+	TimeEventer.ChangeCoolTime(std::bind(&MagicWand::Attack, this), Cooldown);
 }
 
 void MagicWand::Attack()
