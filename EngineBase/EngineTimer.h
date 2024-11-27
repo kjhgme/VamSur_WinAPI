@@ -35,7 +35,6 @@ public:
 	// Function
 	void ToggleTime();
 
-
 protected:
 
 private:

@@ -10,6 +10,9 @@ public:
 	ChestUI& operator=(const ChestUI& _Other) = delete;
 	ChestUI& operator=(ChestUI&& _Other) noexcept = delete;
 
+	void OpenChest();
+	void GetWeapon();
+
 protected:
 
 private:

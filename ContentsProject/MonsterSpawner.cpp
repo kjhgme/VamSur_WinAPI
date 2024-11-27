@@ -43,107 +43,162 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 	StageLevel = _level;
 	if (0 == StageLevel)
 	{
-		StatusQueue.push(Bat3Status);
+		// StatusQueue
+		{
+			StatusQueue.push(Bat3Status);
 
-		StatusQueue.push(Ghoul1Status);
-		StatusQueue.push(Bat1Status);
-		StatusQueue.push(Ghoul1Status);
-		StatusQueue.push(Bat1Status);
+			//StatusQueue.push(Ghoul1Status);
+			//StatusQueue.push(Bat1Status);
+			//StatusQueue.push(Ghoul1Status);
+			//StatusQueue.push(Bat1Status);
 
-		StatusQueue.push(Bat1Status);
-		StatusQueue.push(Bat2Status);
-		StatusQueue.push(Bat3Status);
+			//StatusQueue.push(Bat1Status);
+			//StatusQueue.push(Bat2Status);
+			//StatusQueue.push(Bat3Status);
 
-		StatusQueue.push(Skeleton1Status);
-		
-		StatusQueue.push(Skeleton1Status);
-		StatusQueue.push(Ghost1Status);
+			//StatusQueue.push(Skeleton1Status);
+			//
+			//StatusQueue.push(Skeleton1Status);
+			//StatusQueue.push(Ghost1Status);
 
-		StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(Mudman2Status);
 
-		StatusQueue.push(Ghoul1Status);
-		StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(Ghoul1Status);
+			//StatusQueue.push(Mudman2Status);
 
-		StatusQueue.push(Bat2Status);
-		StatusQueue.push(Bat3Status);
-		StatusQueue.push(Mudman1Status);
+			//StatusQueue.push(Bat2Status);
+			//StatusQueue.push(Bat3Status);
+			//StatusQueue.push(Mudman1Status);
 
-		StatusQueue.push(Ghoul1Status);
+			//StatusQueue.push(Ghoul1Status);
 
-		StatusQueue.push(GiantBatStatus);
-		StatusQueue.push(Ghoul1Status);
+			//StatusQueue.push(GiantBatStatus);
+			//StatusQueue.push(Ghoul1Status);
 
-		StatusQueue.push(Mudman1Status);
-		StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(Mudman1Status);
+			//StatusQueue.push(Mudman2Status);
 
-		StatusQueue.push(Skeleton1Status);
+			//StatusQueue.push(Skeleton1Status);
 
-		StatusQueue.push(WerewolfStatus);
-		StatusQueue.push(Ghost1Status);
-		StatusQueue.push(Skeleton1Status);
+			//StatusQueue.push(WerewolfStatus);
+			//StatusQueue.push(Ghost1Status);
+			//StatusQueue.push(Skeleton1Status);
 
-		StatusQueue.push(WerewolfStatus);
-		StatusQueue.push(Ghost1Status);		// *2
+			//StatusQueue.push(WerewolfStatus);
+			//StatusQueue.push(Ghost1Status);		// *2
 
-		StatusQueue.push(GiantBatStatus);
-		StatusQueue.push(WerewolfStatus);
+			//StatusQueue.push(GiantBatStatus);
+			//StatusQueue.push(WerewolfStatus);
 
-		StatusQueue.push(WerewolfStatus);
-		StatusQueue.push(GiantBatStatus);
-		StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(WerewolfStatus);
+			//StatusQueue.push(GiantBatStatus);
+			//StatusQueue.push(Mudman2Status);
 
-		StatusQueue.push(MantichanaStatus);
-		StatusQueue.push(Mudman1Status);
-		StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(MantichanaStatus);
+			//StatusQueue.push(Mudman1Status);
+			//StatusQueue.push(Mudman2Status);
 
-		StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(BigMummyStatus);
 
-		StatusQueue.push(BigMummyStatus);
-		StatusQueue.push(Mudman1Status);
+			//StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(Mudman1Status);
 
-		StatusQueue.push(BigMummyStatus);
-		StatusQueue.push(Mudman1Status);
+			//StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(Mudman1Status);
 
-		StatusQueue.push(BigMummyStatus);
-		StatusQueue.push(Mudman2Status);
-		StatusQueue.push(GiantBatStatus);
+			//StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(GiantBatStatus);
 
-		StatusQueue.push(FlowerWallStatus);
+			//StatusQueue.push(FlowerWallStatus);
 
-		StatusQueue.push(FlowerWallStatus);
-		StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(FlowerWallStatus);
+			//StatusQueue.push(BigMummyStatus);
 
-		StatusQueue.push(FlowerWallStatus);
-		StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(FlowerWallStatus);
+			//StatusQueue.push(BigMummyStatus);
 
-		StatusQueue.push(FlowerWallStatus);
-		StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(FlowerWallStatus);
+			//StatusQueue.push(BigMummyStatus);
 
-		StatusQueue.push(VenusStatus);
+			//StatusQueue.push(VenusStatus);
 
-		StatusQueue.push(VenusStatus);
-		StatusQueue.push(FlowerWallStatus);
+			//StatusQueue.push(VenusStatus);
+			//StatusQueue.push(FlowerWallStatus);
 
-		StatusQueue.push(BigMummyStatus);
-		StatusQueue.push(Mudman1Status);
-		StatusQueue.push(Mudman2Status);
+			//StatusQueue.push(BigMummyStatus);
+			//StatusQueue.push(Mudman1Status);
+			//StatusQueue.push(Mudman2Status);
 
-		StatusQueue.push(GiantBatStatus);
-		StatusQueue.push(GlowingBatStatus);
+			//StatusQueue.push(GiantBatStatus);
+			//StatusQueue.push(GlowingBatStatus);
 
-		StatusQueue.push(GlowingBatStatus);
-		StatusQueue.push(SilverBatStatus);
+			//StatusQueue.push(GlowingBatStatus);
+			//StatusQueue.push(SilverBatStatus);
 
-		StatusQueue.push(TheReaperStatus);
+			//StatusQueue.push(TheReaperStatus);
+		}
+		// BossQueue
+		{
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(MantichanaStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(GiantBatStatus);
+			BossQueue.push(SilverBatStatus);
+			BossQueue.push(MantichanaStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(SilverBatStatus);
+			BossQueue.push(WerewolfLordStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(SilverBatStatus);
+			BossQueue.push(MummyLordStatus);
+			BossQueue.push(VenusStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(SilverBatStatus);
+			BossQueue.push(VenusStatus);
+			BossQueue.push(VenusLordStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(GlowingBatStatus);
+			BossQueue.push(TheReaperStatus);
+		}
+		// MapEventQueue
+		{
+			// BatSwam * 3
+			// BatSwam * 2
+			// BatSwam * 2
+			// FlowerWall
+			// BatSwam * 2
+			// BatSwam * 6
+			// BatSwam * 3
+			// BatSwam * 3
+			// FlowerWall
+			// BatSwam * 2
+			// BatSwam * 2
+			// GhostSwam * 21
+			// GhostSwam * 21
+			// FlowerWall
+			// BatSwam * 21
+			// BatSwam * 21
+			// FlowerWall * 6
+			// GhostSwam
+			// GhostSwam * 20
+			// BatSwam
+			// BatSwam * 20
+			//
+
+		}
 	}
 
-	ChangeMonster();
+	//ChangeMonster();
 
-	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);// , 60.0f * 30.0f);
+	//TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);// , 60.0f * 30.0f);
 	
 	//TimeEventer.PushEvent(3.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, 9.0f, false);
 
-	TimeEventer.PushEvent(2.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, true);
+	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
 }
 
 void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)
@@ -167,6 +222,35 @@ void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)
 void AMonsterSpawner::SpawnTimer()
 {
 	SpawnMonster(CurStatus);
+}
+
+void AMonsterSpawner::SpawnBoss(MonsterStatus _Status)
+{
+	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
+	if (nullptr != SpawnedMonster)
+	{
+		SpawnedMonster->InitMonster(_Status);
+		SpawnedMonster->SetMonsterPos(Pos);
+
+		if (true == _Status.HaveSkill)
+		{
+			int PlayerLevel = AInGameMode::Player->GetLevel();
+			SpawnedMonster->SetHp(_Status.Hp * PlayerLevel);
+		}
+
+		SpawnedMonster->SetChest(true);
+
+		SpawnedMonsters.push_back(SpawnedMonster);
+	}
+}
+
+void AMonsterSpawner::SpawnBossTimer()
+{
+	if (!BossQueue.empty())
+	{
+		SpawnBoss(BossQueue.front());
+		BossQueue.pop();
+	}
 }
 
 void AMonsterSpawner::ChangeMonster()
