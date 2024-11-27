@@ -50,6 +50,12 @@ public:
 
 	int MapCharacterToSpriteIndex(char Character);
 
+
+	std::vector<class USpriteRenderer*> GetTextRenders()
+	{
+		return TextRenders;
+	}
+
 protected:
 
 private:
@@ -62,7 +68,5 @@ private:
 	std::vector<class USpriteRenderer*> TextRenders;
 
 	void SetSize(int _Size);
-
-
 };
 

@@ -216,8 +216,10 @@ void AMonster::TakeDamage(float _Att, float _KnockBack)
 	{
 		DiffPos = PlayerPos - MonsterPos;
 
+		TextFadeValue = 1.0f;
 		DamageText->AddActorLocation(-DiffPos);
 		DamageText->SetText(std::to_string(static_cast<int>(_Att)), "DamageNum");
+		TimeEventer.PushEvent(0.5f, std::bind(&AMonster::TextFadeOut, this), true, -1.0f, false);
 
 		DiffPos = DiffPos / 50.0f;
 
@@ -274,4 +276,15 @@ void AMonster::SpawnExpItem()
 void AMonster::KnockbackEnd()
 {
 	Hitable = true;
+}
+
+void AMonster::TextFadeOut()
+{
+	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
+	TextFadeValue += DeltaTime * 2.0f * TextFadeDir;
+
+	for (int i = 0; i <	DamageText->GetTextRenders().size(); ++i)
+	{
+		DamageText->GetTextRenders()[i]->SetAlphafloat(TextFadeValue);
+	}
 }

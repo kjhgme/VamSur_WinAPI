@@ -69,5 +69,9 @@ private:
 	FVector2D KnockBack{};
 
 	class ATextBox* DamageText = nullptr;
+	float TextFadeValue = 1.0f;
+	float TextFadeDir = -1.0f;
+
+	void TextFadeOut();
 };
 
