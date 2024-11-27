@@ -9,6 +9,17 @@ U2DCollision::U2DCollision()
 
 U2DCollision::~U2DCollision()
 {
+	for (U2DCollision* Col : CollisionCheckSet)
+	{
+		if (nullptr != Col->End)
+		{
+			Col->End(this->GetActor());
+		}
+
+		Col->CollisionCheckSet.erase(this);
+	}
+
+	CollisionCheckSet.clear();
 }
 
 void U2DCollision::BeginPlay()
@@ -149,35 +160,6 @@ bool U2DCollision::Collision(int _OtherCollisionGroup, std::vector<AActor*>& _Re
 	return 0 != _Result.size();
 }
 
-void U2DCollision::CollisionSetRelease()
-{
-	std::set<U2DCollision*>::iterator StartIter = CollisionCheckSet.begin();
-	std::set<U2DCollision*>::iterator EndIter = CollisionCheckSet.end();
-
-	for (; StartIter != EndIter; )
-	{
-		U2DCollision* ColCollison = *StartIter;
-
-		if (nullptr == ColCollison)
-		{
-			++StartIter;
-			continue;
-		}
-
-		if (false == ColCollison->IsActive() || true == ColCollison->IsDestroy())
-		{
-			if (nullptr != End)
-			{
-				End(ColCollison->GetActor());
-			}
-			StartIter = CollisionCheckSet.erase(StartIter);
-			continue;
-		}
-
-		++StartIter;
-	}
-}
-
 void U2DCollision::CollisionEventCheck(class U2DCollision* _Other)
 {
 	U2DCollision* ThisCollision = this;
@@ -201,6 +183,7 @@ void U2DCollision::CollisionEventCheck(class U2DCollision* _Other)
 			}
 
 			CollisionCheckSet.insert(DestCollision);
+			DestCollision->CollisionCheckSet.insert(this);
 		}
 		else
 		{
@@ -220,6 +203,7 @@ void U2DCollision::CollisionEventCheck(class U2DCollision* _Other)
 			}
 
 			CollisionCheckSet.erase(DestCollision);
+			DestCollision->CollisionCheckSet.erase(this);
 		}
 	}
 }
