@@ -146,33 +146,56 @@ void MagicWand::ShootMagic()
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
 	std::list<AMonster*> Monsters = MonsterSpawner->GetMonsters();
-	AMonster* ClosestMonster = FindClosestMonster(GetActorLocation(), Monsters);
 
-	FVector2D Direction = FVector2D::NormalizeDirection(GetActorLocation(), ClosestMonster->GetActorLocation());
-
+	if (0 < Monsters.size())
 	{
-		for (const auto& Condition : MagicWandDirMapping)
+		AMonster* ClosestMonster = FindClosestMonster(GetActorLocation(), Monsters);
+
+		FVector2D Direction = FVector2D::NormalizeDirection(GetActorLocation(), ClosestMonster->GetActorLocation());
+
 		{
-			if (Direction.X >= Condition.DirMinX && Direction.X <= Condition.DirMaxX &&
-				Direction.Y >= Condition.DirMinY && Direction.Y <= Condition.DirMaxY)
+			for (const auto& Condition : MagicWandDirMapping)
 			{
-				MagicWandRenderers.back().first = Condition.SpriteNum;
-				SetFireRendererProperties(MagicWandRenderers.back().second, Condition.SpriteNum, Condition.Pos);
+				if (Direction.X >= Condition.DirMinX && Direction.X <= Condition.DirMaxX &&
+					Direction.Y >= Condition.DirMinY && Direction.Y <= Condition.DirMaxY)
+				{
+					MagicWandRenderers.back().first = Condition.SpriteNum;
+					SetFireRendererProperties(MagicWandRenderers.back().second, Condition.SpriteNum, Condition.Pos);
 
-				CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
+					CollisionComponents.back()->SetComponentLocation(Condition.Pos * player->GetPlayerScale());
 
-				break;
+					break;
+				}
 			}
 		}
+		{
+			FVector2D scale = MagicWandRenderers.back().second->GetComponentScale();
+			scale.Y = scale.X;
+			CollisionComponents.back()->SetComponentScale(scale);
+			CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
+			CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
+			CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+		}
 	}
-	{
-		FVector2D scale = MagicWandRenderers.back().second->GetComponentScale();
-		scale.Y = scale.X;
-		CollisionComponents.back()->SetComponentScale(scale);
-		CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
-		CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
-		CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+	else {
+		{ 
+				MagicWandRenderers.back().first = 0;
+				FVector2D Pos = { 1.0f, 0.0f };
+				SetFireRendererProperties(MagicWandRenderers.back().second, 0, Pos);
+
+				CollisionComponents.back()->SetComponentLocation(Pos * player->GetPlayerScale());
+		}
+		{
+			FVector2D scale = MagicWandRenderers.back().second->GetComponentScale();
+			scale.Y = scale.X;
+			CollisionComponents.back()->SetComponentScale(scale);
+			CollisionComponents.back()->SetCollisionGroup(ECollisionGroup::WeaponBody);
+			CollisionComponents.back()->SetCollisionType(ECollisionType::CirCle);
+			CollisionComponents.back()->SetCollisionEnter(std::bind(&AWeapon::CollisionEnter, this, std::placeholders::_1));
+		}
 	}
+
+	Monsters.clear();
 }
 
 void MagicWand::PopMagicWand()

@@ -13,6 +13,7 @@
 #include "InGameUI.h"
 #include "DropItem.h"
 #include "ChestItem.h"
+#include "InGameMode.h"
 
 UEngineRandom MRandomGenerator;
 
@@ -214,6 +215,22 @@ void AMonster::Die()
 	
 	AInGameUI::KillAndGold->AddKillCount();
 	
+	for (auto it = AInGameMode::MonsterSpawner->SpawnedMonsters.begin();
+		it != AInGameMode::MonsterSpawner->SpawnedMonsters.end();)
+	{
+		AMonster* monster = *it;
+
+		if (monster->GetActorLocation() == GetActorLocation())
+		{
+			it = AInGameMode::MonsterSpawner->SpawnedMonsters.erase(it);
+			break;
+		}
+		else
+		{
+			++it;
+		}
+	}
+
 	Destroy(0.70f);
 }
 

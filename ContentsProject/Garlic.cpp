@@ -123,7 +123,7 @@ void Garlic::Revolution()
 	Area += 100.0f;
 
 	SpriteRenderer->SetSpriteScale(1.0f * (Area / 100.0f));
-	SpriteRenderer->SetSprite("Garric", 1);
+	SpriteRenderer->SetSprite("Garlic", 1);
 	CollisionComponents[0]->SetComponentScale(SpriteRenderer->GetComponentScale());
 }
 

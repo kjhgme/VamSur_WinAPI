@@ -36,6 +36,11 @@ public:
 	// Function
 	void ChangeDir();
 	void AddWeapon(EWeaponType _Type);
+
+	void RevolutionWeapon(int _Num)
+	{
+		Level8Weapons.erase(Level8Weapons.begin() + _Num);
+	}
 	
 protected:
 

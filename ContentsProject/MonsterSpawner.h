@@ -47,6 +47,8 @@ public:
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
+	std::list<AMonster*> SpawnedMonsters;
+
 protected:
 
 private:
@@ -57,7 +59,6 @@ private:
 	float CurAngle{};
 	float MoveSpeed = 50.0f;
 	float SpawnSpeed = 1.0f;
-	std::list<AMonster*> SpawnedMonsters;
 	std::queue<MonsterStatus> StatusQueue;
 	std::queue<MonsterStatus> BossQueue;
 	std::queue<MonsterStatus> MapEventQueue;

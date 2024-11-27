@@ -90,10 +90,10 @@ void ChestUI::GetWeapon()
 	{
 		int num = ChestRandomGenerator.RandomInt(0, size - 1);
 		int WeaponType = Level8Weapons[num];
-	
+
+		WM->RevolutionWeapon(num);
 		WM->GetWeapon(WeaponType)->Revolution();
 	}
-
 
 	UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 	Destroy();
