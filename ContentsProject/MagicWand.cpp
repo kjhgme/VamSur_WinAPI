@@ -123,6 +123,14 @@ void MagicWand::LevelUp()
 	}
 }
 
+void MagicWand::Revolution()
+{
+	AWeapon::Revolution();
+
+	Cooldown /= 2.0f;
+	Speed *= 2.0f;
+}
+
 void MagicWand::Attack()
 {
 	TimeEventer.PushEvent(0.1f, std::bind(&MagicWand::ShootMagic, this), false, 0.1f * Amount, false);
