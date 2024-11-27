@@ -127,6 +127,21 @@ void KingBible::LevelUp()
 	}
 }
 
+void KingBible::Revolution()
+{
+	AWeapon::Revolution();
+
+	Area += 25.0f;
+	Speed -= 10.0f;
+	KnockBack += 3.0f;
+
+	for (int i = 0; i < static_cast<int>(BibleRenderers.size()); ++i)
+	{
+		BibleRenderers[i]->SetSprite("KingBible", 1);
+	}
+
+}
+
 void KingBible::Attack()
 {
 	FadeDir = 1.0f;
@@ -134,9 +149,10 @@ void KingBible::Attack()
 	for (int i = 0; i < CollisionComponents.size(); ++i)
 	{
 		CollisionComponents[i]->SetActive(true);
-	}	
-	
-	TimeEventer.PushEvent(1.0f, std::bind(&KingBible::FadeOut, this), true, Duration, false);
+	}
+
+	if(false == bIsEvolved)
+		TimeEventer.PushEvent(1.0f, std::bind(&KingBible::FadeOut, this), true, Duration, false);
 }
 
 void KingBible::FadeOut()

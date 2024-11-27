@@ -17,6 +17,7 @@ public:
 	void InitCollision(int _Num);
 	void Action() override;
 	void LevelUp() override;
+	void Revolution() override;
 
 	void Attack();
 	void FadeOut();
