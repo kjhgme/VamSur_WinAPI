@@ -32,5 +32,6 @@ protected:
 private:
 	class AWeapon* Weapons[12]{};
 	std::vector<int> AvailableWeaponTypes;
+	std::vector<int> Level8Weapons;
 };
 

@@ -246,6 +246,7 @@ void AWeaponManager::AddWeapon(EWeaponType _Type)
 						if (AvailableWeaponTypes[j] == static_cast<int>(Weapons[i]->WeaponType))
 						{
 							AvailableWeaponTypes.erase(AvailableWeaponTypes.begin() + j);
+							Level8Weapons.push_back(AvailableWeaponTypes[j]);
 							break;
 						}
 					}					

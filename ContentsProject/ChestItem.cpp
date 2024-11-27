@@ -2,6 +2,8 @@
 #include "ChestItem.h"
 #include "ContentsEnum.h"
 
+#include "ChestUI.h"
+
 AChestItem::AChestItem()
 {
 	{
@@ -48,5 +50,5 @@ void AChestItem::TakeChest()
 
 void AChestItem::ApplyItemEffect()
 {
-
+	ChestUI* CUI = GetWorld()->SpawnActor<ChestUI>();
 }

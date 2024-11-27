@@ -13,6 +13,7 @@ public:
 protected:
 
 private:
-
+	class USpriteRenderer* PanelRenderer = nullptr;
+	class USpriteRenderer* ChestRenderer = nullptr;
 };
 
