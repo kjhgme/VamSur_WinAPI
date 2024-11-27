@@ -25,19 +25,23 @@ public:
 	void InitCollision();
 
 	// GetFunction
-	int GetAttPower()
+	float GetAttPower()
 	{
 		return Status.AttPower;
 	}
 
 	// SetFunction
 	void SetMonsterPos(FVector2D _pos);
+	void SetHp(float _Hp)
+	{
+		Status.Hp = _Hp;
+	}
 
 	// Function
 	void ChasePlayer(float _DeltaTime);
 	void ChangeAnimation();
 	void Die();
-	void TakeDamage(int _Att, float _KnockBack);
+	void TakeDamage(float _Att, float _KnockBack);
 	void EnableCollision();
 
 	void CollisionStay(AActor* _ColActor);

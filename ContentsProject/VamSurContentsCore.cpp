@@ -131,7 +131,33 @@ void VamSurContentsCore::BeginPlay()
 		// Monster
 		{
 			LoadMonsterImages("Bat1");
+			LoadMonsterImages("Bat2");
+			LoadMonsterImages("Bat3");
+			LoadMonsterImages("Bat4");
+			LoadMonsterImages("Bat5");
+			LoadMonsterImages("Bat6");
+			LoadMonsterImages("Flower1");
+			LoadMonsterImages("Flower2");
+			LoadMonsterImages("Ghost");
 			LoadMonsterImages("Ghoul1");
+			LoadMonsterImages("Ghoul2");
+			LoadMonsterImages("Ghoul3");
+			LoadMonsterImages("Mudman1");
+			LoadMonsterImages("Mudman2");
+			LoadMonsterImages("Mummy");
+			LoadMonsterImages("Skeleton1");
+			LoadMonsterImages("Skeleton2");
+			LoadMonsterImages("Skeleton3");
+			LoadMonsterImages("Skeleton4");
+			LoadMonsterImages("Skeleton5");
+			LoadMonsterImages("Skeleton6");
+			LoadMonsterImages("Werewolf1");
+			LoadMonsterImages("XLBat");
+			LoadMonsterImages("XLFlower1");
+			LoadMonsterImages("XLMantis");
+			LoadMonsterImages("XLMedusa");
+			LoadMonsterImages("XLMummy");
+			LoadMonsterImages("XLReaper");
 		}
 		// Weapon
 		{

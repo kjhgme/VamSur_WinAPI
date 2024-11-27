@@ -210,7 +210,7 @@ void AMonster::Die()
 	Destroy(0.70f);
 }
 
-void AMonster::TakeDamage(int _Att, float _KnockBack)
+void AMonster::TakeDamage(float _Att, float _KnockBack)
 {
 	if (true == CollisionComponent->IsActive())
 	{
@@ -234,7 +234,6 @@ void AMonster::TakeDamage(int _Att, float _KnockBack)
 			Hitable = false;
 			TimeEventer.PushEvent(0.12f, std::bind(&AMonster::KnockbackEnd, this), false, -1.0f, false);
 			
-			// 충돌버그 수정필요
 			CollisionComponent->SetActive(true);
 			TimeEventer.PushEvent(1.0f, std::bind(&AMonster::EnableCollision, this), false, -1.0f, false);
 		}
