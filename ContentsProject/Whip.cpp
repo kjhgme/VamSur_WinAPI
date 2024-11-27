@@ -286,10 +286,12 @@ void Whip::AddWhip()
 
 	CollisionComponents.resize(14);
 
-	for (int i = (CollisionComponents.size() / 2); i < CollisionComponents.size(); ++i)
+	int ColSize = static_cast<int>(CollisionComponents.size());
+
+	for (int i = (ColSize / 2); i < ColSize; ++i)
 	{
 		CollisionComponents[i] = CreateDefaultSubObject<U2DCollision>();
-		CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (CollisionComponents.size() / 2)) * -Scale.X), -40.0f });
+		CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (ColSize / 2)) * -Scale.X), -40.0f });
 		CollisionComponents[i]->SetComponentScale(Scale);
 		CollisionComponents[i]->SetCollisionGroup(ECollisionGroup::WeaponBody);
 		CollisionComponents[i]->SetCollisionType(ECollisionType::CirCle);
