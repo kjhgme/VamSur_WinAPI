@@ -4,7 +4,11 @@
 
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/EngineAPICore.h>
+#include <EnginePlatform/EngineInput.h>
 #include <EnginePlatform/EngineWindow.h>
+
+#include "InGameMode.h"
+#include "WeaponManager.h"
 
 UEngineRandom ChestRandomGenerator;
 
@@ -45,9 +49,19 @@ ChestUI::~ChestUI()
 {
 }
 
+void ChestUI::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
+
+	if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
+	{
+		OpenChest();
+	}
+}
+
 void ChestUI::OpenChest()
 {
-	if (3.0f >= ChestRandomGenerator.Randomfloat(0.0f, 100.0f))
+	/*if (3.0f >= ChestRandomGenerator.Randomfloat(0.0f, 100.0f))
 	{
 		
 	}
@@ -57,9 +71,30 @@ void ChestUI::OpenChest()
 	}
 	else {
 
-	}
+	}*/
+
+	GetWeapon();
 }
 
 void ChestUI::GetWeapon()
 {
+	AWeaponManager* WM = AInGameMode::Player->GetWeaponManager();
+
+	std::vector<int> Level8Weapons = WM->GetLeve8Weapons();
+
+	int size = static_cast<int>(Level8Weapons.size());
+
+	// size = 4;
+
+	if (0 < size)
+	{
+		int num = ChestRandomGenerator.RandomInt(0, size - 1);
+		int WeaponType = Level8Weapons[num];
+	
+		WM->GetWeapon(WeaponType)->Revolution();
+	}
+
+
+	UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+	Destroy();
 }

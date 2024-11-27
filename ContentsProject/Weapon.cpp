@@ -34,6 +34,11 @@ void AWeapon::LevelUp()
 	Level++;
 }
 
+void AWeapon::Revolution()
+{
+	bIsEvolved = true;
+}
+
 void AWeapon::CollisionEnter(AActor* _ColActor)
 {
 	AMonster* Monster = static_cast<AMonster*>(_ColActor);

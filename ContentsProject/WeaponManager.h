@@ -20,6 +20,16 @@ public:
 	// GetFunction
 	std::vector<std::pair<EWeaponType, WeaponLevelData>> GetRandWeapons();
 
+	std::vector<int> GetLeve8Weapons()
+	{
+		return Level8Weapons;
+	}
+
+	AWeapon* GetWeapon(int _Num)
+	{
+		return Weapons[_Num];
+	}
+
 	// SetFunction
 	void SetIconPos(AWeapon* _Weapon);
 

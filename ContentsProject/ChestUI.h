@@ -10,6 +10,8 @@ public:
 	ChestUI& operator=(const ChestUI& _Other) = delete;
 	ChestUI& operator=(ChestUI&& _Other) noexcept = delete;
 
+	void Tick(float _DeltaTime) override;
+
 	void OpenChest();
 	void GetWeapon();
 

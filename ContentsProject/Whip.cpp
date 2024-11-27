@@ -122,6 +122,17 @@ void Whip::LevelUp()
 	}
 }
 
+void Whip::Revolution()
+{
+	AWeapon::Revolution();
+
+	AttackPower *= 2.0f;
+	Area += 30.f;
+
+	SpriteRenderer->SetSprite("Whip", 2);
+	SecondRenderer->SetSprite("Whip", 3);
+}
+
 void Whip::ChangeHeadDir()
 {
 	AWeapon::ChangeHeadDir();
@@ -132,9 +143,16 @@ void Whip::ChangeHeadDir()
 	{
 		if (true == HeadDirRight)
 		{
-			SpriteRenderer->SetSprite("Whip", 0);
+			if (bIsEvolved) {
+				SpriteRenderer->SetSprite("Whip", 2);
+				SecondRenderer->SetSprite("Whip", 3);
+			}
+			else {
+				SpriteRenderer->SetSprite("Whip", 0);
+				SecondRenderer->SetSprite("Whip", 1);
+			}
+
 			SpriteRenderer->SetComponentLocation({ 110.0f, -10.0f });
-			SecondRenderer->SetSprite("Whip", 1);
 			SecondRenderer->SetComponentLocation({ -110.0f, -40.0f });
 
 			for (int i = 0; i < WeaponsSize / 2; ++i)
@@ -148,9 +166,16 @@ void Whip::ChangeHeadDir()
 		}
 		else
 		{
-			SpriteRenderer->SetSprite("Whip", 1);
+			if (bIsEvolved) {
+				SpriteRenderer->SetSprite("Whip", 3);
+				SecondRenderer->SetSprite("Whip", 2);
+			}
+			else {
+				SpriteRenderer->SetSprite("Whip", 1);
+				SecondRenderer->SetSprite("Whip", 0);
+			}
+
 			SpriteRenderer->SetComponentLocation({ -110.0f, -10.0f });
-			SecondRenderer->SetSprite("Whip", 0);
 			SecondRenderer->SetComponentLocation({ 110.0f, -40.0f });
 
 			for (int i = 0; i < WeaponsSize; ++i)

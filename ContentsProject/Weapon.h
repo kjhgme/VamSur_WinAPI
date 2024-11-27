@@ -72,6 +72,7 @@ public:
 	virtual void Action();
 	virtual void ChangeHeadDir();
 	virtual void LevelUp();
+	virtual void Revolution();
 
 	void CollisionEnter(AActor* _ColActor);
 	void CollisionStay(AActor* _ColActor);
@@ -90,6 +91,7 @@ public:
 	float Recovery = 0.0f;
 	float Duration = 0.0f;
 	float Health = 0.0f;
+	bool bIsEvolved = false;
 
 protected:
 	USpriteRenderer* IconSpriteRenderer = nullptr;

@@ -18,6 +18,7 @@ public:
 	void InitCollision();
 	void Action() override;
 	void LevelUp() override;
+	void Revolution() override;
 	void ChangeHeadDir() override;
 
 	void Attack();
