@@ -28,6 +28,7 @@ FireWand::FireWand()
 	Amount = 3;
 	Cooldown = 3.0f;
 	KnockBack = 1.0f;
+	Area = 100.0f;
 }
 
 FireWand::~FireWand()
@@ -111,6 +112,16 @@ void FireWand::LevelUp()
 	}
 }
 
+void FireWand::Revolution()
+{
+	AWeapon::Revolution();
+
+	AttackPower += 10.0f;
+	Speed += 35.0f;
+	Amount -= 1;
+	Area += 50.0f;
+}
+
 void FireWand::Attack()
 {	
 	TimeEventer.PushEvent(0.1f, std::bind(&FireWand::ShootFire, this), false, 0.1f * Amount, false);
@@ -192,7 +203,7 @@ void FireWand::PopFireWand()
 void FireWand::SetFireRendererProperties(USpriteRenderer* _Renderer, const std::string& _SpriteName, FVector2D _Pos)
 {
 	_Renderer->SetSprite(_SpriteName);
-	_Renderer->SetSpriteScale(1.0f);
+	_Renderer->SetSpriteScale(Area / 100.0f);
 	_Renderer->SetOrder(ERenderOrder::WEAPON);
 	_Renderer->SetComponentLocation(_Pos * player->GetPlayerScale());
 }
