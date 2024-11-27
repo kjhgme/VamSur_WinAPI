@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "Garlic.h"
 #include "ContentsEnum.h"
 

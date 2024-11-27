@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EngineBase/EngineMath.h>
 #include <EngineBase/TimeEvent.h>
 #include <EngineBase/Object.h>

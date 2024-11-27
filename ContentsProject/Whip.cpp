@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "Whip.h"
 #include "ContentsEnum.h"
 
@@ -126,6 +126,8 @@ void Whip::ChangeHeadDir()
 {
 	AWeapon::ChangeHeadDir();
 
+	int WeaponsSize = static_cast<int>(CollisionComponents.size());
+
 	if (2 <= Amount)
 	{
 		if (true == HeadDirRight)
@@ -135,13 +137,13 @@ void Whip::ChangeHeadDir()
 			SecondRenderer->SetSprite("Whip", 1);
 			SecondRenderer->SetComponentLocation({ -110.0f, -40.0f });
 
-			for (int i = 0; i < CollisionComponents.size() / 2; ++i)
+			for (int i = 0; i < WeaponsSize / 2; ++i)
 			{
 				CollisionComponents[i]->SetComponentLocation({ 40.0f + (i * Scale.X), -10.0f });
 			}
-			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+			for (int i = WeaponsSize / 2; i < WeaponsSize; ++i)
 			{
-				CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (CollisionComponents.size() / 2)) * -Scale.X), -40.0f });
+				CollisionComponents[i]->SetComponentLocation({ -40.0f + ((i - (WeaponsSize / 2)) * -Scale.X), -40.0f });
 			}
 		}
 		else
@@ -151,13 +153,13 @@ void Whip::ChangeHeadDir()
 			SecondRenderer->SetSprite("Whip", 0);
 			SecondRenderer->SetComponentLocation({ 110.0f, -40.0f });
 
-			for (int i = 0; i < CollisionComponents.size(); ++i)
+			for (int i = 0; i < WeaponsSize; ++i)
 			{
 				CollisionComponents[i]->SetComponentLocation({ -40.0f + (i * -Scale.X), -10.0f });
 			}
-			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+			for (int i = WeaponsSize / 2; i < WeaponsSize; ++i)
 			{
-				CollisionComponents[i]->SetComponentLocation({ 40.0f + ((i - CollisionComponents.size() / 2) * Scale.X), -40.0f });
+				CollisionComponents[i]->SetComponentLocation({ 40.0f + ((i - WeaponsSize / 2) * Scale.X), -40.0f });
 			}
 		}
 	}
@@ -217,15 +219,17 @@ void Whip::FadeOut()
 	FadeValue += DeltaTime * 2.0f * FadeDir;
 	SpriteRenderer->SetAlphafloat(FadeValue);
 
+	int WeaponsSize = static_cast<int>(CollisionComponents.size());
+
 	if (2 <= Amount)
 	{
 		if (0 >= FadeValue)
 		{
-			for (int i = 0; i < CollisionComponents.size() / 2; ++i)
+			for (int i = 0; i < WeaponsSize / 2; ++i)
 			{
 				CollisionComponents[i]->SetActive(false);
 			}
-			for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+			for (int i = WeaponsSize / 2; i < WeaponsSize; ++i)
 			{
 				CollisionComponents[i]->SetActive(true);
 			}
@@ -235,7 +239,7 @@ void Whip::FadeOut()
 
 			if (0 >= SecondFadeValue)
 			{
-				for (int i = CollisionComponents.size() / 2; i < CollisionComponents.size(); ++i)
+				for (int i = WeaponsSize / 2; i < WeaponsSize; ++i)
 				{
 					CollisionComponents[i]->SetActive(false);
 				}
@@ -245,7 +249,7 @@ void Whip::FadeOut()
 	else {
 		if (0 >= FadeValue)
 		{
-			for (int i = 0; i < CollisionComponents.size(); ++i)
+			for (int i = 0; i < WeaponsSize; ++i)
 			{
 				CollisionComponents[i]->SetActive(false);
 			}

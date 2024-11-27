@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <Windows.h>
 
 // 설명 :
@@ -30,7 +30,10 @@ public:
 		return DeltaTime;
 	}
 
-	float GetIndependentDeltaTime();
+	float GetIndependentDeltaTime()
+	{
+		return fIndependentDeltaTime;
+	}
 
 	// Function
 	void ToggleTime();
@@ -48,8 +51,10 @@ private:
 	double TimeCounter = 0.0f;
 
 	double DeltaTime = 0.0;
-
 	float fDeltaTime = 0.0f;
+
+	double IndependentDeltaTime = 0.0;
+	float fIndependentDeltaTime = 0.0f;
 
 	bool bIsTimeStopped = false;
 };

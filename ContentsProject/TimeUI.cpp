@@ -1,4 +1,4 @@
-#include "Precompile.h"
+﻿#include "Precompile.h"
 #include "TimeUI.h"
 #include "ContentsEnum.h"
 

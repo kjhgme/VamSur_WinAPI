@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EngineBase/EngineDelegate.h>
 #include <EngineBase/EngineDebug.h>
 

@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "EngineSound.h"
 
 #include <EngineBase/EngineString.h>

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EngineCore/2DCollision.h>
 #include <EnginePlatform/EngineSound.h>
 

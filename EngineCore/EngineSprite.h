@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EnginePlatform/EngineWinImage.h>
 #include <EngineBase/Object.h>
 #include <vector>

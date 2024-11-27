@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "Weapon.h"
 
 #include <EngineCore/EngineAPICore.h>

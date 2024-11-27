@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "EngineWinImage.h"
 
 #include <EngineBase/EnginePath.h>

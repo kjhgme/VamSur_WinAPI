@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "EngineAPICore.h"
 
 #include <Windows.h>
@@ -82,9 +82,11 @@ void UEngineAPICore::Tick()
 		NextLevel = nullptr;
 
 		DeltaTimer.TimeStart();
+		NonStopDeltaTimer.TimeStart();
 	}
 
 	DeltaTimer.TimeCheck();
+	NonStopDeltaTimer.TimeCheck();
 	float DeltaTime = DeltaTimer.GetDeltaTime();
 
 	UEngineInput::GetInst().KeyCheck(DeltaTime);

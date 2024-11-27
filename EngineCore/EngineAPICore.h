@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <Windows.h>
 #include <EngineBase/EngineTimer.h>
@@ -83,6 +83,7 @@ private:
 
 	UEngineWindow EngineMainWindow = UEngineWindow();
 	UEngineTimer DeltaTimer = UEngineTimer();
+	UEngineTimer NonStopDeltaTimer = UEngineTimer();
 
 	std::map<std::string, class ULevel*> Levels;
 	class ULevel* CurLevel = nullptr;

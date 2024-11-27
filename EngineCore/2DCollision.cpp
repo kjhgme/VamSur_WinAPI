@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "2DCollision.h"
 #include <EngineCore/EngineCoreDebug.h>
 

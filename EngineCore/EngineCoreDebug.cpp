@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "EngineCoreDebug.h"
 
 #include <EnginePlatform/EngineWinDebug.h>

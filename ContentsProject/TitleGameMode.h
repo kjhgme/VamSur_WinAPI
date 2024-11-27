@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EngineCore/GameMode.h>
 
 enum CharacterName

@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "ChestUI.h"
 #include "ContentsEnum.h"
 
@@ -34,6 +34,11 @@ ChestUI::ChestUI()
 
 	ChestRenderer->SetComponentLocation({ 0.0f, 150.0f });
 	ChestRenderer->ChangeAnimation("Chest_Idle");
+
+	float t = UEngineAPICore::GetCore()->GetTimer().GetDeltaTime();
+	float it = UEngineAPICore::GetCore()->GetTimer().GetIndependentDeltaTime();
+
+	int a = 0;
 }
 
 ChestUI::~ChestUI()

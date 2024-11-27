@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 class AItemContainer : public AActor
 {
 public:
@@ -25,6 +25,6 @@ private:
 	USpriteRenderer* SpriteRenderer = nullptr;
 	class U2DCollision* CollisionComponent = nullptr;
 
-	int Hp = 10;
+	float Hp = 10.0f;
 };
 

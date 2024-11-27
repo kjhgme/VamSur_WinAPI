@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EngineCore/EngineAPICore.h>
 
 class VamSurContentsCore : public UContentsCore

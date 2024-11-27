@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "GoldItem.h"
 #include "ContentsEnum.h"
 

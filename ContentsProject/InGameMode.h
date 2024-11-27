@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <EngineCore/GameMode.h>
 #include "Player.h"
 #include "MonsterSpawner.h"

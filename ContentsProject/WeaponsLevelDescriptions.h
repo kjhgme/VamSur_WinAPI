@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include "Weapon.h" // EWeaponType enum 포함
 

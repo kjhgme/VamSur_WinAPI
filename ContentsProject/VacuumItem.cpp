@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "VacuumItem.h"
 #include "ContentsEnum.h"
 

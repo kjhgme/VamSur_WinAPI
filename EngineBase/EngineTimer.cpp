@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "EngineTimer.h"
 
 
@@ -10,6 +10,9 @@ UEngineTimer::UEngineTimer()
 
 	QueryPerformanceCounter(&PrevTime);
 	QueryPerformanceCounter(&CurTime);
+
+	QueryPerformanceCounter(&IndependentPrevTime);
+	QueryPerformanceCounter(&IndependentCurTime);
 }
 
 UEngineTimer::~UEngineTimer()
@@ -19,6 +22,8 @@ UEngineTimer::~UEngineTimer()
 void UEngineTimer::TimeStart()
 {
 	QueryPerformanceCounter(&PrevTime);
+
+	QueryPerformanceCounter(&IndependentPrevTime);
 }
 
 void UEngineTimer::TimeCheck()
@@ -32,6 +37,13 @@ void UEngineTimer::TimeCheck()
 		fDeltaTime = static_cast<float>(DeltaTime);
 		PrevTime.QuadPart = CurTime.QuadPart;
 	}
+
+	QueryPerformanceCounter(&IndependentCurTime);
+
+	double IndependentTick = static_cast<double>(IndependentCurTime.QuadPart - IndependentPrevTime.QuadPart);
+	IndependentDeltaTime = IndependentTick / TimeCounter;
+	fIndependentDeltaTime = static_cast<float>(IndependentDeltaTime);
+	IndependentPrevTime.QuadPart = IndependentCurTime.QuadPart;
 }
 
 float UEngineTimer::End()
@@ -44,18 +56,6 @@ double UEngineTimer::DEnd()
 {
 	TimeCheck();
 	return GetDoubleDeltaTime();
-}
-
-float UEngineTimer::GetIndependentDeltaTime()
-{
-	QueryPerformanceCounter(&IndependentCurTime);
-
-	double Tick = static_cast<double>(IndependentCurTime.QuadPart - IndependentPrevTime.QuadPart);
-	float IndependentDeltaTime = static_cast<float>(Tick / TimeCounter);
-
-	IndependentPrevTime = IndependentCurTime;
-
-	return IndependentDeltaTime;
 }
 
 void UEngineTimer::ToggleTime()

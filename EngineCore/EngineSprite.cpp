@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "EngineSprite.h"
 
 #include <EngineBase/EngineDebug.h>

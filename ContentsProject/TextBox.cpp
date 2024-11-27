@@ -1,4 +1,4 @@
-#include "PreCompile.h"
+﻿#include "PreCompile.h"
 #include "TextBox.h"
 #include "ContentsEnum.h"
 
@@ -52,7 +52,7 @@ void ATextBox::SetPos(FVector2D _Pos)
 
 void ATextBox::SetText(const std::string& _Text, const std::string& _Font)
 {
-    SetSize(_Text.size());
+    SetSize(static_cast<int>(_Text.size()));
     SetTextSpriteName(_Font);
     SetOrder();
 

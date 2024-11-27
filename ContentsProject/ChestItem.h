@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "DropItem.h"
 
 class AChestItem : public ADropItem
