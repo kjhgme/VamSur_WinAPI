@@ -217,7 +217,7 @@ void AMonster::TakeDamage(float _Att, float _KnockBack)
 		DiffPos = PlayerPos - MonsterPos;
 
 		DamageText->AddActorLocation(-DiffPos);
-		DamageText->SetText(std::to_string(_Att), "DamageNum");
+		DamageText->SetText(std::to_string(static_cast<int>(_Att)), "DamageNum");
 
 		DiffPos = DiffPos / 50.0f;
 

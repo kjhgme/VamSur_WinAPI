@@ -29,14 +29,14 @@ inline const MonsterStatus Mudman1Status("Mudman1", 70.0f, 10.0f, 100.0f, 0.3f, 
 inline const MonsterStatus Mudman2Status("Mudman2", 150.0f, 10.0f, 100.0f, 0.3f, 3.0f, 2.5f);
 inline const MonsterStatus GiantBatStatus("XLBat", 270.0f, 10.0f, 140.0f, 0.1f, 3.0f, 2.5f);
 inline const MonsterStatus WerewolfStatus("Werewolf1", 180.0f, 14.0f, 130.0f, 0.8f, 3.0f, 2.0f);
-inline const MonsterStatus MantichanaStatus("XLMantichana", 500.0f, 10.0f, 80.0f, 0.0f, 3.0f, 3.0f);
+inline const MonsterStatus MantichanaStatus("XLMantis", 500.0f, 10.0f, 80.0f, 0.0f, 3.0f, 3.0f);
 inline const MonsterStatus BigMummyStatus("XLMummy", 500.0f, 20.0f, 80.0f, 0.0f, 3.0f, 3.0f);
 inline const MonsterStatus VenusStatus("XLFlower1", 500.0f, 20.0f, 80.0f, 0.0f, 3.0f, 3.0f);
 
 inline const MonsterStatus GlowingBatStatus("Bat4", 50.0f, 10.0f, 140.0f, 1.0f, 3.0f, 30.0f, true);
 inline const MonsterStatus SilverBatStatus("Bat5", 50.0f, 10.0f, 140.0f, 1.0f, 3.0f, 30.0f, true);
 inline const MonsterStatus FlowerWallStatus("Flower1", 30.0f, 1.0f, 20.0f, 1.0f, 3.0f, 2.0f, true);
-inline const MonsterStatus MantichanaLordStatus("XLMantichana", 150.0f, 20.0f, 160.0f, 0.0f, 1.0f, 50.0f, true);
+inline const MonsterStatus MantichanaLordStatus("XLMantis", 150.0f, 20.0f, 160.0f, 0.0f, 1.0f, 50.0f, true);
 inline const MonsterStatus WerewolfLordStatus("Werewolf1", 200.0f, 20.0f, 130.0f, 0.1f, 1.0f, 2.0f, true);
 inline const MonsterStatus MummyLordStatus("XLMummy", 250.0f, 20.0f, 80.0f, 0.0f, 1.0f, 25.0f, true);
 inline const MonsterStatus VenusLordStatus("XLFlower1", 150.0f, 30.0f, 160.0f, 0.0f, 1.0f, 50.0f, true);
