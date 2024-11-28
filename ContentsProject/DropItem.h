@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <EngineCore/2DCollision.h>
+#include <EnginePlatform/EngineSound.h>
 
 class ADropItem : public AActor
 {
@@ -33,6 +34,8 @@ protected:
 	bool IsPickedUp = false;
 	bool IsReturning = false;
 	float KnockBackTime = 0.0f;
+
+	USoundPlayer GetSoundPlayer;
 
 private:
 

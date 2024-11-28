@@ -28,4 +28,6 @@ void ARichCoinBagItem::ApplyItemEffect()
 	ADropItem::ApplyItemEffect();
 
 	AInGameUI::KillAndGold->AddGoldCount(Gold);
+
+	GetSoundPlayer = UEngineSound::Play("sfx_coin.wav");
 }

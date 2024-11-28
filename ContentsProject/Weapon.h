@@ -100,6 +100,8 @@ protected:
 
 	bool HeadDirRight = true;
 
+	USoundPlayer AttackSoundPlayer;
+
 private:
 	FVector2D PlayerPos{0, 0};
 

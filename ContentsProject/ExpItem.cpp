@@ -28,5 +28,6 @@ void AExpItem::ApplyItemEffect()
 	ADropItem::ApplyItemEffect();
 
 	AInGameMode::Player->AddExp(Exp);
-}
 
+	GetSoundPlayer = UEngineSound::Play("sfx_gem.wav");
+}

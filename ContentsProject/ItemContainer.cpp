@@ -5,6 +5,7 @@
 #include <EngineBase/EngineRandom.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/2DCollision.h>
+#include <EnginePlatform/EngineSound.h>
 #include "DropItem.h"
 #include "Weapon.h"
 #include "FloorChickenItem.h"
@@ -67,6 +68,8 @@ void AItemContainer::CollisionEnter(AActor* _ColActor)
 	
 	Hp -= Weapon->AttackPower;
 	SpriteRenderer->ChangeAnimation("Damaged");
+
+	USoundPlayer HitSoundPlayer = UEngineSound::Play("Hit.wav");
 
 	if (Hp <= 0)
 	{

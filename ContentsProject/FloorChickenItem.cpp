@@ -28,4 +28,6 @@ void AFloorChickenItem::ApplyItemEffect()
 	ADropItem::ApplyItemEffect();
 
 	AInGameMode::Player->AddHp(Hp);
+
+	GetSoundPlayer = UEngineSound::Play("sfx_chicken.wav");
 }

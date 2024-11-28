@@ -85,6 +85,7 @@ private:
 	bool HeadDirStationary = true;
 	bool HeadDirTop = false;
 	bool HeadDirBottom = false;
+	bool Alive = true;
 
 	std::unordered_map<AActor*, float> CollisionStayTimers;
 

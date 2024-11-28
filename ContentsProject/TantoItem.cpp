@@ -26,4 +26,6 @@ void ATantoItem::ApplyItemEffect()
 	FVector2D pos = GetWorld()->GetMainPawn()->GetActorLocation();
 	TantoSkill* Fire = GetWorld()->SpawnActor<TantoSkill>();
 	Fire->SetActorLocation(pos);
+
+	GetSoundPlayer = UEngineSound::Play("sfx_tanto.wav");
 }

@@ -46,7 +46,7 @@ void Whip::BeginPlay()
 		SpriteRenderer->SetAlphaChar(0);
 	}
 
-	InitCollision();
+	InitCollision();	
 }
 
 void Whip::Tick(float _DeltaTime)
@@ -226,6 +226,8 @@ void Whip::Attack()
 {
 	FadeValue = 1.0f;
 	SecondFadeValue = 1.0f;
+
+	AttackSoundPlayer = UEngineSound::Play("WhipSound.wav");
 
 	if (2 <= Amount)
 	{
