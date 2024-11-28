@@ -11,6 +11,8 @@
 #include "TitleAntonio.h"
 #include "TitleVillain.h"
 
+CharacterName ATitleGameMode::SelectedCharacter;
+
 ATitleGameMode::ATitleGameMode()
 {
 }

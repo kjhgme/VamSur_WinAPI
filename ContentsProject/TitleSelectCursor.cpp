@@ -1,11 +1,11 @@
 ﻿#include "PreCompile.h"
 #include "TitleSelectCursor.h"
+#include "ContentsEnum.h"
 
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
-#include "Player.h"
+#include "TitleGameMode.h"
 
-#include "ContentsEnum.h"
 
 ATitleSelectCursor::ATitleSelectCursor()
 {
@@ -74,6 +74,7 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				
+				ATitleGameMode::SelectedCharacter = CharacterName::Antonio;
 				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
 			else if (CHARACTER_01 == pos.GetPosID())
@@ -82,6 +83,7 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 
+				ATitleGameMode::SelectedCharacter = CharacterName::Imelda;
 				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
 			else if (BACK == pos.GetPosID())

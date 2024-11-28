@@ -34,7 +34,7 @@ void AInGameMode::BeginPlay()
 	InGameUI = GetWorld()->SpawnActor<AInGameUI>();
 	TimeEventer.PushEvent(1.0f, std::bind(&AInGameMode::SpawnItemContainer, this), false, -1.0f, true);
 	
-	/*switch (ATitleGameMode::SelectedCharacter)
+	switch (ATitleGameMode::SelectedCharacter)
 	{
 	case 1:
 		SelectCharacter("Antonio");
@@ -45,9 +45,9 @@ void AInGameMode::BeginPlay()
 	default:
 		SelectCharacter("Antonio");
 		break;
-	}*/
+	}
 
-	SelectCharacter("Imelda");
+	// SelectCharacter("Imelda");
 }
 
 void AInGameMode::SelectCharacter(std::string_view _Name)

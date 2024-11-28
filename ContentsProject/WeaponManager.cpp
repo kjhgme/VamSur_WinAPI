@@ -48,18 +48,18 @@ std::vector<std::pair<EWeaponType, WeaponLevelData>> AWeaponManager::GetRandWeap
 {	
 	UEngineRandom RandomGenerator;
 
-	std::vector<int> SellectableWeapons;
+	std::vector<int> SelectableWeapons;
 	std::vector<int> RandomSelections;
 	std::vector<std::pair<EWeaponType, WeaponLevelData>> RandWeapons;
 
-	SellectableWeapons = AvailableWeaponTypes;
+	SelectableWeapons = AvailableWeaponTypes;
 
 	int Count = UEngineMath::Clamp(static_cast<int>(AvailableWeaponTypes.size()), 0, 3);
 
 	for (int i = 0; i < Count; ++i) {
-		int RandomIndex = RandomGenerator.RandomInt(0, static_cast<int>(SellectableWeapons.size() - 1));
-		RandomSelections.push_back(SellectableWeapons[RandomIndex]);
-		SellectableWeapons.erase(SellectableWeapons.begin() + RandomIndex);
+		int RandomIndex = RandomGenerator.RandomInt(0, static_cast<int>(SelectableWeapons.size() - 1));
+		RandomSelections.push_back(SelectableWeapons[RandomIndex]);
+		SelectableWeapons.erase(SelectableWeapons.begin() + RandomIndex);
 	}
 			
 	for (int i = 0; i < RandomSelections.size(); ++i)
