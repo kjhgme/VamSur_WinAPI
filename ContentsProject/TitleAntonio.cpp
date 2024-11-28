@@ -1,10 +1,9 @@
 ﻿#include "PreCompile.h"
 #include "TitleAntonio.h"
+#include "ContentsEnum.h"
 
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineWindow.h>
-
-#include "ContentsEnum.h"
 
 ATitleAntonio::ATitleAntonio()
 {

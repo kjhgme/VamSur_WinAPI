@@ -18,5 +18,6 @@ protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer = nullptr;
+	float OpenScale = 10.0f;
 };
 
