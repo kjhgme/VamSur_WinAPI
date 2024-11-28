@@ -13,7 +13,7 @@ ATitleBG::ATitleBG()
 	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	SpriteRenderer->SetSprite("TitleBG.png");
 	SpriteRenderer->SetOrder(ERenderOrder::BACKGROUND);
-	SpriteRenderer->SetSpriteScale(OpenScale);
+	SpriteRenderer->SetSpriteScale(OpeningScale);
 
 	TimeEventer.PushEvent(2.0f, std::bind(&ATitleBG::Opening, this), true, -1.0f, false);
 }
@@ -25,7 +25,7 @@ ATitleBG::~ATitleBG()
 void ATitleBG::Opening()
 {
 	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
-	OpenScale -= DeltaTime * 5.0f;
-	OpenScale = UEngineMath::Clamp(OpenScale, 1.0f, 10.0f);
-	SpriteRenderer->SetSpriteScale(OpenScale);
+	OpeningScale -= DeltaTime * 5.0f;
+	OpeningScale = UEngineMath::Clamp(OpeningScale, 1.0f, 10.0f);
+	SpriteRenderer->SetSpriteScale(OpeningScale);
 }

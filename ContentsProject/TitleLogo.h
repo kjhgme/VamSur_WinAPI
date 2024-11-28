@@ -12,6 +12,8 @@ public:
 	ATitleLogo& operator=(const ATitleLogo& _Other) = delete;
 	ATitleLogo& operator=(ATitleLogo&& _Other) noexcept = delete;
 
+	void Opening();
+
 protected:
 
 private:

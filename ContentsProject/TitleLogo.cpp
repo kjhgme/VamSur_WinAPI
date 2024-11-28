@@ -15,8 +15,16 @@ ATitleLogo::ATitleLogo()
 	SpriteRenderer->SetSprite("TitleLogo.png");
 	SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) + 5);
 	SpriteRenderer->SetSpriteScale(1.0f);
+	SpriteRenderer->SetAlphafloat(0.0f);
+
+	TimeEventer.PushEvent(3.0f, std::bind(&ATitleLogo::Opening, this), false, -1.0f, false);
 }
 
 ATitleLogo::~ATitleLogo()
 {
+}
+
+void ATitleLogo::Opening()
+{
+	SpriteRenderer->SetAlphafloat(1.0f);
 }
