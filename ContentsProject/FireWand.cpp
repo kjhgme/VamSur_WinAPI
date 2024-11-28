@@ -129,6 +129,8 @@ void FireWand::Attack()
 
 void FireWand::ShootFire()
 {
+	AttackSoundPlayer = UEngineSound::Play("sfx_tanto.wav");
+
 	SetActorLocation(player->GetActorLocation());
 
 	FireWandRenderers.push_back(std::make_pair("Fire_RC.png", CreateDefaultSubObject<USpriteRenderer>()));

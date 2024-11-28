@@ -30,7 +30,7 @@ MagicWand::MagicWand()
 	AttackPower += 10.0f;
 	KnockBack += 1.0f;
 	Speed += 100.0f;
-	Amount += 0;
+	Amount += 1;
 	Cooldown += 1.2f;
 }
 
@@ -143,7 +143,7 @@ void MagicWand::ShootMagic()
 {
 	SetActorLocation(player->GetActorLocation());
 
-	USoundPlayer SoundPlayer = UEngineSound::Play("MagicWandSound.wav");
+	AttackSoundPlayer = UEngineSound::Play("MagicWandSound.wav");
 
 	MagicWandRenderers.push_back(std::make_pair(0, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());

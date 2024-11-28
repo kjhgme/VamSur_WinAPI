@@ -121,6 +121,8 @@ void Knife::Attack()
 
 void Knife::ShootKnife()
 {
+	AttackSoundPlayer = UEngineSound::Play("KnifeSound.wav");
+
 	KnifeRenderers.push_back(std::make_pair(00, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 
