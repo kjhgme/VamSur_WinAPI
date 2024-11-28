@@ -141,9 +141,16 @@ void MagicWand::Attack()
 
 void MagicWand::ShootMagic()
 {
-	SetActorLocation(player->GetActorLocation());
-
 	AttackSoundPlayer = UEngineSound::Play("MagicWandSound.wav");
+
+	FVector2D DiffPos = GetActorLocation() - player->GetActorLocation();
+
+	for (int i = 0; i < static_cast<int>(MagicWandRenderers.size()); ++i)
+	{
+		MagicWandRenderers[i].second->AddComponentLocation(DiffPos);
+	}
+	
+	SetActorLocation(player->GetActorLocation());
 
 	MagicWandRenderers.push_back(std::make_pair(0, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());

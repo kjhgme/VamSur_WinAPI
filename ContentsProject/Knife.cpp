@@ -123,6 +123,13 @@ void Knife::ShootKnife()
 {
 	AttackSoundPlayer = UEngineSound::Play("KnifeSound.wav");
 
+	FVector2D DiffPos = GetActorLocation() - player->GetActorLocation();
+
+	for (int i = 0; i < static_cast<int>(KnifeRenderers.size()); ++i)
+	{
+		KnifeRenderers[i].second->AddComponentLocation(DiffPos);
+	}
+
 	KnifeRenderers.push_back(std::make_pair(00, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 

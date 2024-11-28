@@ -129,7 +129,12 @@ void FireWand::Attack()
 
 void FireWand::ShootFire()
 {
-	AttackSoundPlayer = UEngineSound::Play("sfx_tanto.wav");
+	FVector2D DiffPos = GetActorLocation() - player->GetActorLocation();
+
+	for (int i = 0; i < static_cast<int>(FireWandRenderers.size()); ++i)
+	{
+		FireWandRenderers[i].second->AddComponentLocation(DiffPos);
+	}
 
 	SetActorLocation(player->GetActorLocation());
 
