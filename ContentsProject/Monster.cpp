@@ -33,7 +33,6 @@ void AMonster::BeginPlay()
 	DamageText->InitOrder(static_cast<int>(ERenderOrder::UI) + 1);
 	DamageText->SetTextScale(12);
 	DamageText->SetText("", "DamageNum");
-	DamageText->SetActorLocation(UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize().Half());
 }
 
 void AMonster::Tick(float _DeltaTime)
@@ -241,8 +240,12 @@ void AMonster::TakeDamage(float _Att, float _KnockBack)
 		DiffPos = PlayerPos - MonsterPos;
 
 		TextFadeValue = 1.0f;
+		
+		DamageText->SetActorLocation(UEngineAPICore::GetCore()->GetMainWindow().GetWindowSize().Half());
 		DamageText->AddActorLocation(-DiffPos);
+
 		DamageText->SetText(std::to_string(static_cast<int>(_Att)), "DamageNum");
+	
 		TimeEventer.PushEvent(0.5f, std::bind(&AMonster::TextFadeOut, this), true, -1.0f, false);
 
 		DiffPos = DiffPos / 50.0f;
