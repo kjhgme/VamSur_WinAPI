@@ -38,8 +38,6 @@ void AWeaponManager::InitWeapon()
 		AddWeapon(EWeaponType::MagicWand);
 	}
 
-	Weapons[0]->Action();
-
 	for (int i = 0; i < static_cast<int>(EWeaponType::TotalCount); ++i)
 	{
 		AvailableWeaponTypes.push_back(i);

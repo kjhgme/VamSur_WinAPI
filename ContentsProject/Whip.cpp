@@ -224,15 +224,15 @@ void Whip::ChangeHeadDir()
 
 void Whip::Attack()
 {
+	FadeValue = 1.0f;
+	SecondFadeValue = 1.0f;
+
 	if (2 <= Amount)
 	{
 		for (int i = 0; i < CollisionComponents.size() / 2; ++i)
 		{
 			CollisionComponents[i]->SetActive(true);
 		}
-
-		FadeValue = 1.0f;
-		SecondFadeValue = 1.0f;
 	}
 	else 
 	{
@@ -240,24 +240,22 @@ void Whip::Attack()
 		{
 			CollisionComponents[i]->SetActive(true);
 		}
-
-		FadeValue = 1.0f;
 	}
 
-	TimeEventer.PushEvent(0.5f, std::bind(&Whip::FadeOut, this), true, -1.0f, false);
+	TimeEventer.PushEvent(1.0f, std::bind(&Whip::FadeOut, this), true, -1.0f, false);
 }
 
 void Whip::FadeOut()
 {
 	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
-	FadeValue += DeltaTime * 2.0f * FadeDir;
+	FadeValue += DeltaTime * 3.0f * FadeDir;
 	SpriteRenderer->SetAlphafloat(FadeValue);
 
 	int WeaponsSize = static_cast<int>(CollisionComponents.size());
 
 	if (2 <= Amount)
 	{
-		if (0 >= FadeValue)
+		if (0.0f >= FadeValue)
 		{
 			for (int i = 0; i < WeaponsSize / 2; ++i)
 			{
@@ -268,10 +266,10 @@ void Whip::FadeOut()
 				CollisionComponents[i]->SetActive(true);
 			}
 
-			SecondFadeValue += DeltaTime * 2.0f * FadeDir;
+			SecondFadeValue += DeltaTime * 3.0f * FadeDir;
 			SecondRenderer->SetAlphafloat(SecondFadeValue);
 
-			if (0 >= SecondFadeValue)
+			if (0.0f >= SecondFadeValue)
 			{
 				for (int i = WeaponsSize / 2; i < WeaponsSize; ++i)
 				{
@@ -281,7 +279,7 @@ void Whip::FadeOut()
 		}
 	}
 	else {
-		if (0 >= FadeValue)
+		if (0.0f >= FadeValue)
 		{
 			for (int i = 0; i < WeaponsSize; ++i)
 			{
