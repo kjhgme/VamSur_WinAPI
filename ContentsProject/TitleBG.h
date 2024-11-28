@@ -12,6 +12,8 @@ public:
 	ATitleBG& operator=(const ATitleBG& _Other) = delete;
 	ATitleBG& operator=(ATitleBG&& _Other) noexcept = delete;
 
+	void Opening();
+
 protected:
 
 private:

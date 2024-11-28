@@ -15,8 +15,19 @@ ATitleVillain::ATitleVillain()
 	SpriteRenderer->SetSprite("TitleVillain.png");
 	SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) + 1);
 	SpriteRenderer->SetSpriteScale(1.0f);
+	SpriteRenderer->SetAlphafloat(FadeValue);
+
+	TimeEventer.PushEvent(5.0f, std::bind(&ATitleVillain::FadeIn, this), true, 2.0f, false);
 }
 
 ATitleVillain::~ATitleVillain()
 {
+}
+
+void ATitleVillain::FadeIn()
+{
+	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
+	FadeValue += DeltaTime * 0.5f;
+	FadeValue = UEngineMath::Clamp(FadeValue, 0.0f, 0.5f);
+	SpriteRenderer->SetAlphafloat(FadeValue);
 }

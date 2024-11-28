@@ -15,8 +15,20 @@ ATitleImelda::ATitleImelda()
 	SpriteRenderer->SetSprite("TitleImelda.png");
 	SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) + 2);
 	SpriteRenderer->SetSpriteScale(1.0f);
+	SpriteRenderer->SetAlphafloat(FadeValue);
+
+	TimeEventer.PushEvent(5.0f, std::bind(&ATitleImelda::FadeIn, this), true, 2.5f, false);
 }
 
 ATitleImelda::~ATitleImelda()
 {
 }
+
+void ATitleImelda::FadeIn()
+{
+	float DeltaTime = UEngineAPICore::GetCore()->GetDeltaTime();
+	FadeValue += DeltaTime * 0.5f;
+	FadeValue = UEngineMath::Clamp(FadeValue, 0.0f, 0.5f);
+	SpriteRenderer->SetAlphafloat(FadeValue);
+}
+

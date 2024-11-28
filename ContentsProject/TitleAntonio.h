@@ -12,9 +12,12 @@ public:
 	ATitleAntonio& operator=(const ATitleAntonio& _Other) = delete;
 	ATitleAntonio& operator=(ATitleAntonio&& _Other) noexcept = delete;
 
+	void FadeIn();
+
 protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer = nullptr;
+	float FadeValue = 0.0f;
 };
 

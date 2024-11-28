@@ -11,10 +11,13 @@ public:
 	ATitleVillain(ATitleVillain&& _Other) noexcept = delete;
 	ATitleVillain& operator=(const ATitleVillain& _Other) = delete;
 	ATitleVillain& operator=(ATitleVillain&& _Other) noexcept = delete;
+	
+	void FadeIn();
 
 protected:
 
 private:
 	class USpriteRenderer* SpriteRenderer = nullptr;
+	float FadeValue = 0.0f;
 };
 

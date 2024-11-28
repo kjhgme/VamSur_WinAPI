@@ -85,7 +85,6 @@ void ATitleUI::BeginPlay()
 	}
 	// CursorArrow
 	ATitleCursor* Cursor = GetWorld()->SpawnActor<ATitleCursor>();
-
 }
 
 void ATitleUI::Tick(float _DeltaTime)
