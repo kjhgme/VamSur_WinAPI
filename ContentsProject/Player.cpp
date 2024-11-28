@@ -56,7 +56,6 @@ void APlayer::Tick(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsDown('L'))
 	{
-		// AddExp(5.0f);
 		LevelUp();
 		PlayerStatus.Exp = 0.0f;
 	}

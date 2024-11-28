@@ -39,12 +39,15 @@ void AInGameMode::BeginPlay()
 	case 1:
 		SelectCharacter("Antonio");
 		break;
-	default:
+	case 2:
 		SelectCharacter("Imelda");
+		break;
+	default:
+		SelectCharacter("Antonio");
 		break;
 	}*/
 
-	SelectCharacter("Antonio");
+	SelectCharacter("Imelda");
 }
 
 void AInGameMode::SelectCharacter(std::string_view _Name)

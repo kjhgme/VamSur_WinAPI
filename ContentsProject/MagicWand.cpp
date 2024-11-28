@@ -29,7 +29,7 @@ MagicWand::MagicWand()
 	AttackPower = 10.0f;
 	KnockBack = 1.0f;
 	Speed = 100.0f;
-	Amount = 1;
+	Amount = 0;
 	Cooldown = 1.2f;
 }
 

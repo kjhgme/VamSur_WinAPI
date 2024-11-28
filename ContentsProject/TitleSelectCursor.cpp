@@ -74,9 +74,6 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				
-				APlayer* Player = UEngineAPICore::GetCore()->GetLevel("InGame")->SpawnActor<APlayer>();
-				Player->PlayerInit("Antonio");
-
 				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
 			else if (CHARACTER_01 == pos.GetPosID())
@@ -84,9 +81,6 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 				Alive = false;
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-
-				APlayer* Player = UEngineAPICore::GetCore()->GetLevel("InGame")->SpawnActor<APlayer>();
-				Player->PlayerInit("Imelda");
 
 				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
