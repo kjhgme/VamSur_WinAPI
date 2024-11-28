@@ -172,6 +172,9 @@
     <ClInclude Include="ChestUI.h">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClInclude>
+    <ClInclude Include="DieUI.h">
+      <Filter>ContentsObjects\InGame\DieUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -336,6 +339,9 @@
     <ClCompile Include="ChestUI.cpp">
       <Filter>ContentsObjects\InGame\InGameUI</Filter>
     </ClCompile>
+    <ClCompile Include="DieUI.cpp">
+      <Filter>ContentsObjects\InGame\DieUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="PreCompile">
@@ -397,6 +403,9 @@
     </Filter>
     <Filter Include="ContentsObjects\Item\DropItemSkill">
       <UniqueIdentifier>{ec5834d5-b579-47ab-b68d-c6974985cfdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ContentsObjects\InGame\DieUI">
+      <UniqueIdentifier>{a73beea7-45d1-4e86-a1d7-edb0ad03a8ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

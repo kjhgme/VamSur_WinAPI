@@ -159,6 +159,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="DieUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FireWand.h">
       <SubType>
       </SubType>
@@ -371,6 +375,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ChestUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DieUI.cpp">
       <SubType>
       </SubType>
     </ClCompile>

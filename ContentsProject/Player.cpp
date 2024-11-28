@@ -15,6 +15,7 @@
 #include "PlayerHpUI.h"
 #include "InGameUI.h"
 #include "Monster.h"
+#include "DieUI.h"
 
 CharacterStatus APlayer::PlayerStatus;
 
@@ -315,6 +316,8 @@ void APlayer::Die()
 	{
 		SpriteRenderer->ChangeAnimation("Die_L");
 	}
+
+	DieUI* GameOver = GetWorld()->SpawnActor<DieUI>();
 }
 
 void APlayer::AddExp(float _add)
