@@ -70,6 +70,45 @@ public:
 
 		return NewLevel;
 	}
+	
+	template<typename GameModeType, typename MainPawnType>
+	void ResetLevel(std::string_view _LevelName)
+	{
+		
+		if (CurLevel->GetName() != _LevelName)
+		{
+			DestroyLevel(_LevelName);
+			CreateLevel<GameModeType, MainPawnType>(_LevelName);
+			return;
+		}
+
+		std::string LevelName = static_cast<std::string>(_LevelName);
+		std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(LevelName);
+		Levels.erase(FindIter);
+		NextLevel = CreateLevel<GameModeType, MainPawnType>(_LevelName);
+		IsCurLevelReset = true;
+	}
+	
+	void DestroyLevel(std::string_view _LevelName)
+	{
+		std::string LevelName = static_cast<std::string>(_LevelName);
+
+		if (false == Levels.contains(LevelName))
+		{
+			return;
+		}
+
+		std::map<std::string, class ULevel*>::iterator FindIter = Levels.find(LevelName);
+
+		if (nullptr != FindIter->second)
+		{
+			delete FindIter->second;
+			FindIter->second = nullptr;
+		}
+
+		Levels.erase(FindIter);
+	}
+
 
 	void OpenLevel(std::string_view _LevelName);
 
@@ -88,6 +127,7 @@ private:
 	std::map<std::string, class ULevel*> Levels;
 	class ULevel* CurLevel = nullptr;
 	class ULevel* NextLevel = nullptr;
+	bool IsCurLevelReset = false;
 
 	void Tick();
 };

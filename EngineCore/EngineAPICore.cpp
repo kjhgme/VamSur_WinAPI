@@ -68,6 +68,14 @@ void UEngineAPICore::EngineTick()
 
 void UEngineAPICore::Tick()
 {
+	if (true == IsCurLevelReset)
+	{
+		delete CurLevel;
+		CurLevel = nullptr;
+		IsCurLevelReset = false;
+	}
+
+
 	if (nullptr != NextLevel)
 	{
 		if (nullptr != CurLevel)

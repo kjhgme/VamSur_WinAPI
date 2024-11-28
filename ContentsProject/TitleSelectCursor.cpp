@@ -6,6 +6,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EnginePlatform/EngineSound.h>
 #include "TitleGameMode.h"
+#include "InGameMode.h"
 
 
 ATitleSelectCursor::ATitleSelectCursor()
@@ -78,6 +79,8 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				
 				ATitleGameMode::SelectedCharacter = CharacterName::Antonio;
+
+				UEngineAPICore::GetCore()->ResetLevel<AInGameMode, AActor>("InGame");
 				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
 			else if (CHARACTER_01 == pos.GetPosID())
@@ -89,6 +92,8 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 
 				ATitleGameMode::SelectedCharacter = CharacterName::Imelda;
+
+				UEngineAPICore::GetCore()->ResetLevel<AInGameMode, AActor>("InGame");
 				UEngineAPICore::GetCore()->OpenLevel("InGame");
 			}
 			else if (BACK == pos.GetPosID())

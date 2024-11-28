@@ -10,6 +10,7 @@
 #include <EngineCore/EngineCoreDebug.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/2DCollision.h>
+#include "TitleGameMode.h"
 #include "WeaponManager.h"
 #include "PlayerHpUI.h"
 #include "InGameUI.h"
@@ -283,10 +284,13 @@ void APlayer::TakeDamage(AActor* _ColActor)
 void APlayer::Die()
 {
 	Alive = false;
-	UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+	// UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 
 	UEngineSound::AllSoundStop();
 	USoundPlayer OverSoundPlayer = UEngineSound::Play("sfx_gameOver.wav");
+
+	UEngineAPICore::GetCore()->ResetLevel<ATitleGameMode, AActor>("Title");
+	UEngineAPICore::GetCore()->OpenLevel("Title");
 }
 
 void APlayer::AddExp(float _add)
