@@ -87,6 +87,8 @@ private:
 	bool HeadDirBottom = false;
 	bool Alive = true;
 
+	float DieScale = 1.0f;
+
 	std::unordered_map<AActor*, float> CollisionStayTimers;
 
 	class AWeaponManager* WeaponManager = nullptr;

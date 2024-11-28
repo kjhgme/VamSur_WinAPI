@@ -50,20 +50,35 @@ void APlayer::Tick(float _DeltaTime)
 	UEngineDebug::CoreOutPutString("FPS : " + std::to_string(1.0f / _DeltaTime));
 	UEngineDebug::CoreOutPutString("PlayerPos : " + GetActorLocation().ToString());
 
-	PlayerMove(_DeltaTime);
+	if (true == Alive)
+	{
+		PlayerMove(_DeltaTime);
 
-	if (true == UEngineInput::GetInst().IsDown('R'))
-	{
-		UEngineDebug::SwitchIsDebug();
+		if (true == UEngineInput::GetInst().IsDown('R'))
+		{
+			UEngineDebug::SwitchIsDebug();
+		}
+		if (true == UEngineInput::GetInst().IsDown('L'))
+		{
+			LevelUp();
+			PlayerStatus.Exp = 0.0f;
+		}
+		if (true == UEngineInput::GetInst().IsDown('P'))
+		{
+			UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+		}
 	}
-	if (true == UEngineInput::GetInst().IsDown('L'))
+	else if (false == Alive)
 	{
-		LevelUp();
-		PlayerStatus.Exp = 0.0f;
-	}
-	if (true == UEngineInput::GetInst().IsDown('P'))
-	{
-		UEngineAPICore::GetCore()->GetTimer().ToggleTime();
+		if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
+		{
+			UEngineAPICore::GetCore()->ResetLevel<ATitleGameMode, AActor>("Title");
+			UEngineAPICore::GetCore()->OpenLevel("Title");
+		}
+		DieScale -= _DeltaTime;
+		DieScale = UEngineMath::ClampMin(DieScale, 0.0f);
+		SpriteRenderer->SetPivotType(PivotType::Bot);
+		SpriteRenderer->SetSpriteScale(DieScale);
 	}
 }
 
@@ -110,9 +125,11 @@ void APlayer::InitCreatePlayerAnim()
 	if (!(name.empty()))
 	{
 		SpriteRenderer->CreateAnimation("Idle_L", name, 0, 0, 0.15f);
-		SpriteRenderer->CreateAnimation("Idle_R", name, 4, 4, 0.15f);
+		SpriteRenderer->CreateAnimation("Idle_R", name, 5, 5, 0.15f);
 		SpriteRenderer->CreateAnimation("Move_L", name, 0, 3, 0.15f);
-		SpriteRenderer->CreateAnimation("Move_R", name, 4, 7, 0.15f);
+		SpriteRenderer->CreateAnimation("Move_R", name, 5, 8, 0.15f);
+		SpriteRenderer->CreateAnimation("Die_L", name, 4, 4, 0.15f);
+		SpriteRenderer->CreateAnimation("Die_R", name, 9, 9, 0.15f);
 	}
 
 	{
@@ -284,13 +301,20 @@ void APlayer::TakeDamage(AActor* _ColActor)
 void APlayer::Die()
 {
 	Alive = false;
-	// UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 
 	UEngineSound::AllSoundStop();
 	USoundPlayer OverSoundPlayer = UEngineSound::Play("sfx_gameOver.wav");
 
-	UEngineAPICore::GetCore()->ResetLevel<ATitleGameMode, AActor>("Title");
-	UEngineAPICore::GetCore()->OpenLevel("Title");
+	SpriteRenderer->AddComponentLocation({ 0.0f, SpriteRenderer->GetComponentScale().Y / 2.0f });
+
+	if (true == HeadDirRight)
+	{
+		SpriteRenderer->ChangeAnimation("Die_R");
+	}
+	else
+	{
+		SpriteRenderer->ChangeAnimation("Die_L");
+	}
 }
 
 void APlayer::AddExp(float _add)
