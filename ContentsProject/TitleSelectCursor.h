@@ -9,7 +9,6 @@ struct CPos {
 enum LocationID {
     BACK = 1,
     OPTION,
-    SELECT,
     CHARACTER_00,
     CHARACTER_01,
 };
@@ -31,8 +30,6 @@ public:
             return BackPos;
         case OPTION:
             return OptionPos;
-        case SELECT:
-            return SelectPos;
         case CHARACTER_00:
             return Charater00Pos;
         case CHARACTER_01:
@@ -53,12 +50,10 @@ private:
     std::unordered_map<LocationID, std::unordered_map<std::string, LocationID>> transitions = {
         {BACK, {{"right", OPTION}, {"down", CHARACTER_00}}},
         {OPTION, {{"left", BACK}, {"down", CHARACTER_01}}},
-        {SELECT, {{"up", CHARACTER_00}}},
-        {CHARACTER_00, {{"right", CHARACTER_01}, {"up", BACK}, {"down", SELECT}}},
-        {CHARACTER_01, {{"left", CHARACTER_00}, {"up", BACK}, {"down", SELECT}}},
+        {CHARACTER_00, {{"right", CHARACTER_01}, {"up", BACK}}},
+        {CHARACTER_01, {{"left", CHARACTER_00}, {"up", BACK}}},
     };
 
-    inline static const CPos SelectPos = { { 320, 345 }, { 600, 345 } };
     inline static const CPos BackPos = { { -258, -365 }, { -115, -365 } };
     inline static const CPos OptionPos = { { 165, -365 }, { 310, -365 } };
 

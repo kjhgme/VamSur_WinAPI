@@ -43,13 +43,6 @@ void ATitleSelectCharacter::BeginPlay()
 		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
 		SpriteRenderer->SetSpriteScale(1.0f);
 	}
-	// CharacterSelectButton
-	{
-		USpriteRenderer* SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		SpriteRenderer->SetSprite("TitleUI_CharacterSelectButton.png");
-		SpriteRenderer->SetOrder(static_cast<int>(ERenderOrder::UI));
-		SpriteRenderer->SetSpriteScale(1.0f);
-	}
 	// CharacterSelectCursor
 	{
 		ATitleSelectCursor* Cursor = GetWorld()->SpawnActor<ATitleSelectCursor>();
