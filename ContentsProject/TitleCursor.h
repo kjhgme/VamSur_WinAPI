@@ -92,13 +92,22 @@ public:
 
     bool Alive = true;
 
+    class USpriteRenderer* GetLeftCursor()
+    {
+        return LeftCursor;
+    }
+    class USpriteRenderer* GetRightCursor()
+    {
+        return RightCursor;
+    }
+
 protected:
 
 private:
     void UpdateCursorPosition();
 
-	USpriteRenderer* LeftCursor = nullptr;
-	USpriteRenderer* RightCursor = nullptr;
+	class USpriteRenderer* LeftCursor = nullptr;
+	class USpriteRenderer* RightCursor = nullptr;
     
     TitleCursorPosition pos;
 };

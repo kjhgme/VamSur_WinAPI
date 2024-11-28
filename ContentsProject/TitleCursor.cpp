@@ -25,6 +25,7 @@ void ATitleCursor::BeginPlay()
 		LeftCursor->SetSprite("Cursor", 0);
 		LeftCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
 		LeftCursor->SetSpriteScale(1.0f);
+		LeftCursor->SetAlphafloat(0.0f);
 
 		LeftCursor->CreateAnimation("Cursor_L", "Cursor", 0, 7, 0.15f);
 		LeftCursor->ChangeAnimation("Cursor_L");
@@ -34,6 +35,7 @@ void ATitleCursor::BeginPlay()
 		RightCursor->SetSprite("Cursor", 8);
 		RightCursor->SetOrder(static_cast<int>(ERenderOrder::CURSOR));
 		RightCursor->SetSpriteScale(1.0f);
+		RightCursor->SetAlphafloat(0.0f);
 
 		RightCursor->CreateAnimation("Cursor_R", "Cursor", 8, 15, 0.15f);
 		RightCursor->ChangeAnimation("Cursor_R");
