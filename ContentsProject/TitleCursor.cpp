@@ -3,6 +3,7 @@
 
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineSound.h>
 
 #include "ContentsEnum.h"
 #include "TitleSelectCharacter.h"
@@ -76,12 +77,7 @@ void ATitleCursor::Tick(float _DeltaTime)
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND)- 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				ATitleSelectCharacter* SelectCharacter = GetWorld()->SpawnActor<ATitleSelectCharacter>();
-				
-				//ULevel* InGameLevel = UEngineAPICore::GetCore()->GetLevel("InGame");
-				//
-				//// InGameLevel->SpawnActor<APlayer>();
-
-				//UEngineAPICore::GetCore()->OpenLevel("InGame");
+				USoundPlayer ClickSoundPlayer = UEngineSound::Play("sfx_pause_in.wav");
 			}
 			else if (BACK == pos.GetPosID())
 			{

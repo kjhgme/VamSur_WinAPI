@@ -26,6 +26,8 @@ void ATitleGameMode::BeginPlay()
 	Super::BeginPlay();
 
 	TitleInit();
+
+	IntroSoundPlayer = UEngineSound::Play("TitleIntro.wav");
 }
 
 void ATitleGameMode::Tick(float _DeltaTime)

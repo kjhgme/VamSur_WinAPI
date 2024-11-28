@@ -110,4 +110,5 @@ private:
 	class USpriteRenderer* RightCursor = nullptr;
     
     TitleCursorPosition pos;
+
 };
