@@ -34,6 +34,18 @@ public:
 		}
 	}
 
+	void Stop()
+	{
+		Control->stop();
+		Control = nullptr;
+	}
+
+	bool IsPlaying()
+	{
+		bool Check = true;
+		Control->isPlaying(&Check);
+		return Check;
+	}
 
 	void Loop(int Count = -1)
 	{
@@ -42,6 +54,7 @@ public:
 
 private:
 	FMOD::Channel* Control = nullptr;
+	FMOD::Sound* SoundHandle = nullptr;
 };
 
 class UEngineSound : public UEngineResources
@@ -63,10 +76,13 @@ public:
 
 	static void Update();
 
+	static void AllSoundStop();
+
 protected:
 
 private:
 	static std::map<std::string, UEngineSound*> Sounds;
+	static std::list<USoundPlayer> Players;
 
 	FMOD::Sound* SoundHandle;
 

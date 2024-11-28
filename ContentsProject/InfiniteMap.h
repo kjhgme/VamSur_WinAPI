@@ -1,9 +1,7 @@
 ﻿#pragma once
 #include <vector>
 
-#include <EngineCore/Actor.h>
 #include "Player.h"
-
 class AInfiniteMap : public AActor
 {
 public:

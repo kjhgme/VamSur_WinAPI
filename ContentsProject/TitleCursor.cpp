@@ -71,13 +71,14 @@ void ATitleCursor::Tick(float _DeltaTime)
 		}
 		else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
 		{
+			USoundPlayer ClickSoundPlayer = UEngineSound::Play("sfx_pause_in.wav");
+
 			if (START == pos.GetPosID())
 			{
 				Alive = false;
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND)- 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
-				ATitleSelectCharacter* SelectCharacter = GetWorld()->SpawnActor<ATitleSelectCharacter>();
-				USoundPlayer ClickSoundPlayer = UEngineSound::Play("sfx_pause_in.wav");
+				ATitleSelectCharacter* SelectCharacter = GetWorld()->SpawnActor<ATitleSelectCharacter>();	
 			}
 			else if (BACK == pos.GetPosID())
 			{

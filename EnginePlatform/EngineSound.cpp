@@ -5,6 +5,7 @@
 #include <EngineBase/EngineDebug.h>
 
 std::map<std::string, UEngineSound*> UEngineSound::Sounds;
+std::list<USoundPlayer> UEngineSound::Players;
 
 FMOD::System* SoundSystem = nullptr;
 
@@ -41,6 +42,22 @@ void UEngineSound::Update()
 	if (nullptr == SoundSystem)
 	{
 		return;
+	}
+
+	std::list<USoundPlayer>::iterator StartIter = Players.begin();
+	std::list<USoundPlayer>::iterator EndIter = Players.end();
+	
+	for (; StartIter != EndIter; )
+	{
+		USoundPlayer& CurSoundPlayer = *StartIter;
+
+		if (true == CurSoundPlayer.IsPlaying())
+		{
+			++StartIter;
+			continue;
+		}
+
+		StartIter = Players.erase(StartIter);
 	}
 
 	if (FMOD_RESULT::FMOD_OK != SoundSystem->update())
@@ -143,9 +160,24 @@ USoundPlayer UEngineSound::Play(std::string_view _Name)
 
 	USoundPlayer NewPlayer;
 	NewPlayer.Control = Ch;
+	NewPlayer.SoundHandle = FindSound->SoundHandle;
+
+	Players.push_back(NewPlayer);
+
 	return NewPlayer;
 }
 
+void UEngineSound::AllSoundStop()
+{
+	std::list<USoundPlayer>::iterator StartIter = Players.begin();
+	std::list<USoundPlayer>::iterator EndIter = Players.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		USoundPlayer& CurSoundPlayer = *StartIter;
+		CurSoundPlayer.Stop();
+	}
+}
 
 bool UEngineSound::ResLoad(std::string_view _Path)
 {

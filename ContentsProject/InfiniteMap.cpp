@@ -2,6 +2,7 @@
 #include "InfiniteMap.h"
 
 #include <EngineCore/EngineAPICore.h>
+#include <EnginePlatform/EngineSound.h>
 
 #include "ContentsEnum.h"
 
@@ -16,6 +17,9 @@ void AInfiniteMap::BeginPlay()
     playerPos = core->GetCurLevel()->GetMainPawn()->GetActorLocation();
 
     InitMaps(StageLevel);
+
+    USoundPlayer Bgm = UEngineSound::Play("bgm_Stage_00.wav");
+    Bgm.Loop();
 }
 
 void AInfiniteMap::Tick(float _DeltaTime)

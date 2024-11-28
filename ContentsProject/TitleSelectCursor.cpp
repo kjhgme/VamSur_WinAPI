@@ -4,6 +4,7 @@
 
 #include <EngineCore/EngineAPICore.h>
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineSound.h>
 #include "TitleGameMode.h"
 
 
@@ -67,9 +68,11 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 			pos.move("up");
 		}
 		else if (true == UEngineInput::GetInst().IsDown(VK_SPACE))
-		{
+		{			
 			if (CHARACTER_00 == pos.GetPosID())
 			{
+				UEngineSound::AllSoundStop();
+
 				Alive = false;
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
@@ -95,6 +98,8 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 					SendMessageA(hWnd, WM_CLOSE, 0, 0);
 				}
 			}
+
+			USoundPlayer ClickSoundPlayer = UEngineSound::Play("sfx_pause_in.wav");
 		}
 	}
 }
