@@ -3,6 +3,7 @@
 #include "ContentsEnum.h"
 
 #include <EngineBase/EngineRandom.h>
+#include <EnginePlatform/EngineSound.h>
 #include <EngineCore/EngineAPICore.h>
 #include <EngineCore/2DCollision.h>
 #include "InGameMode.h"
@@ -77,7 +78,9 @@ void TantoSkill::Tick(float _DeltaTime)
 }
 
 void TantoSkill::Fire()
-{	
+{
+	USoundPlayer TantoSoundPlayer = UEngineSound::Play("sfx_tanto.wav");
+
 	FireRenderers.push_back(std::make_pair("Fire_RC.png", CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 

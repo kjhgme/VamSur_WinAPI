@@ -5,6 +5,7 @@
 #include <limits>
 
 #include <EngineBase/EngineRandom.h>
+#include <EnginePlatform/EngineSound.h>
 #include "InGameMode.h"
 #include "Monster.h"
 
@@ -25,12 +26,12 @@ MagicWand::MagicWand()
 		{8, "Base Damage up by 10."},
 	};
 
-	Level = 1;
-	AttackPower = 10.0f;
-	KnockBack = 1.0f;
-	Speed = 100.0f;
-	Amount = 0;
-	Cooldown = 1.2f;
+	Level += 1;
+	AttackPower += 10.0f;
+	KnockBack += 1.0f;
+	Speed += 100.0f;
+	Amount += 0;
+	Cooldown += 1.2f;
 }
 
 MagicWand::~MagicWand()
@@ -141,6 +142,8 @@ void MagicWand::Attack()
 void MagicWand::ShootMagic()
 {
 	SetActorLocation(player->GetActorLocation());
+
+	USoundPlayer SoundPlayer = UEngineSound::Play("MagicWandSound.wav");
 
 	MagicWandRenderers.push_back(std::make_pair(0, CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());

@@ -82,6 +82,8 @@ void ATitleSelectCursor::Tick(float _DeltaTime)
 			}
 			else if (CHARACTER_01 == pos.GetPosID())
 			{
+				UEngineSound::AllSoundStop();
+
 				Alive = false;
 				LeftCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
 				RightCursor->SetOrder(static_cast<int>(ERenderOrder::BACKGROUND) - 1);
