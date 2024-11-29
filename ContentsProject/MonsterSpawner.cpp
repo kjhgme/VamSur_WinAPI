@@ -3,6 +3,7 @@
 
 #include <cmath>
 
+#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/Level.h>
 #include <EngineCore/EngineAPICore.h>
 
@@ -36,6 +37,36 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	Pos =  CalculateCircularPosition(playerPos, 400.0f, CurAngle );
 	
 	SetActorLocation({ Pos });
+
+
+	if (true == UEngineInput::GetInst().IsDown(VK_F1))
+	{
+		SpawnMonster(CurStatus);
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_F2))
+	{
+		SpawnBoss(CurBossStatus);
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_F3))
+	{
+
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_F5))
+	{
+		ChangeMonster();
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_F6))
+	{
+		if (!BossQueue.empty())
+		{
+			CurBossStatus = BossQueue.front();
+			BossQueue.pop();
+		}
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_F7))
+	{
+
+	}
 }
 
 void AMonsterSpawner::InitSpawnerVersion(int _level)
@@ -275,9 +306,11 @@ void AMonsterSpawner::SpawnBossTimer()
 {
 	if (!BossQueue.empty())
 	{
-		SpawnBoss(BossQueue.front());
+		CurBossStatus = BossQueue.front();
 		BossQueue.pop();
 	}
+
+	SpawnBoss(CurBossStatus);
 }
 
 void AMonsterSpawner::ChangeMonster()
