@@ -248,19 +248,23 @@ void APlayer::LevelChangeEnd()
 
 void APlayer::CollisionEnter(AActor* _ColActor)
 {
-	AMonster* monster = static_cast<AMonster*>(_ColActor);
-	PlayerStatus.Hp -= monster->GetAttPower() - PlayerStatus.Armor;
-
-	if (PlayerStatus.Hp <= 0)
+	if (true == Alive)
 	{
-		Die();
+		AMonster* monster = static_cast<AMonster*>(_ColActor);
+		PlayerStatus.Hp -= monster->GetAttPower() - PlayerStatus.Armor;
+
+		if (PlayerStatus.Hp <= 0)
+		{
+			Die();
+		}
+		BloodRenderer->ChangeAnimation("TakeDamage");
 	}
-	BloodRenderer->ChangeAnimation("TakeDamage");
 }
 
 void APlayer::CollisionStay(AActor* _ColActor)
 {
-	TakeDamage(_ColActor);
+	if(true == Alive)
+		TakeDamage(_ColActor);
 }
 
 void APlayer::CollisionEnd(AActor* _ColActor)

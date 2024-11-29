@@ -368,9 +368,6 @@
     <Filter Include="ContentsObjects\Title">
       <UniqueIdentifier>{3a4f3a48-ce41-4e62-9d31-f3a7e55a4827}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ContentsObjects\Result">
-      <UniqueIdentifier>{d54e30a8-cedb-4838-be33-c142e2755543}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ContentsObjects\Monster">
       <UniqueIdentifier>{6cfc64e9-b242-4ae8-afa0-c1551a6edeab}</UniqueIdentifier>
     </Filter>
