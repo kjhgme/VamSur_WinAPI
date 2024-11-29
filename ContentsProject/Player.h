@@ -96,5 +96,7 @@ private:
 	class USpriteRenderer* SpriteRenderer = nullptr;
 	class U2DCollision* CollisionComponent = nullptr;
 	USpriteRenderer* BloodRenderer = nullptr;
+
+	bool bInfinityMode = false;
 };
 

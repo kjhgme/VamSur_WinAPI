@@ -68,6 +68,10 @@ void APlayer::Tick(float _DeltaTime)
 		{
 			UEngineAPICore::GetCore()->GetTimer().ToggleTime();
 		}
+		if (true == UEngineInput::GetInst().IsDown('U'))
+		{
+			bInfinityMode = !bInfinityMode;
+		}
 	}
 	else if (false == Alive)
 	{
@@ -252,11 +256,7 @@ void APlayer::CollisionEnter(AActor* _ColActor)
 	{
 		AMonster* monster = static_cast<AMonster*>(_ColActor);
 		PlayerStatus.Hp -= monster->GetAttPower() - PlayerStatus.Armor;
-
-		if (PlayerStatus.Hp <= 0)
-		{
-			Die();
-		}
+				
 		BloodRenderer->ChangeAnimation("TakeDamage");
 	}
 }
@@ -298,8 +298,10 @@ void APlayer::TakeDamage(AActor* _ColActor)
 
 	if (PlayerStatus.Hp <= 0)
 	{
-		if(true == Alive)
+		if (true == Alive && false == bInfinityMode)
+		{
 			Die();
+		}
 	}
 }
 
