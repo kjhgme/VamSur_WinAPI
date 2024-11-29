@@ -26,7 +26,7 @@ void TantoSkill::BeginPlay()
 
 	player = AInGameMode::Player;
 
-	AttackPower = 30;
+	AttackPower = 30.0f;
 	KnockBack = 1;
 
 	TimeEventer.PushEvent(0.1f, std::bind(&TantoSkill::Fire, this), false, 10.0f, false);
@@ -80,7 +80,15 @@ void TantoSkill::Tick(float _DeltaTime)
 void TantoSkill::Fire()
 {
 	USoundPlayer TantoSoundPlayer = UEngineSound::Play("sfx_tanto.wav");
+	
+	FVector2D DiffPos = GetActorLocation() - player->GetActorLocation();
 
+	for (int i = 0; i < static_cast<int>(FireRenderers.size()); ++i)
+	{
+		FireRenderers[i].second->AddComponentLocation(DiffPos);
+	}
+
+	SetActorLocation(player->GetActorLocation());
 	FireRenderers.push_back(std::make_pair("Fire_RC.png", CreateDefaultSubObject<USpriteRenderer>()));
 	CollisionComponents.push_back(CreateDefaultSubObject<U2DCollision>());
 

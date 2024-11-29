@@ -49,8 +49,6 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 
 			StatusQueue.push(Ghoul1Status);
 			StatusQueue.push(Bat1Status);
-			StatusQueue.push(Ghoul1Status);
-			StatusQueue.push(Bat1Status);
 
 			StatusQueue.push(Bat1Status);
 			StatusQueue.push(Bat2Status);
@@ -190,17 +188,44 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 			//
 
 		}
+		// SpawnMonster
+		{
+			// NormalMonster
+			{
+				ChangeMonster();
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);
+				TimeEventer.PushEvent(60.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, true);
+			}
+
+			// BossMonster
+			{
+				TimeEventer.PushEvent(60.0f * 1.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 3.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 5.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 7.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 8.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 9.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 10.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 11.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 12.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 14.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 15.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 16.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 18.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 20.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 21.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 21.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 22.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 23.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 24.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 25.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 27.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 29.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+				TimeEventer.PushEvent(60.0f * 30.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
+			}
+			// MapEvents
+		}
 	}
-
-	ChangeMonster();
-
-	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);// , 60.0f * 30.0f);
-	
-	TimeEventer.PushEvent(3.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, true);
-	
-	//TimeEventer.PushEvent(3.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, 9.0f, false);
-
-	TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
 }
 
 void AMonsterSpawner::SpawnMonster(MonsterStatus _Status)

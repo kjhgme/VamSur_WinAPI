@@ -62,7 +62,7 @@ private:
 	std::queue<MonsterStatus> StatusQueue;
 	std::queue<MonsterStatus> BossQueue;
 	std::queue<MonsterStatus> MapEventQueue;
-	MonsterStatus CurStatus;
+	MonsterStatus CurStatus = Bat1Status;
 
 	// testImage
 	class USpriteRenderer* SpriteRenderer = nullptr;
