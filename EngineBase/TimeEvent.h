@@ -10,6 +10,7 @@ public:
 	bool IsUpdate = false;
 	float DuringTime = -1.0f;
 	bool Loop = false;
+	float DelayTime = -1.0f;
 };
 
 class UTimeEvent
@@ -23,10 +24,10 @@ public:
 	UTimeEvent& operator=(const UTimeEvent& _Other) = delete;
 	UTimeEvent& operator=(UTimeEvent&& _Other) noexcept = delete;
 
-	// 횟수and시간, 함수, 틱마다실행, 실행시간, 루프
-	void PushEvent(float _Time, std::function<void()> _Function, bool _IsUpdate = false, float _DuringTime = -1.0f, bool _Loop = true)
+	// 횟수and시간, 함수, 틱마다실행, 실행시간, 루프, 딜레이시간
+	void PushEvent(float _Time, std::function<void()> _Function, bool _IsUpdate = false, float _DuringTime = -1.0f, bool _Loop = true, float _DelayTime = -1.0f)
 	{
-		Events.push_front({ _Time, _Time, _Function, _IsUpdate, _DuringTime, _Loop });
+		Events.push_front({ _Time, _Time, _Function, _IsUpdate, _DuringTime, _Loop, _DelayTime });
 	}
 
 	void Update(float _DeltaTime)
@@ -54,8 +55,13 @@ public:
 				StartIter = Events.erase(StartIter);
 				continue;
 			}
-			
-			if(0.0f <= TimeEvent.DuringTime && false == TimeEvent.IsUpdate)
+
+			if (false == TimeEvent.IsUpdate && 0.0f <= TimeEvent.DelayTime)
+			{
+				TimeEvent.DelayTime -= _DeltaTime;
+				TimeEvent.Time += _DeltaTime;
+			}
+			else if(0.0f <= TimeEvent.DuringTime && false == TimeEvent.IsUpdate && 0 >= TimeEvent.DelayTime)
 			{
 				TimeEvent.DuringTime -= _DeltaTime;
 				

@@ -227,10 +227,9 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 				ChangeMonster();
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);
 				TimeEventer.PushEvent(60.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, true);				
-			
-			
+				
 				// Second
-				Test(0.5f);
+				// Test(0.5f);
 			}
 
 			// BossMonster
