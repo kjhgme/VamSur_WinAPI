@@ -19,4 +19,4 @@ struct CharacterStatus {
 };
                                 // Name, Health, Armor, Might, Speed
 inline const CharacterStatus AntonioStatus("Antonio", 120.0f, 1, 0, 240.0f);
-inline const CharacterStatus ImeldaStatus("Imelda", 120.0f, 1, 0, 160.0f);
+inline const CharacterStatus ImeldaStatus("Imelda", 120.0f, 1, 0, 240.0f);

@@ -39,11 +39,16 @@ public:
 
 	void SpawnMonster(MonsterStatus _Status);
 	void SpawnTimer();
+	void SpawnSecondTimer();
+	void SpawnThirdTimer();
 
 	void SpawnBoss(MonsterStatus _Status);
 	void SpawnBossTimer();
 
 	void ChangeMonster();
+	void ChangeSecondMonster();
+	void ChangeThirdMonster();
+	void Test(float _Test);
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
@@ -60,13 +65,16 @@ private:
 	float MoveSpeed = 50.0f;
 	float SpawnSpeed = 1.0f;
 	std::queue<MonsterStatus> StatusQueue;
+	std::queue<MonsterStatus> SecondQueue;
+	std::queue<MonsterStatus> ThirdQueue;
 	std::queue<MonsterStatus> BossQueue;
 	std::queue<MonsterStatus> MapEventQueue;
+
 	MonsterStatus CurStatus = Bat1Status;
+	MonsterStatus CurSecondStatus = Bat2Status;
+	MonsterStatus CurThirdStatus = Bat3Status;
 	MonsterStatus CurBossStatus = GlowingBatStatus;
 
-	// testImage
 	class USpriteRenderer* SpriteRenderer = nullptr;
-
 };
 

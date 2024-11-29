@@ -82,88 +82,89 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 			StatusQueue.push(Bat1Status);
 
 			StatusQueue.push(Bat1Status);
-			StatusQueue.push(Bat2Status);
-			StatusQueue.push(Bat3Status);
+			SecondQueue.push(Bat2Status);
+			ThirdQueue.push(Bat3Status);
 
 			StatusQueue.push(Skeleton1Status);
 			
 			StatusQueue.push(Skeleton1Status);
-			StatusQueue.push(Ghost1Status);
+			SecondQueue.push(Ghost1Status);
 
 			StatusQueue.push(Mudman2Status);
 
 			StatusQueue.push(Ghoul1Status);
-			StatusQueue.push(Mudman2Status);
+			SecondQueue.push(Mudman2Status);
 
 			StatusQueue.push(Bat2Status);
-			StatusQueue.push(Bat3Status);
-			StatusQueue.push(Mudman1Status);
+			SecondQueue.push(Bat3Status);
+			ThirdQueue.push(Mudman1Status);
 
 			StatusQueue.push(Ghoul1Status);
 
 			StatusQueue.push(GiantBatStatus);
-			StatusQueue.push(Ghoul1Status);
+			SecondQueue.push(Ghoul1Status);
 
 			StatusQueue.push(Mudman1Status);
-			StatusQueue.push(Mudman2Status);
+			SecondQueue.push(Mudman2Status);
 
 			StatusQueue.push(Skeleton1Status);
 
 			StatusQueue.push(WerewolfStatus);
-			StatusQueue.push(Ghost1Status);
-			StatusQueue.push(Skeleton1Status);
+			SecondQueue.push(Ghost1Status);
+			ThirdQueue.push(Skeleton1Status);
 
 			StatusQueue.push(WerewolfStatus);
-			StatusQueue.push(Ghost1Status);		// *2
+			SecondQueue.push(Ghost1Status);
+			ThirdQueue.push(Ghost1Status);
 
 			StatusQueue.push(GiantBatStatus);
-			StatusQueue.push(WerewolfStatus);
+			SecondQueue.push(WerewolfStatus);
 
 			StatusQueue.push(WerewolfStatus);
-			StatusQueue.push(GiantBatStatus);
-			StatusQueue.push(Mudman2Status);
+			SecondQueue.push(GiantBatStatus);
+			ThirdQueue.push(Mudman2Status);
 
 			StatusQueue.push(MantichanaStatus);
-			StatusQueue.push(Mudman1Status);
-			StatusQueue.push(Mudman2Status);
+			SecondQueue.push(Mudman1Status);
+			ThirdQueue.push(Mudman2Status);
 
 			StatusQueue.push(BigMummyStatus);
 
 			StatusQueue.push(BigMummyStatus);
-			StatusQueue.push(Mudman1Status);
+			SecondQueue.push(Mudman1Status);
 
 			StatusQueue.push(BigMummyStatus);
-			StatusQueue.push(Mudman1Status);
+			SecondQueue.push(Mudman1Status);
 
 			StatusQueue.push(BigMummyStatus);
-			StatusQueue.push(Mudman2Status);
-			StatusQueue.push(GiantBatStatus);
+			SecondQueue.push(Mudman2Status);
+			ThirdQueue.push(GiantBatStatus);
 
 			StatusQueue.push(FlowerWallStatus);
 
 			StatusQueue.push(FlowerWallStatus);
-			StatusQueue.push(BigMummyStatus);
+			SecondQueue.push(BigMummyStatus);
 
 			StatusQueue.push(FlowerWallStatus);
-			StatusQueue.push(BigMummyStatus);
+			SecondQueue.push(BigMummyStatus);
 
 			StatusQueue.push(FlowerWallStatus);
-			StatusQueue.push(BigMummyStatus);
+			SecondQueue.push(BigMummyStatus);
 
 			StatusQueue.push(VenusStatus);
 
 			StatusQueue.push(VenusStatus);
-			StatusQueue.push(FlowerWallStatus);
+			SecondQueue.push(FlowerWallStatus);
 
 			StatusQueue.push(BigMummyStatus);
-			StatusQueue.push(Mudman1Status);
-			StatusQueue.push(Mudman2Status);
+			SecondQueue.push(Mudman1Status);
+			ThirdQueue.push(Mudman2Status);
 
 			StatusQueue.push(GiantBatStatus);
-			StatusQueue.push(GlowingBatStatus);
+			SecondQueue.push(GlowingBatStatus);
 
 			StatusQueue.push(GlowingBatStatus);
-			StatusQueue.push(SilverBatStatus);
+			SecondQueue.push(SilverBatStatus);
 
 			StatusQueue.push(TheReaperStatus);
 		}
@@ -225,7 +226,11 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 			{
 				ChangeMonster();
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, -1.0f, true);
-				TimeEventer.PushEvent(60.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, true);
+				TimeEventer.PushEvent(60.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, true);				
+			
+			
+				// Second
+				Test(0.5f);
 			}
 
 			// BossMonster
@@ -282,6 +287,16 @@ void AMonsterSpawner::SpawnTimer()
 	SpawnMonster(CurStatus);
 }
 
+void AMonsterSpawner::SpawnSecondTimer()
+{
+	SpawnMonster(CurSecondStatus);
+}
+
+void AMonsterSpawner::SpawnThirdTimer()
+{
+	SpawnMonster(CurThirdStatus);
+}
+
 void AMonsterSpawner::SpawnBoss(MonsterStatus _Status)
 {
 	AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
@@ -320,6 +335,29 @@ void AMonsterSpawner::ChangeMonster()
 		CurStatus = StatusQueue.front();
 		StatusQueue.pop();
 	}
+}
+
+void AMonsterSpawner::ChangeSecondMonster()
+{
+	if (!SecondQueue.empty())
+	{
+		CurSecondStatus = SecondQueue.front();
+		SecondQueue.pop();
+	}
+}
+
+void AMonsterSpawner::ChangeThirdMonster()
+{
+	if (!ThirdQueue.empty())
+	{
+		CurThirdStatus = ThirdQueue.front();
+		ThirdQueue.pop();
+	}
+}
+
+void AMonsterSpawner::Test(float _Time)
+{
+	TimeEventer.PushEvent(_Time, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 5.0f, true);
 }
 
 FVector2D AMonsterSpawner::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)
