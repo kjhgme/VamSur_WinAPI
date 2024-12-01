@@ -11,6 +11,8 @@ public:
 	AOrologionItem& operator=(const AOrologionItem& _Other) = delete;
 	AOrologionItem& operator=(AOrologionItem&& _Other) noexcept = delete;
 
+	void ApplyItemEffect() override;
+
 protected:
 
 private:

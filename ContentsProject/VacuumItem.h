@@ -11,6 +11,8 @@ public:
 	AVacuumItem& operator=(const AVacuumItem& _Other) = delete;
 	AVacuumItem& operator=(AVacuumItem&& _Other) noexcept = delete;
 
+	void ApplyItemEffect() override;
+
 protected:
 
 private:

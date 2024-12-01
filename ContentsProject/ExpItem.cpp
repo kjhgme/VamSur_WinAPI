@@ -30,4 +30,10 @@ void AExpItem::ApplyItemEffect()
 	AInGameMode::Player->AddExp(Exp);
 
 	GetSoundPlayer = UEngineSound::Play("sfx_gem.wav");
+
+	auto& DropedExpItems = AInGameMode::DropedExpItems;
+	DropedExpItems.erase(
+		std::remove(DropedExpItems.begin(), DropedExpItems.end(), this),
+		DropedExpItems.end()
+	);
 }

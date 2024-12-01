@@ -12,6 +12,7 @@
 
 APlayer* AInGameMode::Player = nullptr;
 AMonsterSpawner* AInGameMode::MonsterSpawner = nullptr;
+std::vector<AExpItem *> AInGameMode::DropedExpItems;
 
 AInGameMode::AInGameMode()
 {

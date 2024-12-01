@@ -297,6 +297,7 @@ void AMonster::SpawnExpItem()
 		AExpItem* newExpItem = GetWorld()->SpawnActor<AExpItem>();
 		newExpItem->InitDropItem(MonsterPos);
 		newExpItem->SetExp(Status.XP);
+		AInGameMode::DropedExpItems.push_back(newExpItem);
 	}
 }
 

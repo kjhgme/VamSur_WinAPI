@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <EngineCore/GameMode.h>
 #include "Player.h"
+#include "ExpItem.h"
 #include "MonsterSpawner.h"
 
 class AInGameMode : public AGameMode
@@ -22,6 +23,7 @@ public:
 
 	static APlayer* Player;
 	static AMonsterSpawner* MonsterSpawner;
+	static std::vector<AExpItem *> DropedExpItems;
 
 protected:
 

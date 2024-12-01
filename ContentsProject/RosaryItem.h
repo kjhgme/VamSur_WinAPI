@@ -11,6 +11,8 @@ public:
 	ARosaryItem& operator=(const ARosaryItem& _Other) = delete;
 	ARosaryItem& operator=(ARosaryItem&& _Other) noexcept = delete;
 
+	void ApplyItemEffect() override;
+
 protected:
 
 private:

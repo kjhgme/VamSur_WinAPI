@@ -24,6 +24,8 @@ public:
 	virtual void ApplyItemEffect();
 	void ItemToPlayer(float _DeltaTime);
 
+	bool IsPickedUp = false;
+
 protected:
 	USpriteRenderer* SpriteRenderer = nullptr;
 	U2DCollision* CollisionComponent = nullptr;
@@ -31,7 +33,6 @@ protected:
 	FVector2D PlayerPos{};
 	FVector2D KnockBack{};
 
-	bool IsPickedUp = false;
 	bool IsReturning = false;
 	float KnockBackTime = 0.0f;
 
