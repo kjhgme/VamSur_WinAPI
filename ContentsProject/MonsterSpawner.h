@@ -45,10 +45,13 @@ public:
 	void SpawnBoss(MonsterStatus _Status);
 	void SpawnBossTimer();
 
+	void SpawnMapEvent(MonsterStatus _Status);
+	void SpawnMapEventTimer();
+
 	void ChangeMonster();
 	void ChangeSecondMonster();
 	void ChangeThirdMonster();
-	void Test(float _Test);
+	void ChangeMapEventMonster();
 
 	FVector2D CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle);
 
@@ -60,10 +63,13 @@ private:
 	int StageLevel = 0;
 	float Time = 0.0f;
 	float SpawnTime = 0.0f;
+
 	FVector2D Pos{};
+	FVector2D playerPos{};
 	float CurAngle{};
 	float MoveSpeed = 50.0f;
 	float SpawnSpeed = 1.0f;
+
 	std::queue<MonsterStatus> StatusQueue;
 	std::queue<MonsterStatus> SecondQueue;
 	std::queue<MonsterStatus> ThirdQueue;
@@ -74,5 +80,6 @@ private:
 	MonsterStatus CurSecondStatus = Bat2Status;
 	MonsterStatus CurThirdStatus = Bat3Status;
 	MonsterStatus CurBossStatus = GlowingBatStatus;
+	MonsterStatus CurMapEventStatus = Bat1Status;
 };
 

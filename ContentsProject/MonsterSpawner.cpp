@@ -30,7 +30,7 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	FVector2D playerPos = GetWorld()->GetMainPawn()->GetActorLocation();
+	playerPos = GetWorld()->GetMainPawn()->GetActorLocation();
 
 	CurAngle += MoveSpeed * _DeltaTime;
 	Pos =  CalculateCircularPosition(playerPos, 400.0f, CurAngle );
@@ -48,7 +48,7 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_F3))
 	{
-
+		SpawnMapEvent(CurMapEventStatus);
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_F4))
 	{
@@ -69,7 +69,7 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_F7))
 	{
-
+		ChangeMapEventMonster();
 	}
 }
 
@@ -200,29 +200,27 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 		}
 		// MapEventQueue
 		{
-			// BatSwam * 3
-			// BatSwam * 2
-			// BatSwam * 2
-			// FlowerWall
-			// BatSwam * 2
-			// BatSwam * 6
-			// BatSwam * 3
-			// BatSwam * 3
-			// FlowerWall
-			// BatSwam * 2
-			// BatSwam * 2
-			// GhostSwam * 21
-			// GhostSwam * 21
-			// FlowerWall
-			// BatSwam * 21
-			// BatSwam * 21
-			// FlowerWall * 6
-			// GhostSwam
-			// GhostSwam * 20
-			// BatSwam
-			// BatSwam * 20
-			//
-
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(FlowerWallStatus);	
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(FlowerWallStatus);	
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Ghost1Status);		
+			MapEventQueue.push(Ghost1Status);		
+			MapEventQueue.push(FlowerWallStatus);	
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(FlowerWallStatus);	
+			MapEventQueue.push(Ghost1Status);		
+			MapEventQueue.push(Ghost1Status);		
+			MapEventQueue.push(Bat1Status);			
+			MapEventQueue.push(Bat1Status);			
 		}
 		// SpawnMonster
 		{
@@ -440,6 +438,68 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 				TimeEventer.PushEvent(60.0f * 30.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
 			}
 			// MapEvents
+			{
+				ChangeMapEventMonster();
+
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 3.0f, false, 60.0f * 2.0f);
+																																	
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 3.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 2.0f, false, 60.0f * 3.0f);
+																																
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 4.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 2.0f, false, 60.0f * 4.0f);
+																																
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 5.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, -1.0f, false, 60.0f * 5.0f);
+																															
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 6.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 2.0f, false, 60.0f * 6.0f);
+																												
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 8.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 6.0f, false, 60.0f * 8.0f);
+								
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 9.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 3.0f, false, 60.0f * 9.0f);
+								
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 10.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, -1.0f, false, 60.0f * 10.0f);
+																													
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 11.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 3.0f, false, 60.0f * 11.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 12.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, -1.0f, false, 60.0f * 12.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 13.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 21.0f, false, 60.0f * 13.0f);
+								
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 13.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 21.0f, false, 60.0f * 13.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 15.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, -1.0f, false, 60.0f * 15.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 20.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 21.0f, false, 60.0f * 20.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 20.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 21.0f, false, 60.0f * 20.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 25.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 6.0f, false, 60.0f * 25.0f);
+									  
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 27.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, -1.0f, false, 60.0f * 27.0f);
+									 
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 27.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 20.0f, false, 60.0f * 27.0f);
+									
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 29.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, -1.0f, false, 60.0f * 29.0f);
+									 
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMapEventMonster, this), false, -1.0f, false, 60.0f * 29.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnMapEventTimer, this), false, 1.0f * 20.0f, false, 60.0f * 29.0f);
+			}
 		}
 	}
 }
@@ -508,6 +568,69 @@ void AMonsterSpawner::SpawnBossTimer()
 	SpawnBoss(CurBossStatus);
 }
 
+void AMonsterSpawner::SpawnMapEvent(MonsterStatus _Status)
+{
+	if (_Status.Name == "Bat1")
+	{
+		for (int i = 0; i < 7; ++i) {
+			for (int j = 0; j < 7; ++j) {
+				AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
+					
+				if (nullptr != SpawnedMonster)
+				{
+					SpawnedMonster->InitMonster(_Status);
+					SpawnedMonster->SetMonsterPos({ Pos.X + SpawnedMonster->GetMonsterSize().X * i + i , Pos.Y + SpawnedMonster->GetMonsterSize().Y * j + j });
+					SpawnedMonster->SetMapEvent(true);
+				}
+
+				SpawnedMonsters.push_back(SpawnedMonster);
+			}
+		}
+	}	
+	else if (_Status.Name == "Flower1")
+	{
+		for (int i = 0; i < 100; ++i) {
+			AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
+
+			if (nullptr != SpawnedMonster)
+			{
+				SpawnedMonster->InitMonster(_Status); 
+
+				int PlayerLevel = AInGameMode::Player->GetLevel();
+				SpawnedMonster->SetHp(_Status.Hp * PlayerLevel);
+
+				FVector2D newMonsterPos = CalculateCircularPosition(playerPos, 800.0f, (360.0f / 100) * i);
+				SpawnedMonster->SetMonsterPos(newMonsterPos);
+			}
+
+			SpawnedMonsters.push_back(SpawnedMonster);
+		}
+	}
+	else if (_Status.Name == "Ghost")
+	{
+		for (int i = 0; i < 5; ++i) {
+			for (int j = 0; j < 5; ++j) {
+				AMonster* SpawnedMonster = GetWorld()->SpawnActor<AMonster>();
+
+				if (nullptr != SpawnedMonster)
+				{
+					SpawnedMonster->InitMonster(_Status);
+					SpawnedMonster->SetMonsterPos({ Pos.X + SpawnedMonster->GetMonsterSize().X * i + i , Pos.Y + SpawnedMonster->GetMonsterSize().Y * j + j });
+					SpawnedMonster->SetMapEvent(true);
+				}
+
+				SpawnedMonsters.push_back(SpawnedMonster);
+			}
+		}
+	}
+	
+}
+
+void AMonsterSpawner::SpawnMapEventTimer()
+{
+	SpawnMapEvent(CurMapEventStatus);
+}
+
 void AMonsterSpawner::ChangeMonster()
 {
 	if (!StatusQueue.empty())
@@ -535,9 +658,13 @@ void AMonsterSpawner::ChangeThirdMonster()
 	}
 }
 
-void AMonsterSpawner::Test(float _Time)
+void AMonsterSpawner::ChangeMapEventMonster()
 {
-	TimeEventer.PushEvent(_Time, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 5.0f, true);
+	if (!MapEventQueue.empty())
+	{
+		CurMapEventStatus = MapEventQueue.front();
+		MapEventQueue.pop();
+	}
 }
 
 FVector2D AMonsterSpawner::CalculateCircularPosition(const FVector2D& Center, float Radius, float _CurAngle)

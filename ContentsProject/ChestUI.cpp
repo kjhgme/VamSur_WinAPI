@@ -89,7 +89,7 @@ void ChestUI::GetWeapon()
 		int WeaponType = Level8Weapons[num];
 
 		WM->RevolutionWeapon(num);
-		WM->GetWeapon(WeaponType)->Revolution();
+		WM->GetWeaponFromType(WeaponType)->Revolution();
 	}
 	else {
 		AWeapon* FWeapon;

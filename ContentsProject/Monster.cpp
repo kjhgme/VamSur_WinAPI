@@ -33,6 +33,10 @@ void AMonster::BeginPlay()
 	DamageText->InitOrder(static_cast<int>(ERenderOrder::UI) + 1);
 	DamageText->SetTextScale(12);
 	DamageText->SetText("", "DamageNum");
+
+	MonsterPos = GetActorLocation();
+	PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
+	FirstDiffPos = PlayerPos - MonsterPos;
 }
 
 void AMonster::Tick(float _DeltaTime)
@@ -114,7 +118,17 @@ void AMonster::SetMonsterPos(FVector2D _pos)
 
 void AMonster::ChasePlayer(float _DeltaTime)
 {	
-	if (true == Alive && true == Hitable)
+	if (true == bMapEvent)
+	{
+		MonsterPos = GetActorLocation();
+		PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();
+
+		FirstDiffPos.X = UEngineMath::Clamp(FirstDiffPos.X, -1.0f, 1.0f);
+		FirstDiffPos.Y = UEngineMath::Clamp(FirstDiffPos.Y, -1.0f, 1.0f);
+
+		AddActorLocation({ FirstDiffPos * Status.Speed * _DeltaTime });
+	}
+	else if (true == Alive && true == Hitable)
 	{
 		MonsterPos = GetActorLocation();
 		PlayerPos = UEngineAPICore::GetCore()->GetCurLevel()->GetMainPawn()->GetActorLocation();

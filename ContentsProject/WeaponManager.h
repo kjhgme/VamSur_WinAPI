@@ -35,6 +35,19 @@ public:
 		return Weapons[_Num];
 	}
 
+	AWeapon* GetWeaponFromType(int _Num)
+	{
+		for (int i = 0; i < 12; ++i)
+		{
+			if (static_cast<int>(Weapons[i]->WeaponType) == _Num)
+			{
+				return Weapons[i];
+			}
+		}
+
+		return nullptr;
+	}
+
 	// SetFunction
 	void SetIconPos(AWeapon* _Weapon);
 

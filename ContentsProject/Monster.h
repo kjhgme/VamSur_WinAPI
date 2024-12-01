@@ -30,6 +30,11 @@ public:
 		return Status.AttPower;
 	}
 
+	FVector2D GetMonsterSize()
+	{
+		return SpriteRenderer->GetComponentScale();
+	}
+
 	// SetFunction
 	void SetMonsterPos(FVector2D _pos);
 	void SetHp(float _Hp)
@@ -40,6 +45,11 @@ public:
 	void SetChest(bool _Has)
 	{
 		bHasChest = _Has;
+	}
+
+	void SetMapEvent(bool _Has)
+	{
+		bMapEvent = _Has;
 	}
 
 	// Function
@@ -66,11 +76,13 @@ private:
 	bool Alive = true;
 	bool Hitable = true;
 	bool bHasChest = false;
+	bool bMapEvent = false;
 
 	float KnockbackAmount = 0.0f;
 
 	FVector2D MonsterPos{};
 	FVector2D PlayerPos{};
+	FVector2D FirstDiffPos{};
 	FVector2D DiffPos{};
 	FVector2D KnockBack{};
 
