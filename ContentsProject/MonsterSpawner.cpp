@@ -22,9 +22,7 @@ AMonsterSpawner::~AMonsterSpawner()
 
 void AMonsterSpawner::BeginPlay()
 {
-	SpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	SpriteRenderer->SetSprite("Stage", 1);
-	SpriteRenderer->SetComponentScale({ 38, 42 });
+	DebugOn();
 }
 
 void AMonsterSpawner::Tick(float _DeltaTime)

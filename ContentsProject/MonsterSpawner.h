@@ -74,7 +74,5 @@ private:
 	MonsterStatus CurSecondStatus = Bat2Status;
 	MonsterStatus CurThirdStatus = Bat3Status;
 	MonsterStatus CurBossStatus = GlowingBatStatus;
-
-	class USpriteRenderer* SpriteRenderer = nullptr;
 };
 
