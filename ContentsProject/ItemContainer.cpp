@@ -116,10 +116,7 @@ void AItemContainer::SpawnDropItem()
 		SpawnFloorChickenItem
 	};
 
-	ADropItem* SpawnItem = static_cast<ADropItem*>(SpawnRosaryItem(GetWorld()));
-	SpawnItem->InitDropItem(GetActorLocation());
-
-	/*UEngineRandom RandomGenerator;
+	UEngineRandom RandomGenerator;
 	int ItemType = RandomGenerator.RandomInt(0, sizeof(Spawners) / sizeof(Spawners[0]) - 1);
 
 	if (ItemType >= 0 && ItemType < sizeof(Spawners) / sizeof(Spawners[0]))
@@ -127,5 +124,5 @@ void AItemContainer::SpawnDropItem()
 		ADropItem* SpawnItem = static_cast<ADropItem*>(Spawners[ItemType](GetWorld()));
 
 		SpawnItem->InitDropItem(GetActorLocation());
-	}*/
+	}
 }

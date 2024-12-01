@@ -25,6 +25,11 @@ public:
 		return Level8Weapons;
 	}
 
+	std::vector<int> GetAvailableWeaponTypes()
+	{
+		return AvailableWeaponTypes;
+	}
+
 	AWeapon* GetWeapon(int _Num)
 	{
 		return Weapons[_Num];

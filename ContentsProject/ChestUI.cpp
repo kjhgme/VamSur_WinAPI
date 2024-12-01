@@ -80,11 +80,8 @@ void ChestUI::GetWeapon()
 {
 	AWeaponManager* WM = AInGameMode::Player->GetWeaponManager();
 
-	std::vector<int> Level8Weapons = WM->GetLeve8Weapons();
-
+	std::vector<int> Level8Weapons = WM->GetLeve8Weapons();	
 	int size = static_cast<int>(Level8Weapons.size());
-
-	// size = 4;
 
 	if (0 < size)
 	{
@@ -93,6 +90,27 @@ void ChestUI::GetWeapon()
 
 		WM->RevolutionWeapon(num);
 		WM->GetWeapon(WeaponType)->Revolution();
+	}
+	else {
+		AWeapon* FWeapon;
+
+		if (WM->GetWeapon(0))
+		{
+			FWeapon = WM->GetWeapon(0);
+			int Wsize = 0;
+				
+			for (int i = 0; i < 6; ++i) {
+				if (WM->GetWeapon(i) != nullptr) {
+					Wsize++;
+				}
+				else {
+					break;
+				}
+			}
+
+			int Wnum = ChestRandomGenerator.RandomInt(0, Wsize - 1);
+			WM->GetWeapon(Wnum)->LevelUp();
+		}
 	}
 
 	UEngineAPICore::GetCore()->GetTimer().ToggleTime();
