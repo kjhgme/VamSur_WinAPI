@@ -92,14 +92,14 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 
 			StatusQueue.push(Mudman2Status);
 
-			StatusQueue.push(Ghoul1Status);
+			StatusQueue.push(Ghoul2Status);
 			SecondQueue.push(Mudman2Status);
 
 			StatusQueue.push(Bat2Status);
 			SecondQueue.push(Bat3Status);
 			ThirdQueue.push(Mudman1Status);
 
-			StatusQueue.push(Ghoul1Status);
+			StatusQueue.push(Ghoul2Status);
 
 			StatusQueue.push(GiantBatStatus);
 			SecondQueue.push(Ghoul1Status);
@@ -225,16 +225,19 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 			// FirstMonster
 			{
 				ChangeMonster();
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 0.0f);
+
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 1.0f);
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 1.0f);
 
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 2.0f);
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 2.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 3.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 3.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 3.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 3.0f);
 
-				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 4.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 4.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 4.0f);
+				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 4.0f);
 
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 5.0f);
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 5.0f);
@@ -242,164 +245,170 @@ void AMonsterSpawner::InitSpawnerVersion(int _level)
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 6.0f);
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 6.0f);
 
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 7.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 7.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 7.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 7.0f);
 
 				TimeEventer.PushEvent(1.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 8.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 8.0f);
+				TimeEventer.PushEvent(1.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 8.0f);
 
 				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 9.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 9.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 9.0f);
 
 				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 10.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 10.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 10.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 11.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 11.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 11.0f);
 
 				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 12.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 12.0f);
+				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 12.0f);
 
 				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 13.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 13.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 13.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 14.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 14.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 14.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 15.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 15.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 15.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 16.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 16.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 16.0f);
 
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 17.0f);
 				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 17.0f);
 
 				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 18.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 18.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 18.0f);
 
 				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 19.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 19.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 19.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 20.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 20.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 20.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 21.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 21.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 21.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 22.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 22.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 22.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 23.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 23.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 23.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 24.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 24.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 24.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 25.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 25.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 25.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 26.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 26.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 26.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 27.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 27.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 27.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 28.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 28.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 28.0f);
 
 				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeMonster, this), false, -1.0f, false, 60.0f * 29.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 29.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnTimer, this), false, 60.0f, false, 60.0f * 29.0f);
 			}
 			// Second
 			{
 				ChangeSecondMonster();
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 1.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 1.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 2.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 2.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 2.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 2.0f + 1.0f);
 				
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 4.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 4.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 4.0f + 1.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 4.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 6.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 6.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 6.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 6.0f + 1.0f);
 				
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 7.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 7.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 7.0f + 1.0f);
+				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 7.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 9.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 9.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 9.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 9.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 10.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 10.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 10.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 10.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 12.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 12.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 12.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 12.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 13.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 13.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 13.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 13.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 14.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 14.0f);
+				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 14.0f + 1.0f);
+				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 14.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 15.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 15.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 15.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 15.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 16.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 16.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 16.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 16.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 18.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 18.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 18.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 18.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 19.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 19.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 19.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 19.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 20.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 20.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 20.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 20.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 22.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 22.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 22.0f + 1.0f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 22.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 23.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 23.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 23.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 23.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 24.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 24.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 24.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 24.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 26.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 26.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 26.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 26.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 27.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 27.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 27.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 27.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 28.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 28.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 28.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 28.0f + 1.0f);
 				
-				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 29.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 29.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeSecondMonster, this), false, -1.0f, false, 60.0f * 29.0f + 1.0f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnSecondTimer, this), false, 60.0f, false, 60.0f * 29.0f + 1.0f);
 			}
 			// Third
 			{
 				ChangeThirdMonster();
 
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 2.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 7.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 7.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 12.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 12.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 13.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 13.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 15.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 15.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 16.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 16.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 20.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 20.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 27.0f);
-				TimeEventer.PushEvent(1.0f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 27.0f);
-			}
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 2.0f + 1.2f);
 
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 7.0f + 1.2f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 7.0f + 1.2f);
+
+				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 12.0f + 1.2f);
+				TimeEventer.PushEvent(0.25f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 12.0f + 1.2f);
+
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 13.0f + 1.2f);
+				TimeEventer.PushEvent(0.5f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 13.0f + 1.2f);
+
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 15.0f + 1.2f);
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 15.0f + 1.2f);
+
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 16.0f + 1.2f);				
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 16.0f + 1.2f);
+
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 20.0f + 1.2f);				
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 20.0f + 1.2f);
+
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::ChangeThirdMonster, this), false, -1.0f, false, 60.0f * 27.0f + 1.2f);				
+				TimeEventer.PushEvent(0.1f, std::bind(&AMonsterSpawner::SpawnThirdTimer, this), false, 60.0f, false, 60.0f * 27.0f + 1.2f);
+			}
 			// BossMonster
 			{
 				TimeEventer.PushEvent(60.0f * 1.0f, std::bind(&AMonsterSpawner::SpawnBossTimer, this), false, -1.0f, false);
