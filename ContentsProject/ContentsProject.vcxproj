@@ -211,10 +211,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="OrologionItem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PlayerHpUI.h">
       <SubType>
       </SubType>
@@ -427,10 +423,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MagicWand.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="OrologionItem.cpp">
       <SubType>
       </SubType>
     </ClCompile>

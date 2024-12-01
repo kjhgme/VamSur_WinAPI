@@ -23,4 +23,16 @@ ARosaryItem::~ARosaryItem()
 void ARosaryItem::ApplyItemEffect()
 {
 	ADropItem::ApplyItemEffect();
+
+	auto& SpawnedMonsters = AInGameMode::MonsterSpawner->SpawnedMonsters;
+
+	for (auto it = SpawnedMonsters.begin(); it != SpawnedMonsters.end();) {
+		auto* Monster = *it;
+
+		Monster->Die();
+
+		it = SpawnedMonsters.begin();
+	}
+
+	GetSoundPlayer = UEngineSound::Play("sfx_autoLevel.wav");
 }

@@ -145,9 +145,6 @@
     <ClInclude Include="TantoItem.h">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClInclude>
-    <ClInclude Include="OrologionItem.h">
-      <Filter>ContentsObjects\Item\DropItem</Filter>
-    </ClInclude>
     <ClInclude Include="VacuumItem.h">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClInclude>
@@ -310,9 +307,6 @@
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClCompile>
     <ClCompile Include="TantoItem.cpp">
-      <Filter>ContentsObjects\Item\DropItem</Filter>
-    </ClCompile>
-    <ClCompile Include="OrologionItem.cpp">
       <Filter>ContentsObjects\Item\DropItem</Filter>
     </ClCompile>
     <ClCompile Include="VacuumItem.cpp">

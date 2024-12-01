@@ -10,7 +10,6 @@
 #include "Weapon.h"
 #include "FloorChickenItem.h"
 #include "RichCoinBagItem.h"
-#include "OrologionItem.h"
 #include "VacuumItem.h"
 #include "RosaryItem.h"
 #include "TantoItem.h"
@@ -101,9 +100,6 @@ void AItemContainer::SpawnDropItem()
 	auto SpawnTantoItem = [](ULevel* World) -> AActor* {
 		return World->SpawnActor<ATantoItem>();
 		};
-	auto SpawnOrologionItem = [](ULevel* World) -> AActor* {
-		return World->SpawnActor<AOrologionItem>();
-		};
 	auto SpawnVacuumItem = [](ULevel* World) -> AActor* {
 		return World->SpawnActor<AVacuumItem>();
 		};
@@ -116,12 +112,11 @@ void AItemContainer::SpawnDropItem()
 		SpawnRichCoinBagItem,
 		SpawnRosaryItem,
 		SpawnTantoItem,
-		SpawnOrologionItem,
 		SpawnVacuumItem,
 		SpawnFloorChickenItem
 	};
 
-	ADropItem* SpawnItem = static_cast<ADropItem*>(SpawnVacuumItem(GetWorld()));
+	ADropItem* SpawnItem = static_cast<ADropItem*>(SpawnRosaryItem(GetWorld()));
 	SpawnItem->InitDropItem(GetActorLocation());
 
 	/*UEngineRandom RandomGenerator;
