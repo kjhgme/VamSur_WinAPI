@@ -9,6 +9,7 @@
 
 #include "InGameMode.h"
 #include "MonsterStatus.h"
+#include "ItemContainer.h"
 
 AMonsterSpawner::AMonsterSpawner()
 {
@@ -48,6 +49,11 @@ void AMonsterSpawner::Tick(float _DeltaTime)
 	if (true == UEngineInput::GetInst().IsDown(VK_F3))
 	{
 
+	}
+	if (true == UEngineInput::GetInst().IsDown(VK_F4))
+	{
+		AItemContainer* ItemContainer = GetWorld()->SpawnActor<AItemContainer>();
+		ItemContainer->SetActorLocation(GetActorLocation());
 	}
 	if (true == UEngineInput::GetInst().IsDown(VK_F5))
 	{
