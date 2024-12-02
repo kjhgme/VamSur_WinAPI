@@ -11,17 +11,17 @@ DieUI::DieUI()
 	{
 		BackGroundRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		BackGroundRenderer->SetSprite("TitleBG.png");
-		BackGroundRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 1);
+		BackGroundRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 10);
 		BackGroundRenderer->SetSpriteScale(BackGroundScale);
 
 		GameOverRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		GameOverRenderer->SetSprite("GameOver.png");
-		GameOverRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 2);
+		GameOverRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 20);
 		GameOverRenderer->SetSpriteScale(1.0f);
 
 		BackButtonRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		BackButtonRenderer->SetSprite("DieUI_BackButton.png");
-		BackButtonRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 2);
+		BackButtonRenderer->SetOrder(static_cast<int>(ERenderOrder::UI) + 20);
 		BackButtonRenderer->SetSpriteScale(ButtonScale);
 
 		LeftCursorRenderer = CreateDefaultSubObject<USpriteRenderer>();
