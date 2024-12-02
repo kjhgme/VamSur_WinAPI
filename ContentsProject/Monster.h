@@ -77,6 +77,8 @@ private:
 	bool Hitable = true;
 	bool bHasChest = false;
 	bool bMapEvent = false;
+	bool bSpawnExp = true;
+	int count = 0;
 
 	float KnockbackAmount = 0.0f;
 

@@ -127,6 +127,15 @@ void AMonster::ChasePlayer(float _DeltaTime)
 		FirstDiffPos.Y = UEngineMath::Clamp(FirstDiffPos.Y, -1.0f, 1.0f);
 
 		AddActorLocation({ FirstDiffPos * Status.Speed * _DeltaTime });
+
+		count++;
+		
+		if (10'000 <= count)
+		{
+			bSpawnExp = false;
+			Die();
+		}
+
 	}
 	else if (true == Alive && true == Hitable)
 	{
@@ -224,7 +233,8 @@ void AMonster::Die()
 		newChestItem->InitDropItem(MonsterPos);
 	}
 
-	SpawnExpItem();
+	if(true == bSpawnExp)
+		SpawnExpItem();
 	
 	AInGameUI::KillAndGold->AddKillCount();
 	
